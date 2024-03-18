@@ -4,6 +4,7 @@
 
 #include  <Engine/CTimeMgr.h>
 
+#include <Engine/CGameObject.h>
 #include <Engine/CAssetMgr.h>
 #include <Engine/CMaterial.h>
 #include <Engine/CGraphicsShader.h>
@@ -37,6 +38,7 @@ CSubAnimator2DUI::CSubAnimator2DUI(Animator2DUI* Parent)
 	,PrintAtlasSize{0, 0}
 {
 	SetSize(ImVec2(800.f, 720.f));
+	m_TargetObject = Super->GetTargetObj();
 }
 
 CSubAnimator2DUI::~CSubAnimator2DUI()
@@ -226,7 +228,7 @@ void CSubAnimator2DUI::render_update()
 			{
 				OneAnim = new CAnim;
 				OneAnim->SetFrmvector(tm_vecFrm);
-
+				OneAnim->SetName(Animation_Key);
 
 			}
 
@@ -643,29 +645,23 @@ void CSubAnimator2DUI::SaveNewAnim()
 
 	FILE* temp = nullptr;
 	_wfopen_s(&temp, strAnimPath.c_str(), L"wb");
-
+	OneAnim->SetAtlas(m_AtlasTex);
 	OneAnim->SaveToFile(temp);
+	
 
 	fclose(temp);
 }
 
 void CSubAnimator2DUI::LoadAnim()
 {
-	CAnim* pAnim = nullptr;
-
-	wstring strAnimPath = CPathMgr::GetContentPath();
-	wstring AnimFolder = L"Animation\\\\";
-	strAnimPath += AnimFolder;
+	CGameObject* pTarget = nullptr;
+	pTarget = Super->GetTargetObj();
+	CAnim* pAnim = new CAnim;
 
 	wstring animname = L" ";
 	animname = LoadFile();
 
-	if (animname != L" ")
-	{
-		strAnimPath += animname;
-	}
-
-	if (!exists(strAnimPath))
+	if (!exists(animname))
 	{
 		ImGui::EndTabItem();
 		ImGui::EndTabBar();
@@ -675,10 +671,16 @@ void CSubAnimator2DUI::LoadAnim()
 	else
 	{
 		FILE* pFile = nullptr;
-		_wfopen_s(&pFile, strAnimPath.c_str(), L"rb");
+		_wfopen_s(&pFile, animname.c_str(), L"rb");
 
 		pAnim->LoadFromFile(pFile);
-		m_TargetObject->Animator2D()->GetAnimMap().insert(make_pair(pAnim->GetName(), pAnim));
+		pAnim->SetAnimator(pTarget->Animator2D());
+
+		CAnimator2D* pTargetAnimator2D = pTarget->Animator2D();
+
+		pTargetAnimator2D->AddAnimtoMap(pAnim);
+
+
 	}
 }
 

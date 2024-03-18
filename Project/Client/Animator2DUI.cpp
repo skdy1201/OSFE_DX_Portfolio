@@ -57,7 +57,7 @@ void Animator2DUI::render_update()
 
 	// 콤보박스 선택 만들기
 
-	map<wstring, CAnim*> temp = pAnimator->GetAnimMap();
+	map<wstring, CAnim*> temp = *pAnimator->GetAnimmap();
 	vector<string> Animlist;
 
 

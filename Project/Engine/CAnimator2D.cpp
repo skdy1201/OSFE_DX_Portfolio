@@ -83,6 +83,11 @@ void CAnimator2D::Create(const wstring& _strKey, CAnim* Anim)
 	
 }
 
+void CAnimator2D::AddAnimtoMap(CAnim* _Anim)
+{
+	m_mapAnim.insert(make_pair(_Anim->GetName(), _Anim));
+}
+
 CAnim* CAnimator2D::FindAnim(const wstring& _strKey)
 {
 	map<wstring, CAnim*>::iterator iter = m_mapAnim.find(_strKey);
