@@ -19,7 +19,7 @@ CSubAnimator2DUI::CSubAnimator2DUI(Animator2DUI* Parent)
 	: UI("Animator2DSub", "##Animator2DSub")
 	, Super(Parent)
 	, OneFrmSize(0.f, 0.f)
-	, frmidx{ 0.f, 0.f }
+	, Fullfrmidx{ 0.f, 0.f }
 	, LeftTop{ 0.f, 0.f }
 	, Offset{ 0.f, 0.f }
 	, Background{ 0.f, 0.f }
@@ -34,7 +34,7 @@ CSubAnimator2DUI::CSubAnimator2DUI(Animator2DUI* Parent)
 	, ShowAnimKey{ }
 	, PreviewStop(true)
 	, now(0)
-	
+	,PrintAtlasSize{0, 0}
 {
 	SetSize(ImVec2(800.f, 720.f));
 }
@@ -79,20 +79,13 @@ void CSubAnimator2DUI::render_update()
 				RealAtlasPixel.x = m_AtlasTex.Get()->GetWidth();
 				RealAtlasPixel.y = m_AtlasTex.Get()->GetHeight();
 
-				
+				PrintAtlasSize = { 1000, 500 };
 			}
 			else
 			{
 
 				ImGui::Dummy(ImVec2(500, 500));
 			}
-
-			
-			/*else
-			{
-
-				ImGui::Dummy(ImVec2(500, 500));
-			}*/
 
 			if (AtlasCol != 0 && AtlasRow != 0)
 				CheckIndex(AtlasCol, AtlasRow);
@@ -120,8 +113,8 @@ void CSubAnimator2DUI::render_update()
 				if (ImGui::IsMouseClicked(0))
 				{
 					ImVec2 frmidxcol = CheckIndex(realX, realY);
-					frmidx.x = frmidxcol.x;
-					frmidx.y = frmidxcol.y;
+					Fullfrmidx.x = frmidxcol.x;
+					Fullfrmidx.y = frmidxcol.y;
 				}
 
 			}
@@ -130,46 +123,13 @@ void CSubAnimator2DUI::render_update()
 			// 그리드 그리기
 			if (IsSetIdx)
 			{
-				ImDrawList* drawList = ImGui::GetWindowDrawList();
-				ImVec2 startPos = { AtlasPosition.x, AtlasPosition.y }; // 그리드 시작 위치
-				ImVec2 endPos = { AtlasPosition.x + 1000, AtlasPosition.y + 500 }; // 그리드 종료 위치
-				ImU32 lineColor = IM_COL32(255, 255, 255, 255); // 선 색상
-				float gridSpacingX = (1000 - Padding.x) / AtlasCol; // 수정된 수직선 간격 계산
-				float gridSpacingY = (500 - Padding.y) / AtlasRow; // 수정된 수평선 간격 계산
-
-				// 수직선 그리기
-				for (int col = 0; col <= AtlasCol; ++col)
-				{
-					float x = startPos.x + col * gridSpacingX; // 수정된 x 위치 계산
-					drawList->AddLine(ImVec2(x, startPos.y), ImVec2(x, endPos.y), lineColor);
-				}
-
-				// 수평선 그리기
-				for (int row = 0; row <= AtlasRow; ++row)
-				{
-					float y = startPos.y + row * gridSpacingY; // 수정된 y 위치 계산
-					drawList->AddLine(ImVec2(startPos.x, y), ImVec2(endPos.x, y), lineColor);
-				}
+				int ColRow[2] = {AtlasCol, AtlasRow};
+				DrawGrid(AtlasPosition, PrintAtlasSize, Padding, ColRow);
 			}
 
-
-			if (ImGui::Button("Load Atlas", ImVec2(40, 40)))
-			{
-				// 경로 찾기
-				wstring NewFilePath = LoadFile();
-				FilePath = MakePath(NewFilePath);
-
-				// 키 찾기
-				wstring NewKey;
-				NewKey = MakeKey(FilePath);
-
-				m_AtlasTex->Clear(10);
-				m_AtlasTex = nullptr;
-				Ptr<CTexture> temp = CAssetMgr::GetInst()->Load<CTexture>(NewKey, FilePath.c_str());
-				m_AtlasTex = temp;
-
-			}
-
+			LoadAtlasButton("Load Atlas", ImVec2(40, 40));
+			
+			// 나눌 행렬, 프레임 카운트 설정
 			ImGui::SameLine();
 			ImGui::SetNextItemWidth(75);
 			ImGui::InputInt("Col", &AtlasCol);
@@ -180,72 +140,16 @@ void CSubAnimator2DUI::render_update()
 
 			ImGui::Text("MakeFrmNum: %d", frmcount);
 
-			//frm 구조체 채우기
-			float textLeftTop[2] = { LeftTop.x ,LeftTop.y };
-			if (frmidx.x != -1 && frmidx.y != -1)
-			{
-				textLeftTop[0] = frmidx.x * OneFrmSize.x;
-				textLeftTop[1] = frmidx.y * OneFrmSize.y;
+			//현재 아틀라스에서 한 프레임 구조 짜기
+			FloatAnimStruct();
 
-				LeftTop.x = textLeftTop[0];
-				LeftTop.y = textLeftTop[1];
-			}
-			ImGui::Text("LeftTop: (%.1f, %.1f)", textLeftTop[0], textLeftTop[1]);
-
-
+			// 현재 아틀라스에서 프레임 추가하기
+			AddFrmButton("AddFrm", ImVec2{ 60.f , 30.f });
 			
-			float textOffset[2] = { Offset.x, Offset.y };
-			ImGui::InputFloat2("Offset", textOffset);
-
-			Offset.x = textOffset[0];
-			Offset.y = textOffset[1];
-
-			float textBackground[2] = { Background.x, Background.y };
-			ImGui::InputFloat2("Background", textBackground);
-
-			Background.x = textBackground[0];
-			Background.y = textBackground[1];
-
-			float textduration = Duration;
-			ImGui::InputFloat("Duration", &textduration);
-
-			Duration = textduration;
-
-			float textPadding[2] = { Padding.x, Padding.y };
-			ImGui::InputFloat2("Padding", textPadding);
-
-			Padding.x = textPadding[0];
-			Padding.y = textPadding[1];
-
-			if (ImGui::InputText("Animation Key", ShowAnimKey, IM_ARRAYSIZE(ShowAnimKey)))
-			{
-				Animation_Key = ToWString(ShowAnimKey);
-
-			}
-			ImGui::Text("Current Input: %s", ShowAnimKey);
-
-
-			if (ImGui::Button("AddFrm", ImVec2{ 60.f , 30.f }))
-			{
-				tAnimFrm temp = {};
-
-				temp.vSlice = Vec2(OneFrmSize.x / (float)m_AtlasTex->GetWidth(), OneFrmSize.y / (float)m_AtlasTex->GetHeight());
-				temp.vLeftTop = Vec2(LeftTop.x / (float)m_AtlasTex->GetWidth(), LeftTop.y / (float)m_AtlasTex->GetHeight());
-				temp.vOffset = Vec2(Offset.x / (float)m_AtlasTex->GetWidth(), Offset.y / (float)m_AtlasTex->GetHeight());
-				temp.vBackground = Vec2(Background.x / (float)m_AtlasTex->GetWidth(), Background.y / (float)m_AtlasTex->GetHeight());
-				temp.Duration = Duration;
-
-				tm_vecFrm.push_back(temp);
-
-				// 현재 프레임을 띄우기 위해 시작이 -1, 1를 만들면 0이 된다.
-				++CurFrmNum;
-
-				//첫 번째 0을 만들면 다음 프레임은 1, 새로 추가될 프레임의 숫자
-				++frmcount;
-			}
 
 			ImGui::SameLine();
 
+			// 프레임 벡터 초기화
 			if (ImGui::Button("ClearAnim", ImVec2{ 60.f , 30.f }))
 			{
 				AnimClear();
@@ -274,8 +178,8 @@ void CSubAnimator2DUI::render_update()
 
 				// 백그라운드 + offset
 				ImVec2 ShowBackGroundPix = {
-					tm_vecFrm[ShowCurFrmNum].vBackground.x* atlasWidth,
-					tm_vecFrm[ShowCurFrmNum].vBackground.y* atlasHeight
+					tm_vecFrm[ShowCurFrmNum].vBackground.x * atlasWidth,
+					tm_vecFrm[ShowCurFrmNum].vBackground.y * atlasHeight
 				};
 
 
@@ -315,45 +219,7 @@ void CSubAnimator2DUI::render_update()
 				ImGui::Image(m_AtlasTex->GetSRV().Get(), ShowBackGroundPix, uv_min_adjusted, uv_max_adjusted, tint_col, border_col);
 
 				//frm 구조체 채우기
-
-				float textOffset[2] = {
-					tm_vecFrm[CurFrmNum].vOffset.x * m_AtlasTex->GetWidth(),
-					tm_vecFrm[CurFrmNum].vOffset.y * m_AtlasTex->GetHeight()
-				};
-
-				if(ImGui::InputFloat2("Offset", textOffset))
-				{
-					tm_vecFrm[CurFrmNum].vOffset.x = textOffset[0] / (float)m_AtlasTex->GetWidth();
-					tm_vecFrm[CurFrmNum].vOffset.y = textOffset[1] / (float)m_AtlasTex->GetHeight();
-
-				}
-
-				float textBackground[2] = { tm_vecFrm[CurFrmNum].vBackground.x * m_AtlasTex->GetWidth(),
-											tm_vecFrm[CurFrmNum].vBackground.y * m_AtlasTex->GetHeight() };
-
-				if(ImGui::InputFloat2("Background", textBackground))
-				{
-
-					//tm_vecFrm[CurFrmNum].vBackground.x = textBackground[0] * (float)m_AtlasTex->GetWidth();
-					//tm_vecFrm[CurFrmNum].vBackground.y = textBackground[1] * (float)m_AtlasTex->GetHeight();
-
-					tm_vecFrm[CurFrmNum].vBackground.x = textBackground[0] / (float)m_AtlasTex->GetWidth();
-					tm_vecFrm[CurFrmNum].vBackground.y = textBackground[1] / (float)m_AtlasTex->GetHeight();
-				}
-
-
-
-				float textduration = tm_vecFrm[CurFrmNum].Duration;
-				ImGui::InputFloat("Duration", &textduration);
-
-				tm_vecFrm[CurFrmNum].Duration = textduration;
-			}
-
-		
-
-			if (ImGui::InputText("Animation Key", ShowAnimKey, IM_ARRAYSIZE(ShowAnimKey)))
-			{
-				Animation_Key = ToWString(ShowAnimKey);
+				FloatFrmStruct();
 			}
 
 			if (ImGui::Button("Fill Anim", ImVec2{ 100.f , 30.f }))
@@ -373,10 +239,7 @@ void CSubAnimator2DUI::render_update()
 
 				if (OneAnim != nullptr && m_TargetObject != nullptr)
 				{
-
 					m_TargetObject->Animator2D()->Create(Animation_Key, OneAnim);
-
-
 				}
 			}
 
@@ -390,21 +253,7 @@ void CSubAnimator2DUI::render_update()
 				}
 				else
 				{
-					nowacctime += CTimeMgr::GetInst()->GetEngineDeltaTime();
-					for(int i = 0; i < OneAnim->GetAnimFrm().size(); ++i)
-					{
-						if (tm_vecFrm[now].Duration < nowacctime)
-						{
-							++now;
-							if (tm_vecFrm.size() <= now)
-							{
-								now = (int)tm_vecFrm.size() - 1;
-								PreviewStop = true;
-							}
-							nowacctime = 0.f;
-						}
-					}
-					
+					PlayPreview();
 				}
 
 				// 환산을 위한 아틀라스의 실제 크기
@@ -469,56 +318,14 @@ void CSubAnimator2DUI::render_update()
 			{
 				if( OneAnim != nullptr)
 				{
-					wstring strAnimPath = CPathMgr::GetContentPath();
-					wstring AnimFolder = L"Animation\\\\";
-					strAnimPath += AnimFolder;
-					strAnimPath += Animation_Key;
-					
-					FILE* temp = nullptr;
-					_wfopen_s(&temp, strAnimPath.c_str(), L"wb");
-					
-					OneAnim->SaveToFile(temp);
-
-					fclose(temp);
+					SaveNewAnim();
 				}
 			}
 
 			ImGui::SameLine();
 			if(ImGui::Button("LoadAnim", ImVec2(100.f, 30.f)))
 			{
-				CAnim* pAnim = nullptr;
-
-				wstring strAnimPath = CPathMgr::GetContentPath();
-				wstring AnimFolder = L"Animation\\\\";
-				strAnimPath += AnimFolder;
-
-				wstring animname = L" ";
-				animname = LoadFile();
-
-				if(animname != L" ")
-				{
-					strAnimPath += animname;
-				}
-
-				if (!exists(strAnimPath))
-				{
-					return;
-				}
-				else
-				{
-
-
-
-					FILE* pFile = nullptr;
-					_wfopen_s(&pFile, strAnimPath.c_str(), L"rb");
-
-					pAnim->LoadFromFile(pFile);
-					m_TargetObject->Animator2D()->GetAnimMap().insert(make_pair(pAnim->GetName(), pAnim));
-
-				}
-
-			
-
+				LoadAnim();
 			}
 
 			ImGui::EndTabItem();
@@ -650,6 +457,228 @@ void CSubAnimator2DUI::AnimClear()
 	if(OneAnim != nullptr)
 	{
 		OneAnim = nullptr;
+	}
+}
+
+void CSubAnimator2DUI::FloatAnimStruct()
+{
+	//frm 구조체 채우기
+	float textLeftTop[2] = { LeftTop.x ,LeftTop.y };
+	if (Fullfrmidx.x != -1 && Fullfrmidx.y != -1)
+	{
+		textLeftTop[0] = Fullfrmidx.x * OneFrmSize.x;
+		textLeftTop[1] = Fullfrmidx.y * OneFrmSize.y;
+
+		LeftTop.x = textLeftTop[0];
+		LeftTop.y = textLeftTop[1];
+	}
+	ImGui::Text("LeftTop: (%.1f, %.1f)", textLeftTop[0], textLeftTop[1]);
+
+
+
+	float textOffset[2] = { Offset.x, Offset.y };
+	ImGui::InputFloat2("Offset", textOffset);
+
+	Offset.x = textOffset[0];
+	Offset.y = textOffset[1];
+
+	float textBackground[2] = { Background.x, Background.y };
+	ImGui::InputFloat2("Background", textBackground);
+
+	Background.x = textBackground[0];
+	Background.y = textBackground[1];
+
+	float textduration = Duration;
+	ImGui::InputFloat("Duration", &textduration);
+
+	Duration = textduration;
+
+	float textPadding[2] = { Padding.x, Padding.y };
+	ImGui::InputFloat2("Padding", textPadding);
+
+	Padding.x = textPadding[0];
+	Padding.y = textPadding[1];
+
+	if (ImGui::InputText("Animation Key", ShowAnimKey, IM_ARRAYSIZE(ShowAnimKey)))
+	{
+		Animation_Key = ToWString(ShowAnimKey);
+
+	}
+	ImGui::Text("Current Input: %s", ShowAnimKey);
+}
+
+void CSubAnimator2DUI::FloatFrmStruct()
+{
+
+	//frm 구조체 채우기
+
+	float textOffset[2] = {
+		tm_vecFrm[CurFrmNum].vOffset.x * m_AtlasTex->GetWidth(),
+		tm_vecFrm[CurFrmNum].vOffset.y * m_AtlasTex->GetHeight()
+	};
+
+	if (ImGui::InputFloat2("Offset", textOffset))
+	{
+		tm_vecFrm[CurFrmNum].vOffset.x = textOffset[0] / (float)m_AtlasTex->GetWidth();
+		tm_vecFrm[CurFrmNum].vOffset.y = textOffset[1] / (float)m_AtlasTex->GetHeight();
+
+	}
+
+	float textBackground[2] = { tm_vecFrm[CurFrmNum].vBackground.x * m_AtlasTex->GetWidth(),
+								tm_vecFrm[CurFrmNum].vBackground.y * m_AtlasTex->GetHeight() };
+
+	if (ImGui::InputFloat2("Background", textBackground))
+	{
+		tm_vecFrm[CurFrmNum].vBackground.x = textBackground[0] / (float)m_AtlasTex->GetWidth();
+		tm_vecFrm[CurFrmNum].vBackground.y = textBackground[1] / (float)m_AtlasTex->GetHeight();
+	}
+
+
+
+	float textduration = tm_vecFrm[CurFrmNum].Duration;
+	ImGui::InputFloat("Duration", &textduration);
+
+	tm_vecFrm[CurFrmNum].Duration = textduration;
+
+	if (ImGui::InputText("Animation Key", ShowAnimKey, IM_ARRAYSIZE(ShowAnimKey)))
+	{
+		Animation_Key = ToWString(ShowAnimKey);
+	}
+}
+
+void CSubAnimator2DUI::DrawGrid(ImVec2 ImgPosition, ImVec2 _ImgSize, ImVec2 _Padding, int _ColRow[2])
+{
+	int Acol = _ColRow[0];
+	int Arow = _ColRow[1];
+
+	ImDrawList* drawList = ImGui::GetWindowDrawList();
+	ImVec2 startPos = { ImgPosition.x, ImgPosition.y }; // 그리드 시작 위치
+	ImVec2 endPos = { ImgPosition.x + _ImgSize.x, ImgPosition.y + _ImgSize.y }; // 그리드 종료 위치
+	ImU32 lineColor = IM_COL32(255, 255, 255, 255); // 선 색상
+	float gridSpacingX = (1000 - _Padding.x) / Acol; // 수정된 수직선 간격 계산
+	float gridSpacingY = (500 - _Padding.y) / Arow; // 수정된 수평선 간격 계산
+
+	// 수직선 그리기
+	for (int col = 0; col <= Acol; ++col)
+	{
+		float x = startPos.x + col * gridSpacingX; // 수정된 x 위치 계산
+		drawList->AddLine(ImVec2(x, startPos.y), ImVec2(x, endPos.y), lineColor);
+	}
+
+	// 수평선 그리기
+	for (int row = 0; row <= Arow; ++row)
+	{
+		float y = startPos.y + row * gridSpacingY; // 수정된 y 위치 계산
+		drawList->AddLine(ImVec2(startPos.x, y), ImVec2(endPos.x, y), lineColor);
+	}
+}
+
+void CSubAnimator2DUI::LoadAtlasButton(const char* BtnName, ImVec2 _Size)
+{
+
+	if (ImGui::Button(BtnName, _Size))
+	{
+		// 경로 찾기
+		wstring NewFilePath = LoadFile();
+		FilePath = MakePath(NewFilePath);
+
+		// 키 찾기
+		wstring NewKey;
+		NewKey = MakeKey(FilePath);
+
+		m_AtlasTex->Clear(10);
+		m_AtlasTex = nullptr;
+		Ptr<CTexture> temp = CAssetMgr::GetInst()->Load<CTexture>(NewKey, FilePath.c_str());
+		m_AtlasTex = temp;
+
+	}
+}
+
+void CSubAnimator2DUI::AddFrmButton(const char* BtnName, ImVec2 _Size)
+{
+	if (ImGui::Button(BtnName, _Size))
+	{
+		tAnimFrm temp = {};
+
+		temp.vSlice = Vec2(OneFrmSize.x / (float)m_AtlasTex->GetWidth(), OneFrmSize.y / (float)m_AtlasTex->GetHeight());
+		temp.vLeftTop = Vec2(LeftTop.x / (float)m_AtlasTex->GetWidth(), LeftTop.y / (float)m_AtlasTex->GetHeight());
+		temp.vOffset = Vec2(Offset.x / (float)m_AtlasTex->GetWidth(), Offset.y / (float)m_AtlasTex->GetHeight());
+		temp.vBackground = Vec2(Background.x / (float)m_AtlasTex->GetWidth(), Background.y / (float)m_AtlasTex->GetHeight());
+		temp.Duration = Duration;
+
+		tm_vecFrm.push_back(temp);
+
+		// 현재 프레임을 띄우기 위해 시작이 -1, 1를 만들면 0이 된다.
+		++CurFrmNum;
+
+		//첫 번째 0을 만들면 다음 프레임은 1, 새로 추가될 프레임의 숫자
+		++frmcount;
+	}
+}
+
+void CSubAnimator2DUI::PlayPreview()
+{
+	nowacctime += CTimeMgr::GetInst()->GetEngineDeltaTime();
+	for (int i = 0; i < OneAnim->GetAnimFrm().size(); ++i)
+	{
+		if (tm_vecFrm[now].Duration < nowacctime)
+		{
+			++now;
+			if (tm_vecFrm.size() <= now)
+			{
+				now = (int)tm_vecFrm.size() - 1;
+				PreviewStop = true;
+			}
+			nowacctime = 0.f;
+		}
+	}
+}
+
+void CSubAnimator2DUI::SaveNewAnim()
+{
+	wstring strAnimPath = CPathMgr::GetContentPath();
+	wstring AnimFolder = L"Animation\\\\";
+	strAnimPath += AnimFolder;
+	strAnimPath += Animation_Key;
+
+	FILE* temp = nullptr;
+	_wfopen_s(&temp, strAnimPath.c_str(), L"wb");
+
+	OneAnim->SaveToFile(temp);
+
+	fclose(temp);
+}
+
+void CSubAnimator2DUI::LoadAnim()
+{
+	CAnim* pAnim = nullptr;
+
+	wstring strAnimPath = CPathMgr::GetContentPath();
+	wstring AnimFolder = L"Animation\\\\";
+	strAnimPath += AnimFolder;
+
+	wstring animname = L" ";
+	animname = LoadFile();
+
+	if (animname != L" ")
+	{
+		strAnimPath += animname;
+	}
+
+	if (!exists(strAnimPath))
+	{
+		ImGui::EndTabItem();
+		ImGui::EndTabBar();
+		ImGui::End();
+		return;
+	}
+	else
+	{
+		FILE* pFile = nullptr;
+		_wfopen_s(&pFile, strAnimPath.c_str(), L"rb");
+
+		pAnim->LoadFromFile(pFile);
+		m_TargetObject->Animator2D()->GetAnimMap().insert(make_pair(pAnim->GetName(), pAnim));
 	}
 }
 
