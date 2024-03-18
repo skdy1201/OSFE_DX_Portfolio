@@ -198,6 +198,7 @@ void CImGuiMgr::observe_content()
 {
     // WaitForSingleObject 를 이용해서 알림이 있는지 확인,
     // 대기시간은 0로 설정해서 알림이 있던 없던 바로 반환
+
     if (WAIT_OBJECT_0 == WaitForSingleObject(m_hNotify, 0))
     {
         // 다시 알림 활성화
