@@ -4,6 +4,7 @@
 #include <Engine/CLevelMgr.h>
 #include <Engine/CLevel.h>
 #include <Engine/CGameObject.h>
+#include <Engine/CKeyMgr.h>
 
 #include <Engine/CPathMgr.h>
 
@@ -116,6 +117,10 @@ void CImGuiMgr::tick()
     ImGui_ImplWin32_NewFrame();
     ImGui::NewFrame();
 
+    if(KEY_TAP(KEY::F1))
+    {
+        m_bDemoUI = m_bDemoUI ? false : true;
+    }
     
     if (m_bDemoUI)
     {
