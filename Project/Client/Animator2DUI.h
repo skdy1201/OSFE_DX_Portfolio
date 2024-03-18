@@ -15,8 +15,10 @@ private:
 
     bool CheckRepeat = false;
 
+
 public:
     CGameObject* GetTargetObj() { return pTarget; }
+
 
 public:
     Animator2DUI();
