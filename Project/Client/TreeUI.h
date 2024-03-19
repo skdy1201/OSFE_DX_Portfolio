@@ -5,7 +5,7 @@
 class TreeNode
 {
 private:
-    TreeUI*             m_Owner;
+    class TreeUI*             m_Owner;
 
     string              m_Name;
     string              m_ID;
@@ -17,6 +17,7 @@ private:
     bool                m_bFrame;
     bool                m_bSelected;
     bool                m_bSelectedR;
+    bool                rightClickFunctionActive;
 
 public:
     void SetName(string& _Name) { m_Name = _Name; }    

@@ -145,20 +145,63 @@ void SelectRObject(DWORD_PTR _Node)
 	TreeNode* pNode = (TreeNode*)_Node;
 	CGameObject* pObject = (CGameObject*)pNode->GetData();
 
+	
+
 	if (nullptr == pObject)
 		return;
-	else
-	{
-		ImGui::OpenPopup("RightClickOutlinerMenu");
 
-		if (ImGui::BeginPopup("RightClickOutlinerMenu")) 
+
+	if (ImGui::BeginPopupContextItem("RightClickOutlinerMenu"))
+	{
+		static char value[128] = "";
+		char CurObject[128] = " ";
+
+		string temp = ToString(pObject->GetName()).c_str();
+		strcpy(CurObject, temp.c_str());
+
+
+		ImGui::Text("Current Input: %s", CurObject);
+		ImGui::Text("Save Key = %s", value);
+
+		ImGui::InputText("##Prefab Key", value, IM_ARRAYSIZE(value));
+
+		if(ImGui::Button("SAVE", ImVec2{ 60.f, 30.f }))
 		{
-			if (ImGui::MenuItem("Save To Prefab")) 
-			{
-				// 옵션 1 선택시 실행할 로직
-			}
-		
-			ImGui::EndPopup();
+			//set game obj
+			CGameObject* pCloneObj = pObject->Clone();
+
+			CPrefab* pTempPrefab = new CPrefab(pCloneObj, false);
+
+			wstring ContentPath = L"prefab\\";
+			wstring changechar = ToWString(value);
+
+			ContentPath += changechar;
+			ContentPath += L".pref";
+	
+			pTempPrefab->Save(ContentPath);
+
+			delete pTempPrefab;
+
+			ImGui::CloseCurrentPopup();
 		}
+
+		ImGui::EndPopup();
 	}
+
+
+
+
+	ImGui::OpenPopup("RightClickOutlinerMenu");
+	{
+		
+
+	}
+
+	
 }
+
+
+
+
+
+

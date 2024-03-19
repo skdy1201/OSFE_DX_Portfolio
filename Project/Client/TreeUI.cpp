@@ -5,6 +5,7 @@
 
 TreeNode::TreeNode()
 	: m_bFrame(false)
+	, rightClickFunctionActive(false)
 {
 }
 
@@ -62,6 +63,7 @@ void TreeNode::render_update()
 			if ( KEY_PRESSED(KEY::RBTN) && ImGui::IsItemHovered(ImGuiHoveredFlags_None))
 			{
 				m_Owner->SetSelectedRNode(this);
+
 			}
 		}
 
@@ -150,10 +152,17 @@ void TreeUI::render_update()
 	// Callback 호출
 	if (m_bSelectREvent)
 	{
-		if(m_SelectInst && m_CallbackFunc)
+		if(m_CallbackFunc)
 		{
 			(m_CallbackFunc)((DWORD_PTR)m_Selected);
 		}
+	}
+
+	// 바깥 클릭이나 특정 조건을 감지하여 팝업을 닫기
+	if (!ImGui::IsAnyItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left | ImGuiMouseButton_Right))
+	{
+		m_bSelectREvent = false;
+		ImGui::CloseCurrentPopup();
 	}
 
 	// 드래그 대상을 특정 노드가 아닌 공중드랍 시킨 경우
@@ -177,6 +186,7 @@ void TreeUI::render_update()
 	}
 
 	m_bSelectEvent = false;
+//	m_bSelectREvent = false;
 	m_bDragDropEvent = false;
 }
 

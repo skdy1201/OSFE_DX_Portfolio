@@ -12,6 +12,7 @@ class Outliner :
 private:
     TreeUI*     m_Tree;
 
+
 public:
     virtual void render_update() override;
 
