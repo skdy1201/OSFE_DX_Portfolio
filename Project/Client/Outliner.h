@@ -26,9 +26,12 @@ private:
 
     void DragDropObject(DWORD_PTR _Dest, DWORD_PTR _Source);
 
+   
+
 public:
     Outliner();
     ~Outliner();
 };
 
 void SelectRObject(DWORD_PTR _Node);
+void FillComponentComboVector(vector<string>& _vec);

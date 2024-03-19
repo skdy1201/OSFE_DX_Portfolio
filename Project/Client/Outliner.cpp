@@ -13,6 +13,7 @@
 
 #include <Engine/CTaskMgr.h>
 
+
 Outliner::Outliner()
 	: UI("Outliner", "##Outliner")
 {
@@ -140,6 +141,27 @@ void Outliner::DragDropObject(DWORD_PTR _Dest, DWORD_PTR _Source)
 	ResetCurrentLevel();
 }
 
+
+void FillComponentComboVector(vector<string>& _vec)
+{
+	_vec.push_back("TRANSFORM");
+	_vec.push_back("COLLIDER2D");
+	_vec.push_back("COLLIDER3D");
+	_vec.push_back("ANIMATOR2D");
+	_vec.push_back("ANIMATOR3D");
+	_vec.push_back("LIGHT2D");
+	_vec.push_back("LIGHT3D");
+	_vec.push_back("CAMERA");
+	_vec.push_back("STATEMACHINE");
+	_vec.push_back("MESHRENDER");
+	_vec.push_back("TILEMAP");
+	_vec.push_back("PARTICLESYSTEM");
+	_vec.push_back("SKYBOX");
+	_vec.push_back("DECAL");
+	_vec.push_back("LANDSCAPE");
+}
+
+
 void SelectRObject(DWORD_PTR _Node)
 {
 	TreeNode* pNode = (TreeNode*)_Node;
@@ -161,30 +183,95 @@ void SelectRObject(DWORD_PTR _Node)
 
 
 		ImGui::Text("Current Input: %s", CurObject);
-		ImGui::Text("Save Key = %s", value);
 
-		ImGui::InputText("##Prefab Key", value, IM_ARRAYSIZE(value));
+		static int menuPage = 0; // 현재 보여줄 메뉴 페이지를 추적하는 상태 변수
 
-		if(ImGui::Button("SAVE", ImVec2{ 60.f, 30.f }))
+		// 페이지에 따라 다른 내용을 렌더링
+		if (menuPage == 0)
 		{
-			//set game obj
-			CGameObject* pCloneObj = pObject->Clone();
+			// 첫 번째 페이지의 메뉴 항목
+			ImGui::InputText("##Prefab Key", value, IM_ARRAYSIZE(value));
 
-			CPrefab* pTempPrefab = new CPrefab(pCloneObj, false);
+			ImGui::Text("Save Key = %s", value);
 
-			wstring ContentPath = L"prefab\\";
-			wstring changechar = ToWString(value);
 
-			ContentPath += changechar;
-			ContentPath += L".pref";
-	
-			pTempPrefab->Save(ContentPath);
+			if (ImGui::Button("SAVE", ImVec2{ 60.f, 30.f }))
+			{
+				//set game obj
+				CGameObject* pCloneObj = pObject->Clone();
 
-			delete pTempPrefab;
+				CPrefab* pTempPrefab = new CPrefab(pCloneObj, false);
 
-			ImGui::CloseCurrentPopup();
+				wstring ContentPath = L"prefab\\";
+				wstring changechar = ToWString(value);
+
+				ContentPath += changechar;
+				ContentPath += L".pref";
+
+				pTempPrefab->Save(ContentPath);
+
+				delete pTempPrefab;
+
+				ImGui::CloseCurrentPopup();
+			}
+
+			if (ImGui::Button("Next Page", ImVec2(100.f, 30.f)))
+			{
+				menuPage = 1;
+			}
+
+
 		}
+		else if (menuPage == 1)
+		{
+			vector<string> ComponentList;
 
+			FillComponentComboVector(ComponentList);
+
+			// ImGui::Combo에 필요한 const char* 배열 생성
+			vector<const char*> Items;
+			for (const auto& Item : ComponentList) 
+			{
+				Items.push_back(Item.c_str());
+			}
+
+			ImGui::Text("AddComponent");
+			ImGui::SameLine();
+
+			// 현재 선택된 컴포넌트 인덱스
+			static int Component_current = 0;
+
+			// ImGui::Combo를 그립니다.
+			// Items.data()는 const char*의 배열을 제공하며,
+			// Items.size()는 항목의 개수를 제공합니다.
+			ImGui::Combo("##SelectComponent", &Component_current, Items.data(), static_cast<int>(Items.size()));
+
+			ImGui::SameLine();
+
+			if (ImGui::Button("Add to Object", ImVec2{ 120, 30 }))
+			{
+				CComponent* tempComponentArr[(UINT)COMPONENT_TYPE::END];
+
+				COMPONENT_TYPE temp = (COMPONENT_TYPE)Component_current;
+
+				//pObject->AddComponent()
+			}
+
+			if (ImGui::Button("Prev Page", ImVec2(100.f, 30.f)))
+			{
+				menuPage = 0;
+			}
+
+			ImGui::SameLine();
+
+			if (ImGui::Button("Next Page", ImVec2(100.f, 30.f)))
+			{
+				menuPage = 2;
+			}
+
+
+
+		}
 		ImGui::EndPopup();
 	}
 
