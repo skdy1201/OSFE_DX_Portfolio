@@ -95,7 +95,7 @@ void CPlayerScript::tick()
 	{
 		Instantiate(m_Missile, Transform()->GetWorldPos(), 0);
 		//GamePlayStatic::Play2DSound(L"sound\\DM.wav", 1, 0.5f, false);
-		GamePlayStatic::Play2DBGM(L"sound\\DM.wav", 0.5f);
+		//GamePlayStatic::Play2DBGM(L"sound\\DM.wav", 0.5f);
 	}
 
 	if (KEY_PRESSED(KEY::SPACE))
@@ -103,7 +103,7 @@ void CPlayerScript::tick()
 		Ptr<CMaterial> pMtrl = MeshRender()->GetMaterial();
 		if (nullptr != pMtrl)
 		{
-			pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 1);
+ 			pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 1);
 		}
 	}
 	else if (KEY_RELEASED(KEY::SPACE))

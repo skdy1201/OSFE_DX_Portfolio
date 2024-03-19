@@ -16,7 +16,7 @@ public:
     void SetAsset(Ptr<CAsset> _Asset);
 
     ASSET_TYPE GetType() { return m_Type; }
-
+    Ptr<CAsset> GetTargetAsset() { return m_Asset; }
 
 
 public:

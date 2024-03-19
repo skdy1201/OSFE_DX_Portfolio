@@ -25,7 +25,8 @@ public:
     void Create(const wstring& _strKey, CAnim* Anim);
 
     CAnim* GetCurAnim() { return m_CurAnim; }
-    map<wstring, CAnim*> GetAnimMap() { return m_mapAnim; }
+    void AddAnimtoMap(CAnim* _Anim);
+    map<wstring, CAnim*>* GetAnimmap() { return &m_mapAnim; }
 
     CAnim* FindAnim(const wstring& _strAnimName);
     void Play(const wstring& _strAnimName, bool _bRepeat = true);

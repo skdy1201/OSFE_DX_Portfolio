@@ -6,6 +6,7 @@ class MeshUI :
 {
 private:
 
+    Ptr<CMesh> TargetMesh;
 
 public:
     virtual void render_update() override;

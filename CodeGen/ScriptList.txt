@@ -1,4 +1,4 @@
 CBackgroundScript
 CMissileScript
-CMonsterScript
 CPlayerScript
+CMonsterScript
