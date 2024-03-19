@@ -16,6 +16,7 @@ private:
 
     bool                m_bFrame;
     bool                m_bSelected;
+    bool                m_bSelectedR;
 
 public:
     void SetName(string& _Name) { m_Name = _Name; }    
@@ -62,12 +63,15 @@ private:
     bool            m_bDragDrop;
 
     UI*             m_SelectInst;
+    CALL_BACK_1     m_CallbackFunc;
     Delegate_1      m_SelectFunc;
     bool            m_bSelectEvent;
+    bool            m_bSelectREvent;
 
     UI*             m_DragDropInst;
     Delegate_2      m_DragDropFunc;
     bool            m_bDragDropEvent;
+    
 
 public:
     virtual void render_update() override;
@@ -77,7 +81,9 @@ public:
     TreeNode* GetSelectedNode() { return m_Selected; }
 
     void AddSelectDelegate(UI* _Inst, Delegate_1 _pFunc) { m_SelectInst = _Inst; m_SelectFunc = _pFunc; }
+    void AddSelectRCallback(UI* _Inst, CALL_BACK_1 _pFunc) { m_SelectInst = _Inst; m_CallbackFunc = _pFunc; }
     void AddDragDropDelegate(UI* _Inst, Delegate_2 _pFunc) { m_DragDropInst = _Inst; m_DragDropFunc = _pFunc; }
+   
 
     void ShowRootNode(bool _bShow) { m_bShowRoot = _bShow; }
     void UseDragDrop(bool _Use) { m_bDragDrop = _Use; }
@@ -94,6 +100,8 @@ public:
 
 private:
     void SetSelectedNode(TreeNode* _SelectedNode);
+    void SetSelectedRNode(TreeNode* _SelectedNode);
+
     void SetDragNode(TreeNode* _DragNode);
     void SetDropNode(TreeNode* _DropNode);
 

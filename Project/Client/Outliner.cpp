@@ -24,7 +24,9 @@ Outliner::Outliner()
 
 	// 트리에 클릭 이벤트 등록
 	m_Tree->AddSelectDelegate(this, (Delegate_1)&Outliner::SelectObject);
+	m_Tree->AddSelectRCallback(this, (CALL_BACK_1)&::SelectRObject);
 	m_Tree->AddDragDropDelegate(this, (Delegate_2)&Outliner::DragDropObject);
+	
 
 	// 트리 내용을 현재 레벨의 물체들로 구성
 	ResetCurrentLevel();
@@ -101,6 +103,9 @@ void Outliner::SelectObject(DWORD_PTR _Node)
 	pInspector->SetTargetObject(pObject);	
 }
 
+
+
+
 void Outliner::DragDropObject(DWORD_PTR _Dest, DWORD_PTR _Source)
 {
 	TreeNode* pDestNode = (TreeNode*)_Dest;
@@ -133,4 +138,27 @@ void Outliner::DragDropObject(DWORD_PTR _Dest, DWORD_PTR _Source)
 	}
 
 	ResetCurrentLevel();
+}
+
+void SelectRObject(DWORD_PTR _Node)
+{
+	TreeNode* pNode = (TreeNode*)_Node;
+	CGameObject* pObject = (CGameObject*)pNode->GetData();
+
+	if (nullptr == pObject)
+		return;
+	else
+	{
+		ImGui::OpenPopup("RightClickOutlinerMenu");
+
+		if (ImGui::BeginPopup("RightClickOutlinerMenu")) 
+		{
+			if (ImGui::MenuItem("Save To Prefab")) 
+			{
+				// 옵션 1 선택시 실행할 로직
+			}
+		
+			ImGui::EndPopup();
+		}
+	}
 }

@@ -58,6 +58,11 @@ void TreeNode::render_update()
 			{
 				m_Owner->SetSelectedNode(this);
 			}
+
+			if ( KEY_PRESSED(KEY::RBTN) && ImGui::IsItemHovered(ImGuiHoveredFlags_None))
+			{
+				m_Owner->SetSelectedRNode(this);
+			}
 		}
 
 		for (size_t i = 0; i < m_vecChildNode.size(); ++i)
@@ -142,6 +147,14 @@ void TreeUI::render_update()
 		}
 	}
 
+	// Callback 호출
+	if (m_bSelectREvent)
+	{
+		if(m_SelectInst && m_CallbackFunc)
+		{
+			(m_CallbackFunc)((DWORD_PTR)m_Selected);
+		}
+	}
 
 	// 드래그 대상을 특정 노드가 아닌 공중드랍 시킨 경우
 	if (KEY_RELEASED(KEY::LBTN) && m_DragNode && !m_DropNode)
@@ -212,6 +225,25 @@ void TreeUI::SetSelectedNode(TreeNode* _SelectedNode)
 
 	m_bSelectEvent = true;
 }
+
+void TreeUI::SetSelectedRNode(TreeNode* _SelectedNode)
+{
+	if (m_Selected)
+	{
+		m_Selected->m_bSelectedR = false;
+	}
+
+	m_Selected = _SelectedNode;
+
+	if (nullptr != m_Selected)
+	{
+		m_Selected->m_bSelectedR = true;
+	}
+
+	m_bSelectREvent = true;
+}
+
+
 
 void TreeUI::SetDragNode(TreeNode* _DragNode)
 {

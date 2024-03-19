@@ -20,7 +20,9 @@ public:
 
 private:
     void AddObjectToTree(TreeNode* _Node, CGameObject* _Object);
-    void SelectObject(DWORD_PTR _Node);
+
+	void SelectObject(DWORD_PTR _Node);
+
     void DragDropObject(DWORD_PTR _Dest, DWORD_PTR _Source);
 
 public:
@@ -28,3 +30,4 @@ public:
     ~Outliner();
 };
 
+void SelectRObject(DWORD_PTR _Node);
