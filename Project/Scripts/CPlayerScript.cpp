@@ -37,7 +37,7 @@ void CPlayerScript::begin()
 	GetRenderComponent()->GetDynamicMaterial();
 
 	//m_Missile = CAssetMgr::GetInst()->FindAsset<CPrefab>(L"MissilePrefab");
-	//m_Missile = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\missile.pref", L"prefab\\missile.pref");
+	m_Missile = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\payer.pref", L"prefab\\payer.pref");
 }
 
 void CPlayerScript::tick()
