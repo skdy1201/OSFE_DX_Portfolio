@@ -12,6 +12,9 @@
 #include "TreeUI.h"
 
 #include <Engine/CTaskMgr.h>
+#include <Engine/CTransform.h>
+
+#include <Engine/components.h>
 
 
 Outliner::Outliner()
@@ -142,6 +145,8 @@ void Outliner::DragDropObject(DWORD_PTR _Dest, DWORD_PTR _Source)
 }
 
 
+
+
 void FillComponentComboVector(vector<string>& _vec)
 {
 	_vec.push_back("TRANSFORM");
@@ -159,6 +164,54 @@ void FillComponentComboVector(vector<string>& _vec)
 	_vec.push_back("SKYBOX");
 	_vec.push_back("DECAL");
 	_vec.push_back("LANDSCAPE");
+}
+
+void NewComponent(CGameObject* _obj, COMPONENT_TYPE _num)
+{
+	CComponent* temp = nullptr;
+
+	switch (_num)
+	{
+	case COMPONENT_TYPE::TRANSFORM:
+		_obj->AddComponent(new CTransform);
+		break;
+	case COMPONENT_TYPE::COLLIDER2D:
+		_obj->AddComponent(new CCollider2D);
+		break;
+	case COMPONENT_TYPE::COLLIDER3D:
+		break;
+	case COMPONENT_TYPE::ANIMATOR2D:
+		_obj->AddComponent(new CAnimator2D);
+		break;
+	case COMPONENT_TYPE::ANIMATOR3D:
+		break;
+	case COMPONENT_TYPE::LIGHT2D:
+		_obj->AddComponent(new CLight2D);
+		break;
+	case COMPONENT_TYPE::LIGHT3D:
+		break;
+	case COMPONENT_TYPE::CAMERA:
+		_obj->AddComponent(new CCamera);
+		break;
+	case COMPONENT_TYPE::STATEMACHINE:
+		_obj->AddComponent(new CStateMachine);
+		break;
+	case COMPONENT_TYPE::MESHRENDER:
+		_obj->AddComponent(new CMeshRender);
+		break;
+	case COMPONENT_TYPE::TILEMAP:
+		_obj->AddComponent(new CTileMap);
+		break;
+	case COMPONENT_TYPE::PARTICLESYSTEM:
+		_obj->AddComponent(new CParticleSystem);
+		break;
+	case COMPONENT_TYPE::SKYBOX:
+		break;
+	case COMPONENT_TYPE::DECAL:
+		break;
+	case COMPONENT_TYPE::LANDSCAPE:
+		break;
+	}
 }
 
 
@@ -250,11 +303,10 @@ void SelectRObject(DWORD_PTR _Node)
 
 			if (ImGui::Button("Add to Object", ImVec2{ 120, 30 }))
 			{
-				CComponent* tempComponentArr[(UINT)COMPONENT_TYPE::END];
 
 				COMPONENT_TYPE temp = (COMPONENT_TYPE)Component_current;
 
-				//pObject->AddComponent()
+				NewComponent(pObject, temp);
 			}
 
 			if (ImGui::Button("Prev Page", ImVec2(100.f, 30.f)))
