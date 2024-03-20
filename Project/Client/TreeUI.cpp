@@ -154,6 +154,7 @@ void TreeUI::render_update()
 	{
 		if(m_CallbackFunc)
 		{
+			if (m_Selected != nullptr)
 			(m_CallbackFunc)((DWORD_PTR)m_Selected);
 		}
 	}
@@ -186,7 +187,6 @@ void TreeUI::render_update()
 	}
 
 	m_bSelectEvent = false;
-//	m_bSelectREvent = false;
 	m_bDragDropEvent = false;
 }
 
@@ -233,6 +233,7 @@ void TreeUI::SetSelectedNode(TreeNode* _SelectedNode)
 		m_Selected->m_bSelected = true;
 	}		
 
+
 	m_bSelectEvent = true;
 }
 
@@ -249,6 +250,7 @@ void TreeUI::SetSelectedRNode(TreeNode* _SelectedNode)
 	{
 		m_Selected->m_bSelectedR = true;
 	}
+
 
 	m_bSelectREvent = true;
 }

@@ -18,6 +18,8 @@
 #include  <Scripts/CScriptMgr.h>
 #include <Engine/CScript.h>
 
+#include <Engine/CTaskMgr.h>
+
 Outliner::Outliner()
 	: UI("Outliner", "##Outliner")
 {
@@ -215,17 +217,27 @@ void NewComponent(CGameObject* _obj, COMPONENT_TYPE _num)
 
 void SelectRObject(DWORD_PTR _Node)
 {
+
 	TreeNode* pNode = (TreeNode*)_Node;
 	CGameObject* pObject = (CGameObject*)pNode->GetData();
 
-	
-
-	if (nullptr == pObject)
-		return;
-
-
-	if (ImGui::BeginPopupContextItem("RightClickOutlinerMenu"))
+	if (pObject == nullptr || pNode == nullptr)
 	{
+		pNode->SetSelectedRCancel();
+		ImGui::CloseCurrentPopup();
+		return;
+	}
+
+		
+
+	if(ImGui::BeginPopupContextItem("RightClickOutlinerMenu"))
+	{
+		if(pObject->IsDead() == true)
+		{
+			ImGui::EndPopup();
+			return;
+		}
+
 		static char value[128] = "";
 		char CurObject[128] = " ";
 
@@ -265,6 +277,29 @@ void SelectRObject(DWORD_PTR _Node)
 
 				ImGui::CloseCurrentPopup();
 			}
+
+			ImGui::SameLine();
+
+			if(ImGui::Button("Delete", ImVec2{ 60.f, 30.f }))
+			{
+				tTask temp = {};
+
+				temp.Type = TASK_TYPE::DELETE_OBJECT;
+				temp.Param_1 = (DWORD_PTR)pObject;
+
+				CTaskMgr::GetInst()->AddTask(temp);
+
+				auto ui = CImGuiMgr::GetInst()->FindUI("##Outliner");
+				auto outliner = dynamic_cast<Outliner*>(ui);
+
+				outliner->GetTree()->SetSelectedRNode(nullptr);
+
+				outliner->ResetCurrentLevel();
+
+
+
+			}
+			
 
 			if (ImGui::Button("Next Page", ImVec2(100.f, 30.f)))
 			{

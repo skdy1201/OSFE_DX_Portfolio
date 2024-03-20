@@ -26,6 +26,8 @@ public:
     const string& GetName() { return m_Name; }
     DWORD_PTR GetData() { return m_Data; }
 
+    void SetSelectedRCancel() { m_bSelectedR = false; }
+
 private:
     void SetID(const string& _ID) { m_ID = _ID; }
     void AddChildNode(TreeNode* _Node) 
@@ -89,6 +91,8 @@ public:
     void ShowRootNode(bool _bShow) { m_bShowRoot = _bShow; }
     void UseDragDrop(bool _Use) { m_bDragDrop = _Use; }
 
+    void SetSelectedRNode(TreeNode* _SelectedNode);
+
     TreeNode* AddTreeNode(TreeNode* _Parent, string _strName, DWORD_PTR _dwData);
     void ClearNode()
     {
@@ -101,7 +105,7 @@ public:
 
 private:
     void SetSelectedNode(TreeNode* _SelectedNode);
-    void SetSelectedRNode(TreeNode* _SelectedNode);
+    
 
     void SetDragNode(TreeNode* _DragNode);
     void SetDropNode(TreeNode* _DropNode);

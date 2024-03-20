@@ -16,6 +16,7 @@ private:
 
 public:
     virtual void render_update() override;
+	TreeUI* GetTree() { return m_Tree; }
 
 public:
     void ResetCurrentLevel();
