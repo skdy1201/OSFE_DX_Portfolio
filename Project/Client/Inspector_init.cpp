@@ -84,9 +84,11 @@ void Inspector::CreateAssetUI()
 
 void Inspector::ResizeScriptUI(UINT _Size)
 {
-	int AddSize = _Size - m_vecScriptUI.size();
+	int newSize = _Size;
 
-	for (int i = 0; i < AddSize; ++i)
+	m_vecScriptUI.clear();
+
+	for (int i = 0; i < newSize; ++i)
 	{
 		ScriptUI* pScriptUI = new ScriptUI;
 		AddChildUI(pScriptUI);
