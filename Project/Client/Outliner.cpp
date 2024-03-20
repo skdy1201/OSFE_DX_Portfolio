@@ -15,7 +15,8 @@
 #include <Engine/CTransform.h>
 
 #include <Engine/components.h>
-
+#include  <Scripts/CScriptMgr.h>
+#include <Engine/CScript.h>
 
 Outliner::Outliner()
 	: UI("Outliner", "##Outliner")
@@ -143,9 +144,6 @@ void Outliner::DragDropObject(DWORD_PTR _Dest, DWORD_PTR _Source)
 
 	ResetCurrentLevel();
 }
-
-
-
 
 void FillComponentComboVector(vector<string>& _vec)
 {
@@ -320,10 +318,52 @@ void SelectRObject(DWORD_PTR _Node)
 			{
 				menuPage = 2;
 			}
-
-
-
 		}
+		else if (menuPage == 2)
+		{
+			ImGui::Separator();
+
+			ImGui::NewLine();
+
+			ImGui::Text("ScriptList", ImVec2{ 50, 40 });
+
+			ImGui::NewLine();
+
+			// 데이터 목록 (실제 애플리케이션에서는 동적 데이터일 수 있음)
+			vector<wstring> ScriptList;
+			CScriptMgr::GetScriptInfo(ScriptList);
+
+
+			// 검색어를 저장할 버퍼
+			static char searchQuery[256] = "";
+
+			ImGui::Text("Search");
+			ImGui::SameLine();
+			ImGui::InputText("##Search", searchQuery, IM_ARRAYSIZE(searchQuery));  // 검색어 입력 필드
+
+			for (size_t i = 0; i < ScriptList.size(); ++i)
+			{
+				// ToString 함수를 사용하여 wstring을 string으로 변환
+				string scriptName = ToString(ScriptList[i]);
+
+				// 검색어가 비어있거나, 스크립트 이름이 검색어를 포함하는 경우에만 항목 표시
+				if (searchQuery[0] == '\0' || scriptName.find(searchQuery) != std::string::npos)
+				{
+					if (ImGui::MenuItem(scriptName.c_str()))
+					{
+						auto script = CScriptMgr::GetScript(ToWString(scriptName));
+						pObject->AddComponent(script);
+
+					}
+				}
+			}
+
+			if (ImGui::Button("Prev Page", ImVec2(100.f, 30.f)))
+			{
+				menuPage = 1;
+			}
+		}
+
 		ImGui::EndPopup();
 	}
 
@@ -332,8 +372,6 @@ void SelectRObject(DWORD_PTR _Node)
 
 	ImGui::OpenPopup("RightClickOutlinerMenu");
 	{
-		
-
 	}
 
 	
