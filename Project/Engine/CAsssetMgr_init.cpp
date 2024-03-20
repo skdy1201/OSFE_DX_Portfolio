@@ -277,6 +277,29 @@ void CAssetMgr::CreateDefaultGraphicsShader()
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_DEBUG);
 
 	AddAsset(L"DebugShapeShader", pShader.Get());
+
+	// =================================
+	// TileFxShader
+	// =================================
+	pShader = new CGraphicsShader;
+	pShader->CreateVertexShader(L"shader\\Tile.fx", "VS_TileFX");
+	pShader->CreatePixelShader(L"shader\\Tile.fx", "PS_TileFX");
+
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_MASKED);
+
+	// Parameter	
+	pShader->AddScalarParam(SCALAR_PARAM::INT_0, "Blue Camp");
+	pShader->AddScalarParam(SCALAR_PARAM::INT_1, "Red Camp");
+	pShader->AddScalarParam(SCALAR_PARAM::INT_2, "Tile Shadow");
+	pShader->AddTexParam(TEX_PARAM::TEX_0, "Blue Tile");
+	pShader->AddTexParam(TEX_PARAM::TEX_1, "Red Tile");
+	pShader->AddTexParam(TEX_PARAM::TEX_2, "Tile Shadow");
+
+	AddAsset(L"TileShader", pShader.Get());
+	
 }
 
 
@@ -328,6 +351,18 @@ void CAssetMgr::CreateDefaultMaterial()
 	pMtrl = new CMaterial(true);
 	pMtrl->SetShader(FindAsset<CGraphicsShader>(L"DebugShapeShader"));
 	AddAsset<CMaterial>(L"DebugShapeMtrl", pMtrl);
+
+	// TileMtrl
+	pMtrl = new CMaterial(true);
+	pMtrl->SetShader(FindAsset<CGraphicsShader>(L"TileShader"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_0, Load<CTexture>(L"texture\\Tile\\TileBlue.png", L"texture\\Tile\\TileBlue.png"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_1, Load<CTexture>(L"texture\\Tile\\TileRed.png", L"texture\\Tile\\TileRed.png"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_2, Load<CTexture>(L"texture\\Tile\\TileRed.png", L"texture\\Tile\\TileShadow.png"));
+	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 1);
+	pMtrl->SetScalarParam(SCALAR_PARAM::INT_1, 2);
+	pMtrl->SetScalarParam(SCALAR_PARAM::INT_2, 3);
+	AddAsset<CMaterial>(L"TileMtrl", pMtrl);
+
 }
 
 
