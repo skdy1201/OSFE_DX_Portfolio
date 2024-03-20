@@ -206,6 +206,8 @@ CGameObject* CLevelSaveLoad::LoadGameObject(FILE* _File)
 			break;
 		}
 
+
+		
 		// 해당 컴포넌트가 저장한 데이터를 로드
 		pObject->AddComponent(pComponent);
 		pComponent->LoadFromFile(_File);
