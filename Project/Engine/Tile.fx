@@ -39,7 +39,7 @@ float4 PS_TileFX(VS_OUT _in) : SV_Target
 {
     float4 vColor;
 
-    if (g_btex_0)
+    if (g_int_0)
     {
         vColor = g_tex_0.Sample(g_sam_1, _in.vUV);
                     
@@ -53,9 +53,9 @@ float4 PS_TileFX(VS_OUT _in) : SV_Target
         }
     }
 
-    if (g_btex_1)
+    if (g_int_1)
     {
-        vColor = g_tex_0.Sample(g_sam_1, _in.vUV);
+        vColor = g_tex_1.Sample(g_sam_1, _in.vUV);
                     
             //saturate 0 ~ 1 을 넘지 않게 보정
         float fAlpha = 1.f - saturate(dot(vColor.rb, vColor.rb) / 2.f);
@@ -67,9 +67,9 @@ float4 PS_TileFX(VS_OUT _in) : SV_Target
         }
     }
 
-    if (g_btex_2)
+    if (g_int_2)
     {
-        vColor = g_tex_0.Sample(g_sam_1, _in.vUV);
+        vColor = g_tex_2.Sample(g_sam_1, _in.vUV);
                     
             //saturate 0 ~ 1 을 넘지 않게 보정
         float fAlpha = 1.f - saturate(dot(vColor.rb, vColor.rb) / 2.f);
