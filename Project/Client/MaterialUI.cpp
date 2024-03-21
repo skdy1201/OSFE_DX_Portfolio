@@ -22,10 +22,25 @@ void MaterialUI::render_update()
 {
 	AssetUI::render_update();
 
+    //받아 두기
+    CMaterial* target = (CMaterial*)this->GetTargetAsset().Get();
 
     // 해당 텍스쳐 이미지 출력
     Ptr<CMaterial> pMtrl = (CMaterial*)GetAsset().Get();
     string strPath = string(pMtrl->GetRelativePath().begin(), pMtrl->GetRelativePath().end());
+
+    string mtrlname = ToString(target->GetName());
+
+    //이름 띄우고 입력하기
+    char currentmtrlname[256];
+    strcpy(currentmtrlname, mtrlname.c_str());
+    ImGui::Text("Name : %s", currentmtrlname);
+
+    if(ImGui::InputText("##input name", currentmtrlname, IM_ARRAYSIZE(currentmtrlname)))
+    {
+        mtrlname = currentmtrlname;
+        target->SetName(ToWString(mtrlname));
+    }
 
     ImGui::Text("Material");
     ImGui::SameLine();
@@ -46,6 +61,29 @@ void MaterialUI::render_update()
     ImGui::Spacing(); ImGui::Spacing(); ImGui::Spacing(); ImGui::Spacing();
     ImGui::Text("Material Parameter");
     ImGui::Spacing(); ImGui::Spacing(); 
+
+    ImGui::NewLine();
+    ImGui::NewLine();
+
+    bool IsSetTexture[9] = {};
+
+
+    if (ImGui::CollapsingHeader("add texture param"))
+    {
+       /* if (ImGui::BeginTable("split", 3))
+        {
+            ImGui::TableNextColumn(); ImGui::Checkbox("No titlebar", &no_titlebar);
+            ImGui::TableNextColumn(); ImGui::Checkbox("No scrollbar", &no_scrollbar);
+            ImGui::TableNextColumn(); ImGui::Checkbox("No menu", &no_menu);
+            ImGui::TableNextColumn(); ImGui::Checkbox("No move", &no_move);
+            ImGui::TableNextColumn(); ImGui::Checkbox("No resize", &no_resize);
+            ImGui::TableNextColumn(); ImGui::Checkbox("No collapse", &no_collapse);
+            ImGui::TableNextColumn(); ImGui::Checkbox("No close", &no_close);
+            ImGui::TableNextColumn(); ImGui::Checkbox("No nav", &no_nav);
+            ImGui::TableNextColumn(); ImGui::Checkbox("No background", &no_background);
+            ImGui::EndTable();
+        }*/
+    }
 
     // Shader Parameter
     if (nullptr == pShader)

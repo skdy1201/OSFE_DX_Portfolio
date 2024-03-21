@@ -54,6 +54,7 @@ void CLevel::finaltick()
 	for (int i = 0; i < LAYER_MAX; ++i)
 	{
 		m_arrLayer[i]->finaltick();
+		
 	}
 }
 
