@@ -172,10 +172,7 @@ void CAssetMgr::CreateDefaultGraphicsShader()
 	pShader->SetBSType(BS_TYPE::DEFAULT);
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_MASKED);
 		
-	// Parameter	
-	pShader->AddScalarParam(SCALAR_PARAM::INT_0, "Test Param");
-	pShader->AddTexParam(TEX_PARAM::TEX_0, "Output Texture 1");
-	
+
 
 	AddAsset(L"Std2DShader", pShader.Get());
 
@@ -290,13 +287,7 @@ void CAssetMgr::CreateDefaultGraphicsShader()
 	pShader->SetBSType(BS_TYPE::DEFAULT);
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_MASKED);
 
-	// Parameter	
-	pShader->AddScalarParam(SCALAR_PARAM::INT_0, "Blue Camp");
-	pShader->AddScalarParam(SCALAR_PARAM::INT_1, "Red Camp");
-	pShader->AddScalarParam(SCALAR_PARAM::INT_2, "Tile Shadow");
-	pShader->AddTexParam(TEX_PARAM::TEX_0, "Blue Tile");
-	pShader->AddTexParam(TEX_PARAM::TEX_1, "Red Tile");
-	pShader->AddTexParam(TEX_PARAM::TEX_2, "Tile Shadow");
+
 
 	AddAsset(L"TileShader", pShader.Get());
 	
@@ -312,6 +303,11 @@ void CAssetMgr::CreateDefaultMaterial()
 	pMtrl = new CMaterial(true);
 	pMtrl->SetShader(FindAsset<CGraphicsShader>(L"Std2DShader"));
 	AddAsset<CMaterial>(L"Std2DMtrl", pMtrl);
+
+	// Parameter	
+	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "Test Param");
+	pMtrl->AddTexParam(TEX_PARAM::TEX_0, "Output Texture 1");
+
 
 	// TestMtrl
 	//pMtrl = new CMaterial(true);
@@ -361,6 +357,15 @@ void CAssetMgr::CreateDefaultMaterial()
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 1);
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_1, 2);
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_2, 3);
+
+	// Parameter	
+	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "Blue Camp");
+	pMtrl->AddScalarParam(SCALAR_PARAM::INT_1, "Red Camp");
+	pMtrl->AddScalarParam(SCALAR_PARAM::INT_2, "Tile Shadow");
+	pMtrl->AddTexParam(TEX_PARAM::TEX_0, "Blue Tile");
+	pMtrl->AddTexParam(TEX_PARAM::TEX_1, "Red Tile");
+	pMtrl->AddTexParam(TEX_PARAM::TEX_2, "Tile Shadow");
+
 	AddAsset<CMaterial>(L"TileMtrl", pMtrl);
 
 }

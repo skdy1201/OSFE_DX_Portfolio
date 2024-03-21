@@ -4,6 +4,18 @@
 #include "CTexture.h"
 #include "CGraphicsShader.h"
 
+struct tScalarParam
+{
+	SCALAR_PARAM    Type;
+	string          Desc;
+};
+
+struct tTexParam
+{
+	TEX_PARAM       Type;
+	string          Desc;
+};
+
 
 class CMaterial :
     public CAsset
@@ -12,7 +24,11 @@ private:
     tMtrlConst				m_Const;
 	Ptr<CTexture>			m_arrTex[(UINT)TEX_PARAM::END];
     Ptr<CGraphicsShader>    m_pShader;
-    
+
+	// 재질 파라미터 목록
+	vector<tScalarParam>            m_ScalarParam;
+	vector<tTexParam>               m_TexParam;
+
 public:
     void SetShader(Ptr<CGraphicsShader> _Shader) { m_pShader = _Shader; }
 	Ptr<CGraphicsShader> GetShader() { return m_pShader; }
@@ -23,6 +39,12 @@ public:
 
 	void* GetScalarParam(SCALAR_PARAM _ParamType);
 	Ptr<CTexture> GetTexParam(TEX_PARAM _ParamType) { return m_arrTex[(UINT)_ParamType]; }
+
+	const vector<tScalarParam>& GetScalarParam() { return  m_ScalarParam; }
+	const vector<tTexParam>& GetTexParam() { return m_TexParam; }
+
+	void AddScalarParam(SCALAR_PARAM _Param, const string& _Desc) { m_ScalarParam.push_back(tScalarParam{ _Param , _Desc }); }
+	void AddTexParam(TEX_PARAM _Param, const string& _Desc) { m_TexParam.push_back(tTexParam{ _Param , _Desc }); }
 
     void UpdateData();
 
