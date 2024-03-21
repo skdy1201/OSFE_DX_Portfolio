@@ -10,6 +10,7 @@
 #include <vector>
 #include <list>
 #include <map>
+#include <algorithm>
 
 using std::vector;
 using std::list;
@@ -18,6 +19,8 @@ using std::make_pair;
 
 using std::wstring;
 using std::string;
+using namespace std;
+
 
 #include <wrl.h>
 using namespace Microsoft::WRL;

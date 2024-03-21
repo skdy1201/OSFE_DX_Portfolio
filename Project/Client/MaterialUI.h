@@ -8,6 +8,10 @@ private:
     TEX_PARAM       m_SelectTexParam;
     bool            m_CheckMaterial[10];
 
+    //이전 재질과 지금 재질을 비교
+    Ptr<CMaterial> currentMtrl;
+    Ptr<CMaterial> prevMtrl;
+
 public:
     virtual void render_update() override;
     void make_Textable(bool* _texarr, Ptr<CMaterial> pMtrl);
