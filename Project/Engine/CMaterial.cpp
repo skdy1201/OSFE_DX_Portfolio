@@ -25,6 +25,11 @@ CMaterial::~CMaterial()
 }
 
 
+void CMaterial::SetTexDesc(TEX_PARAM _Param, const string& _desc)
+{
+	m_TexParam[(int)_Param] = _desc;
+}
+
 void CMaterial::UpdateData()
 {	
 	if (nullptr == m_pShader.Get())
