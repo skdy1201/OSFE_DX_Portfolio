@@ -27,7 +27,7 @@ void MaterialUI::render_update()
 
 
 	//받아 두기
-	CMaterial* target = (CMaterial*)this->GetTargetAsset().Get();
+	Ptr<CMaterial> target = (CMaterial*)this->GetTargetAsset().Get();
 
 	if(target != currentMtrl)
 	{
@@ -150,7 +150,7 @@ void MaterialUI::render_update()
 	}
 }
 
-void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial> pMtrl)
+void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial>& pMtrl)
 {
 	vector<tTexParam> temp = pMtrl.Get()->GetTexParam();
 
@@ -166,7 +166,7 @@ void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial> pMtrl)
 			switch (temp[i].Type)
 			{
 			case TEX_PARAM::TEX_0:
-				*_texarr = true;
+				_texarr[0] = true;
 				break;
 			case TEX_PARAM::TEX_1:
 				_texarr[1] = true;
@@ -205,7 +205,13 @@ void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial> pMtrl)
 		ImGui::TableNextColumn();
 		if (ImGui::Checkbox("TEX_0", _texarr))
 		{
-			if (pMtrl->GetTexParam(TEX_PARAM::TEX_0) == nullptr)
+		
+		}
+
+		ImGui::TableNextColumn();
+		if(ImGui::Checkbox("TEX_1", &_texarr[1]))
+		{
+			if (pMtrl->GetTexParam(TEX_PARAM::TEX_1) == nullptr)
 			{
 				Ptr<CTexture> temp = CAssetMgr::GetInst()->CreateTexture(L"tempTEX_0", 1, 1, DXGI_FORMAT_R8G8B8A8_UNORM,
 					D3D11_BIND_SHADER_RESOURCE);
@@ -214,10 +220,12 @@ void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial> pMtrl)
 				*_texarr = true;
 			}
 		}
+
 		ImGui::TableNextColumn();
-		ImGui::Checkbox("TEX_1", &_texarr[1]);
-		ImGui::TableNextColumn();
-		ImGui::Checkbox("TEX_2", &_texarr[2]);
+		if(ImGui::Checkbox("TEX_2", &_texarr[2]))
+		{
+
+		}
 		ImGui::TableNextColumn();
 		ImGui::Checkbox("TEX_3", &_texarr[3]);
 		ImGui::TableNextColumn();
@@ -235,6 +243,19 @@ void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial> pMtrl)
 
 		
 	ImGui::EndTable();
+}
+
+void MaterialUI::AddTexture(Ptr<CMaterial> _mtrl,TEX_PARAM _Param, wstring Key, string paramname, bool* _arr ,UINT barrnum)
+{
+	if (_mtrl->GetTexParam(_Param) == nullptr)
+	{
+		Ptr<CTexture> temp = CAssetMgr::GetInst()->CreateTexture(Key, 1, 1, DXGI_FORMAT_R8G8B8A8_UNORM,
+			D3D11_BIND_SHADER_RESOURCE);
+
+		_mtrl->AddTexParam(_Param, paramname);
+
+		_arr[barrnum];
+	}
 }
 
 void MaterialUI::SelectTexture(DWORD_PTR _dwData)

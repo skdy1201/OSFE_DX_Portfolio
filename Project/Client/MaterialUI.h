@@ -14,8 +14,8 @@ private:
 
 public:
     virtual void render_update() override;
-    void make_Textable(bool* _texarr, Ptr<CMaterial> pMtrl);
-
+    void make_Textable(bool* _texarr, Ptr<CMaterial>& pMtrl);
+    void AddTexture(Ptr<CMaterial> _mtrl, TEX_PARAM _Param, wstring Key, string paramname, bool* _arr, UINT barrnum);
 
 
 public:
@@ -25,4 +25,3 @@ public:
     MaterialUI();
     ~MaterialUI();
 };
-
