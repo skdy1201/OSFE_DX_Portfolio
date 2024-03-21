@@ -10,6 +10,7 @@
 
 MaterialUI::MaterialUI()
 	: AssetUI("Material", "##Material", ASSET_TYPE::MATERIAL)
+	, m_CheckMaterial { false }
 {
 }
 
@@ -70,20 +71,13 @@ void MaterialUI::render_update()
 
     if (ImGui::CollapsingHeader("add texture param"))
     {
-       /* if (ImGui::BeginTable("split", 3))
+        if (ImGui::BeginTable("Add", 5))
         {
-            ImGui::TableNextColumn(); ImGui::Checkbox("No titlebar", &no_titlebar);
-            ImGui::TableNextColumn(); ImGui::Checkbox("No scrollbar", &no_scrollbar);
-            ImGui::TableNextColumn(); ImGui::Checkbox("No menu", &no_menu);
-            ImGui::TableNextColumn(); ImGui::Checkbox("No move", &no_move);
-            ImGui::TableNextColumn(); ImGui::Checkbox("No resize", &no_resize);
-            ImGui::TableNextColumn(); ImGui::Checkbox("No collapse", &no_collapse);
-            ImGui::TableNextColumn(); ImGui::Checkbox("No close", &no_close);
-            ImGui::TableNextColumn(); ImGui::Checkbox("No nav", &no_nav);
-            ImGui::TableNextColumn(); ImGui::Checkbox("No background", &no_background);
-            ImGui::EndTable();
-        }*/
+            make_Textable();
+        }
     }
+
+    
 
     // Shader Parameter
     if (nullptr == pShader)
@@ -137,6 +131,25 @@ void MaterialUI::render_update()
         }
         pMtrl->SetTexParam(vecTexParam[i].Type, pTex);
     }
+}
+
+void MaterialUI::make_Textable()
+{
+    ImGui::TableNextColumn();
+	if(ImGui::Checkbox("TEX_0", m_CheckMaterial))
+	{
+		
+	}
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_1", &m_CheckMaterial[1]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_2", &m_CheckMaterial[2]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_3", &m_CheckMaterial[3]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_4", &m_CheckMaterial[4]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_5", &m_CheckMaterial[5]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEXCUBE_0", &m_CheckMaterial[6]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEXCUBE_1", &m_CheckMaterial[7]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEXARR_0", &m_CheckMaterial[8]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEXARR_1", &m_CheckMaterial[9]);
+    ImGui::EndTable();
 }
 
 void MaterialUI::SelectTexture(DWORD_PTR _dwData)

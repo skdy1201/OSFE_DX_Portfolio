@@ -4,6 +4,7 @@
 #include "CTexture.h"
 #include "CGraphicsShader.h"
 
+
 class CMaterial :
     public CAsset
 {
@@ -41,6 +42,8 @@ public:
 
 	virtual int Save(const wstring& _strRelativePath);
 	virtual int Load(const wstring& _strFilePath);
+
+
 
 	CLONE(CMaterial);
 public:

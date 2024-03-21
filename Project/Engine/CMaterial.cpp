@@ -54,6 +54,7 @@ void CMaterial::UpdateData()
 void CMaterial::SetTexParam(TEX_PARAM _Param, Ptr<CTexture>_pTex)
 {
 	m_arrTex[(UINT)_Param] = _pTex;
+
 }
 
 void* CMaterial::GetScalarParam(SCALAR_PARAM _ParamType)
@@ -159,4 +160,20 @@ int CMaterial::Load(const wstring& _strFilePath)
 	LoadAssetRef<CGraphicsShader>(m_pShader, pFile);
 
 	return 0;
+}
+
+void CheckSetTex(Ptr<CTexture> _texture[10], bool* texarr[(UINT)TEX_PARAM::END], TEX_PARAM eParam)
+{
+	UINT Curindex = (UINT)eParam;
+
+	if(_texture != nullptr)
+	{
+		*texarr[Curindex] = true;
+	}
+	else
+	{
+		*texarr[Curindex] = false;
+	}
+	
+
 }
