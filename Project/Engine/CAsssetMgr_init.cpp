@@ -16,6 +16,11 @@ void CAssetMgr::init()
 	CreateDefaultComputeShader();
 
 	CreateDefaultMaterial();
+
+	//ºó texture ¸¸µé±â
+
+	CAssetMgr::GetInst()->CreateTexture(TempTextureKey, 1, 1, DXGI_FORMAT_R8G8B8A8_UNORM,
+		D3D11_BIND_SHADER_RESOURCE);
 }
 
 void CAssetMgr::CreateDefaultMesh()
@@ -306,7 +311,7 @@ void CAssetMgr::CreateDefaultMaterial()
 
 	// Parameter	
 	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "Test Param");
-	pMtrl->AddTexParam(TEX_PARAM::TEX_0, "Output Texture 1");
+	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "Output Texture 1");
 
 
 	// TestMtrl
@@ -362,9 +367,9 @@ void CAssetMgr::CreateDefaultMaterial()
 	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "Blue Camp");
 	pMtrl->AddScalarParam(SCALAR_PARAM::INT_1, "Red Camp");
 	pMtrl->AddScalarParam(SCALAR_PARAM::INT_2, "Tile Shadow");
-	pMtrl->AddTexParam(TEX_PARAM::TEX_0, "Blue Tile");
-	pMtrl->AddTexParam(TEX_PARAM::TEX_1, "Red Tile");
-	pMtrl->AddTexParam(TEX_PARAM::TEX_2, "Tile Shadow");
+	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "Blue Tile");
+	pMtrl->SetTexDesc(TEX_PARAM::TEX_1, "Red Tile");
+	pMtrl->SetTexDesc(TEX_PARAM::TEX_2, "Tile Shadow");
 
 	AddAsset<CMaterial>(L"TileMtrl", pMtrl);
 

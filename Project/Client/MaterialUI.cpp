@@ -7,6 +7,7 @@
 #include <Engine/CTexture.h>
 
 #include "ParamUI.h"
+#include "../Engine/string.h"
 
 MaterialUI::MaterialUI()
 	: AssetUI("Material", "##Material", ASSET_TYPE::MATERIAL)
@@ -29,10 +30,14 @@ void MaterialUI::render_update()
 	//받아 두기
 	Ptr<CMaterial> target = (CMaterial*)this->GetTargetAsset().Get();
 
+	prevMtrl = currentMtrl;
+	m_IsChange = false;
+
 	if(target != currentMtrl)
 	{
-		prevMtrl = currentMtrl;
 		currentMtrl = target;
+		m_IsChange = true;
+		
 	}
 
 	
@@ -41,7 +46,7 @@ void MaterialUI::render_update()
 	Ptr<CMaterial> pMtrl = (CMaterial*)GetAsset().Get();
 	string strPath = string(pMtrl->GetRelativePath().begin(), pMtrl->GetRelativePath().end());
 
-	string mtrlname = ToString(target->GetName());
+	string mtrlname = ToString(currentMtrl->GetName());
 
 	//이름 띄우고 입력하기
 	char currentmtrlname[256];
@@ -90,6 +95,8 @@ void MaterialUI::render_update()
 		if (ImGui::BeginTable("Add", 5))
 		{
 			make_Textable(m_CheckMaterial, target);
+
+			ImGui::EndTable();
 		}
 	}
 
@@ -137,126 +144,161 @@ void MaterialUI::render_update()
 		}
 	}
 
-	const vector<tTexParam>& vecTexParam = pMtrl->GetTexParam();
-	for (size_t i = 0; i < vecTexParam.size(); ++i)
+	
+
+	for (size_t i = 0; i < (int)TEX_PARAM::END; ++i)
 	{
-		Ptr<CTexture> pTex = pMtrl->GetTexParam(vecTexParam[i].Type);
-		if (ParamUI::Param_TEXTURE(pTex, vecTexParam[i].Desc, this, (Delegate_1)&MaterialUI::SelectTexture))
+		const string& TexDesc = pMtrl->GetTexDesc(i);
+
+		if(TexDesc == ""){
+			continue;
+		}
+
+		Ptr<CTexture> pTex = pMtrl->GetTexParam((TEX_PARAM)i);
+
+		if (ParamUI::Param_TEXTURE(pTex, TexDesc, this, (Delegate_1)&MaterialUI::SelectTexture))
 		{
 			// 리스트 버튼을 눌렀다면
-			m_SelectTexParam = vecTexParam[i].Type;
+			m_SelectTexParam = (TEX_PARAM)i;
 		}
-		pMtrl->SetTexParam(vecTexParam[i].Type, pTex);
+		pMtrl->SetTexParam((TEX_PARAM)i, pTex);
 	}
 }
 
 void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial>& pMtrl)
 {
-	vector<tTexParam> temp = pMtrl.Get()->GetTexParam();
 
-	
-
-
-	fill_n(_texarr, static_cast<size_t>(TEX_PARAM::END), false);
-
-	if(pMtrl != nullptr && this->currentMtrl != prevMtrl)
+	// Detect & Change
+	if (pMtrl != nullptr && m_IsChange)
 	{
-		for (int i = 0; i < temp.size(); ++i)
+		fill_n(_texarr, static_cast<size_t>(TEX_PARAM::END), false);
+
+		for (size_t i = 0; i < (int)TEX_PARAM::END; ++i)
 		{
-			switch (temp[i].Type)
-			{
-			case TEX_PARAM::TEX_0:
-				_texarr[0] = true;
-				break;
-			case TEX_PARAM::TEX_1:
-				_texarr[1] = true;
-				break;
-			case TEX_PARAM::TEX_2:
-				_texarr[2] = true;
-				break;
-			case TEX_PARAM::TEX_3:
-				_texarr[3] = true;
-				break;
-			case TEX_PARAM::TEX_4:
-				_texarr[4] = true;
-				break;
-			case TEX_PARAM::TEX_5:
-				_texarr[5] = true;
-				break;
-			case TEX_PARAM::TEXCUBE_0:
-				_texarr[6] = true;
-				break;
-			case TEX_PARAM::TEXCUBE_1:
-				_texarr[7] = true;
-				break;
-			case TEX_PARAM::TEXARR_0:
-				_texarr[8] = true;
-				break;
-			case TEX_PARAM::TEXARR_1:
-				_texarr[9] = true;
-				break;
-			case TEX_PARAM::END:
-				break;
+			const string& TexDesc = pMtrl->GetTexDesc(i);
+
+			if (TexDesc != "") {
+				_texarr[i] = true;
 			}
 		}
 	}
 
 
-		ImGui::TableNextColumn();
-		if (ImGui::Checkbox("TEX_0", _texarr))
-		{
-		
-		}
+	ImGui::TableNextColumn();
 
-		ImGui::TableNextColumn();
-		if(ImGui::Checkbox("TEX_1", &_texarr[1]))
-		{
-			if (pMtrl->GetTexParam(TEX_PARAM::TEX_1) == nullptr)
+	string CheckboxKey = "";
+	for(int i = 0; i<(int)TEX_PARAM::TEX_5; i++){
+		CheckboxKey = "TEX_";
+		CheckboxKey += std::to_string(i);
+		ImGui::Checkbox(CheckboxKey.c_str(), &_texarr[i]);
+		if (_texarr[i]) {
+
+			static char inputKey[128] = ""; // 키을 받을 텍스트 버퍼
+			static char inputParam[128] = ""; // 파라미터 스크립트을 받을 텍스트 버퍼
+
+			ImGui::Text("Key");
+			ImGui::SameLine();
+			ImGui::InputText("##Mtrl Key", inputKey, IM_ARRAYSIZE(inputKey)); // 입력 필드를 생성합니다.
+
+
+			ImGui::Text("Param");
+			ImGui::SameLine();
+			ImGui::InputText("##Param Key", inputParam, IM_ARRAYSIZE(inputParam)); // 입력 필드를 생성합니다.
+
+			string key = inputKey;
+			string Texparam = inputParam;
+
+			if (pMtrl->GetTexParam((TEX_PARAM)i) == nullptr)
 			{
-				Ptr<CTexture> temp = CAssetMgr::GetInst()->CreateTexture(L"tempTEX_0", 1, 1, DXGI_FORMAT_R8G8B8A8_UNORM,
-					D3D11_BIND_SHADER_RESOURCE);
-
-				pMtrl->AddTexParam(TEX_PARAM::TEX_0, "temp");
-				*_texarr = true;
+				Ptr<CTexture> temp = CAssetMgr::GetInst()->FindAsset<CTexture>(TempTextureKey);
+				//pMtrl->SetTexParam(TEX_PARAM::TEX_0, temp);
+				pMtrl->SetTexDesc((TEX_PARAM)i, TemTexStringParm);
 			}
+		}else{
+			pMtrl->SetTexDesc((TEX_PARAM)i, "");
 		}
-
-		ImGui::TableNextColumn();
-		if(ImGui::Checkbox("TEX_2", &_texarr[2]))
-		{
-
-		}
-		ImGui::TableNextColumn();
-		ImGui::Checkbox("TEX_3", &_texarr[3]);
-		ImGui::TableNextColumn();
-		ImGui::Checkbox("TEX_4", &_texarr[4]);
-		ImGui::TableNextColumn();
-		ImGui::Checkbox("TEX_5", &_texarr[5]);
-		ImGui::TableNextColumn();
-		ImGui::Checkbox("TEXCUBE_0", &_texarr[6]);
-		ImGui::TableNextColumn();
-		ImGui::Checkbox("TEXCUBE_1", &_texarr[7]);
-		ImGui::TableNextColumn();
-		ImGui::Checkbox("TEXARR_0", &_texarr[8]);
-		ImGui::TableNextColumn();
-		ImGui::Checkbox("TEXARR_1", &_texarr[9]);
-
-		
-	ImGui::EndTable();
-}
-
-void MaterialUI::AddTexture(Ptr<CMaterial> _mtrl,TEX_PARAM _Param, wstring Key, string paramname, bool* _arr ,UINT barrnum)
-{
-	if (_mtrl->GetTexParam(_Param) == nullptr)
-	{
-		Ptr<CTexture> temp = CAssetMgr::GetInst()->CreateTexture(Key, 1, 1, DXGI_FORMAT_R8G8B8A8_UNORM,
-			D3D11_BIND_SHADER_RESOURCE);
-
-		_mtrl->AddTexParam(_Param, paramname);
-
-		_arr[barrnum];
 	}
+
+		/*if (ImGui::BeginPopup("Input Text Popup"))
+		{
+		}
+		ImGui::OpenPopup("Input Text ");*/
+
+
+		//
+
+		//if (pMtrl->GetTexParam(TEX_PARAM::TEX_0) == nullptr)
+		//{
+		//	// 체크 박스를 클릭하면 팝업 창을 엽니다.
+		//	ImGui::OpenPopup("Input Text ");
+
+		//	// 팝업 창이 열려 있는 동안 실행됩니다.
+		//	if (ImGui::BeginPopup("Input Text Popup"))
+		//	{
+
+		//		ImGui::InputText("Mtrl Key", inputKey, IM_ARRAYSIZE(inputKey)); // 입력 필드를 생성합니다.
+
+		//		ImGui::InputText("Texture Param", inputParam, IM_ARRAYSIZE(inputParam)); // 입력 필드를 생성합니다.
+
+		//		// 사용자가 입력을 완료하고 'Enter'를 누르면 처리할 로직을 추가합니다.
+		//		if (ImGui::Button("OK"))
+		//		{
+		//			//AddTexture()
+		//		}
+		//	}
+
+		//}
+
+	//ImGui::TableNextColumn();
+	//if (ImGui::Checkbox("TEX_1", &_texarr[1]))
+	//{
+
+		//if (pMtrl->GetTexParam(TEX_PARAM::TEX_1) == nullptr)
+		//{
+
+		//	// 팝업 창이 열려 있는 동안 실행됩니다.
+		//	if (ImGui::BeginPopup("Input Text Popup"))
+		//	{
+
+		//		ImGui::InputText("Text Input", inputKey, IM_ARRAYSIZE(inputKey)); // 입력 필드를 생성합니다.
+
+		//		// 사용자가 입력을 완료하고 'Enter'를 누르면 처리할 로직을 추가합니다.
+		//		if (ImGui::Button("OK"))
+		//		{
+		//			Ptr<CTexture> temp = CAssetMgr::GetInst()->CreateTexture(L"tempTEX_0", 1, 1, DXGI_FORMAT_R8G8B8A8_UNORM,
+		//				D3D11_BIND_SHADER_RESOURCE);
+
+		//			pMtrl->AddTexParam(TEX_PARAM::TEX_0, "temp");
+		//			*_texarr = true;
+
+		//			ImGui::EndPopup();
+		//		}
+		//}
+	   //}
+
+
+			//ImGui::TableNextColumn();
+			//if (ImGui::Checkbox("TEX_2", &_texarr[2]))
+			//{
+
+			//}
+			//ImGui::TableNextColumn();
+			//ImGui::Checkbox("TEX_3", &_texarr[3]);
+			//ImGui::TableNextColumn();
+			//ImGui::Checkbox("TEX_4", &_texarr[4]);
+			//ImGui::TableNextColumn();
+			//ImGui::Checkbox("TEX_5", &_texarr[5]);
+			//ImGui::TableNextColumn();
+			//ImGui::Checkbox("TEXCUBE_0", &_texarr[6]);
+			//ImGui::TableNextColumn();
+			//ImGui::Checkbox("TEXCUBE_1", &_texarr[7]);
+			//ImGui::TableNextColumn();
+			//ImGui::Checkbox("TEXARR_0", &_texarr[8]);
+			//ImGui::TableNextColumn();
+			//ImGui::Checkbox("TEXARR_1", &_texarr[9]);
+
 }
+
 
 void MaterialUI::SelectTexture(DWORD_PTR _dwData)
 {
