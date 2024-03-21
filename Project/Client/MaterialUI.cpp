@@ -73,11 +73,11 @@ void MaterialUI::render_update()
     {
         if (ImGui::BeginTable("Add", 5))
         {
-            make_Textable();
+            make_Textable(m_CheckMaterial, pMtrl);
         }
     }
 
-    
+
 
     // Shader Parameter
     if (nullptr == pShader)
@@ -91,7 +91,7 @@ void MaterialUI::render_update()
         case SCALAR_PARAM::INT_0:
         case SCALAR_PARAM::INT_1:
         case SCALAR_PARAM::INT_2:
-        case SCALAR_PARAM::INT_3:                   
+        case SCALAR_PARAM::INT_3:
             ParamUI::Param_INT((int*)pMtrl->GetScalarParam(vecScalarParam[i].Type), vecScalarParam[i].Desc);
             break;
         case SCALAR_PARAM::FLOAT_0:
@@ -116,41 +116,49 @@ void MaterialUI::render_update()
         case SCALAR_PARAM::MAT_1:
         case SCALAR_PARAM::MAT_2:
         case SCALAR_PARAM::MAT_3:
-            break;        
-        }        
+            break;
+        }
     }
 
     const vector<tTexParam>& vecTexParam = pShader->GetTexParam();
     for (size_t i = 0; i < vecTexParam.size(); ++i)
     {
-        Ptr<CTexture> pTex = pMtrl->GetTexParam(vecTexParam[i].Type);      
+        Ptr<CTexture> pTex = pMtrl->GetTexParam(vecTexParam[i].Type);
         if (ParamUI::Param_TEXTURE(pTex, vecTexParam[i].Desc, this, (Delegate_1)&MaterialUI::SelectTexture))
-        {           
+        {
             // 리스트 버튼을 눌렀다면
             m_SelectTexParam = vecTexParam[i].Type;
         }
         pMtrl->SetTexParam(vecTexParam[i].Type, pTex);
     }
+
 }
 
-void MaterialUI::make_Textable()
+void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial> pMtrl)
 {
+    
     ImGui::TableNextColumn();
-	if(ImGui::Checkbox("TEX_0", m_CheckMaterial))
+	if(ImGui::Checkbox("TEX_0", _texarr))
 	{
-		
+        if (pMtrl->GetTexParam(TEX_PARAM::TEX_0) == nullptr)
+        {
+            Ptr<CTexture> temp = CAssetMgr::GetInst()->CreateTexture(L"tempTEX_0", 1, 1, DXGI_FORMAT_R8G8B8A8_UNORM, D3D11_BIND_SHADER_RESOURCE);
+            pMtrl->SetTexParam(TEX_PARAM::TEX_0, temp);
+        }
 	}
-    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_1", &m_CheckMaterial[1]);
-    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_2", &m_CheckMaterial[2]);
-    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_3", &m_CheckMaterial[3]);
-    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_4", &m_CheckMaterial[4]);
-    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_5", &m_CheckMaterial[5]);
-    ImGui::TableNextColumn(); ImGui::Checkbox("TEXCUBE_0", &m_CheckMaterial[6]);
-    ImGui::TableNextColumn(); ImGui::Checkbox("TEXCUBE_1", &m_CheckMaterial[7]);
-    ImGui::TableNextColumn(); ImGui::Checkbox("TEXARR_0", &m_CheckMaterial[8]);
-    ImGui::TableNextColumn(); ImGui::Checkbox("TEXARR_1", &m_CheckMaterial[9]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_1", &_texarr[1]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_2", &_texarr[2]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_3", &_texarr[3]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_4", &_texarr[4]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEX_5", &_texarr[5]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEXCUBE_0", &_texarr[6]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEXCUBE_1", &_texarr[7]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEXARR_0", &_texarr[8]);
+    ImGui::TableNextColumn(); ImGui::Checkbox("TEXARR_1", &_texarr[9]);
     ImGui::EndTable();
 }
+
+
 
 void MaterialUI::SelectTexture(DWORD_PTR _dwData)
 {
