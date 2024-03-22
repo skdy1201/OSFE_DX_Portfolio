@@ -9,6 +9,8 @@
 #include "ParamUI.h"
 #include "../Engine/string.h"
 
+
+
 MaterialUI::MaterialUI()
 	: AssetUI("Material", "##Material", ASSET_TYPE::MATERIAL)
 	  , m_CheckMaterial{false}
@@ -186,27 +188,33 @@ void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial>& pMtrl)
 
 	ImGui::TableNextColumn();
 
-	string CheckboxKey = "";
-	for(int i = 0; i<(int)TEX_PARAM::TEX_5; i++){
-		CheckboxKey = "TEX_";
-		CheckboxKey += std::to_string(i);
-		ImGui::Checkbox(CheckboxKey.c_str(), &_texarr[i]);
-		if (_texarr[i]) {
 
-			static char inputKey[128] = ""; // 키을 받을 텍스트 버퍼
-			static char inputParam[128] = ""; // 파라미터 스크립트을 받을 텍스트 버퍼
+	string CheckboxKey = "";
+	for (int i = 0; i < (int)TEX_PARAM::TEX_5; i++)
+	{
+		CheckboxKey = "TEX_";
+		CheckboxKey += to_string(i);
+		ImGui::Checkbox(CheckboxKey.c_str(), &_texarr[i]);
+		
+		if (_texarr[i])
+		{
+			string tempid = "##Mtrl Key";
+			string tempparam = "##Mtrl param";
+			tempid += to_string(i);
+			tempparam += to_string(i);
 
 			ImGui::Text("Key");
 			ImGui::SameLine();
-			ImGui::InputText("##Mtrl Key", inputKey, IM_ARRAYSIZE(inputKey)); // 입력 필드를 생성합니다.
+			ImGui::InputText(tempid.c_str(), inputkey[i], IM_ARRAYSIZE(inputkey[i])); // 입력 필드를 생성합니다.
 
 
 			ImGui::Text("Param");
 			ImGui::SameLine();
-			ImGui::InputText("##Param Key", inputParam, IM_ARRAYSIZE(inputParam)); // 입력 필드를 생성합니다.
+			ImGui::InputText(tempparam.c_str(), inputParam[i], IM_ARRAYSIZE(inputParam[i])); // 입력 필드를 생성합니다.
 
-			string key = inputKey;
-			string Texparam = inputParam;
+
+			string key = inputkey[i];
+			string Texparam = inputParam[i];
 
 			if (pMtrl->GetTexParam((TEX_PARAM)i) == nullptr)
 			{
@@ -214,88 +222,46 @@ void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial>& pMtrl)
 				//pMtrl->SetTexParam(TEX_PARAM::TEX_0, temp);
 				pMtrl->SetTexDesc((TEX_PARAM)i, TemTexStringParm);
 			}
-		}else{
+		}
+		else
+		{
 			pMtrl->SetTexDesc((TEX_PARAM)i, "");
 		}
 	}
 
-		/*if (ImGui::BeginPopup("Input Text Popup"))
-		{
-		}
-		ImGui::OpenPopup("Input Text ");*/
+
+	//string CheckboxKey = "";
+	//for(int i = 0; i<(int)TEX_PARAM::TEX_5; i++){
+	//	CheckboxKey = "TEX_";
+	//	CheckboxKey += std::to_string(i);
+	//	ImGui::Checkbox(CheckboxKey.c_str(), &_texarr[i]);
+	//	if (_texarr[i]) {
+
+	//		static char inputKey[128] = ""; // 키을 받을 텍스트 버퍼
+	//		static char inputParam[128] = ""; // 파라미터 스크립트을 받을 텍스트 버퍼
+
+	//		ImGui::Text("Key");
+	//		ImGui::SameLine();
+	//		ImGui::InputText("##Mtrl Key", inputKey, IM_ARRAYSIZE(inputKey)); // 입력 필드를 생성합니다.
 
 
-		//
+	//		ImGui::Text("Param");
+	//		ImGui::SameLine();
+	//		ImGui::InputText("##Param Key", inputParam, IM_ARRAYSIZE(inputParam)); // 입력 필드를 생성합니다.
 
-		//if (pMtrl->GetTexParam(TEX_PARAM::TEX_0) == nullptr)
-		//{
-		//	// 체크 박스를 클릭하면 팝업 창을 엽니다.
-		//	ImGui::OpenPopup("Input Text ");
+	//		string key = inputKey;
+	//		string Texparam = inputParam;
 
-		//	// 팝업 창이 열려 있는 동안 실행됩니다.
-		//	if (ImGui::BeginPopup("Input Text Popup"))
-		//	{
-
-		//		ImGui::InputText("Mtrl Key", inputKey, IM_ARRAYSIZE(inputKey)); // 입력 필드를 생성합니다.
-
-		//		ImGui::InputText("Texture Param", inputParam, IM_ARRAYSIZE(inputParam)); // 입력 필드를 생성합니다.
-
-		//		// 사용자가 입력을 완료하고 'Enter'를 누르면 처리할 로직을 추가합니다.
-		//		if (ImGui::Button("OK"))
-		//		{
-		//			//AddTexture()
-		//		}
-		//	}
-
-		//}
-
-	//ImGui::TableNextColumn();
-	//if (ImGui::Checkbox("TEX_1", &_texarr[1]))
-	//{
-
-		//if (pMtrl->GetTexParam(TEX_PARAM::TEX_1) == nullptr)
-		//{
-
-		//	// 팝업 창이 열려 있는 동안 실행됩니다.
-		//	if (ImGui::BeginPopup("Input Text Popup"))
-		//	{
-
-		//		ImGui::InputText("Text Input", inputKey, IM_ARRAYSIZE(inputKey)); // 입력 필드를 생성합니다.
-
-		//		// 사용자가 입력을 완료하고 'Enter'를 누르면 처리할 로직을 추가합니다.
-		//		if (ImGui::Button("OK"))
-		//		{
-		//			Ptr<CTexture> temp = CAssetMgr::GetInst()->CreateTexture(L"tempTEX_0", 1, 1, DXGI_FORMAT_R8G8B8A8_UNORM,
-		//				D3D11_BIND_SHADER_RESOURCE);
-
-		//			pMtrl->AddTexParam(TEX_PARAM::TEX_0, "temp");
-		//			*_texarr = true;
-
-		//			ImGui::EndPopup();
-		//		}
-		//}
-	   //}
-
-
-			//ImGui::TableNextColumn();
-			//if (ImGui::Checkbox("TEX_2", &_texarr[2]))
-			//{
-
-			//}
-			//ImGui::TableNextColumn();
-			//ImGui::Checkbox("TEX_3", &_texarr[3]);
-			//ImGui::TableNextColumn();
-			//ImGui::Checkbox("TEX_4", &_texarr[4]);
-			//ImGui::TableNextColumn();
-			//ImGui::Checkbox("TEX_5", &_texarr[5]);
-			//ImGui::TableNextColumn();
-			//ImGui::Checkbox("TEXCUBE_0", &_texarr[6]);
-			//ImGui::TableNextColumn();
-			//ImGui::Checkbox("TEXCUBE_1", &_texarr[7]);
-			//ImGui::TableNextColumn();
-			//ImGui::Checkbox("TEXARR_0", &_texarr[8]);
-			//ImGui::TableNextColumn();
-			//ImGui::Checkbox("TEXARR_1", &_texarr[9]);
+	//		if (pMtrl->GetTexParam((TEX_PARAM)i) == nullptr)
+	//		{
+	//			Ptr<CTexture> temp = CAssetMgr::GetInst()->FindAsset<CTexture>(TempTextureKey);
+	//			pMtrl->SetTexParam(TEX_PARAM::TEX_0, temp);
+	//			pMtrl->SetTexDesc((TEX_PARAM)i, TemTexStringParm);
+	//		}
+	//	}else{
+	//		pMtrl->SetTexDesc((TEX_PARAM)i, "");
+	//	}
+	//}
 
 }
 
