@@ -63,6 +63,7 @@ public:
 	virtual int Save(const wstring& _strRelativePath);
 	virtual int Load(const wstring& _strFilePath);
 
+	
 
 
 	CLONE(CMaterial);

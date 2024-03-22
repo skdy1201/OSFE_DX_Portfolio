@@ -19,7 +19,7 @@ public:
     virtual void render_update() override;
     void make_Textable(bool* _texarr, Ptr<CMaterial>& pMtrl);
     void Check_ChangeDesc(Ptr<CMaterial>& _Curmtrl, TEX_PARAM _CurrentTexParam, string _ChangeDesc);
-
+    void ShaderSelect(DWORD_PTR _ptr);
 
 
 public:

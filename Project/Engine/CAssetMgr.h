@@ -112,6 +112,8 @@ inline void CAssetMgr::AddAsset(const wstring& _strKey, T* _Asset)
     
     _Asset->SetKey(_strKey);
     m_mapAsset[(UINT)Type].insert(make_pair(_strKey, _Asset));
+
+    _Asset->SetName(_strKey);
 }
 
 template<typename T>

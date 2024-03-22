@@ -8,6 +8,7 @@
 
 #include "ParamUI.h"
 #include "../Engine/string.h"
+#include "ListUI.h"
 
 
 
@@ -48,13 +49,15 @@ void MaterialUI::render_update()
 	Ptr<CMaterial> pMtrl = (CMaterial*)GetAsset().Get();
 	string strPath = string(pMtrl->GetRelativePath().begin(), pMtrl->GetRelativePath().end());
 
+	
+
 	string mtrlname = ToString(currentMtrl->GetName());
 
 	//이름 띄우고 입력하기
 	char currentmtrlname[256];
 	strcpy(currentmtrlname, mtrlname.c_str());
 	ImGui::Text("Name : %s", currentmtrlname);
-
+	
 	if (ImGui::InputText("##input name", currentmtrlname, IM_ARRAYSIZE(currentmtrlname)))
 	{
 		mtrlname = currentmtrlname;
@@ -65,17 +68,36 @@ void MaterialUI::render_update()
 	ImGui::SameLine();
 	ImGui::InputText("##TexName", (char*)strPath.c_str(), strPath.length(), ImGuiInputTextFlags_ReadOnly);
 
-	Ptr<CGraphicsShader> pShader = pMtrl->GetShader();
-	string strShaderName;
-	if (nullptr != pShader)
+	ImGui::Text("Shader");
+	ImGui::SameLine();
+
+	if (pMtrl->GetShader() != nullptr)
 	{
-		strShaderName = string(pShader->GetKey().begin(), pShader->GetKey().end());
+		string shaderstring = ToString(pMtrl->GetShader()->GetName());
+		ImGui::InputText("##inputshader", (char*)shaderstring.c_str(), shaderstring.length(), ImGuiInputTextFlags_ReadOnly);
 	}
 
-	ImGui::Text("Shader  ");
 	ImGui::SameLine();
-	ImGui::InputText("##ShaderName", (char*)strShaderName.c_str(), strShaderName.length(),
-	                 ImGuiInputTextFlags_ReadOnly);
+	if(ImGui::Button("##Input Shader", ImVec2{ 20, 20 }))
+	{
+		Ptr< CGraphicsShader> pShader = target.Get()->GetShader();
+
+		if(pShader == nullptr)
+		{
+			// 리스트 UI
+			ListUI* pListUI = (ListUI*)CImGuiMgr::GetInst()->FindUI("##List");
+
+			vector<string> vecShaderName;
+			CAssetMgr::GetInst()->GetAssetName(ASSET_TYPE::GRAPHICS_SHADER, vecShaderName);
+
+			pListUI->AddString(vecShaderName);
+			pListUI->SetDbClickDelegate(this, (Delegate_1)&MaterialUI::ShaderSelect);
+			pListUI->Activate();
+		}
+
+
+
+	}
 
 
 	ImGui::Spacing();
@@ -90,6 +112,12 @@ void MaterialUI::render_update()
 	ImGui::NewLine();
 
 	bool IsSetTexture[9] = {};
+
+	if(ImGui::Button("Save", ImVec2{ 50.f, 50.f }))
+	{
+		mtrlname += ".mtrl";
+		currentMtrl->Save(ToWString(mtrlname));
+	}
 
 
 	if (ImGui::CollapsingHeader("add texture param"))
@@ -207,13 +235,11 @@ void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial>& pMtrl)
 
 			string Texparam = inputParam[i];
 
-			if (pMtrl->GetTexParam((TEX_PARAM)i) == nullptr)
+			if(pMtrl->GetTexDesc((TEX_PARAM)i) == "")
 			{
-				Ptr<CTexture> temp = CAssetMgr::GetInst()->FindAsset<CTexture>(TempTextureKey);
-
-				//pMtrl->SetTexParam(TEX_PARAM::TEX_0, temp); 없어도 돌아갔다.
 				pMtrl->SetTexDesc((TEX_PARAM)i, TemTexStringParm);
 			}
+			
 
 			//해당 texture 자리가 비어있지 않다면 desc바꿔주기
 			if(pMtrl.Get()->GetTexParam((TEX_PARAM)i) != nullptr)
@@ -243,6 +269,17 @@ void MaterialUI::Check_ChangeDesc(Ptr<CMaterial>& _Curmtrl, TEX_PARAM _CurrentTe
 	{
 		CurrentMtrl->SetTexDesc(_CurrentTexParam, _ChangeDesc);
 	}
+}
+
+void MaterialUI::ShaderSelect(DWORD_PTR _ptr)
+{
+	string strshader = (char*)_ptr;
+	wstring strshaderName = ToWString(strshader);
+
+	Ptr<CGraphicsShader> pshader = CAssetMgr::GetInst()->FindAsset<CGraphicsShader>(strshaderName);
+
+	Ptr<CMaterial> target = dynamic_cast<CMaterial*>(GetTargetAsset().Get());
+	target->SetShader(pshader);
 }
 
 
