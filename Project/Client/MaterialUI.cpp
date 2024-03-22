@@ -188,7 +188,7 @@ void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial>& pMtrl)
 
 	ImGui::TableNextColumn();
 
-
+	//체크 이후, desc가 달라지면 desc 갱신
 	string CheckboxKey = "";
 	for (int i = 0; i < (int)TEX_PARAM::TEX_5; i++)
 	{
@@ -198,29 +198,27 @@ void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial>& pMtrl)
 		
 		if (_texarr[i])
 		{
-			string tempid = "##Mtrl Key";
 			string tempparam = "##Mtrl param";
-			tempid += to_string(i);
 			tempparam += to_string(i);
-
-			ImGui::Text("Key");
-			ImGui::SameLine();
-			ImGui::InputText(tempid.c_str(), inputkey[i], IM_ARRAYSIZE(inputkey[i])); // 입력 필드를 생성합니다.
-
 
 			ImGui::Text("Param");
 			ImGui::SameLine();
 			ImGui::InputText(tempparam.c_str(), inputParam[i], IM_ARRAYSIZE(inputParam[i])); // 입력 필드를 생성합니다.
 
-
-			string key = inputkey[i];
 			string Texparam = inputParam[i];
 
 			if (pMtrl->GetTexParam((TEX_PARAM)i) == nullptr)
 			{
 				Ptr<CTexture> temp = CAssetMgr::GetInst()->FindAsset<CTexture>(TempTextureKey);
-				//pMtrl->SetTexParam(TEX_PARAM::TEX_0, temp);
+
+				//pMtrl->SetTexParam(TEX_PARAM::TEX_0, temp); 없어도 돌아갔다.
 				pMtrl->SetTexDesc((TEX_PARAM)i, TemTexStringParm);
+			}
+
+			//해당 texture 자리가 비어있지 않다면 desc바꿔주기
+			if(pMtrl.Get()->GetTexParam((TEX_PARAM)i) != nullptr)
+			{
+				Check_ChangeDesc(pMtrl, (TEX_PARAM)i, inputParam[i]);
 			}
 		}
 		else
@@ -229,40 +227,22 @@ void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial>& pMtrl)
 		}
 	}
 
-
-	//string CheckboxKey = "";
-	//for(int i = 0; i<(int)TEX_PARAM::TEX_5; i++){
-	//	CheckboxKey = "TEX_";
-	//	CheckboxKey += std::to_string(i);
-	//	ImGui::Checkbox(CheckboxKey.c_str(), &_texarr[i]);
-	//	if (_texarr[i]) {
-
-	//		static char inputKey[128] = ""; // 키을 받을 텍스트 버퍼
-	//		static char inputParam[128] = ""; // 파라미터 스크립트을 받을 텍스트 버퍼
-
-	//		ImGui::Text("Key");
-	//		ImGui::SameLine();
-	//		ImGui::InputText("##Mtrl Key", inputKey, IM_ARRAYSIZE(inputKey)); // 입력 필드를 생성합니다.
+	
 
 
-	//		ImGui::Text("Param");
-	//		ImGui::SameLine();
-	//		ImGui::InputText("##Param Key", inputParam, IM_ARRAYSIZE(inputParam)); // 입력 필드를 생성합니다.
+}
 
-	//		string key = inputKey;
-	//		string Texparam = inputParam;
+void MaterialUI::Check_ChangeDesc(Ptr<CMaterial>& _Curmtrl, TEX_PARAM _CurrentTexParam, string _ChangeDesc)
+{
+	Ptr<CMaterial> CurrentMtrl = _Curmtrl;
+	string changedesc = " ";
 
-	//		if (pMtrl->GetTexParam((TEX_PARAM)i) == nullptr)
-	//		{
-	//			Ptr<CTexture> temp = CAssetMgr::GetInst()->FindAsset<CTexture>(TempTextureKey);
-	//			pMtrl->SetTexParam(TEX_PARAM::TEX_0, temp);
-	//			pMtrl->SetTexDesc((TEX_PARAM)i, TemTexStringParm);
-	//		}
-	//	}else{
-	//		pMtrl->SetTexDesc((TEX_PARAM)i, "");
-	//	}
-	//}
+	changedesc = CurrentMtrl->GetTexDesc(_CurrentTexParam);
 
+	if(_ChangeDesc != "" && changedesc != _ChangeDesc)
+	{
+		CurrentMtrl->SetTexDesc(_CurrentTexParam, _ChangeDesc);
+	}
 }
 
 

@@ -9,7 +9,6 @@ private:
     bool            m_CheckMaterial[10];
     bool            m_IsChange;
 
-    char     inputkey[(int)TEX_PARAM::TEX_5][128];
 	char     inputParam[(int)TEX_PARAM::TEX_5][128];
 
     //이전 재질과 지금 재질을 비교
@@ -19,6 +18,7 @@ private:
 public:
     virtual void render_update() override;
     void make_Textable(bool* _texarr, Ptr<CMaterial>& pMtrl);
+    void Check_ChangeDesc(Ptr<CMaterial>& _Curmtrl, TEX_PARAM _CurrentTexParam, string _ChangeDesc);
 
 
 
