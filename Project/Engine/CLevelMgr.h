@@ -24,6 +24,7 @@ private:
 
 public:
     CLevel* GetCurrentLevel() { return m_CurLevel; }
+    void ChangeObjectIdx(CGameObject* _pObj, int _inlayer);
 
 
     friend class CTaskMgr;

@@ -260,11 +260,16 @@ void SelectRObject(DWORD_PTR _Node)
 
 			if (ImGui::Button("SAVE", ImVec2{ 60.f, 30.f }))
 			{
+			
+
 				//set game obj
 				CGameObject* pCloneObj = pObject->Clone();
-				string prefabname = (string)value;
 
+				string prefabname = (string)value;
 				pCloneObj->SetName(ToWString(prefabname));
+
+				int objlayer = pObject->GetLayerIdx();
+				CLevelMgr::GetInst()->ChangeObjectIdx(pCloneObj, objlayer);
 
 				CPrefab* pTempPrefab = new CPrefab(pCloneObj, false);
 

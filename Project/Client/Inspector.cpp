@@ -2,6 +2,7 @@
 #include "Inspector.h"
 
 #include <Engine/CTransform.h>
+#include <Engine/CLevelMgr.h>
 
 #include "TransformUI.h"
 #include "MeshRenderUI.h"
@@ -11,6 +12,7 @@
 #include "ScriptUI.h"
 
 #include "AssetUI.h"
+
 
 
 Inspector::Inspector()
@@ -40,8 +42,39 @@ void Inspector::render_update()
 	{
 		string strName = string(m_TargetObject->GetName().begin(), m_TargetObject->GetName().end());
 		ImGui::Text(strName.c_str());
+
+		ImGui::NewLine();
+
+		string TargetLayer = to_string(m_TargetObject->GetLayerIdx());
+		ImGui::Text("Object Layer Index : %s", TargetLayer.c_str());
+
+
+		string change_idx = "Change Object Index : ";
+		ImGui::Text(change_idx.c_str());
+
+		ImGui::SameLine();
+
+		static char idxtemp[99] = " ";
+		static string inputnum = "";
+
+		ImGui::SetNextItemWidth(30.0f); // 다음 위젯의 너비를 100 픽셀로 설정
+		if(ImGui::InputText("##Change Layer", idxtemp, IM_ARRAYSIZE(idxtemp)))
+		{
+			inputnum = idxtemp;
+		}
+
+		ImGui::SameLine();
+
+		if(ImGui::Button("##change Obj Index", ImVec2{ 10.f, 10.f }))
+		{
+			int changeidx = stoi(inputnum);
+			CLevelMgr::GetInst()->ChangeObjectIdx(m_TargetObject, changeidx);
+
+			
+		}
 	}
 }
+
 
 void Inspector::SetTargetObject(CGameObject* _Object)
 {

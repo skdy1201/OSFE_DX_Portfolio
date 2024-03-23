@@ -20,6 +20,8 @@ class Inspector :
 {
 private:
     CGameObject*        m_TargetObject;
+    int                 m_TargetLayerIdx;
+
     Ptr<CAsset>         m_TargetAsset;
 
     ComponentUI*        m_arrComUI[(UINT)COMPONENT_TYPE::END];

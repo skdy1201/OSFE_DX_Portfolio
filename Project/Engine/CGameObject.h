@@ -51,6 +51,7 @@ public:
 
 
     int GetLayerIdx() { return m_iLayerIdx; }
+    void SetLayerIdx(int _index) { m_iLayerIdx = _index; }
 
     CGameObject* GetParent() { return m_Parent; }
     const vector<CGameObject*>& GetChild() { return m_vecChild; }

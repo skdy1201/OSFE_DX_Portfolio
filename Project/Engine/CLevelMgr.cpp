@@ -8,6 +8,7 @@
 #include "CDevice.h"
 #include "CAssetMgr.h"
 #include "CCollisionMgr.h"
+#include "CGameObject.h"
 
 #include "CTaskMgr.h"
 
@@ -85,4 +86,13 @@ void CLevelMgr::ChangeLevel_Task(CLevel* _NextLevel, LEVEL_STATE _NextLevelState
 
 	if (nullptr != m_CurLevel)
 		m_CurLevel->ChangeState(_NextLevelState);
+}
+
+void CLevelMgr::ChangeObjectIdx(CGameObject* _pObj, int _inlayer)
+{
+	CLevel* plevel = this->GetInst()->GetCurrentLevel();
+
+	_pObj->DisconnectWithLayer();
+
+	plevel->AddObject(_pObj, _inlayer);
 }
