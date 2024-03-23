@@ -60,6 +60,7 @@ public:
     void LayerCheck(const wstring& _strLayerName, bool _bCheck);
     void LayerCheckAll() { m_LayerCheck = 0xffffffff; }
 
+    UINT GetLayerCheck() { return m_LayerCheck; }
 
 public:
     virtual void begin() override;

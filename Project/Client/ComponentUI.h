@@ -21,6 +21,8 @@ public:
     void SetComopnentTitle(const string& _title) { m_ComponentTitle = _title; }
     COMPONENT_TYPE GetType() { return m_Type; }
 
+    void ButtonTitle(string TitleName);
+
 public:
     ComponentUI(const string& _strName, const string& _ID, COMPONENT_TYPE _Type);
     ~ComponentUI();

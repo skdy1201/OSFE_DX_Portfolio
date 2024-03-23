@@ -1,4 +1,6 @@
 #include "pch.h"
+
+#include "CameraUI.h"
 #include "Inspector.h"
 
 #include "ScriptUI.h"
@@ -39,6 +41,10 @@ void Inspector::CreateComponentUI()
 	m_arrComUI[(UINT)COMPONENT_TYPE::ANIMATOR2D] = new Animator2DUI;
 	m_arrComUI[(UINT)COMPONENT_TYPE::ANIMATOR2D]->Deactivate();
 	AddChildUI(m_arrComUI[(UINT)COMPONENT_TYPE::ANIMATOR2D]);
+
+	m_arrComUI[(UINT)COMPONENT_TYPE::CAMERA] = new CameraUI;
+	m_arrComUI[(UINT)COMPONENT_TYPE::CAMERA]->Deactivate();
+	AddChildUI(m_arrComUI[(UINT)COMPONENT_TYPE::CAMERA]);
 
 
 }

@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "ComponentUI.h"
 
+
+
 ComponentUI::ComponentUI(const string& _strName, const string& _ID, COMPONENT_TYPE _Type)
 	: UI(_strName, _ID)
 	, m_TargetObject(nullptr)
@@ -49,4 +51,19 @@ void ComponentUI::SetTargetObject(CGameObject* _Target)
 			Activate();
 		}
 	}
+}
+
+void ComponentUI::ButtonTitle(string TitleName)
+{
+	ImGui::Separator();
+
+	ImGui::PushID(0);
+	ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.f, 0.6f, 0.6f));
+	ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(0.f, 0.6f, 0.6f));
+	ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(0.f, 0.6f, 0.6f));
+
+	ImGui::Button(TitleName.c_str());
+
+	ImGui::PopStyleColor(3);
+	ImGui::PopID();
 }
