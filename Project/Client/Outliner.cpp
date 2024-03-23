@@ -262,6 +262,9 @@ void SelectRObject(DWORD_PTR _Node)
 			{
 				//set game obj
 				CGameObject* pCloneObj = pObject->Clone();
+				string prefabname = (string)value;
+
+				pCloneObj->SetName(ToWString(prefabname));
 
 				CPrefab* pTempPrefab = new CPrefab(pCloneObj, false);
 
