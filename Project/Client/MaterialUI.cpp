@@ -40,7 +40,19 @@ void MaterialUI::render_update()
 	{
 		currentMtrl = target;
 		m_IsChange = true;
-		
+
+		for(int i = 0; i < (int)TEX_PARAM::TEX_5; ++i)
+		{
+			if(currentMtrl->GetTexParam((TEX_PARAM)i) != nullptr)
+			{
+				m_CheckMaterial[i] = true;
+			}
+			else
+			{
+				m_CheckMaterial[i] = false;
+			}
+		}
+
 	}
 
 	
