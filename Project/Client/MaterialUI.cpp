@@ -14,9 +14,12 @@
 
 MaterialUI::MaterialUI()
 	: AssetUI("Material", "##Material", ASSET_TYPE::MATERIAL)
-	  , m_CheckMaterial{false}
-	  , currentMtrl(nullptr)
-	  , prevMtrl(nullptr)
+	, m_CheckMaterial{ false }
+	, m_CheckScalar{ false }
+	, currentMtrl(nullptr)
+	, prevMtrl(nullptr)
+	, m_inscalarparamnum()
+	, newscalarparam{}
 {
 }
 
@@ -40,10 +43,11 @@ void MaterialUI::render_update()
 	{
 		currentMtrl = target;
 		m_IsChange = true;
+		m_inscalarparamnum.clear();
 
-		for(int i = 0; i < (int)TEX_PARAM::TEX_5; ++i)
+		for (int i = 0; i < (int)TEX_PARAM::TEX_5; ++i)
 		{
-			if(currentMtrl->GetTexParam((TEX_PARAM)i) != nullptr)
+			if (currentMtrl->GetTexParam((TEX_PARAM)i) != nullptr)
 			{
 				m_CheckMaterial[i] = true;
 			}
@@ -53,9 +57,28 @@ void MaterialUI::render_update()
 			}
 		}
 
+
+		//Scalar Param get
+		vector<tScalarParam> TargetMtrlScalar = currentMtrl->GetScalarParam();
+
+		if (TargetMtrlScalar.size() > 0)
+		{
+			for (int j = 0; j < TargetMtrlScalar.size(); ++j)
+			{
+				SCALAR_PARAM tempscalar = TargetMtrlScalar[j].Type;
+				string tempdesc = TargetMtrlScalar[j].Desc;
+
+				m_inscalarparamnum.push_back((int)tempscalar);
+			}
+
+		}
+
+		for(int k = 0; k < m_inscalarparamnum.size(); ++k)
+		{
+			m_CheckScalar[m_inscalarparamnum[k]] = true;
+		}
 	}
 
-	
 
 	// 해당 텍스쳐 이미지 출력
 	Ptr<CMaterial> pMtrl = (CMaterial*)GetAsset().Get();
@@ -71,7 +94,7 @@ void MaterialUI::render_update()
 	ImGui::Text("Name : %s", currentmtrlname);
 
 
-	// 재질 이름 띄웢기
+	// 재질 이름 띄우기
 	if (ImGui::InputText("##input name", currentmtrlname, IM_ARRAYSIZE(currentmtrlname)))
 	{
 		mtrlname = currentmtrlname;
@@ -117,17 +140,12 @@ void MaterialUI::render_update()
 
 	}
 
-
-	ImGui::Spacing();
-	ImGui::Spacing();
 	ImGui::Spacing();
 	ImGui::Spacing();
 	ImGui::Text("Material Parameter");
 	ImGui::Spacing();
 	ImGui::Spacing();
 
-	ImGui::NewLine();
-	ImGui::NewLine();
 
 	bool IsSetTexture[9] = {};
 
@@ -137,10 +155,24 @@ void MaterialUI::render_update()
 		currentMtrl->Save(ToWString(mtrlname));
 	}
 
+	if (ImGui::CollapsingHeader("add Scalar param"))
+	{
+		
+		ImGui::InputText("new scalar param", newscalarparam, IM_ARRAYSIZE(newscalarparam));
+
+		if (ImGui::BeginTable("Addscalarparam", 5))
+		{
+			make_Scalartable(m_CheckScalar, target);
+
+			ImGui::EndTable();
+		}
+	}
+
 
 	if (ImGui::CollapsingHeader("add texture param"))
 	{
-		if (ImGui::BeginTable("Add", 5))
+
+		if (ImGui::BeginTable("Addtexureparam", 5))
 		{
 			make_Textable(m_CheckMaterial, target);
 
@@ -235,19 +267,19 @@ void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial>& pMtrl)
 	ImGui::TableNextColumn();
 
 	//체크 이후, desc가 달라지면 desc 갱신
-	string CheckboxKey = "";
+	string CheckboxtexKey = "";
 	for (int i = 0; i < (int)TEX_PARAM::TEX_5; i++)
 	{
-		CheckboxKey = "TEX_";
-		CheckboxKey += to_string(i);
-		ImGui::Checkbox(CheckboxKey.c_str(), &_texarr[i]);
+		CheckboxtexKey = "TEX_";
+		CheckboxtexKey += to_string(i);
+		ImGui::Checkbox(CheckboxtexKey.c_str(), &_texarr[i]);
 		
 		if (_texarr[i])
 		{
-			string tempparam = "##Mtrl param";
+			string tempparam = "##Mtrl texture param";
 			tempparam += to_string(i);
 
-			ImGui::Text("Param");
+			ImGui::Text("Texture Param");
 			ImGui::SameLine();
 			ImGui::InputText(tempparam.c_str(), inputParam[i], IM_ARRAYSIZE(inputParam[i])); // 입력 필드를 생성합니다.
 
@@ -276,6 +308,55 @@ void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial>& pMtrl)
 
 
 }
+
+void MaterialUI::make_Scalartable(bool* _scalararr, Ptr<CMaterial>& pMtrl)
+{
+	// Detect & Change
+	if (pMtrl != nullptr)
+	{
+		if (m_IsChange == true)
+		{
+			fill_n(_scalararr, static_cast<int>(SCALAR_PARAM::END), false);
+			// inparam 초기화
+			int inparam = 0;
+
+			if (m_inscalarparamnum.size() != 0)
+			{
+				for (int j = 0; j < (int)SCALAR_PARAM::END; ++j)
+				{
+					if (inparam < m_inscalarparamnum.size() && j == m_inscalarparamnum[inparam])
+					{
+						_scalararr[j] = true;
+						++inparam;
+					}
+					else
+					{
+						_scalararr[j] = false;
+					}
+				}
+			}
+		}
+	}
+
+
+		string CheckboxscalarKey = "";
+		for (size_t i = 0; i < (int)SCALAR_PARAM::END; ++i)
+		{
+			ImGui::TableNextColumn();
+
+			CheckboxscalarKey = MTRL_SCALAR_STRING[i];
+			if(ImGui::Checkbox(CheckboxscalarKey.c_str(), &_scalararr[i]))
+			{
+				if(newscalarparam != nullptr)
+				{
+					pMtrl->AddScalarParam((SCALAR_PARAM)i, newscalarparam);
+				}
+			}
+
+
+
+		}
+}	
 
 void MaterialUI::Check_ChangeDesc(Ptr<CMaterial>& _Curmtrl, TEX_PARAM _CurrentTexParam, string _ChangeDesc)
 {

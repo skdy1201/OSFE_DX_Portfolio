@@ -166,7 +166,10 @@ enum class SCALAR_PARAM
 	MAT_1,
 	MAT_2,
 	MAT_3,
+	END,
 };
+extern const char* MTRL_SCALAR_STRING[(UINT)SCALAR_PARAM::END];
+
 
 enum class TEX_PARAM
 {

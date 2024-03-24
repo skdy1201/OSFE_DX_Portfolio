@@ -40,3 +40,32 @@ const char* COMPONENT_TYPE_STRING[(UINT)COMPONENT_TYPE::END]
 	"LANDSCAPE",
 
 };
+
+const char* MTRL_SCALAR_STRING[(UINT)SCALAR_PARAM::END]
+{
+
+	"INT_0",
+	"INT_1",
+	"INT_2",
+	"INT_3",
+
+	"FLOAT_0",
+	"FLOAT_1",
+	"FLOAT_2",
+	"FLOAT_3",
+
+	"VEC2_0",
+	"VEC2_1",
+	"VEC2_2",
+	"VEC2_3",
+
+	"VEC4_0",
+	"VEC4_1",
+	"VEC4_2",
+	"VEC4_3",
+
+	"MAT_0",
+	"MAT_1",
+	"MAT_2",
+	"MAT_3"
+};

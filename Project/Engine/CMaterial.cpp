@@ -135,6 +135,18 @@ int CMaterial::Save(const wstring& _strRelativePath)
 	fwrite(&m_Const, sizeof(tMtrlConst), 1, pFile);	
 
 
+	// 재질 파라미터 값 저장
+	vector<tScalarParam> temp = this->GetScalarParam();
+	int scalarparamcount = temp.size();
+
+	fwrite(&scalarparamcount, sizeof(int), 1, pFile);
+
+	for(int i = 0; i < scalarparamcount; ++i)
+	{
+		fwrite(&temp[i], sizeof(temp[i].Type), 1, pFile);
+		SaveStringToFile(temp[i].Desc, pFile);
+	}
+
 	// 재질이 참조하는 텍스쳐 정보를 저장	
 	for (UINT i = 0; i < (UINT)TEX_PARAM::END; ++i)
 	{
@@ -160,6 +172,29 @@ int CMaterial::Load(const wstring& _strFilePath)
 	// 재질 상수값 저장
 	fread(&m_Const, sizeof(tMtrlConst), 1, pFile);
 
+
+	// 재질 파라미터 값 저장
+
+	int scalarparamcount = 0;
+
+	fread(&scalarparamcount, sizeof(int), 1, pFile);
+
+	for(int i = 0; i < scalarparamcount; ++i)
+	{
+		SCALAR_PARAM tempScalar;
+
+		fread(&tempScalar, sizeof(SCALAR_PARAM), 1, pFile);
+
+
+		string strTemp = "";
+
+		LoadStringFromFile(strTemp, pFile);
+		
+
+		this->AddScalarParam(tempScalar, strTemp);
+
+	}
+	
 
 	// 재질이 참조하는 텍스쳐 정보를 로드
 	for (UINT i = 0; i < (UINT)TEX_PARAM::END; ++i)
