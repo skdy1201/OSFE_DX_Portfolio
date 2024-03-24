@@ -69,7 +69,9 @@ void MaterialUI::render_update()
 	char currentmtrlname[256];
 	strcpy(currentmtrlname, mtrlname.c_str());
 	ImGui::Text("Name : %s", currentmtrlname);
-	
+
+
+	// 재질 이름 띄웢기
 	if (ImGui::InputText("##input name", currentmtrlname, IM_ARRAYSIZE(currentmtrlname)))
 	{
 		mtrlname = currentmtrlname;
@@ -83,6 +85,8 @@ void MaterialUI::render_update()
 	ImGui::Text("Shader");
 	ImGui::SameLine();
 
+
+	//쉐이더 얻어서 표기해주기
 	if (pMtrl->GetShader() != nullptr)
 	{
 		string shaderstring = ToString(pMtrl->GetShader()->GetName());
@@ -90,6 +94,8 @@ void MaterialUI::render_update()
 	}
 
 	ImGui::SameLine();
+
+	// 쉐이더 바꿔주는 버튼
 	if(ImGui::Button("##Input Shader", ImVec2{ 20, 20 }))
 	{
 		Ptr< CGraphicsShader> pShader = target.Get()->GetShader();
@@ -256,6 +262,7 @@ void MaterialUI::make_Textable(bool* _texarr, Ptr<CMaterial>& pMtrl)
 			//해당 texture 자리가 비어있지 않다면 desc바꿔주기
 			if(pMtrl.Get()->GetTexParam((TEX_PARAM)i) != nullptr)
 			{
+				//
 				Check_ChangeDesc(pMtrl, (TEX_PARAM)i, inputParam[i]);
 			}
 		}

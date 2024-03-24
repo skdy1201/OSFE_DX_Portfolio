@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "PrefabUI.h"
 
+#include <Engine/CGameObject.h>
+
 #include "Engine/CPrefab.h"
 
 PrefabUI::PrefabUI()
@@ -27,6 +29,9 @@ void PrefabUI::render_update()
         CGameObject* pNewObj = pPrefab->Instantiate();
         Vec3 vPos = pNewObj->Transform()->GetRelativePos();
         pNewObj->Transform()->SetRelativePos(vPos);
-        GamePlayStatic::SpawnGameObject(pNewObj, 0);
+
+        int LayerNum = pPrefab->GetPrefabIndex();
+
+        GamePlayStatic::SpawnGameObject(pNewObj, LayerNum);
     }
 }

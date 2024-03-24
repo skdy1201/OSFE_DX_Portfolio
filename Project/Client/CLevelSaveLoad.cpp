@@ -58,7 +58,12 @@ void CLevelSaveLoad::SaveGameObject(CGameObject* _Obj, FILE* _File)
 {
 	// GameObject 의 이름을 저장
 	SaveWString(_Obj->GetName(), _File);
-	
+
+	// obj의 레이어를 저장
+	int ObjLayerNum = 0;
+	ObjLayerNum = _Obj->GetLayerIdx();
+	fwrite(&ObjLayerNum, sizeof(int), 1, _File);
+
 	// 컴포넌트 정보를 저장
 	UINT i = 0;
 	for ( ; i < (UINT)COMPONENT_TYPE::END; ++i)
@@ -161,6 +166,11 @@ CGameObject* CLevelSaveLoad::LoadGameObject(FILE* _File)
 	wstring strName;
 	LoadWString(strName, _File);
 	pObject->SetName(strName);
+
+	// obj의 레이어를 저장
+	int ObjLayerNum = -1;
+	fread(&ObjLayerNum, sizeof(int), 1, _File);
+	pObject->SetLayerIdx(ObjLayerNum);
 
 	// 컴포넌트 정보를 불러오기
 	COMPONENT_TYPE type = COMPONENT_TYPE::END;

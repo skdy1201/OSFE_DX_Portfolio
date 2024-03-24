@@ -19,6 +19,7 @@
 #include <Engine/CScript.h>
 
 #include <Engine/CTaskMgr.h>
+#include <Engine/CAssetMgr.h>
 
 Outliner::Outliner()
 	: UI("Outliner", "##Outliner")
@@ -260,7 +261,6 @@ void SelectRObject(DWORD_PTR _Node)
 
 			if (ImGui::Button("SAVE", ImVec2{ 60.f, 30.f }))
 			{
-			
 
 				//set game obj
 				CGameObject* pCloneObj = pObject->Clone();
@@ -268,10 +268,19 @@ void SelectRObject(DWORD_PTR _Node)
 				string prefabname = (string)value;
 				pCloneObj->SetName(ToWString(prefabname));
 
-				int objlayer = pObject->GetLayerIdx();
-				CLevelMgr::GetInst()->ChangeObjectIdx(pCloneObj, objlayer);
+				pCloneObj->SetLayerIdx(pObject->GetLayerIdx());
 
-				CPrefab* pTempPrefab = new CPrefab(pCloneObj, false);
+				static int tempint = 0;
+				wstring prefabkey = L"Prefabkey";
+
+				prefabkey += to_wstring((tempint));
+
+				Ptr<CPrefab> pTempPrefab = new CPrefab(pCloneObj, false);
+				CAssetMgr::GetInst()->AddAsset(prefabkey, pTempPrefab.Get());
+
+
+
+				++tempint;
 
 				wstring ContentPath = L"prefab\\";
 				wstring changechar = ToWString(value);
@@ -280,8 +289,6 @@ void SelectRObject(DWORD_PTR _Node)
 				ContentPath += L".pref";
 
 				pTempPrefab->Save(ContentPath);
-
-				delete pTempPrefab;
 
 				ImGui::CloseCurrentPopup();
 			}

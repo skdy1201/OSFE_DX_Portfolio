@@ -1,5 +1,6 @@
 #pragma once
 #include "CAsset.h"
+#include "CGameObject.h"
 
 typedef void(*SAVE_TYPE)(CGameObject*, FILE*);
 typedef CGameObject* (*LOAD_TYPE)(FILE*);
@@ -17,6 +18,7 @@ private:
 public:
     void SetGameObject(CGameObject* _Object);
     CGameObject* Instantiate();
+    int GetPrefabIndex() { return m_ProtoObj->GetLayerIdx(); }
 
     CLONE_DISABLE(CPrefab);
 public:
