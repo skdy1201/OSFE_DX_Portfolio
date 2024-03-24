@@ -26,6 +26,7 @@
 #include <Engine/CPrefab.h>
 #include <Engine/CFSM.h>
 
+#include "CCameraMoveScript.h"
 #include "CIdleState.h"
 #include "CTraceState.h"
 

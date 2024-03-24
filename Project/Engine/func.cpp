@@ -169,3 +169,48 @@ void LoadWString(wstring& _str, FILE* _FILE)
 	_str = szBuff;
 }
 
+
+// 성현이 버전
+
+// string 저장할때 사용
+void SaveStringToFile(const string& _str, FILE* _pFile)
+{
+	// 문자열 길이 저장
+	size_t iLen = _str.length();
+	fwrite(&iLen, sizeof(size_t), 1, _pFile);
+	// 들어온 string을 문자열 길이만큼 저장.
+	fwrite(_str.data(), sizeof(char), iLen, _pFile);
+}
+
+void LoadStringFromFile(string& _str, FILE* _pFile)
+{
+	// 문자열 길이 읽기
+	size_t iLen = 0;
+	fread(&iLen, sizeof(size_t), 1, _pFile);
+
+	// 문자열 길이만큼 읽어와 char배열로 복구
+	char szBuffer[256] = {};
+	fread(szBuffer, sizeof(char), iLen, _pFile);
+
+	_str = szBuffer;
+}
+
+
+// wstring 저장할때 사용
+void SaveWStringToFile(const wstring& _str, FILE* _pFile)
+{
+	size_t iLen = _str.length();
+	fwrite(&iLen, sizeof(size_t), 1, _pFile);
+	fwrite(_str.data(), sizeof(wchar_t), iLen, _pFile);
+}
+
+void LoadWStringFromFile(wstring& _str, FILE* _pFile)
+{
+	size_t iLen = 0;
+	fread(&iLen, sizeof(size_t), 1, _pFile);
+
+	wchar_t szBuffer[256] = {};
+	fread(szBuffer, sizeof(wchar_t), iLen, _pFile);
+
+	_str = szBuffer;
+}

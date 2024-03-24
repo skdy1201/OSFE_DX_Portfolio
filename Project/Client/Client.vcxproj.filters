@@ -125,6 +125,9 @@
     <Filter Include="02. UI\3. Inspector\ComponentUI\Script">
       <UniqueIdentifier>{be25e58a-0a74-4344-8769-f0a1de4e97b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. UI\3. Inspector\ComponentUI\Camera">
+      <UniqueIdentifier>{ad612989-c809-4a11-81e2-69fb4507faf7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -267,6 +270,9 @@
     </ClInclude>
     <ClInclude Include="CSubAnimator2DUI.h">
       <Filter>02. UI\3. Inspector\ComponentUI\Animator2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraUI.h">
+      <Filter>02. UI\3. Inspector\ComponentUI\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -412,6 +418,9 @@
     </ClCompile>
     <ClCompile Include="CSubAnimator2DUI.cpp">
       <Filter>02. UI\3. Inspector\ComponentUI\Animator2D</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraUI.cpp">
+      <Filter>02. UI\3. Inspector\ComponentUI\Camera</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -108,3 +108,7 @@ void Delete_Map(map<T1, T2>& _map)
 	_map.clear();
 }
 
+void SaveStringToFile(const string& _str, FILE* _pFile);
+void LoadStringFromFile(string& _str, FILE* _pFile);
+void SaveWStringToFile(const wstring& _str, FILE* _pFile);
+void LoadWStringFromFile(wstring& _str, FILE* _pFile);
