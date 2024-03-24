@@ -29,25 +29,27 @@ void CameraUI::render_update()
 
     ImGui::NewLine();
     static bool check = (bool)m_camera->GetProjType();
-    if (ImGui::Checkbox("Orthographic", &check)) {
+    if (ImGui::Checkbox("Perspective", &check)) {
         if (check) {
             m_camera->SetProjType(PROJ_TYPE::PERSPECTIVE);
+            
         }
         else {
             m_camera->SetProjType(PROJ_TYPE::ORTHOGRAPHIC);
+            
         }
     }
 
-    if (check) {
-        static float fov = m_camera->GetFOV();
-        if (ImGui::SliderFloat("FOV", &fov, 0.0f, XM_PI, "fov = %.3f")) {
-            m_camera->SetFOV(fov);
-        }
-    }
-    else {
+    if (m_camera->GetProjType() == PROJ_TYPE::ORTHOGRAPHIC) {
         static float scale = m_camera->GetScale();
         if (ImGui::SliderFloat("Scale", &scale, 0.1f, 10, "scale = %.3f")) {
             m_camera->SetScale(scale);
+        }
+    }
+    else {
+        static float fov = m_camera->GetFOV();
+        if (ImGui::SliderFloat("FOV", &fov, 0.0f, XM_PI, "fov = %.3f")) {
+            m_camera->SetFOV(fov);
         }
     }
 
