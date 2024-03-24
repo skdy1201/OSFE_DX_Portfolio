@@ -288,14 +288,26 @@ void CAssetMgr::CreateDefaultGraphicsShader()
 	pShader->CreatePixelShader(L"shader\\Tile.fx", "PS_TileFX");
 
 	pShader->SetRSType(RS_TYPE::CULL_NONE);
-	pShader->SetDSType(DS_TYPE::LESS);
-	pShader->SetBSType(BS_TYPE::DEFAULT);
-	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_MASKED);
-
-
+	pShader->SetDSType(DS_TYPE::NO_WRITE);
+	pShader->SetBSType(BS_TYPE::ALPHA_BLEND);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
 
 	AddAsset(L"TileShader", pShader.Get());
-	
+
+
+	// =================================
+	// TileCampFxShader
+	// =================================
+	pShader = new CGraphicsShader;
+	pShader->CreateVertexShader(L"shader\\Tilecamp.fx", "VS_TileCampFX");
+	pShader->CreatePixelShader(L"shader\\Tilecamp.fx", "PS_TileCampFX");
+
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_OPAQUE);
+
+	AddAsset(L"TilecampShader", pShader.Get());
 }
 
 
@@ -356,22 +368,38 @@ void CAssetMgr::CreateDefaultMaterial()
 	// TileMtrl
 	pMtrl = new CMaterial(true);
 	pMtrl->SetShader(FindAsset<CGraphicsShader>(L"TileShader"));
-	pMtrl->SetTexParam(TEX_PARAM::TEX_0, Load<CTexture>(L"texture\\Tile\\TileBlue.png", L"texture\\Tile\\TileBlue.png"));
-	pMtrl->SetTexParam(TEX_PARAM::TEX_1, Load<CTexture>(L"texture\\Tile\\TileRed.png", L"texture\\Tile\\TileRed.png"));
-	pMtrl->SetTexParam(TEX_PARAM::TEX_2, Load<CTexture>(L"texture\\Tile\\TileRed.png", L"texture\\Tile\\TileShadow.png"));
-	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 1);
-	pMtrl->SetScalarParam(SCALAR_PARAM::INT_1, 2);
-	pMtrl->SetScalarParam(SCALAR_PARAM::INT_2, 3);
+	pMtrl->SetTexParam(TEX_PARAM::TEX_0, Load<CTexture>(L"texture\\Tile\\TileBasicTallX.png", L"texture\\Tile\\TileBasicTallX.png"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_1, Load<CTexture>(L"texture\\Tile\\TileShadow.png", L"texture\\Tile\\TileShadow.png"));
+	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
+	pMtrl->SetScalarParam(SCALAR_PARAM::INT_1, 0);
+	pMtrl->SetScalarParam(SCALAR_PARAM::INT_2, 0);
+	pMtrl->SetScalarParam(SCALAR_PARAM::FLOAT_0, 0.f);
 
 	// Parameter	
-	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "Blue Camp");
-	pMtrl->AddScalarParam(SCALAR_PARAM::INT_1, "Red Camp");
-	pMtrl->AddScalarParam(SCALAR_PARAM::INT_2, "Tile Shadow");
-	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "Blue Tile");
-	pMtrl->SetTexDesc(TEX_PARAM::TEX_1, "Red Tile");
-	pMtrl->SetTexDesc(TEX_PARAM::TEX_2, "Tile Shadow");
+	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "In Tile");
+	pMtrl->AddScalarParam(SCALAR_PARAM::INT_1, "Tile Shadow");
+	pMtrl->AddScalarParam(SCALAR_PARAM::INT_2, "Tile Alpha");
+	pMtrl->AddScalarParam(SCALAR_PARAM::FLOAT_0, "Tile Alpha");
+	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "In Tile");
+	pMtrl->SetTexDesc(TEX_PARAM::TEX_1, "Tile Shadow");
 
 	AddAsset<CMaterial>(L"TileMtrl", pMtrl);
+
+	// TileCampMtrl
+	pMtrl = new CMaterial(true);
+	pMtrl->SetShader(FindAsset<CGraphicsShader>(L"TilecampShader"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_0, Load<CTexture>(L"texture\\Tile\\TileBlue.png", L"texture\\Tile\\TileBlue.png"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_1, Load<CTexture>(L"texture\\Tile\\TileRed.png", L"texture\\Tile\\TileRed.png"));
+	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
+	pMtrl->SetScalarParam(SCALAR_PARAM::INT_1, 0);
+
+	// Parameter	
+	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "In TileBlue");
+	pMtrl->AddScalarParam(SCALAR_PARAM::INT_1, "In TileRed");
+	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "Blue");
+	pMtrl->SetTexDesc(TEX_PARAM::TEX_1, "Red");
+
+	AddAsset<CMaterial>(L"TilecampMtrl", pMtrl);
 
 }
 

@@ -234,14 +234,16 @@ void MenuUI::Asset()
             wchar_t szPath[255] = {};            
             wstring FilePath = CPathMgr::GetContentPath();
             
-            int num = 0;
+            static int num = 0;
             while (true)
             {                
                 swprintf_s(szPath, L"Material//New Material_%d.mtrl", num);
                 if (!exists(FilePath + szPath))
                     break;
-                ++num;
+                
             }
+
+            ++num;
 
             CMaterial* pMtrl = new CMaterial;
             pMtrl->SetName(szPath);
