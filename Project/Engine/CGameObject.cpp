@@ -209,7 +209,15 @@ int CGameObject::DisconnectWithLayer()
 	if (-1 == m_iLayerIdx)
 		return -1;
 
+	
 	CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurrentLevel();
+
+	// 레벨이 없는데 레이어를 가져오려고 해서. 프리팹은 asset 이니까 obj가 안에 있으니까 이걸 로드할때 에러가 터짐
+	if (pCurLevel == nullptr)
+	{
+		return -1;
+	}
+
 	CLayer* pCurLayer = pCurLevel->GetLayer(m_iLayerIdx);
 
 	int LayerIdx = m_iLayerIdx;
