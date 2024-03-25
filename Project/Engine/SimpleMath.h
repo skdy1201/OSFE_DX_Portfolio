@@ -146,6 +146,10 @@ namespace DirectX
             Vector2& operator/= (float S);
             Vector2& operator/= (const Vector2& V);
 
+            friend ofstream& operator<< (ofstream& fout, Vector2& vec);
+            friend ifstream& operator>> (ifstream& fin, Vector2& vec);
+          
+
             // Unary operators
             Vector2 operator+ () const { return *this; }
             Vector2 operator- () const { return Vector2(-x, -y); }
@@ -273,6 +277,11 @@ namespace DirectX
             Vector3 operator+ () const { return *this; }
             Vector3 operator- () const;
 
+            friend ofstream& operator<<(ofstream& _fout, Vector3& _vout);
+            friend ifstream& operator>>(ifstream& _fin, Vector3& _vin);
+            
+
+
             // Vector operations
             bool InBounds(const Vector3& Bounds) const;
 
@@ -383,6 +392,9 @@ namespace DirectX
 
             Vector4(Vector4&&) = default;
             Vector4& operator=(Vector4&&) = default;
+
+            friend ofstream& operator<<(ofstream& _fout, Vector4& _vout);
+            friend ifstream& operator>>(ifstream& _fin, Vector4& _vin);
 
             // Conversion
             operator XMVECTOR() const { return XMLoadFloat4(this); }

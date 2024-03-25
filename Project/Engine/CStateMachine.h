@@ -31,8 +31,8 @@ public:
     virtual void begin() override;
     virtual void finaltick() override;
 
-    virtual void SaveToFile(FILE* _File) override;
-    virtual void LoadFromFile(FILE* _File) override;
+    virtual void SaveToFile(ofstream& _File) override;
+    virtual void LoadFromFile(ifstream& _File) override;
 public:
     CLONE(CStateMachine);
     CStateMachine();

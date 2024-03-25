@@ -23,10 +23,10 @@ void CMissileScript::tick()
 	Transform()->SetRelativePos(vPos);	
 }
 
-void CMissileScript::SaveToFile(FILE* _File)
+void CMissileScript::SaveToFile(ofstream& _File)
 {
 }
 
-void CMissileScript::LoadFromFile(FILE* _File)
+void CMissileScript::LoadFromFile(ifstream& _File)
 {
 }

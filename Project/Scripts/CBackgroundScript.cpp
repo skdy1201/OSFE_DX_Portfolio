@@ -3,11 +3,11 @@
 
 #include <Engine/CKeyMgr.h>
 
-void CBackgroundScript::SaveToFile(FILE* _File)
+void CBackgroundScript::SaveToFile(ofstream& _File)
 {
 }
 
-void CBackgroundScript::LoadFromFile(FILE* _File)
+void CBackgroundScript::LoadFromFile(ifstream& _File)
 {
 }
 

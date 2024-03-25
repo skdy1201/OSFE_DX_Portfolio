@@ -198,26 +198,31 @@ void CCamera::render_postprocess()
 	m_vecPostProcess.clear();
 }
 
-void CCamera::SaveToFile(FILE* _File)
+void CCamera::SaveToFile(ofstream& _fout)
 {
-	fwrite(&m_ProjType, sizeof(PROJ_TYPE), 1, _File);
-	fwrite(&m_FOV, sizeof(float), 1, _File);
-	fwrite(&m_Width, sizeof(float), 1, _File);
-	fwrite(&m_Scale, sizeof(float), 1, _File);
-	fwrite(&m_AspectRatio, sizeof(float), 1, _File);
-	fwrite(&m_Far, sizeof(float), 1, _File);
-	fwrite(&m_LayerCheck, sizeof(UINT), 1, _File);
-	fwrite(&m_CameraPriority, sizeof(int), 1, _File);
+
+	_fout << (int)m_ProjType << endl;
+	_fout << m_FOV << endl;
+	_fout << m_Width << endl;
+	_fout << m_Scale << endl;
+	_fout << m_AspectRatio << endl;
+	_fout << m_Far << endl;
+	_fout << m_LayerCheck << endl;
+	_fout << m_CameraPriority << endl;
+
 }
 
-void CCamera::LoadFromFile(FILE* _File)
+void CCamera::LoadFromFile(ifstream& _File)
 {
-	fread(&m_ProjType, sizeof(PROJ_TYPE), 1, _File);
-	fread(&m_FOV, sizeof(float), 1, _File);
-	fread(&m_Width, sizeof(float), 1, _File);
-	fread(&m_Scale, sizeof(float), 1, _File);
-	fread(&m_AspectRatio, sizeof(float), 1, _File);
-	fread(&m_Far, sizeof(float), 1, _File);
-	fread(&m_LayerCheck, sizeof(UINT), 1, _File);
-	fread(&m_CameraPriority, sizeof(int), 1, _File);
+	int num;
+	_File >> num;
+	m_ProjType = PROJ_TYPE(num);
+
+	_File >> m_FOV;
+	_File >> m_Width;
+	_File >> m_Scale;
+	_File >> m_AspectRatio;
+	_File >> m_Far;
+	_File >> m_LayerCheck;
+	_File >> m_CameraPriority;
 }

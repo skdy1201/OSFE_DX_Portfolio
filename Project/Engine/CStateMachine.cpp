@@ -43,12 +43,12 @@ void* CStateMachine::GetBlackboardData(const wstring& _strKey)
 	return m_Blackboard.GetBlackboardData(_strKey);
 }
 
-void CStateMachine::SaveToFile(FILE* _File)
+void CStateMachine::SaveToFile(ofstream& _fout)
 {
-	SaveAssetRef(m_FSM, _File);	
+	SaveAssetRef(m_FSM, _fout);
 }
 
-void CStateMachine::LoadFromFile(FILE* _File)
+void CStateMachine::LoadFromFile(ifstream& _File)
 {
 	LoadAssetRef(m_FSM, _File);
 }

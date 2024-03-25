@@ -93,18 +93,18 @@ void CCollider2D::EndOverlap(CCollider2D* _OtherCollider)
 	}
 }
 
-void CCollider2D::SaveToFile(FILE* _File)
+void CCollider2D::SaveToFile(ofstream& _fout)
 {
-	fwrite(&m_vOffsetPos, sizeof(Vec3), 1, _File);
-	fwrite(&m_vOffsetScale, sizeof(Vec3), 1, _File);
-	fwrite(&m_bAbsolute, sizeof(bool), 1, _File);
-	fwrite(&m_Type, sizeof(UINT), 1, _File);	
+
+	_fout << m_vOffsetPos << endl;
+	_fout << m_vOffsetScale << endl;
+	_fout << m_bAbsolute << endl;
+	_fout << (UINT)m_Type;
 }
 
-void CCollider2D::LoadFromFile(FILE* _File)
+void CCollider2D::LoadFromFile(ifstream& _File)
 {
-	fread(&m_vOffsetPos, sizeof(Vec3), 1, _File);
-	fread(&m_vOffsetScale, sizeof(Vec3), 1, _File);
-	fread(&m_bAbsolute, sizeof(bool), 1, _File);
-	fread(&m_Type, sizeof(UINT), 1, _File);
+	int num;
+	_File >> m_vOffsetPos >> m_vOffsetScale >> m_bAbsolute >> num;
+	m_Type = (COLLIDER2D_TYPE)num;
 }

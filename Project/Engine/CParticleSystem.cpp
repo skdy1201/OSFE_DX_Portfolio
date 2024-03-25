@@ -129,7 +129,56 @@ CParticleSystem::~CParticleSystem()
 		delete m_SpawnCountBuffer;
 }
 
+ofstream& operator<<(ofstream& fout, tParticleModule& module)
+{
+	fout << module.vSpawnColor << endl;
+	fout << module.vSpawnMinScale << endl;
+	fout << module.vSpawnMaxScale << endl;
 
+	fout << module.MinLife << " " << module.MaxLife << " " << module.MinMass << " " << module.MaxMass << endl;
+	fout << module.SpawnRate << " " << module.SpaceType << " " << module.MinMass << " " << module.MaxMass << endl;
+
+	fout << module.SpawnRate << " " << module.SpaceType << " " << module.SpawnShape << " " << module.Radius << endl;
+
+	fout << module.vSpawnBoxScale << endl;
+	fout << module.AddVelocityType << " " << module.MinSpeed << " " << module.MaxSpeed << " " << module.FixedAngle << endl;
+	fout << module.FixedDirection << endl;
+	fout << module.vScaleRatio << endl;
+
+	fout << module.NoiseForceScale << " " << module.NoiseForceTerm << endl;
+
+	fout << module.DragTime << endl;
+
+	fout << module.VelocityAlignment << " " << module.AlphaBasedLife << " " << module.AlphaMaxAge << endl;
+
+	for (int i = 0; i < (int)PARTICLE_MODULE::END; i++) {
+		fout << module.arrModuleCheck[i] << " ";
+	}
+	fout << endl;
+
+	return fout;
+}
+ifstream& operator>>(ifstream& fout, tParticleModule& module)
+{
+		fout >> module.vSpawnColor >> module.vSpawnMinScale >> module.vSpawnMaxScale;
+		fout >> module.MinLife >> module.MaxLife >> module.MinMass >> module.MaxMass;
+		fout >> module.SpawnRate >> module.SpaceType >> module.MinMass >> module.MaxMass;
+		fout >> module.SpawnRate >> module.SpaceType >> module.SpawnShape >> module.Radius;
+		fout >> module.vSpawnBoxScale;
+		fout >> module.AddVelocityType >> module.MinSpeed >> module.MaxSpeed >> module.FixedAngle;
+		fout >> module.FixedDirection;
+		fout >> module.vScaleRatio;
+		fout >> module.NoiseForceScale >> module.NoiseForceTerm;
+		fout >> module.DragTime;
+		fout >> module.VelocityAlignment >> module.AlphaBasedLife >> module.AlphaMaxAge;
+
+		for (int i = 0; i < (int)PARTICLE_MODULE::END; i++) {
+			int num;
+			fout >> num;
+			module.arrModuleCheck[i] = num;
+		}
+		return fout;
+}
 void CParticleSystem::finaltick()
 {	
 	m_Time += DT;
@@ -191,25 +240,17 @@ void CParticleSystem::UpdateData()
 }
 
 
-void CParticleSystem::SaveToFile(FILE* _File)
+void CParticleSystem::SaveToFile(ofstream& _fout)
 {
-	// 파티클 최대 갯수 및 모듈 정보 저장
-	fwrite(&m_MaxParticleCount, sizeof(UINT), 1, _File);
-	fwrite(&m_Module, sizeof(tParticleModule), 1, _File);	
-
-	// 사용하던 CS 가 누군지 저장
-	//SaveAssetRef(m_CSParticleUpdate, _File);
-
-	// 파티클 입자 텍스쳐 정보 저장
-	SaveAssetRef(m_ParticleTex, _File);	
+	_fout << m_MaxParticleCount << endl;
+	_fout << m_Module << endl;
 }
 
-void CParticleSystem::LoadFromFile(FILE* _File)
+void CParticleSystem::LoadFromFile(ifstream& _File)
 {
 	// 파티클 최대 갯수 및 모듈 정보 로드
-	fread(&m_MaxParticleCount, sizeof(UINT), 1, _File);
-	fread(&m_Module, sizeof(tParticleModule), 1, _File);
-
+	_File >> m_MaxParticleCount;
+	_File >> m_Module;
 	// 사용하던 CS 가 누군지 로드
 	/*Ptr<CComputeShader> cs;
 	LoadAssetRef(cs, _File);

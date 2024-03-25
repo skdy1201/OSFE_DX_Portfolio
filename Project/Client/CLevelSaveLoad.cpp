@@ -22,47 +22,49 @@ void CLevelSaveLoad::SaveLevel(CLevel* _Level, const wstring& _strLevelPath)
 	wstring strLevelPath = CPathMgr::GetContentPath();
 	strLevelPath += _strLevelPath;
 
-	FILE* pFile = nullptr;
-	_wfopen_s(&pFile, strLevelPath.c_str(), L"wb");
+	ofstream savelv;
+	savelv.open(strLevelPath);
 
-	// 레벨의 이름
-	SaveWString(_Level->GetName(), pFile);
-
-	// 레벨의 레이어 저장
-	for (UINT i = 0; i < LAYER_MAX; ++i)
+	if (savelv.is_open())
 	{
-		SaveLayer(_Level->GetLayer(i), pFile);
+		savelv << strLevelPath << endl;
+		savelv << _Level->GetName() << endl;
+		for (UINT i = 0; i < LAYER_MAX; ++i)
+		{
+			SaveLayer(_Level->GetLayer(i), savelv);
+		}
 	}
-
-	fclose(pFile);
 }
 
-void CLevelSaveLoad::SaveLayer(CLayer* _Layer, FILE* _File)
+void CLevelSaveLoad::SaveLayer(CLayer* _Layer, ofstream&_savelayer)
 {
 	// Layer 의 이름 저장
-	SaveWString(_Layer->GetName(), _File);
+	_savelayer << _Layer->GetName() << endl;
+
 
 	// Layer 가 보유하고 있는 GameObject 들을 저장
 	const vector<CGameObject*>& vecObject = _Layer->GetParentObjects();
 
 	size_t ObjCount = vecObject.size();
-	fwrite(&ObjCount, sizeof(size_t), 1, _File);
+
+	_savelayer << ObjCount << endl;
 
 	for (size_t i = 0; i < vecObject.size(); ++i)
 	{
-		SaveGameObject(vecObject[i], _File);
+		SaveGameObject(vecObject[i], _savelayer);
 	}	
 }
 
-void CLevelSaveLoad::SaveGameObject(CGameObject* _Obj, FILE* _File)
+void CLevelSaveLoad::SaveGameObject(CGameObject* _Obj, ofstream& _saveobj)
 {
 	// GameObject 의 이름을 저장
-	SaveWString(_Obj->GetName(), _File);
+	_saveobj << _Obj->GetName() << endl;
 
 	// obj의 레이어를 저장
 	int ObjLayerNum = 0;
 	ObjLayerNum = _Obj->GetLayerIdx();
-	fwrite(&ObjLayerNum, sizeof(int), 1, _File);
+
+	_saveobj << ObjLayerNum << endl;
 
 	// 컴포넌트 정보를 저장
 	UINT i = 0;
@@ -73,36 +75,43 @@ void CLevelSaveLoad::SaveGameObject(CGameObject* _Obj, FILE* _File)
 			continue;
 
 		// 컴포넌트 타입 정보 저장
-		fwrite(&i, sizeof(UINT), 1, _File);
+
+		_saveobj << (UINT)i << endl;
 
 		// 해당 컴포넌트가 저장할 데이터 저장
-		pCom->SaveToFile(_File);
+
+		pCom->SaveToFile(_saveobj);
 	}
-	fwrite(&i, sizeof(UINT), 1, _File);
+
+	_saveobj << i << endl;
 
 	// 스크립트 정보 저장
 	const vector<CScript*>& vecScripts = _Obj->GetScripts();
 	size_t ScriptCount = vecScripts.size();
 
 	// 스크립트 개수 저장
-	fwrite(&ScriptCount, sizeof(size_t), 1, _File);
+	_saveobj << ScriptCount << endl;
+
 
 	for (size_t i = 0; i < vecScripts.size(); ++i)
 	{
-		SaveWString(CScriptMgr::GetScriptName(vecScripts[i]), _File);
-		vecScripts[i]->SaveToFile(_File);
+		//SaveWString(CScriptMgr::GetScriptName(vecScripts[i]), _File);
+		_saveobj << CScriptMgr::GetScriptName(vecScripts[i]) << endl;
+		vecScripts[i]->SaveToFile(_saveobj);
 	}
 
 	// 자식 오브젝트가 있으면 자식 오브젝트 정보 저장
 	const vector<CGameObject*>& vecChild = _Obj->GetChild();
 	size_t childcount = vecChild.size();
-	fwrite(&childcount, sizeof(size_t), 1, _File);
+
+	_saveobj << childcount << endl;
 
 	for (size_t i = 0; i < childcount; ++i)
 	{
-		SaveGameObject(vecChild[i], _File);
+		SaveGameObject(vecChild[i], _saveobj);
 	}
 }
+
 
 CLevel* CLevelSaveLoad::LoadLevel(const wstring& _strLevelPath)
 {
@@ -118,65 +127,73 @@ CLevel* CLevelSaveLoad::LoadLevel(const wstring& _strLevelPath)
 		return nullptr;
 	}
 
-	FILE* pFile = nullptr;
-	_wfopen_s(&pFile, strLevelPath.c_str(), L"rb");
-			
+	ifstream pFile(strLevelPath);
 
-	// 레벨의 이름을 읽는다.
-	pLevel = new CLevel;
-	wstring strLevelName;
-	LoadWString(strLevelName, pFile);
-	pLevel->SetName(strLevelName);
-
-	// Layer 로드
-	for (UINT i = 0; i < LAYER_MAX; ++i)
+	if(pFile.is_open())
 	{
-		LoadLayer(pLevel->GetLayer(i), pFile);		
+		// 레벨의 이름을 읽는다.
+		pLevel = new CLevel;
+		string strLevelName;
+		pFile >> strLevelName;
+		pLevel->SetName(ToWString(strLevelName));
+
+		// Layer 로드
+		for (UINT i = 0; i < LAYER_MAX; ++i)
+		{
+			LoadLayer(pLevel->GetLayer(i), pFile);
+		}
+
 	}
 
-	fclose(pFile);
+	
+
+
 
 	return pLevel;
 }
 
-void CLevelSaveLoad::LoadLayer(CLayer* _Layer, FILE* _File)
+void CLevelSaveLoad::LoadLayer(CLayer* _Layer, ifstream& _File)
 {
 	// Layer 의 이름 저장
-	wstring strLayerName;
-	LoadWString(strLayerName, _File);
+	string strLayerName;
+	_File >> strLayerName;
 	_Layer->SetName(strLayerName);
 
 
 	// Layer 가 보유하던 GameObject 들을 불러온다.
 	size_t ObjCount = 0;
-	fread(&ObjCount, sizeof(size_t), 1, _File);
+	_File >> ObjCount;
 
-	for (size_t i = 0; i < ObjCount; ++i)
+	for (int i = 0; i < ObjCount; ++i)
 	{
 		CGameObject* pObject = LoadGameObject(_File);
 		_Layer->AddObject(pObject, false);
 	}
+
 }
 
-CGameObject* CLevelSaveLoad::LoadGameObject(FILE* _File)
+CGameObject* CLevelSaveLoad::LoadGameObject(ifstream& _File)
 {
 	CGameObject* pObject = new CGameObject;
 	
 	// GameObject 의 이름을 로드
-	wstring strName;
-	LoadWString(strName, _File);
+	string strName;
+	_File >> strName;
 	pObject->SetName(strName);
 
 	// obj의 레이어를 저장
 	int ObjLayerNum = -1;
-	fread(&ObjLayerNum, sizeof(int), 1, _File);
+	_File >> ObjLayerNum;
 	pObject->SetLayerIdx(ObjLayerNum);
 
 	// 컴포넌트 정보를 불러오기
 	COMPONENT_TYPE type = COMPONENT_TYPE::END;
 	while(true)
 	{
-		fread(&type, sizeof(UINT), 1, _File);
+		int num;
+		_File >> num;
+		type = (COMPONENT_TYPE)num;
+
 		if (COMPONENT_TYPE::END == type)
 			break;
 
@@ -225,21 +242,22 @@ CGameObject* CLevelSaveLoad::LoadGameObject(FILE* _File)
 
 	// 스크립트 개수 읽기
 	size_t ScriptCount = 0;
-	fread(&ScriptCount, sizeof(size_t), 1, _File);
+	_File >> ScriptCount;
+
 
 	for (size_t i = 0; i < ScriptCount; ++i)
 	{
-		wstring strScriptName;
-		LoadWString(strScriptName, _File);		
+		string strScriptName;
+		_File >> strScriptName;
 
-		CScript* pScript = CScriptMgr::GetScript(strScriptName);
+		CScript* pScript = CScriptMgr::GetScript(ToWString(strScriptName));
 		pObject->AddComponent(pScript);
 		pScript->LoadFromFile(_File);
 	}
 
 	// 자식 오브젝트가 있으면 자식 오브젝트 정보 저장	
 	size_t childcount = 0;
-	fread(&childcount, sizeof(size_t), 1, _File);
+	_File >> childcount;
 
 	for (size_t i = 0; i < childcount; ++i)
 	{

@@ -13,7 +13,7 @@
 #include<Engine\CAnimator2D.h>
 #include <Engine\CAnim.h>
 
-#include <fstream>
+
 
 
 CSubAnimator2DUI::CSubAnimator2DUI(Animator2DUI* Parent)
@@ -643,13 +643,11 @@ void CSubAnimator2DUI::SaveNewAnim()
 	strAnimPath += AnimFolder;
 	strAnimPath += Animation_Key;
 
-	FILE* temp = nullptr;
-	_wfopen_s(&temp, strAnimPath.c_str(), L"wb");
+	ofstream temp;
+	
 	OneAnim->SetAtlas(m_AtlasTex);
 	OneAnim->SaveToFile(temp);
-	
 
-	fclose(temp);
 }
 
 void CSubAnimator2DUI::LoadAnim()
@@ -670,8 +668,8 @@ void CSubAnimator2DUI::LoadAnim()
 	}
 	else
 	{
-		FILE* pFile = nullptr;
-		_wfopen_s(&pFile, animname.c_str(), L"rb");
+		ifstream pFile;
+		pFile.open(animname);
 
 		pAnim->LoadFromFile(pFile);
 		pAnim->SetAnimator(pTarget->Animator2D());

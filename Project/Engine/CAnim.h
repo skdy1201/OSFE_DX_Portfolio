@@ -12,6 +12,9 @@ struct tAnimFrm
     float   Duration;
 };
 
+ofstream& operator<<(ofstream& _fout, tAnimFrm& _anim);
+ifstream& operator>>(ifstream& _fout, tAnimFrm& _anim);
+
 class CAnimator2D;
 
 class CAnim :
@@ -50,8 +53,8 @@ public:
 
     vector<tAnimFrm>GetAnimFrm() { return m_vecFrm; }
 
-    void SaveToFile(FILE* _File);
-    void LoadFromFile(FILE* _File);
+    void SaveToFile(ofstream& _File);
+    void LoadFromFile(ifstream& _File);
     CLONE(CAnim);
 public:
     CAnim();

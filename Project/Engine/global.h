@@ -21,6 +21,9 @@ using std::wstring;
 using std::string;
 using namespace std;
 
+#include <fstream>
+using std::ifstream;
+using std::ofstream;
 
 #include <wrl.h>
 using namespace Microsoft::WRL;

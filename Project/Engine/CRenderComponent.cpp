@@ -72,13 +72,13 @@ void CRenderComponent::RestoreMaterial()
 }
 
 
-void CRenderComponent::SaveToFile(FILE* _File)
+void CRenderComponent::SaveToFile(ofstream& _fout)
 {
-	SaveAssetRef(m_Mesh, _File);
-	SaveAssetRef(m_SharedMtrl, _File);	
+	SaveAssetRef(m_Mesh, _fout);
+	SaveAssetRef(m_SharedMtrl, _fout);
 }
 
-void CRenderComponent::LoadFromFile(FILE* _File)
+void CRenderComponent::LoadFromFile(ifstream& _File)
 {
 	LoadAssetRef(m_Mesh, _File);
 	LoadAssetRef(m_SharedMtrl, _File);

@@ -39,7 +39,12 @@ struct tLightInfo
 	int		LightType;	// ±¤¿ø Å¸ÀÔ
 
 	Vec3	vPadding;
+
+	friend ofstream& operator<<(ofstream& _fout, tLightInfo& _out);
+	friend ifstream& operator>>(ifstream& _fout, tLightInfo& _out);
 };
+
+
 
 struct tPixel
 {
@@ -107,6 +112,10 @@ struct tParticleModule
 
 	// Module On / Off
 	int arrModuleCheck[(UINT)PARTICLE_MODULE::END];
+
+	friend ofstream& operator<<(ofstream& fout, tParticleModule& module);
+	friend ifstream& operator>>(ifstream& fout, tParticleModule& module);
+	
 };
 
 struct tSpawnCount
@@ -144,6 +153,7 @@ struct tMtrlConst
 	Matrix matArr[4];
 	int	bTex[(UINT)TEX_PARAM::END];
 	int iPadding[2];
+
 };
 
 struct tAnimData2D

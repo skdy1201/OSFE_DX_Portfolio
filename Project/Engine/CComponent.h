@@ -39,8 +39,8 @@ public:
     CRenderComponent* GetRenderComponent() { return m_Owner->GetRenderComopnent();}
 
 
-    virtual void SaveToFile(FILE* _File) = 0;
-    virtual void LoadFromFile(FILE* _File) = 0;
+    virtual void SaveToFile(ofstream& _File) = 0;
+    virtual void LoadFromFile(ifstream& _File) = 0;
 
     virtual CComponent* Clone() = 0;
 public:

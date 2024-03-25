@@ -42,12 +42,14 @@ void CLight2D::SetAngle(float _Angle)
 	m_Info.fAngle = _Angle;
 }
 
-void CLight2D::SaveToFile(FILE* _File)
+void CLight2D::SaveToFile(ofstream& _fout)
 {
-	fwrite(&m_Info, sizeof(tLightInfo), 1, _File);
+
+	_fout << m_Info;
+
 }
 
-void CLight2D::LoadFromFile(FILE* _File)
+void CLight2D::LoadFromFile(ifstream& _File)
 {
-	fread(&m_Info, sizeof(tLightInfo), 1, _File);
+	_File >> m_Info;
 }

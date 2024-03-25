@@ -104,18 +104,16 @@ Vec3 CTransform::GetWorldScale()
 	return vWorldScale;
 }
 
-void CTransform::SaveToFile(FILE* _File)
+void CTransform::SaveToFile(ofstream& _fout)
 {
-	fwrite(&m_vRelativePos, sizeof(Vec3), 1, _File);
-	fwrite(&m_vRelativeScale, sizeof(Vec3), 1, _File);
-	fwrite(&m_vRealtiveRotation, sizeof(Vec3), 1, _File);
-	fwrite(&m_bAbsolute, sizeof(bool), 1, _File);	
+	_fout << m_vRelativePos << endl;
+	_fout << m_vRelativeScale<< endl;
+	_fout << m_vRealtiveRotation << endl;
+	_fout << m_bAbsolute<< endl;
 }
 
-void CTransform::LoadFromFile(FILE* _File)
+void CTransform::LoadFromFile(ifstream& _File)
 {
-	fread(&m_vRelativePos, sizeof(Vec3), 1, _File);
-	fread(&m_vRelativeScale, sizeof(Vec3), 1, _File);
-	fread(&m_vRealtiveRotation, sizeof(Vec3), 1, _File);
-	fread(&m_bAbsolute, sizeof(bool), 1, _File);
+	_File >> m_vRelativePos >> m_vRelativeScale >> m_vRealtiveRotation >> m_bAbsolute;
+
 }

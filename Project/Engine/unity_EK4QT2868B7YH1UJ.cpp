@@ -47,3 +47,6 @@
 
 #include "C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\Project\Engine\func.cpp"
 
+
+#include "C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\Project\Engine\SimpleMath.cpp"
+

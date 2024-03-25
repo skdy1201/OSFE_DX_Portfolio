@@ -73,8 +73,8 @@ private:
     void render(vector<CGameObject*>& _vecObj);
     void render_postprocess();
 
-    virtual void SaveToFile(FILE* _File) override;
-    virtual void LoadFromFile(FILE* _File) override;
+    virtual void SaveToFile(ofstream& _fout) override;
+    virtual void LoadFromFile(ifstream& _File) override;
     CLONE(CCamera);
 public:
     CCamera();

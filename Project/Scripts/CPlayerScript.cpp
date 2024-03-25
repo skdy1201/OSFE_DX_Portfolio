@@ -138,12 +138,14 @@ void CPlayerScript::EndOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, C
 {
 }
 
-void CPlayerScript::SaveToFile(FILE* _File)
+
+void CPlayerScript::SaveToFile(ofstream& _fout)
 {
-	fwrite(&m_Speed, sizeof(float), 1, _File);
+	_fout << m_Speed << endl;
+	
 }
 
-void CPlayerScript::LoadFromFile(FILE* _File)
+void CPlayerScript::LoadFromFile(ifstream& _File)
 {
-	fread(&m_Speed, sizeof(float), 1, _File);
+	_File >> m_Speed;
 }

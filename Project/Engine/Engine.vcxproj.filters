@@ -324,6 +324,12 @@
     <ClCompile Include="CFontMgr.cpp">
       <Filter>04. Manager\FontMgr</Filter>
     </ClCompile>
+    <ClCompile Include="SimpleMath.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="struct.cpp">
+      <Filter>01. Header</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -485,6 +491,9 @@
     <Filter Include="04. Manager\FontMgr">
       <UniqueIdentifier>{37be9843-c16a-4fff-8630-20aa99e316a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ShaderCode\Render\Tile">
+      <UniqueIdentifier>{8210775e-237d-45a2-ba55-424876c5da0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -523,7 +532,10 @@
       <Filter>ShaderCode\Compute\ParticleUpdate</Filter>
     </FxCompile>
     <FxCompile Include="Tile.fx">
-      <Filter>ShaderCode\Render</Filter>
+      <Filter>ShaderCode\Render\Tile</Filter>
+    </FxCompile>
+    <FxCompile Include="Tilecamp.fx">
+      <Filter>ShaderCode\Render\Tile</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

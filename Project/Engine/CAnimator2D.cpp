@@ -110,15 +110,15 @@ void CAnimator2D::Play(const wstring& _strAnimName, bool _bRepeat)
 	m_CurAnim->Reset();
 }
 
-void CAnimator2D::SaveToFile(FILE* _File)
+void CAnimator2D::SaveToFile(ofstream& _fout)
 {
 	// 애니메이션 개수 저장
 	size_t AnimCount = m_mapAnim.size();
-	fwrite(&AnimCount, sizeof(size_t), 1, _File);
+	_fout << AnimCount << endl;
 
 	for (const auto& pair : m_mapAnim)
 	{
-		pair.second->SaveToFile(_File);
+		pair.second->SaveToFile(_fout);
 	}
 	
 	// 플레이 중이던 애니메이션의 키를 저장한다.
@@ -129,15 +129,15 @@ void CAnimator2D::SaveToFile(FILE* _File)
 		PlayAnimName = m_CurAnim->GetName();
 	}
 
-	SaveWString(PlayAnimName, _File);
-	fwrite(&m_bRepeat, sizeof(bool), 1, _File);
+	_fout << PlayAnimName << endl;
+	_fout << m_bRepeat;
 }
 
-void CAnimator2D::LoadFromFile(FILE* _File)
+void CAnimator2D::LoadFromFile(ifstream& _File)
 {
 	// 애니메이션 개수 로드
 	size_t AnimCount = 0;
-	fread(&AnimCount, sizeof(size_t), 1, _File);
+	_File >> AnimCount;
 		
 	for (size_t i = 0; i < AnimCount; ++i)
 	{
@@ -149,13 +149,13 @@ void CAnimator2D::LoadFromFile(FILE* _File)
 	}
 
 	// 플레이 중이던 애니메이션의 키를 불러온다
-	wstring PlayAnimName;
-	LoadWString(PlayAnimName, _File);
+	string PlayAnimName;
+	_File >> PlayAnimName;
 
 	if (!PlayAnimName.empty())
 	{
-		m_CurAnim = FindAnim(PlayAnimName);
+		m_CurAnim = FindAnim(ToWString(PlayAnimName));
 	}
 
-	fread(&m_bRepeat, sizeof(bool), 1, _File);
+	_File >> m_bRepeat;
 }

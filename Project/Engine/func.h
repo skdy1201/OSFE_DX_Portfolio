@@ -38,11 +38,21 @@ class Ptr;
 #include "CAssetMgr.h"
 
 template<typename T>
+void SaveAssetRef(Ptr<T> _Asset, ofstream& _fout)
+{
+	bool bAssetExist = false;
+	_Asset == nullptr ? bAssetExist = false : bAssetExist = true;
+
+	_fout << bAssetExist << endl;
+
+}
+
+template<typename T>
 void SaveAssetRef(Ptr<T> _Asset, FILE* _File)
 {
 	bool bAssetExist = false;
 	_Asset == nullptr ? bAssetExist = false : bAssetExist = true;
-	
+
 	fwrite(&bAssetExist, sizeof(bool), 1, _File);
 
 	if (bAssetExist)
@@ -52,9 +62,26 @@ void SaveAssetRef(Ptr<T> _Asset, FILE* _File)
 	}
 }
 
+
+template<typename T>
+void LoadAssetRef(Ptr<T>& _Asset, ifstream& _File)
+{	
+	bool bAssetExist = false;
+	_File >> bAssetExist;
+
+	if (bAssetExist)
+	{
+		string strKey, strRelativePath;
+		_File >> strKey;
+		_File >> strRelativePath;
+
+		_Asset = CAssetMgr::GetInst()->Load<T>(ToWString(strKey), ToWString(strRelativePath));
+	}
+}
+
 template<typename T>
 void LoadAssetRef(Ptr<T>& _Asset, FILE* _File)
-{	
+{
 	bool bAssetExist = false;
 	fread(&bAssetExist, sizeof(bool), 1, _File);
 
@@ -68,7 +95,6 @@ void LoadAssetRef(Ptr<T>& _Asset, FILE* _File)
 		_Asset = CAssetMgr::GetInst()->Load<T>(strKey, strRelativePath);
 	}
 }
-
 
 
 

@@ -18,8 +18,8 @@ public:
     virtual void EndOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider);
 
 
-    virtual void SaveToFile(FILE* _File) override;
-    virtual void LoadFromFile(FILE* _File) override;
+    virtual void SaveToFile(ofstream& _File) override;
+    virtual void LoadFromFile(ifstream& _File) override;
     CLONE(CPlayerScript);
 public:
     CPlayerScript();

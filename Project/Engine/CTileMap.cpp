@@ -48,6 +48,25 @@ CTileMap::~CTileMap()
 		delete m_TileInfoBuffer;
 }
 
+ofstream& operator<<(ofstream& _fout, tTileInfo& _tout)
+{
+	_fout << _tout.vLeftTopUV;
+	_fout << endl;
+	_fout << _tout.bRender << endl;
+	_fout << _tout.padding;
+
+	return _fout;
+}
+
+ifstream& operator>>(ifstream& _fout, tTileInfo& _tout)
+{
+	_fout >> _tout.vLeftTopUV;
+	_fout >> _tout.bRender;
+	_fout >> _tout.padding;
+
+	return _fout;
+}
+
 void CTileMap::finaltick()
 {
 	// (타일 개수 * 타일 사이즈) 로 사이즈를 변경처리한다.
@@ -133,45 +152,51 @@ void CTileMap::SetTileIndex(UINT _Row, UINT _Col, UINT _ImgIdx)
 
 
 
-void CTileMap::SaveToFile(FILE* _File)
+void CTileMap::SaveToFile(ofstream& _fout)
 {
 	// TileMap 정보 저장
-	fwrite(&m_FaceX, sizeof(UINT), 1, _File);
-	fwrite(&m_FaceY, sizeof(UINT), 1, _File);
-	fwrite(&m_vTileRenderSize, sizeof(Vec2), 1, _File);
-	fwrite(&m_vTileRenderSize, sizeof(Vec2), 1, _File);
+	_fout << m_FaceX << endl;
+	_fout << m_FaceY << endl;
+	_fout << m_vTileRenderSize << endl;
 
-	SaveAssetRef(m_TileAtlas, _File);
+	SaveAssetRef(m_TileAtlas, _fout);
 
-	fwrite(&m_vTilePixelSize, sizeof(Vec2), 1, _File);
-	fwrite(&m_vSliceSizeUV, sizeof(Vec2), 1, _File);
+	_fout << m_vTilePixelSize << endl;
+	_fout << m_vSliceSizeUV << endl;
 
-	fwrite(&m_MaxCol, sizeof(UINT), 1, _File);
-	fwrite(&m_MaxRow, sizeof(UINT), 1, _File);
-	
+	_fout << m_MaxCol << endl;
+	_fout << m_MaxRow << endl;
+
 	size_t InfoCount = m_vecTileInfo.size();
-	fwrite(&InfoCount, sizeof(size_t), 1, _File);
-	fwrite(m_vecTileInfo.data(), sizeof(tTileInfo), InfoCount, _File);
+	_fout << InfoCount << endl;
+
+	for (size_t i = 0; i < m_vecTileInfo.size(); i++)
+	{
+		_fout << m_vecTileInfo[i] << endl;
+	}
 }
 
-void CTileMap::LoadFromFile(FILE* _File)
+void CTileMap::LoadFromFile(ifstream& _File)
 {
 	// TileMap 정보 저장
-	fread(&m_FaceX, sizeof(UINT), 1, _File);
-	fread(&m_FaceY, sizeof(UINT), 1, _File);
-	fread(&m_vTileRenderSize, sizeof(Vec2), 1, _File);
-	fread(&m_vTileRenderSize, sizeof(Vec2), 1, _File);
+	_File >> m_FaceX;
+	_File >> m_FaceY;
+	_File >> m_vTileRenderSize;
 
 	LoadAssetRef(m_TileAtlas, _File);
 
-	fread(&m_vTilePixelSize, sizeof(Vec2), 1, _File);
-	fread(&m_vSliceSizeUV, sizeof(Vec2), 1, _File);
+	_File >> m_vTilePixelSize;
+	_File >> m_vSliceSizeUV;
+	_File >> m_MaxCol;
+	_File >> m_MaxRow;
 
-	fread(&m_MaxCol, sizeof(UINT), 1, _File);
-	fread(&m_MaxRow, sizeof(UINT), 1, _File);
+	size_t InfoCount;
+	_File >> InfoCount;
 
-	size_t InfoCount = 0;
-	fread(&InfoCount, sizeof(size_t), 1, _File);
-	m_vecTileInfo.reserve(InfoCount);
-	fread(m_vecTileInfo.data(), sizeof(tTileInfo), InfoCount, _File);
+
+	m_vecTileInfo.resize(InfoCount);
+	for (size_t i = 0; i < m_vecTileInfo.size(); i++)
+	{
+		_File >> m_vecTileInfo[i];
+	}
 }

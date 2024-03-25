@@ -28,6 +28,28 @@ CAnim::~CAnim()
 {
 }
 
+ofstream& operator<<(ofstream& fout, tAnimFrm& anim)
+{
+	fout << anim.vLeftTop << endl;
+	fout << anim.vSlice << endl;
+	fout << anim.vOffset << endl;
+	fout << anim.vBackground << endl;
+	fout << anim.Duration;
+
+	return fout;
+}
+
+ifstream& operator>>(ifstream& _fout, tAnimFrm& _anim)
+{
+	_fout >> _anim.vLeftTop;
+	_fout >> _anim.vSlice;
+	_fout >> _anim.vOffset;
+	_fout >> _anim.vBackground;
+	_fout >> _anim.Duration;
+
+	return _fout;
+}
+
 void CAnim::finaltick()
 {	
 	m_AccTime += DT;
@@ -96,33 +118,38 @@ void CAnim::Create(CAnimator2D* _Animator, Ptr<CTexture> _Atlas, Vec2 _vLeftTop
 	}
 }
 
-void CAnim::SaveToFile(FILE* _File)
+void CAnim::SaveToFile(ofstream& _fout)
 {
 	// 애니메이션 이름 저장
-	SaveWString(GetName(), _File);
+	_fout << GetName() << endl;
 	
 	// 모든 프레임 정보 저장
 	size_t FrmSize = m_vecFrm.size();
-	fwrite(&FrmSize, sizeof(size_t), 1, _File);
-	fwrite(m_vecFrm.data(), sizeof(tAnimFrm), m_vecFrm.size(), _File);
+
+	_fout << FrmSize << endl;
+	_fout << m_vecFrm.data() << endl;
 
 	// 애니메이션이 참조하던 텍스쳐 정보 저장
-	SaveAssetRef(m_AtlasTex, _File);
+	SaveAssetRef(m_AtlasTex, _fout);
 }
 
-void CAnim::LoadFromFile(FILE* _File)
+void CAnim::LoadFromFile(ifstream& _File)
 {
 	// 애니메이션 이름 로드
-	wstring strName;
-	LoadWString(strName, _File);
+	string strName;
+	_File >> strName;
 	SetName(strName);
 	
 	// 모든 프레임 정보 로드
 	size_t FrmSize = 0;
-	fread(&FrmSize, sizeof(size_t), 1, _File);
+	_File >> FrmSize;
 	m_vecFrm.resize(FrmSize);
-	fread(m_vecFrm.data(), sizeof(tAnimFrm), m_vecFrm.size(), _File);
-
+	
+	for (int i = 0 ; i < FrmSize; ++i)
+	{
+		_File >> m_vecFrm[i];
+	}
+	
 	// 애니메이션이 참조하던 텍스쳐 정보 로드
 	LoadAssetRef(m_AtlasTex, _File);
 }

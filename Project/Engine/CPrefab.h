@@ -2,8 +2,8 @@
 #include "CAsset.h"
 #include "CGameObject.h"
 
-typedef void(*SAVE_TYPE)(CGameObject*, FILE*);
-typedef CGameObject* (*LOAD_TYPE)(FILE*);
+typedef void(*SAVE_TYPE)(CGameObject*, ofstream&);
+typedef CGameObject* (*LOAD_TYPE)(ifstream&);
 
 class CPrefab :
     public CAsset
