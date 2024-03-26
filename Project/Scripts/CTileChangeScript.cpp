@@ -28,13 +28,17 @@ void CTileChangeScript::tick()
 
 	if (ischange)
 	{
-		if (CurTexIdx == 1)
+		if (CurTexIdx == 0)
+		{
+			TileMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
+		}
+		else if (CurTexIdx == 1)
 		{
 			TileMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 1);
 		}
-		else
+		else if (CurTexIdx == 2)
 		{
-			TileMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
+			TileMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 2);
 		}
 	}
 
@@ -44,8 +48,10 @@ void CTileChangeScript::tick()
 
 void CTileChangeScript::SaveToFile(ofstream& _File)
 {
+	_File << CurTexIdx << endl;
 }
 
 void CTileChangeScript::LoadFromFile(ifstream& _File)
 {
+	_File >> CurTexIdx;
 }

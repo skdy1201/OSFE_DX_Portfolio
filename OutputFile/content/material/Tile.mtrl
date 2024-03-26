@@ -17,22 +17,28 @@ MtrlConst
 0 0 1 0 
 0 0 0 1 
  
-1 0 0 0 0 0 0 0 0 0 
+1 1 0 0 0 0 0 0 0 0 
 
 Scalar Param
-2
+3
 0
 Tile
 
 12
 Tile Info
 
+1
+
+
 Tex Param
 1
 texture\Tile\TileBasicTallX.png
 0
 texture\Tile\TileBasicTallX.png
+1
+texture\Tile\Cracked.png
 0
+texture\Tile\Cracked.png
 0
 0
 0
@@ -42,7 +48,7 @@ texture\Tile\TileBasicTallX.png
 0
 0
 In Tile
-EMPTYSYMBOL
+Temp
 EMPTYSYMBOL
 EMPTYSYMBOL
 EMPTYSYMBOL

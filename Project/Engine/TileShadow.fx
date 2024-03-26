@@ -1,5 +1,5 @@
-#ifndef _TileFX
-#define _TileFX
+#ifndef _TileShadowFX
+#define _TileShadowFX
 
 #include "value.fx"
 #include "func.fx"
@@ -22,7 +22,7 @@ struct VS_OUT
     float3 vWorldPos : POSITION;
 };
 
-VS_OUT VS_TileFX(VS_IN _in)
+VS_OUT VS_TileShadowFX(VS_IN _in)
 {
     VS_OUT output = (VS_OUT) 0.f;
 
@@ -35,12 +35,14 @@ VS_OUT VS_TileFX(VS_IN _in)
     return output;
 }
 
-float4 PS_TileFX(VS_OUT _in) : SV_Target
+float4 PS_TileShadowFX(VS_OUT _in) : SV_Target
 {
     float4 vOutColor = float4(1.f, 0.f, 1.f, 1.f);
    
-    if(g_int_0 == 0 )
-    vOutColor = g_tex_0.Sample(g_sam_1, _in.vUV);
+    if (g_int_0)
+        vOutColor = g_tex_0.Sample(g_sam_1, _in.vUV);
+
+    
     
     // 알파값이 0인 부분은 discard
     //if (0.f >= vOutColor.a)

@@ -56,7 +56,7 @@ float4 PS_TileCampFX(VS_OUT _in) : SV_Target
        
     }
 
-    if (g_int_0)
+    if (g_int_0 == 2)
     {
         vColor = g_tex_2.Sample(g_sam_1, _in.vUV);
                     

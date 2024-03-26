@@ -37,7 +37,7 @@ float4 PS_TileCampFX(VS_OUT _in) : SV_Target
 {
     float4 vColor;
 
-    if (g_int_0 == 1)
+    if (g_int_0 == 0)
     {
         vColor = g_tex_0.Sample(g_sam_1, _in.vUV);
                     
@@ -46,7 +46,7 @@ float4 PS_TileCampFX(VS_OUT _in) : SV_Target
 
     }
 
-    if (g_int_1 == 1)
+    if (g_int_0 == 1)
     {
         vColor = g_tex_1.Sample(g_sam_1, _in.vUV);
                     
@@ -56,7 +56,7 @@ float4 PS_TileCampFX(VS_OUT _in) : SV_Target
        
     }
 
-    if (g_int_2)
+    if (g_int_0 == 2)
     {
         vColor = g_tex_2.Sample(g_sam_1, _in.vUV);
                     

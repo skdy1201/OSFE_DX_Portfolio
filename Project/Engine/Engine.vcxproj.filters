@@ -537,5 +537,8 @@
     <FxCompile Include="Tilecamp.fx">
       <Filter>ShaderCode\Render\Tile</Filter>
     </FxCompile>
+    <FxCompile Include="TileShadow.fx">
+      <Filter>ShaderCode\Render\Tile</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

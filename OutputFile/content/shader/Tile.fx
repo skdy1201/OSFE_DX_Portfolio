@@ -37,14 +37,11 @@ VS_OUT VS_TileFX(VS_IN _in)
 
 float4 PS_TileFX(VS_OUT _in) : SV_Target
 {
-
-
     float4 vOutColor = float4(1.f, 0.f, 1.f, 1.f);
    
-    if(g_int_0 == 1 )
+    if(g_int_0 == 0 )
     vOutColor = g_tex_0.Sample(g_sam_1, _in.vUV);
-    else
-        vOutColor = g_tex_1.Sample(g_sam_1, _in.vUV);
+    
     // 알파값이 0인 부분은 discard
     //if (0.f >= vOutColor.a)
     //    discard;
