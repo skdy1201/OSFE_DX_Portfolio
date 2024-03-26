@@ -39,6 +39,13 @@ void CLevelSaveLoad::SaveLevel(CLevel* _Level, const wstring& _strLevelPath)
 void CLevelSaveLoad::SaveLayer(CLayer* _Layer, ofstream&_savelayer)
 {
 	// Layer 의 이름 저장
+	if(_Layer->GetName() == "")
+	{
+		string num;
+		_savelayer << to_string (_Layer->GetLayerIdx()) << endl;
+
+	}
+	else
 	_savelayer << _Layer->GetName() << endl;
 
 
@@ -156,6 +163,7 @@ CLevel* CLevelSaveLoad::LoadLevel(const wstring& _strLevelPath)
 
 void CLevelSaveLoad::LoadLayer(CLayer* _Layer, ifstream& _File)
 {
+
 	// Layer 의 이름 저장
 	string strLayerName;
 	_File >> strLayerName;

@@ -127,7 +127,12 @@ void CAnim::SaveToFile(ofstream& _fout)
 	size_t FrmSize = m_vecFrm.size();
 
 	_fout << FrmSize << endl;
-	_fout << m_vecFrm.data() << endl;
+
+	for(int i = 0; i < FrmSize; ++i)
+	{
+		_fout << m_vecFrm[i] << endl;
+
+	}
 
 	// 애니메이션이 참조하던 텍스쳐 정보 저장
 	SaveAssetRef(m_AtlasTex, _fout);

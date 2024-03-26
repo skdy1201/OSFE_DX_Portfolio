@@ -154,7 +154,7 @@ void MenuUI::Level()
         {   
             if (LEVEL_STATE::STOP == pCurLevel->GetState())
             {
-                CLevelSaveLoad::SaveLevel(pCurLevel, L"Level//temp.lv");
+                CLevelSaveLoad::SaveLevel(pCurLevel, L"level\\temp.lv");
             }
             
             CLevelMgr::GetInst()->ChangeLevelState(LEVEL_STATE::PLAY);
@@ -167,7 +167,7 @@ void MenuUI::Level()
 
         if (ImGui::MenuItem("Stop", nullptr, nullptr, StopEnable))
         {
-            CLevel* pLoadedLevel = CLevelSaveLoad::LoadLevel(L"Level//temp.lv");
+        	CLevel* pLoadedLevel = CLevelSaveLoad::LoadLevel(L"level\\temp.lv");
             CLevelMgr::GetInst()->ChangeLevel(pLoadedLevel, LEVEL_STATE::STOP);
 
             // Inspector 의 타겟정보를 nullptr 로 되돌리기

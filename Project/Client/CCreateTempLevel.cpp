@@ -84,7 +84,6 @@ void CCreateTempLevel::CreateTempLevel()
 	pTempLevel->GetLayer(3)->SetName(L"Player");
 	pTempLevel->GetLayer(4)->SetName(L"Monster");
 	pTempLevel->GetLayer(5)->SetName(L"Light");
-	pTempLevel->GetLayer(6)->SetName(L"Tile");
 	pTempLevel->GetLayer(31)->SetName(L"UI");
 
 	// ComputeShader 테스트
@@ -133,7 +132,7 @@ void CCreateTempLevel::CreateTempLevel()
 
 	// 전역 광원 추가
 	CGameObject* pLight = new CGameObject;
-	pLight->SetName(L"Directional Light");
+	pLight->SetName(L"DirectionalLight");
 	pLight->AddComponent(new CTransform);
 	pLight->AddComponent(new CLight2D);
 
@@ -223,5 +222,5 @@ void CCreateTempLevel::CreateTempLevel()
 
 	CLevelMgr::GetInst()->ChangeLevel(pTempLevel, LEVEL_STATE::STOP);
 
-	//CLevelSaveLoad::SaveLevel(pTempLevel, L"level\\temp.lv");	
+	CLevelSaveLoad::SaveLevel(pTempLevel, L"level\\temp.lv");	
 }

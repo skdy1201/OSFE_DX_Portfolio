@@ -99,7 +99,7 @@ void CCollider2D::SaveToFile(ofstream& _fout)
 	_fout << m_vOffsetPos << endl;
 	_fout << m_vOffsetScale << endl;
 	_fout << m_bAbsolute << endl;
-	_fout << (UINT)m_Type;
+	_fout << (UINT)m_Type << endl;
 }
 
 void CCollider2D::LoadFromFile(ifstream& _File)

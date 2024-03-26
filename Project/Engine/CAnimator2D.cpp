@@ -127,10 +127,12 @@ void CAnimator2D::SaveToFile(ofstream& _fout)
 	if (nullptr != m_CurAnim)
 	{
 		PlayAnimName = m_CurAnim->GetName();
+
+		_fout << PlayAnimName << endl;
+		_fout << m_bRepeat << endl;
 	}
 
-	_fout << PlayAnimName << endl;
-	_fout << m_bRepeat;
+	
 }
 
 void CAnimator2D::LoadFromFile(ifstream& _File)
@@ -149,13 +151,20 @@ void CAnimator2D::LoadFromFile(ifstream& _File)
 	}
 
 	// 플레이 중이던 애니메이션의 키를 불러온다
-	string PlayAnimName;
-	_File >> PlayAnimName;
-
-	if (!PlayAnimName.empty())
+	if(m_mapAnim.size() > 0)
 	{
-		m_CurAnim = FindAnim(ToWString(PlayAnimName));
+		if(m_CurAnim != nullptr)
+		{
+			string PlayAnimName;
+			_File >> PlayAnimName;
+
+			if (!PlayAnimName.empty())
+			{
+				m_CurAnim = FindAnim(ToWString(PlayAnimName));
+			}
+		}
+
+		_File >> m_bRepeat;
 	}
 
-	_File >> m_bRepeat;
 }
