@@ -23,12 +23,11 @@ void CLevelSaveLoad::SaveLevel(CLevel* _Level, const wstring& _strLevelPath)
 	strLevelPath += _strLevelPath;
 
 	ofstream savelv;
-	savelv.open(strLevelPath);
+	savelv.open(strLevelPath, std::ios::trunc);
 
 	if (savelv.is_open())
 	{
 		savelv << strLevelPath << endl;
-		savelv << _Level->GetName() << endl;
 		for (UINT i = 0; i < LAYER_MAX; ++i)
 		{
 			SaveLayer(_Level->GetLayer(i), savelv);
