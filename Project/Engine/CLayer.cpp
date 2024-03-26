@@ -138,6 +138,4 @@ void CLayer::DetachGameObject(CGameObject* _Object)
 			}			
 		}
 	}
-
-	assert(nullptr);
 }
