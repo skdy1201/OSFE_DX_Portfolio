@@ -96,7 +96,9 @@ void CLevelSaveLoad::SaveGameObject(CGameObject* _Obj, ofstream& _saveobj)
 	for (size_t i = 0; i < vecScripts.size(); ++i)
 	{
 		//SaveWString(CScriptMgr::GetScriptName(vecScripts[i]), _File);
-		_saveobj << CScriptMgr::GetScriptName(vecScripts[i]) << endl;
+		wstring scriptname;
+		scriptname = CScriptMgr::GetScriptName(vecScripts[i]);
+		_saveobj << scriptname << endl;
 		vecScripts[i]->SaveToFile(_saveobj);
 	}
 
