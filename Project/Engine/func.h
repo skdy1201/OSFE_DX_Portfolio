@@ -45,6 +45,17 @@ void SaveAssetRef(Ptr<T> _Asset, ofstream& _fout)
 
 	_fout << bAssetExist << endl;
 
+	if (bAssetExist)
+	{
+		_fout << _Asset->GetKey() << endl;
+
+		bool isEngine = _Asset->IsEngineAsset();
+		_fout << isEngine << endl;
+
+		if(!isEngine)
+		_fout << _Asset->GetRelativePath() << endl;
+
+	}
 }
 
 template<typename T>
@@ -71,8 +82,13 @@ void LoadAssetRef(Ptr<T>& _Asset, ifstream& _File)
 
 	if (bAssetExist)
 	{
+		bool IsEngine;
+
 		string strKey, strRelativePath;
 		_File >> strKey;
+		_File >> IsEngine;
+
+		if(IsEngine == false)
 		_File >> strRelativePath;
 
 		_Asset = CAssetMgr::GetInst()->Load<T>(ToWString(strKey), ToWString(strRelativePath));

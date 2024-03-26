@@ -230,7 +230,7 @@ void MaterialUI::render_update()
 	{
 		const string& TexDesc = pMtrl->GetTexDesc(i);
 
-		if(TexDesc == ""){
+		if(TexDesc == ""|| TexDesc == EMPTYSYMBOL){
 			continue;
 		}
 

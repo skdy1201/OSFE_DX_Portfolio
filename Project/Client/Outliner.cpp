@@ -275,18 +275,16 @@ void SelectRObject(DWORD_PTR _Node)
 
 				prefabkey += to_wstring((tempint));
 
-				Ptr<CPrefab> pTempPrefab = new CPrefab(pCloneObj, false);
-				CAssetMgr::GetInst()->AddAsset(prefabkey, pTempPrefab.Get());
-
-
-
-				++tempint;
-
 				wstring ContentPath = L"prefab\\";
 				wstring changechar = ToWString(value);
 
 				ContentPath += changechar;
 				ContentPath += L".pref";
+
+				Ptr<CPrefab> pTempPrefab = new CPrefab(pCloneObj, false);
+				CAssetMgr::GetInst()->AddAsset(prefabkey, pTempPrefab.Get());
+
+				++tempint;
 
 				pTempPrefab->Save(ContentPath);
 

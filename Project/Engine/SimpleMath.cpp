@@ -37,3 +37,23 @@ ifstream& SimpleMath::operator>>(ifstream& _fin, Vector4& _vin)
     return _fin;
 }
                
+
+ofstream& DirectX::SimpleMath::operator<<(ofstream& _fout, Matrix& matrix)
+{
+    _fout << matrix._11 << " " << matrix._12 << " " << matrix._13 << " " << matrix._14 << " " << endl;
+    _fout << matrix._21 << " " << matrix._22 << " " << matrix._23 << " " << matrix._24 << " " << endl;
+    _fout << matrix._31 << " " << matrix._32 << " " << matrix._33 << " " << matrix._34 << " " << endl;
+    _fout << matrix._41 << " " << matrix._42 << " " << matrix._43 << " " << matrix._44 << " " << endl;
+    return _fout;
+
+}
+
+ifstream& DirectX::SimpleMath::operator>>(ifstream& _fin, Matrix& matrix)
+{
+    _fin >> matrix._11 >> matrix._12 >> matrix._13 >> matrix._14;
+    _fin >> matrix._21 >> matrix._22 >> matrix._23 >> matrix._24;
+    _fin >> matrix._31 >> matrix._32 >> matrix._33 >> matrix._34;
+    _fin >> matrix._41 >> matrix._42 >> matrix._43 >> matrix._44;
+    return _fin;
+
+}

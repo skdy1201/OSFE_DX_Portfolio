@@ -371,17 +371,15 @@ void CAssetMgr::CreateDefaultMaterial()
 	pMtrl->SetTexParam(TEX_PARAM::TEX_0, Load<CTexture>(L"texture\\Tile\\TileBasicTallX.png", L"texture\\Tile\\TileBasicTallX.png"));
 	pMtrl->SetTexParam(TEX_PARAM::TEX_1, Load<CTexture>(L"texture\\Tile\\TileShadow.png", L"texture\\Tile\\TileShadow.png"));
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
-	pMtrl->SetScalarParam(SCALAR_PARAM::INT_1, 0);
-	pMtrl->SetScalarParam(SCALAR_PARAM::INT_2, 0);
-	pMtrl->SetScalarParam(SCALAR_PARAM::FLOAT_0, 0.f);
+	pMtrl->SetScalarParam(SCALAR_PARAM::VEC4_0, Vec4{ 0.f , 0.f, 0.f, 0.f });
 
 	// Parameter	
-	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "In Tile");
-	pMtrl->AddScalarParam(SCALAR_PARAM::INT_1, "Tile Shadow");
-	pMtrl->AddScalarParam(SCALAR_PARAM::INT_2, "Tile Alpha");
-	pMtrl->AddScalarParam(SCALAR_PARAM::FLOAT_0, "Tile Alpha");
+	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "Tile or Shadow");
+	pMtrl->AddScalarParam(SCALAR_PARAM::VEC4_0, "Tile Info");
+
 	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "In Tile");
 	pMtrl->SetTexDesc(TEX_PARAM::TEX_1, "Tile Shadow");
+
 
 	AddAsset<CMaterial>(L"TileMtrl", pMtrl);
 
@@ -390,14 +388,15 @@ void CAssetMgr::CreateDefaultMaterial()
 	pMtrl->SetShader(FindAsset<CGraphicsShader>(L"TilecampShader"));
 	pMtrl->SetTexParam(TEX_PARAM::TEX_0, Load<CTexture>(L"texture\\Tile\\TileBlue.png", L"texture\\Tile\\TileBlue.png"));
 	pMtrl->SetTexParam(TEX_PARAM::TEX_1, Load<CTexture>(L"texture\\Tile\\TileRed.png", L"texture\\Tile\\TileRed.png"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_2, Load<CTexture>(L"texture\\Tile\\TileNeutral.png", L"texture\\Tile\\TileNeutral.png"));
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
-	pMtrl->SetScalarParam(SCALAR_PARAM::INT_1, 0);
+	
 
 	// Parameter	
-	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "In TileBlue");
-	pMtrl->AddScalarParam(SCALAR_PARAM::INT_1, "In TileRed");
-	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "Blue");
-	pMtrl->SetTexDesc(TEX_PARAM::TEX_1, "Red");
+	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "In TileCamp");
+	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "CampColorBlue");
+	pMtrl->SetTexDesc(TEX_PARAM::TEX_1, "CampColorRed");
+	pMtrl->SetTexDesc(TEX_PARAM::TEX_2, "CampColorNeutral");
 
 	AddAsset<CMaterial>(L"TilecampMtrl", pMtrl);
 

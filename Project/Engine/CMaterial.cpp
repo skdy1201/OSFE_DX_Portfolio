@@ -24,6 +24,24 @@ CMaterial::~CMaterial()
 {
 }
 
+ofstream& operator<<(ofstream& _fout, tScalarParam _sout)
+{
+	_fout << (int)_sout.Type << endl;
+	_fout << _sout.Desc << endl;
+
+	return _fout;
+}
+ifstream& operator>>(ifstream& _fin, tScalarParam _sin)
+{
+	int num;
+	_fin >> num >>_sin.Desc;
+
+	_sin.Type = (SCALAR_PARAM)num;
+
+	return _fin;
+
+}
+
 
 void CMaterial::SetTexDesc(TEX_PARAM _Param, const string& _desc)
 {
@@ -125,76 +143,91 @@ int CMaterial::Save(const wstring& _strRelativePath)
 	strFilePath += L"material\\";
 	strFilePath += _strRelativePath;
 
-	FILE* pFile = nullptr;
-	_wfopen_s(&pFile, strFilePath.c_str(), L"wb");
+	ofstream fout(strFilePath);
 
-	if (nullptr == pFile)
+	if (!fout.is_open())
 		return E_FAIL;
-
+	string tempstr = "MtrlConst";
+	fout << tempstr << endl;
 	// 재질 상수값 저장
-	fwrite(&m_Const, sizeof(tMtrlConst), 1, pFile);	
+	fout << m_Const << endl;
 
+	
 
+	fout << "Scalar Param" << endl;
 	// 재질 파라미터 값 저장
 	vector<tScalarParam> temp = this->GetScalarParam();
 	int scalarparamcount = temp.size();
 
-	fwrite(&scalarparamcount, sizeof(int), 1, pFile);
+	fout << scalarparamcount << endl;
 
 	for(int i = 0; i < scalarparamcount; ++i)
 	{
-		fwrite(&temp[i], sizeof(temp[i].Type), 1, pFile);
-		SaveStringToFile(temp[i].Desc, pFile);
+		fout << temp[i] << endl;
 	}
+
+	fout << "Tex Param" << endl;
 
 	// 재질이 참조하는 텍스쳐 정보를 저장	
 	for (UINT i = 0; i < (UINT)TEX_PARAM::END; ++i)
 	{
-		SaveAssetRef<CTexture>(m_arrTex[i], pFile);
+		SaveAssetRef<CTexture>(m_arrTex[i], fout);
 	}
 
-	// 재질이 참조하는 쉐이더 정보를 저장
-	SaveAssetRef<CGraphicsShader>(m_pShader, pFile);
+	for (int i = 0; i < (int)TEX_PARAM::TEX_5 + 1; i++) {
+		if (m_TexParam[i] == "") {
+			fout << EMPTYSYMBOL << endl;
+		}
+		else {
+			fout << m_TexParam[i] << endl;
+		}
+	}
+	fout << endl;
 
-	fclose(pFile);
+	// 재질이 참조하는 쉐이더 정보를 저장
+	SaveAssetRef<CGraphicsShader>(m_pShader, fout);
 
 	return 0;
 }
 
 int CMaterial::Load(const wstring& _strFilePath)
 {
-	FILE* pFile = nullptr;
-	_wfopen_s(&pFile, _strFilePath.c_str(), L"rb");
+	ifstream pFile(_strFilePath);
 
-	if (nullptr == pFile)
+	if (!pFile.is_open())
 		return E_FAIL;
-
+	string temp;
+	getline(pFile, temp);
 	// 재질 상수값 저장
-	fread(&m_Const, sizeof(tMtrlConst), 1, pFile);
-
+	pFile >> m_Const;
 
 	// 재질 파라미터 값 저장
-
 	int scalarparamcount = 0;
+	while (getline(pFile, temp)) {
+		if (temp != "" && temp !=" ")break;
+	}
 
-	fread(&scalarparamcount, sizeof(int), 1, pFile);
+	pFile >> scalarparamcount;
 
 	for(int i = 0; i < scalarparamcount; ++i)
 	{
+		int num;
+		pFile >> num;
+
 		SCALAR_PARAM tempScalar;
-
-		fread(&tempScalar, sizeof(SCALAR_PARAM), 1, pFile);
-
+		tempScalar = (SCALAR_PARAM)num;
 
 		string strTemp = "";
-
-		LoadStringFromFile(strTemp, pFile);
-		
+		while (getline(pFile, strTemp)) {
+			if (strTemp != "")break;
+		}
 
 		this->AddScalarParam(tempScalar, strTemp);
-
 	}
-	
+
+	while (getline(pFile, temp)) {
+		if (temp != "")break;
+	}
 
 	// 재질이 참조하는 텍스쳐 정보를 로드
 	for (UINT i = 0; i < (UINT)TEX_PARAM::END; ++i)
@@ -202,10 +235,18 @@ int CMaterial::Load(const wstring& _strFilePath)
 		LoadAssetRef<CTexture>(m_arrTex[i], pFile);
 	}
 
+	for (int i = 0; i < (int)TEX_PARAM::TEX_5 + 1; i++) {
+		string t;
+		while(getline(pFile, t))
+		{
+			if (t != "") break;
+		}
+		m_TexParam[i] = t;
+	}
+
 	// 재질이 참조하는 쉐이더 정보를 저장
 	LoadAssetRef<CGraphicsShader>(m_pShader, pFile);
 
-	fclose(pFile);
 	return 0;
 }
 

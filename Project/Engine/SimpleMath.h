@@ -560,6 +560,9 @@ namespace DirectX
             Matrix& operator/= (const Matrix& M);
                 // Element-wise divide
 
+            friend ofstream& operator<<(ofstream& _fout, Matrix& matrix);
+            friend ifstream& operator>>(ifstream& _fin, Matrix& matrix);
+
             // Unary operators
             Matrix operator+ () const { return *this; }
             Matrix operator- () const;

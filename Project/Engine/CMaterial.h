@@ -8,6 +8,9 @@ struct tScalarParam
 {
 	SCALAR_PARAM    Type;
 	string          Desc;
+
+	friend ofstream& operator<<(ofstream& _fout, tScalarParam _sout);
+	friend ifstream& operator>>(ifstream& _fin, tScalarParam _sin);
 };
 
 
@@ -36,6 +39,7 @@ public:
 	
 
 	const vector<tScalarParam>& GetScalarParam() { return  m_ScalarParam; }
+	const tScalarParam& GetSpecificParam(SCALAR_PARAM _TYPE) { return m_ScalarParam[(int)_TYPE]; }
 	const string GetTexDesc(TEX_PARAM _Param) { return m_TexParam[(int)_Param]; }
 	const string GetTexDesc(int _idx) { return m_TexParam[_idx]; }
 
