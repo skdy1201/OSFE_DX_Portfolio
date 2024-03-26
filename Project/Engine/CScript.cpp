@@ -11,6 +11,19 @@ CScript::~CScript()
 {
 }
 
+tScriptParam CScript::GetScriptParam(string desc)
+{
+	for(int i = 0; i < m_ScriptParam.size(); ++i)
+	{
+		if (desc == m_ScriptParam[i].Desc)
+		{
+			return m_ScriptParam[i];
+		}
+		else
+			continue;
+	}
+}
+
 void CScript::Instantiate(Ptr<CPrefab> _Prefab, Vec3 _vWorldPos, int _layerIdx)
 {
 	if (nullptr == _Prefab)

@@ -13,16 +13,16 @@ CCameraMoveScript::~CCameraMoveScript()
 
 void CCameraMoveScript::tick()
 {
-	if (KEY_TAP(KEY::P))
-	{
-		if (Camera()->GetProjType() == PROJ_TYPE::ORTHOGRAPHIC)
-			Camera()->SetProjType(PROJ_TYPE::PERSPECTIVE);
-		else
-		{
-			Camera()->SetProjType(PROJ_TYPE::ORTHOGRAPHIC);
-			Transform()->SetRelativeRotation(Vec3(0.f, 0.f, 0.f));
-		}		
-	}
+	//if (KEY_TAP(KEY::P))
+	//{
+	//	if (Camera()->GetProjType() == PROJ_TYPE::ORTHOGRAPHIC)
+	//		Camera()->SetProjType(PROJ_TYPE::PERSPECTIVE);
+	//	else
+	//	{
+	//		Camera()->SetProjType(PROJ_TYPE::ORTHOGRAPHIC);
+	//		Transform()->SetRelativeRotation(Vec3(0.f, 0.f, 0.f));
+	//	}		
+	//}
 
 
 	if (Camera()->GetProjType() == PROJ_TYPE::ORTHOGRAPHIC)
@@ -35,21 +35,21 @@ void CCameraMoveScript::tick()
 		MovePerspective();
 	}
 
-	if (KEY_PRESSED(KEY::NUM1))
-	{
-		if (Camera()->GetProjType() == PROJ_TYPE::ORTHOGRAPHIC)		
-			Camera()->SetScale(Camera()->GetScale() + DT_ENGINE * 0.2f);
-		else
-			Camera()->SetFOV(Camera()->GetFOV() + DT_ENGINE * 2.f);
-	}
-
-	if (KEY_PRESSED(KEY::NUM2))
-	{
-		if (Camera()->GetProjType() == PROJ_TYPE::ORTHOGRAPHIC)
-			Camera()->SetScale(Camera()->GetScale() - DT_ENGINE * 0.2f);
-		else
-			Camera()->SetFOV(Camera()->GetFOV() - DT_ENGINE * 2.f);
-	}
+	//if (KEY_PRESSED(KEY::NUM1))
+	//{
+	//	if (Camera()->GetProjType() == PROJ_TYPE::ORTHOGRAPHIC)		
+	//		Camera()->SetScale(Camera()->GetScale() + DT_ENGINE * 0.2f);
+	//	else
+	//		Camera()->SetFOV(Camera()->GetFOV() + DT_ENGINE * 2.f);
+	//}
+	//
+	//if (KEY_PRESSED(KEY::NUM2))
+	//{
+	//	if (Camera()->GetProjType() == PROJ_TYPE::ORTHOGRAPHIC)
+	//		Camera()->SetScale(Camera()->GetScale() - DT_ENGINE * 0.2f);
+	//	else
+	//		Camera()->SetFOV(Camera()->GetFOV() - DT_ENGINE * 2.f);
+	//}
 }
 
 void CCameraMoveScript::MoveOrthographic()
