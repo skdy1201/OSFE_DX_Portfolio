@@ -30,6 +30,10 @@
 #include "CIdleState.h"
 #include "CTraceState.h"
 
+#include <Scripts/CTileScript.h>
+
+#include "../Scripts/define.h"
+
 
 void CCreateTempLevel::Init()
 {
@@ -214,6 +218,20 @@ void CCreateTempLevel::CreateTempLevel()
 	pObj->StateMachine()->SetFSM(CAssetMgr::GetInst()->FindAsset<CFSM>(L"NormalMonsterFSM"));
 
 	pTempLevel->AddObject(pObj, L"Monster", false);
+
+
+	Ptr<CPrefab> prefab = CAssetMgr::GetInst()->Load<CPrefab>(TILEPrefabKey, TILEPrefabKey);
+	
+	for (int i = 0; i < TileMaxRow; ++i)
+	{
+		for (int j = 0; j < TileMaxCol; ++j)
+		{
+			pObj = prefab->Instantiate();
+			CTileScript* pScript = pObj->GetScript<CTileScript>();
+			pScript ->SetTilePosition(i, j);
+			pTempLevel->AddObject(pObj, 0);
+		}
+	}
 
 
 	// 충돌 설정

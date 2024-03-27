@@ -72,3 +72,6 @@ typedef Vector4 Vec4;
 #include "struct.h"
 #include "func.h"
 #include "string.h"
+
+#include <bitset>
+using std::bitset;
