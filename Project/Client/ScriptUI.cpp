@@ -31,6 +31,9 @@ void ScriptUI::render_update()
 
 	const vector<tScriptParam>& vecParam = m_TargetScript->GetScriptParam();
 
+	// 스크롤바 안생기게 하기
+	SetSize(ImVec2(0, 40 + 80 * vecParam.size()));
+
 	for (size_t i = 0; i < vecParam.size(); ++i)
 	{
 		switch (vecParam[i].Type)

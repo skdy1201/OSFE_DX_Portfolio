@@ -62,7 +62,11 @@ void Collider2DUI::render_update()
 
 	// Absolute °ª 
 	bool bAbsolute = GetTargetObject()->Collider2D()->IsAbsolute();
-	GetTargetObject()->Collider2D()->SetAbsolute(bAbsolute);
+
+	if (ImGui::Checkbox("Is Absolute", &bAbsolute))
+	{
+		GetTargetObject()->Collider2D()->SetAbsolute(bAbsolute);
+	}
 
 
 }
