@@ -16,7 +16,7 @@ CTileChangeScript::~CTileChangeScript()
 
 void CTileChangeScript::begin()
 {
-	TileMtrl = GetRenderComponent()->GetDynamicMaterial();
+	GetRenderComponent()->GetDynamicMaterial();
 }
 
 void CTileChangeScript::tick()

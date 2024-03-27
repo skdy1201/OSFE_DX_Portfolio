@@ -1,0 +1,74 @@
+TILE
+0
+0
+-231 0 500
+104 68 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\TilecampMtrl.mtrl
+0
+material\TilecampMtrl.mtrl
+15
+1
+CTileChangeScript
+0
+3
+InTile
+0
+0
+0 0 0
+104 68 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\TileMtrl.mtrl
+0
+material\TileMtrl.mtrl
+15
+0
+0
+TileShadow
+0
+0
+0 0 0
+104 68 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\TileShadowMtrl.mtrl
+0
+material\TileShadowMtrl.mtrl
+15
+0
+0
+TileBreak
+0
+0
+0 0 0
+104 68 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\TileBreak.mtrl
+0
+material\TileBreak.mtrl
+15
+0
+0
