@@ -4,8 +4,17 @@
 CTileChangeScript::CTileChangeScript()
 	: CScript(TILECHANGESCRIPT)
 	, CurTexIdx(0)
-	, PrevTexIdx(0)
 	, TileMtrl(nullptr)
+{
+	AddScriptParam(SCRIPT_PARAM::INT, "Texture Num", &CurTexIdx);
+}
+
+CTileChangeScript::CTileChangeScript(const CTileChangeScript& _Origin)
+	: CScript(TILECHANGESCRIPT)
+	, CurTexIdx(_Origin.CurTexIdx)
+	, TileMtrl(_Origin.TileMtrl)
+	, Ischange(_Origin.Ischange)
+	, ColorParam(_Origin.ColorParam)
 {
 	AddScriptParam(SCRIPT_PARAM::INT, "Texture Num", &CurTexIdx);
 }
@@ -16,33 +25,18 @@ CTileChangeScript::~CTileChangeScript()
 
 void CTileChangeScript::begin()
 {
-	GetRenderComponent()->GetDynamicMaterial();
+	TileMtrl = GetRenderComponent()->GetDynamicMaterial();
 }
 
 void CTileChangeScript::tick()
 {
-	bool ischange = false;
+	if (CurTexIdx == 0)
+		TileMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
+	else if (CurTexIdx == 1)
+		TileMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 1);
+	else if (CurTexIdx == 2)
+		TileMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 2);
 
-	if (PrevTexIdx != CurTexIdx)
-		ischange = true;
-
-	if (ischange)
-	{
-		if (CurTexIdx == 0)
-		{
-			TileMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
-		}
-		else if (CurTexIdx == 1)
-		{
-			TileMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 1);
-		}
-		else if (CurTexIdx == 2)
-		{
-			TileMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 2);
-		}
-	}
-
-	PrevTexIdx = CurTexIdx;
 }
 
 

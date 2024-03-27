@@ -13,7 +13,7 @@ enum class TileChild
     End
 };
 
-enum class State
+enum class TileState
 {
     Normal,
     On,
@@ -40,6 +40,14 @@ private:
 
     virtual void SaveToFile(ofstream& _File) override;
     virtual void LoadFromFile(ifstream& _File) override;
+
+
+    int GetCamp() { return Camp; }
+    pair<int, int> GetRowCol() { return RowCol; }
+	TileState GetTileState() { return (TileState)CurState; }
+    bool      GetVisible() { return IsVisible; }
+    CGameObject* GetTileChild() { return TileChild[0]; }
+
 
     void SpawnTile();
     CLONE(CTileInfoScript);

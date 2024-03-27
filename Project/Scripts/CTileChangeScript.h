@@ -2,15 +2,17 @@
 #include <Engine/CScript.h>
 #include <Engine/components.h>
 
-#include "CPlayerScript.h"
 
 class CTileChangeScript :
     public CScript
 {
 private :
     int               CurTexIdx;
-    int               PrevTexIdx;
     Ptr<CMaterial>    TileMtrl;
+
+    bool              Ischange;
+    tScriptParam      ColorParam;
+
 
 public:
     virtual void begin() override;
@@ -21,6 +23,7 @@ public:
     CLONE(CTileChangeScript);
 public:
     CTileChangeScript();
+    CTileChangeScript(const CTileChangeScript& _Origin);
     ~CTileChangeScript();
 };
 

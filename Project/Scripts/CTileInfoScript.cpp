@@ -9,7 +9,7 @@ CTileInfoScript::CTileInfoScript()
 	: CScript(TILEINFOSCRIPT)
 	, Camp(0)
 	, RowCol(0, 0)
-	, CurState(0)
+	, CurState((UINT)TileState::Normal)
 	, IsVisible(false)
 	, TileChild{}
 {
