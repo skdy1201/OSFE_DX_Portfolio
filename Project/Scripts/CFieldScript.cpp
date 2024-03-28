@@ -70,12 +70,16 @@ void CFieldScript::SpawnTile(int Row, int Col)
 			GamePlayStatic::SpawnGameObject(GameObj, 0);
 			this->GetOwner()->AddChild(GameObj);
 
-			GameObj->MeshRender()->SetRenderPossible(false);
+			
 
 			Vec2 idx = { i , j };
 			pair<CGameObject*, Vec2> temp = make_pair(GameObj, idx);
 			TileRegistry.push_back(temp);
-		
+
+			if (j < 4 || j > 11)
+			{
+				GameObj->MeshRender()->SetRenderPossible(false);
+			}
 
 			
 		}

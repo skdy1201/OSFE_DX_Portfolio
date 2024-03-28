@@ -4,15 +4,15 @@
 
 #define DynamicMtrl GetRenderComponent()->GetDynamicMaterial() 
 
-#define TileStartPointx -1200
-#define TileStartPointy -550
+#define TileStartPointx -900
+#define TileStartPointy -200
 
 #define TileMaxRow 4
 #define TileMaxCol 16
 
-#define TileX 104
-#define TileY 68
+#define TileX 120
+#define TileY 75
 
-#define Tilespacex 30
-#define Tilespacey 20
+#define Tilespacex 3
+#define Tilespacey 3
 
