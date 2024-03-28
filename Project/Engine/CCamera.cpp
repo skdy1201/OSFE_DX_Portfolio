@@ -163,10 +163,9 @@ void CCamera::render()
 	g_Transform.matProj = m_matProj;
 
 	// Domain 순서대로 렌더링
-	render(m_vecOpaque);	
+	render(m_vecOpaque);
 	render(m_vecMaked);
 	render(m_vecTransparent);
-
 	// 후처리 작업
 	render_postprocess();
 }

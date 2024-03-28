@@ -29,7 +29,6 @@ void CLevelMgr::init()
 {
 
 }
-
 void CLevelMgr::tick()
 {
 	if (nullptr == m_CurLevel)
@@ -51,6 +50,7 @@ void CLevelMgr::tick()
 
 	// Render
 	CRenderMgr::GetInst()->tick();
+
 }
 
 void CLevelMgr::ChangeLevel(CLevel* _NextLevel, LEVEL_STATE _NextLevelStartState)
