@@ -4,14 +4,7 @@
 #include <Engine/components.h>
 
 
-enum class TileChildType
-{
-	InTile,
-	Shadow,
-	Break,
-	Animator,
-	End
-};
+
 
 enum class TileState
 {
@@ -32,7 +25,6 @@ private:
 
 	bool IsOn;
 	float StateTimer[(int)TileState::End];
-	CGameObject* TileChild[(int)TileChildType::End];
 
 	Ptr<CMaterial> TileMtrl;
 
@@ -52,7 +44,6 @@ public:
 
 	int GetCamp() { return Camp; }
 	bool GetVisible() { return IsVisible; }
-	CGameObject* GetTileChild(TileChildType _child) { return TileChild[(int)_child]; }
 	void SetTilePosition(int row, int col);
 
 public:
@@ -67,7 +58,4 @@ public:
 	CTileScript(const CTileScript& _Origin);
 	~CTileScript();
 
-private:
-	void SpawnChild();
-	void CheckExist(bool& check);
 };

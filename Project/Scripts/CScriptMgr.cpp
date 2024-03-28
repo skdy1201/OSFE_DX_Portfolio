@@ -6,6 +6,7 @@
 #include "CPlayerScript.h"
 #include "CMonsterScript.h"
 #include "CTileScript.h"
+#include "CFieldScript.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -14,6 +15,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CPlayerScript");
 	_vec.push_back(L"CMonsterScript");
 	_vec.push_back(L"CTileScript");
+	_vec.push_back(L"CFieldScript");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -28,6 +30,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CMonsterScript;
 	if (L"CTileScript" == _strScriptName)
 		return new CTileScript;
+	if (L"CFieldScript" == _strScriptName)
+		return new CFieldScript;
 	return nullptr;
 }
 
@@ -49,6 +53,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::TILESCRIPT:
 		return new CTileScript;
+		break;
+	case (UINT)SCRIPT_TYPE::FIELDSCRIPT:
+		return new CFieldScript;
 		break;
 	}
 	return nullptr;
@@ -76,6 +83,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::TILESCRIPT:
 		return L"CTileScript";
+		break;
+
+	case SCRIPT_TYPE::FIELDSCRIPT:
+		return L"CFieldScript";
 		break;
 
 	}

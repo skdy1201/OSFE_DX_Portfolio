@@ -14,6 +14,7 @@
 
 CMeshRender::CMeshRender()
 	: CRenderComponent(COMPONENT_TYPE::MESHRENDER)
+	, RenderPossible(true)
 {
 }
 
@@ -42,7 +43,7 @@ void CMeshRender::finaltick()
 
 void CMeshRender::render()
 {
-	if (nullptr == GetMesh() || nullptr == GetMaterial())
+	if (nullptr == GetMesh() || nullptr == GetMaterial() || RenderPossible == false)
 		return;
 
 	if (Animator2D())

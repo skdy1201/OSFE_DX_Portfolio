@@ -24,12 +24,6 @@ CTileScript::CTileScript(const CTileScript& _Origin)
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "Break State", &StateTimer[(int)TileState::Break]);
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "Burn State", &StateTimer[(int)TileState::Burn]);
 
-	for (int i = 0; i < (int)TileChildType::End; ++i)
-	{
-		if (_Origin.TileChild[i] != nullptr)
-			TileChild[i] = _Origin.TileChild[i]->Clone();
-
-	}
 }
 
 CTileScript::~CTileScript()
@@ -40,8 +34,6 @@ CTileScript::~CTileScript()
 void CTileScript::begin()
 {
 	TileMtrl = GetRenderComponent()->GetDynamicMaterial();
-
-	SpawnChild();
 	
 	TileMtrl->SetScalarParam(SCALAR_PARAM::INT_0, Camp);
 }
@@ -127,72 +119,6 @@ bool CTileScript::CheckState(TileState _State)
 
 }
 
-
-void CTileScript::SpawnChild()
-{
-	bool isexist = false;
-	CheckExist(isexist);
-	if (isexist == true)
-		return;
-	
-	CGameObject* TempObject = nullptr;
-	Ptr<CPrefab> TempPrefab = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\InTile.pref", L"prefab\\InTile.pref");
-
-	// 타일 내부
-	TempObject = TempPrefab->Instantiate();
-	GamePlayStatic::SpawnGameObject(TempObject, 0);
-	this->GetOwner()->AddChild(TempObject);
-
-	TileChild[0] = TempObject;
-
-
-	TempPrefab = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\TileBreak.pref", L"prefab\\TileBreak.pref");
-
-	// 깨진 타일 이미지
-	TempObject = TempPrefab->Instantiate();
-	GamePlayStatic::SpawnGameObject(TempObject, 0);
-	this->GetOwner()->AddChild(TempObject);
-
-	TileChild[1] = TempObject;
-
-
-	TempPrefab = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\TileShadow.pref", L"prefab\\TileShadow.pref");
-
-	// 타일 그림자
-	TempObject = TempPrefab->Instantiate();
-	GamePlayStatic::SpawnGameObject(TempObject, 0);
-	this->GetOwner()->AddChild(TempObject);
-
-	TileChild[2] = TempObject;
-
-	// 에니메이터
-	TempObject = new CGameObject;
-	TempObject->SetName(L"TileAnimator");
-	TempObject->AddComponent(new CTransform);
-	TempObject->AddComponent(new CAnimator2D);
-
-	GamePlayStatic::SpawnGameObject(TempObject, 0);
-	this->GetOwner()->AddChild(TempObject);
-
-
-	TileChild[3] = TempObject;
-
-
-
-}
-
-void CTileScript::CheckExist(bool& check)
-{
-	for (int i = 0; i < (int)TileChildType::End; ++i)
-	{
-		if (TileChild[i] != nullptr)
-		{
-			check = true;
-			break;
-		}
-	}
-
-}
 
 
 void CTileScript::SetTilePosition(int row, int col)

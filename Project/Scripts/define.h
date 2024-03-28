@@ -1,7 +1,11 @@
 #pragma once
 
-#define TileStartPointx -400
-#define TileStartPointy -400
+
+
+#define DynamicMtrl GetRenderComponent()->GetDynamicMaterial() 
+
+#define TileStartPointx -1200
+#define TileStartPointy -550
 
 #define TileMaxRow 4
 #define TileMaxCol 16
