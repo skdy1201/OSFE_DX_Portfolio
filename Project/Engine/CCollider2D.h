@@ -16,6 +16,7 @@ private:
     Vec3            m_vOffsetScale;
     int             m_CollisionCount;   // 다른 충돌체와 충돌중인 횟수
     bool            m_bAbsolute;
+    bool            m_bDrawDebug;
 
     Matrix          m_matColWorld;
     COLLIDER2D_TYPE m_Type;    

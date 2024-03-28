@@ -68,6 +68,15 @@ void Collider2DUI::render_update()
 		GetTargetObject()->Collider2D()->SetAbsolute(bAbsolute);
 	}
 
+	// Absolute °ª 
+	bool bDrawDebug = CRenderMgr::GetInst()->IsDebugPosition();
+
+	if (ImGui::Checkbox("Debug Draw", &bDrawDebug))
+	{
+		CRenderMgr::GetInst()->SetDebugPosition(bDrawDebug);
+	}
+
+
 
 }
 

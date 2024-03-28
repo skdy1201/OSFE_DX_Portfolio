@@ -26,6 +26,7 @@ private:
     list<tDebugShapeInfo>   m_DbgShapeInfo;
     CGameObject*            m_pDebugObj;
     bool                    m_DebugPosition;
+    bool                    m_DebShape;
     
     // NoiseTexture
     vector<Ptr<CTexture>>   m_vecNoiseTex;
