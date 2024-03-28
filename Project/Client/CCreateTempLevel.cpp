@@ -220,18 +220,18 @@ void CCreateTempLevel::CreateTempLevel()
 	pTempLevel->AddObject(pObj, L"Monster", false);
 
 
-	Ptr<CPrefab> prefab = CAssetMgr::GetInst()->Load<CPrefab>(TILEPrefabKey, TILEPrefabKey);
-	
-	for (int i = 0; i < TileMaxRow; ++i)
-	{
-		for (int j = 0; j < TileMaxCol; ++j)
-		{
-			pObj = prefab->Instantiate();
-			CTileScript* pScript = pObj->GetScript<CTileScript>();
-			pScript ->SetTilePosition(i, j);
-			pTempLevel->AddObject(pObj, 0);
-		}
-	}
+	//Ptr<CPrefab> prefab = CAssetMgr::GetInst()->Load<CPrefab>(TILEPrefabKey, TILEPrefabKey);
+	//
+	//for (int i = 0; i < TileMaxRow; ++i)
+	//{
+	//	for (int j = 0; j < TileMaxCol; ++j)
+	//	{
+	//		pObj = prefab->Instantiate();
+	//		CTileScript* pScript = pObj->GetScript<CTileScript>();
+	//		pScript ->SetTilePosition(i, j);
+	//		pTempLevel->AddObject(pObj, 0);
+	//	}
+	//}
 
 
 	// 충돌 설정

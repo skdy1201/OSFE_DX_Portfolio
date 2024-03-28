@@ -4,3 +4,6 @@
 #define TempTextureKey L"Temp"
 #define TemTexStringParm "Temp"
 #define EMPTYSYMBOL "EMPTYSYMBOL"
+
+//Prefab ฐüทร string
+#define TILEPrefabKey L"prefab\\TILE.pref"

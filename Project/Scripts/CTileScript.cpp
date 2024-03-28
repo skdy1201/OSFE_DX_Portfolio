@@ -7,8 +7,6 @@
 CTileScript::CTileScript()
 	:CScript(TILESCRIPT)
 {
-	AddScriptParam(SCRIPT_PARAM::FLOAT, "Normal State", &StateTimer[(int)TileState::Normal]);
-	AddScriptParam(SCRIPT_PARAM::FLOAT, "On State", &StateTimer[(int)TileState::On]);
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "Breaking State", &StateTimer[(int)TileState::Breaking]);
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "Break State", &StateTimer[(int)TileState::Break]);
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "Burn State", &StateTimer[(int)TileState::Burn]);
@@ -22,9 +20,6 @@ CTileScript::CTileScript(const CTileScript& _Origin)
 		StateTimer[i] = _Origin.StateTimer[i];
 	}
 
-
-	AddScriptParam(SCRIPT_PARAM::FLOAT, "Normal State", &StateTimer[(int)TileState::Normal]);
-	AddScriptParam(SCRIPT_PARAM::FLOAT, "On State", &StateTimer[(int)TileState::On]);
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "Breaking State", &StateTimer[(int)TileState::Breaking]);
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "Break State", &StateTimer[(int)TileState::Break]);
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "Burn State", &StateTimer[(int)TileState::Burn]);
@@ -47,7 +42,7 @@ void CTileScript::begin()
 	TileMtrl = GetRenderComponent()->GetDynamicMaterial();
 
 	SpawnChild();
-	//
+	
 	TileMtrl->SetScalarParam(SCALAR_PARAM::INT_0, Camp);
 }
 
@@ -70,6 +65,51 @@ void CTileScript::tick()
 
 }
 
+void CTileScript::BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)
+{
+	//Field obj와 상호작용
+
+	//Tile 상태에 대한 상호작용
+
+	// 무슨 상태인가??
+	bool TileStatelist[(int)TileState::End] = { false };
+
+	for(int i = 0; i < (int)TileState::End; ++i)
+	{
+		if(CheckState((TileState)i))
+		{
+			TileStatelist[i] = true;
+		}
+	}
+
+	//상태에 대한 처리를 어떻게 할 것인가??
+	//배열이 있으니 배열의 마지막까지 돌면서 switch case로 순회 하면서
+	//해당 상태가 있다면 해당 동작을 처리한다. ( 효과,  이미지 변경 등)
+
+	// Breaking
+	// 객체가 올라올 수 있다. 하지만 올라와서 이동하자마자 break
+	// break tile
+
+
+	// Break
+	//break 상태라면 객체가 올라갈 수 없으니 ison을 체크해서 처리
+	
+
+	//burn
+	// brun 상태라면 충돌한 객체가 field obj일때, 데미지를 주도록한다.
+
+}
+
+void CTileScript::Overlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)
+{
+	
+}
+
+void CTileScript::EndOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)
+{
+	
+}
+
 void CTileScript::SaveToFile(ofstream& _File)
 {
 
@@ -82,23 +122,19 @@ void CTileScript::LoadFromFile(ifstream& _File)
 
 bool CTileScript::CheckState(TileState _State)
 {
-	if(_State != TileState::Normal)
-		return StateTimer[(int)_State] > 0.f;
 
-	 for(int i = 0; i < (int)TileState::End; ++i)
-	 {
-		 if(StateTimer[i] > 0.f)
-		 {
-			 return false;
-		 }
-	 }
+	return StateTimer[(int)_State] > 0.f;
 
-	 return true;
 }
 
 
 void CTileScript::SpawnChild()
 {
+	bool isexist = false;
+	CheckExist(isexist);
+	if (isexist == true)
+		return;
+	
 	CGameObject* TempObject = nullptr;
 	Ptr<CPrefab> TempPrefab = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\InTile.pref", L"prefab\\InTile.pref");
 
@@ -131,7 +167,7 @@ void CTileScript::SpawnChild()
 
 	// 에니메이터
 	TempObject = new CGameObject;
-	TempObject->SetName(L"TILE Animator");
+	TempObject->SetName(L"TileAnimator");
 	TempObject->AddComponent(new CTransform);
 	TempObject->AddComponent(new CAnimator2D);
 
@@ -142,6 +178,19 @@ void CTileScript::SpawnChild()
 	TileChild[3] = TempObject;
 
 
+
+}
+
+void CTileScript::CheckExist(bool& check)
+{
+	for (int i = 0; i < (int)TileChildType::End; ++i)
+	{
+		if (TileChild[i] != nullptr)
+		{
+			check = true;
+			break;
+		}
+	}
 
 }
 

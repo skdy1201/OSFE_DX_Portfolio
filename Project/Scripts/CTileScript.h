@@ -6,69 +6,68 @@
 
 enum class TileChildType
 {
-    InTile,
-    Shadow,
-    Break,
-    Animator,
-    End
+	InTile,
+	Shadow,
+	Break,
+	Animator,
+	End
 };
 
 enum class TileState
 {
-    Normal,
-    On,
-    Breaking,
-    Break,
-    Burn,
-    End,
+	Breaking,
+	Break,
+	Burn,
+	End,
 };
 
 
 class CTileScript :
-    public CScript
+	public CScript
 {
-    
 private:
-    int                  Camp;
-    bool                 IsVisible;
+	int Camp;
+	bool IsVisible;
 
 
-    float     StateTimer[(int)TileState::End];
-    CGameObject* TileChild[(int)TileChildType::End];
+	bool IsOn;
+	float StateTimer[(int)TileState::End];
+	CGameObject* TileChild[(int)TileChildType::End];
 
-    Ptr<CMaterial>    TileMtrl;
-
-public:
-
-    virtual void begin() override;
-    virtual void tick() override;
-
-    virtual void SaveToFile(ofstream& _File) override;
-    virtual void LoadFromFile(ifstream& _File) override;
+	Ptr<CMaterial> TileMtrl;
 
 public:
+	virtual void begin() override;
+	virtual void tick() override;
 
-    bool        CheckState(TileState _State);
+	virtual void BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider);
+	virtual void Overlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider);
+	virtual void EndOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider);
 
-    int GetCamp() { return Camp; }
-    bool      GetVisible() { return IsVisible; }
-    CGameObject* GetTileChild(TileChildType _child) { return TileChild[(int)_child]; }
-    void SetTilePosition(int row, int col);
-
-public:
-
-    void SetTimer(TileState _State, float _Time);
-    void AddTimer(TileState _State, float _Time);
-    void ClearTimerAll();
-    void ClearTimer(TileState _State);
+	virtual void SaveToFile(ofstream& _File) override;
+	virtual void LoadFromFile(ifstream& _File) override;
 
 public:
-    CLONE(CTileScript);
-    CTileScript();
-    CTileScript(const CTileScript& _Origin);
-    ~CTileScript();
+	bool CheckState(TileState _State);
+
+	int GetCamp() { return Camp; }
+	bool GetVisible() { return IsVisible; }
+	CGameObject* GetTileChild(TileChildType _child) { return TileChild[(int)_child]; }
+	void SetTilePosition(int row, int col);
+
+public:
+	void SetTimer(TileState _State, float _Time);
+	void AddTimer(TileState _State, float _Time);
+	void ClearTimerAll();
+	void ClearTimer(TileState _State);
+
+public:
+	CLONE(CTileScript);
+	CTileScript();
+	CTileScript(const CTileScript& _Origin);
+	~CTileScript();
 
 private:
-    void SpawnChild();
+	void SpawnChild();
+	void CheckExist(bool& check);
 };
-
