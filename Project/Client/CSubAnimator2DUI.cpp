@@ -639,15 +639,17 @@ void CSubAnimator2DUI::PlayPreview()
 void CSubAnimator2DUI::SaveNewAnim()
 {
 	wstring strAnimPath = CPathMgr::GetContentPath();
-	wstring AnimFolder = L"Animation\\\\";
+	wstring AnimFolder = L"animation\\";
 	strAnimPath += AnimFolder;
 	strAnimPath += Animation_Key;
 
-	ofstream temp;
-	
+	ofstream temp(strAnimPath);
+
+	if(temp.is_open())
+	{
 	OneAnim->SetAtlas(m_AtlasTex);
 	OneAnim->SaveToFile(temp);
-
+	}
 }
 
 void CSubAnimator2DUI::LoadAnim()
