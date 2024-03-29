@@ -3,19 +3,23 @@
 #include <Engine/CScript.h>
 #include <Engine/components.h>
 
+#include "CFieldObjScript.h"
 
 class CFieldScript :
     public CScript
 {
 public:
-	int TileRow;
-	int TileCol;
+	int MaxTileRow;
+	int MaxTileCol;
 
 	vector<pair<CGameObject*, Vec2>> TileRegistry;
-	
+
+	vector<CGameObject*> CurFieldMember;
 
 public:
 	void SpawnTile(int Row, int Col);
+	void SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey);
+
 
 public:
 	virtual void begin() override;
