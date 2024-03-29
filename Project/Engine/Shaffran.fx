@@ -1,8 +1,10 @@
-#ifndef _AimCursor
-#define _AimCursor
+#ifndef ShaffranFX
+#define ShaffranFX
 
 #include "value.fx"
 #include "func.fx"
+
+#define inputColor g_vec4_0
 
 struct VS_IN
 {
@@ -20,7 +22,7 @@ struct VS_OUT
     float3 vWorldPos : POSITION;
 };
 
-VS_OUT VS_AimCursorFX(VS_IN _in)
+VS_OUT VS_ShaffranFX(VS_IN _in)
 {
     VS_OUT output = (VS_OUT) 0.f;
     
@@ -33,19 +35,41 @@ VS_OUT VS_AimCursorFX(VS_IN _in)
     return output;
 }
 
-float4 PS_AimCursorFX(VS_OUT _in) : SV_Target
+float4 PS_ShaffranFX(VS_OUT _in) : SV_Target
 {
     float4 vColor = float4(1.f, 0.f, 1.f, 1.f);
 
+
+    //인호 코드
+    //if (g_btex_0)
+    //{
+	   // vColor = g_tex_0.Sample(g_sam_1, _in.vUV);
+        
+	   // float sum = vColor.r + vColor.g + vColor.b;
+
+	   // if (sum < 2.8f)
+	   // {
+		  //  vColor.rgb += inputColor.rgb;
+	   // }
+    //}
+
     if (g_btex_0)
     {
-         //vColor = g_tex_0.Sample(g_sam_1, _in.vUV + float2(g_time * 0.1, 0.f));
         vColor = g_tex_0.Sample(g_sam_1, _in.vUV);
+        
+        float sum = vColor.r + vColor.g + vColor.b;
 
+        if (sum < 2.8f)
+        {
+            vColor.rgb += inputColor.rgb;
+        }
     }
 
+
     if (0.01 > vColor.a)
-        discard;
+    {
+	    discard;
+    }
 
 
     return vColor;

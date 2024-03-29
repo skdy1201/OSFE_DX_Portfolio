@@ -6,14 +6,14 @@
 #include "CFieldObjScript.h"
 
 CFieldScript::CFieldScript()
-	:CScript(FIELDSCRIPT)
+	:CScript((UINT)SCRIPT_TYPE::FIELDSCRIPT)
 {
 	MaxTileRow = TileMaxRow;
 	MaxTileCol = TileMaxCol;
 }
 
 CFieldScript::CFieldScript(const CFieldScript& _Origin)
-	: CScript(FIELDSCRIPT)
+	: CScript((UINT)SCRIPT_TYPE::FIELDSCRIPT)
 	, MaxTileRow(_Origin.MaxTileRow)
 	, MaxTileCol(_Origin.MaxTileCol)
 {

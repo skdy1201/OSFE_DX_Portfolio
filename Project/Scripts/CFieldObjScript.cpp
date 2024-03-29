@@ -2,10 +2,11 @@
 #include "CFieldObjScript.h"
 #include "CFieldScript.h"
 
+#include "CProjectileScript.h"
 
 
 CFieldObjScript::CFieldObjScript()
-	: CScript(FIELDOBJSCRIPT)
+	: CScript((UINT)SCRIPT_TYPE::FIELDOBJSCRIPT)
 	, m_Health{}
 	, IsPlayer(true)
 
@@ -14,7 +15,7 @@ CFieldObjScript::CFieldObjScript()
 }
 
 CFieldObjScript::CFieldObjScript(const CFieldObjScript& _Origin)
-	: CScript(FIELDOBJSCRIPT)
+	: CScript((UINT)SCRIPT_TYPE::FIELDOBJSCRIPT)
 {
 }
 
@@ -76,6 +77,17 @@ void CFieldObjScript::Move()
 	}
 }
 
+void CFieldObjScript::Shoot()
+{
+	if(KEY_TAP(KEY::E))
+	{
+		CGameObject* GameObj;
+		//Ptr<CPrefab> prefab = CAssetMgr::GetInst()->Load<CPrefab>(_prefabkey, _prefabkey);
+
+	}
+
+}
+
 void CFieldObjScript::begin()
 {
 }
@@ -83,6 +95,7 @@ void CFieldObjScript::begin()
 void CFieldObjScript::tick()
 {
 	Move();
+	Shoot();
 }
 
 void CFieldObjScript::SaveToFile(ofstream& _File)

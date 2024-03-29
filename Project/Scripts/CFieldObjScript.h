@@ -42,6 +42,7 @@ private:
 public:
 	Health& GetHealth() { return m_Health; }
 	void Move();
+	void Shoot();
 
 
 	void SetField(CFieldScript* _Field) { m_Field = _Field; }
