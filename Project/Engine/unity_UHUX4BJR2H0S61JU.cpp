@@ -9,7 +9,7 @@
 #include "C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\Project\Engine\CAssetMgr.cpp"
 
 
-#include "C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\Project\Engine\CAsssetMgr_init.cpp"
+#include "C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\Project\Engine\CAssetMgr_init.cpp"
 
 
 #include "C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\Project\Engine\CBlackboard.cpp"

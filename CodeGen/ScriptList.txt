@@ -2,4 +2,6 @@ CBackgroundScript
 CMissileScript
 CPlayerScript
 CMonsterScript
-CTileChangeScript
+CTileScript
+CFieldScript
+CFieldObjScript

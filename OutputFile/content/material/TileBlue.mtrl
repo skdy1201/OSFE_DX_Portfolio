@@ -22,16 +22,25 @@ MtrlConst
 Scalar Param
 1
 0
-use
+Tile State
 
 Tex Param
 1
-texture\Tile\Cracked.png
+texture\Tile\TileBlue.png
 0
-texture\Tile\Cracked.png
+texture\Tile\TileBlue.png
+1
+texture\Tile\TileBlueOn.png
 0
+texture\Tile\TileBlueOn.png
+1
+texture\Tile\TileBlueCrack.png
 0
+texture\Tile\TileBlueCrack.png
+1
+texture\Tile\TileBlueBroken.png
 0
+texture\Tile\TileBlueBroken.png
 0
 0
 0
@@ -39,12 +48,12 @@ texture\Tile\Cracked.png
 0
 0
 Temp
-EMPTYSYMBOL
-EMPTYSYMBOL
-EMPTYSYMBOL
+Temp
+Temp
+Temp
 EMPTYSYMBOL
 EMPTYSYMBOL
 
 1
-Std2DShader
+TileShader
 1

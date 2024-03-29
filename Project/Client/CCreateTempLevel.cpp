@@ -113,7 +113,7 @@ void CCreateTempLevel::CreateTempLevel()
 	pCamObj->Transform()->SetRelativePos(Vec3(0.5f, 0.f, 0.f));
 	pCamObj->Transform()->SetRelativeRotation(Vec3(0.f, 0.f, 0.f));
 
-	pCamObj->Camera()->SetProjType(PROJ_TYPE::PERSPECTIVE);
+	pCamObj->Camera()->SetProjType(PROJ_TYPE::ORTHOGRAPHIC);
 	pCamObj->Camera()->SetCameraPriority(0);
 	pCamObj->Camera()->LayerCheckAll();
 	pCamObj->Camera()->LayerCheck(31, false);
@@ -167,35 +167,35 @@ void CCreateTempLevel::CreateTempLevel()
 	pTempLevel->AddObject(pObj, L"Background", false);
 
 	// Player Object 积己
-	pObj = new CGameObject;
-	pObj->SetName(L"Player");
+	//pObj = new CGameObject;
+	//pObj->SetName(L"Player");
 
-	pObj->AddComponent(new CTransform);
-	pObj->AddComponent(new CMeshRender);
-	pObj->AddComponent(new CCollider2D);
-	pObj->AddComponent(new CAnimator2D);
-	pObj->AddComponent(new CPlayerScript);
-	pObj->AddComponent(new CMissileScript);
+	//pObj->AddComponent(new CTransform);
+	//pObj->AddComponent(new CMeshRender);
+	//pObj->AddComponent(new CCollider2D);
+	//pObj->AddComponent(new CAnimator2D);
+	//pObj->AddComponent(new CPlayerScript);
+	//pObj->AddComponent(new CMissileScript);
 
-	pObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 500.f));
-	pObj->Transform()->SetRelativeScale(Vec3(200.f, 200.f, 1.f));
+	//pObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 500.f));
+	//pObj->Transform()->SetRelativeScale(Vec3(200.f, 200.f, 1.f));
 
-	pObj->Collider2D()->SetAbsolute(true);
-	pObj->Collider2D()->SetOffsetScale(Vec2(100.f, 100.f));
-	pObj->Collider2D()->SetOffsetPos(Vec2(0.f, 0.f));
+	//pObj->Collider2D()->SetAbsolute(true);
+	//pObj->Collider2D()->SetOffsetScale(Vec2(100.f, 100.f));
+	//pObj->Collider2D()->SetOffsetPos(Vec2(0.f, 0.f));
 
-	pObj->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh"));
-	pObj->MeshRender()->SetMaterial(CAssetMgr::GetInst()->FindAsset<CMaterial>(L"Std2DMtrl"));
+	//pObj->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh"));
+	//pObj->MeshRender()->SetMaterial(CAssetMgr::GetInst()->FindAsset<CMaterial>(L"Std2DMtrl"));
 
-	pTex = CAssetMgr::GetInst()->Load<CTexture>(L"texture\\Character.png", L"texture\\Character.png");
+	//pTex = CAssetMgr::GetInst()->Load<CTexture>(L"texture\\Character.png", L"texture\\Character.png");
 
-	pObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, CAssetMgr::GetInst()->Load<CTexture>(L"texture\\Character.png", L"texture\\Character.png"));
+	//pObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, CAssetMgr::GetInst()->Load<CTexture>(L"texture\\Character.png", L"texture\\Character.png"));
 
-	pTempLevel->AddObject(pObj, L"Player", false);
+	//pTempLevel->AddObject(pObj, L"Player", false);
 
 
 	// Monster Object 积己
-	pObj = new CGameObject;
+	/*pObj = new CGameObject;
 	pObj->SetName(L"Monster");
 
 	pObj->AddComponent(new CTransform);
@@ -217,21 +217,10 @@ void CCreateTempLevel::CreateTempLevel()
 
 	pObj->StateMachine()->SetFSM(CAssetMgr::GetInst()->FindAsset<CFSM>(L"NormalMonsterFSM"));
 
-	pTempLevel->AddObject(pObj, L"Monster", false);
+	pTempLevel->AddObject(pObj, L"Monster", false);*/
 
 
-	//Ptr<CPrefab> prefab = CAssetMgr::GetInst()->Load<CPrefab>(TILEPrefabKey, TILEPrefabKey);
-	//
-	//for (int i = 0; i < TileMaxRow; ++i)
-	//{
-	//	for (int j = 0; j < TileMaxCol; ++j)
-	//	{
-	//		pObj = prefab->Instantiate();
-	//		CTileScript* pScript = pObj->GetScript<CTileScript>();
-	//		pScript ->SetTilePosition(i, j);
-	//		pTempLevel->AddObject(pObj, 0);
-	//	}
-	//}
+
 
 
 	// 面倒 汲沥

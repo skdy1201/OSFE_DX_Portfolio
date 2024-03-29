@@ -17,40 +17,43 @@ MtrlConst
 0 0 1 0 
 0 0 0 1 
  
-1 1 1 0 0 0 0 0 0 0 
+1 1 1 1 0 0 0 0 0 0 
 
 Scalar Param
 1
 0
-In TileCamp
+Tile State
 
 Tex Param
 1
-texture\Tile\TileBlue.png
-0
-texture\Tile\TileBlue.png
-1
 texture\Tile\TileRed.png
 0
 texture\Tile\TileRed.png
 1
-texture\Tile\TileNeutral.png
+texture\Tile\TileRedOn.png
 0
-texture\Tile\TileNeutral.png
+texture\Tile\TileRedOn.png
+1
+texture\Tile\TileRedCrack.png
+0
+texture\Tile\TileRedCrack.png
+1
+texture\Tile\TileRedBroken.png
+0
+texture\Tile\TileRedBroken.png
 0
 0
 0
 0
 0
 0
-0
-CampColorBlue
-CampColorRed
-CampColorNeutral
-EMPTYSYMBOL
+Temp
+Temp
+Temp
+Temp
 EMPTYSYMBOL
 EMPTYSYMBOL
 
 1
-TilecampShader
+TileShader
 1

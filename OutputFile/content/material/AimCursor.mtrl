@@ -1,5 +1,5 @@
 MtrlConst
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 1 0 0 0 
 0 1 0 0 
 0 0 1 0 
@@ -17,23 +17,18 @@ MtrlConst
 0 0 1 0 
 0 0 0 1 
  
-1 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 
 
 Scalar Param
-2
+1
 0
-Tile
-
-12
-Tile Info
+Use
 
 Tex Param
 1
-texture\Tile\TileBasicTallX.png
+texture\Player\fxAimMarker.png
 0
-texture\Tile\TileBasicTallX.png
-0
-0
+texture\Player\fxAimMarker.png
 0
 0
 0
@@ -41,7 +36,9 @@ texture\Tile\TileBasicTallX.png
 0
 0
 0
-In Tile
+0
+0
+Temp
 EMPTYSYMBOL
 EMPTYSYMBOL
 EMPTYSYMBOL
@@ -49,5 +46,5 @@ EMPTYSYMBOL
 EMPTYSYMBOL
 
 1
-TileShader
+AimCursorShader
 1

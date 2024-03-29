@@ -4,8 +4,6 @@
 #include "value.fx"
 #include "func.fx"
 
-
-
 struct VS_IN
 {
     float4 vColor : COLOR;
@@ -37,23 +35,57 @@ VS_OUT VS_TileFX(VS_IN _in)
 
 float4 PS_TileFX(VS_OUT _in) : SV_Target
 {
-    float4 vOutColor = float4(1.f, 0.f, 1.f, 1.f);
-   
-    if(g_int_0 == 0 )
-    vOutColor = g_tex_0.Sample(g_sam_1, _in.vUV);
+    float4 vColor;
+
+    if (g_int_0 == 0)
+    {
+        vColor = g_tex_0.Sample(g_sam_1, _in.vUV);
+                    
+            //saturate 0 ~ 1 을 넘지 않게 보정
+        float fAlpha = 1.f - saturate(dot(vColor.rb, vColor.rb) / 2.f);
+
+    }
+
+    if (g_int_0 == 1)
+    {
+        vColor = g_tex_1.Sample(g_sam_1, _in.vUV);
+                    
+            //saturate 0 ~ 1 을 넘지 않게 보정
+        float fAlpha = 1.f - saturate(dot(vColor.rb, vColor.rb) / 2.f);
+    }
+
+    if (g_int_0 == 2)
+    {
+        vColor = g_tex_2.Sample(g_sam_1, _in.vUV);
+                    
+            //saturate 0 ~ 1 을 넘지 않게 보정
+        float fAlpha = 1.f - saturate(dot(vColor.rb, vColor.rb) / 2.f);
+    }
+
+    if (g_int_0 == 3)
+    {
+        vColor = g_tex_3.Sample(g_sam_1, _in.vUV);
+                    
+            //saturate 0 ~ 1 을 넘지 않게 보정
+        float fAlpha = 1.f - saturate(dot(vColor.rb, vColor.rb) / 2.f);
+        
+      
+    }
+
+    tLightColor LightColor = (tLightColor) 0.f;
     
-    // 알파값이 0인 부분은 discard
-    //if (0.f >= vOutColor.a)
-    //    discard;
+    for (int i = 0; i < g_Light2DCount; ++i)
+    {
+        CalLight2D(_in.vWorldPos, i, LightColor);
+    }
     
-    // Vec4파라미터로 전달된 색상으로 변경하기
-    // 우선 테스트용으로 Alpha값을 제외한 나머지 RGB색상만 변경해보기
-    vOutColor.x *= g_vec4_0.x;
-    vOutColor.y *= g_vec4_0.y;
-    vOutColor.z *= g_vec4_0.z;
-    vOutColor.w *= g_vec4_0.w;
+    vColor.rgb *= (LightColor.vColor.rgb + LightColor.vAmbient.rgb);
+        
+    if (0.f == vColor.a)
+        discard;
+
     
-    return vOutColor;
+    return vColor;
 
 }
 

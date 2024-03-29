@@ -285,7 +285,7 @@
     <ClCompile Include="CLight2D.cpp">
       <Filter>08. Component\06. Light2D</Filter>
     </ClCompile>
-    <ClCompile Include="CAsssetMgr_init.cpp">
+    <ClCompile Include="CAssetMgr_init.cpp">
       <Filter>04. Manager\AssetMgr</Filter>
     </ClCompile>
     <ClCompile Include="CTileMap.cpp">
@@ -494,6 +494,9 @@
     <Filter Include="ShaderCode\Render\Tile">
       <UniqueIdentifier>{8210775e-237d-45a2-ba55-424876c5da0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ShaderCode\Render\Player">
+      <UniqueIdentifier>{84d52f4b-49d7-43e2-b3aa-22cc2a5d308c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -534,11 +537,11 @@
     <FxCompile Include="Tile.fx">
       <Filter>ShaderCode\Render\Tile</Filter>
     </FxCompile>
-    <FxCompile Include="Tilecamp.fx">
+    <FxCompile Include="TileAnim.fx">
       <Filter>ShaderCode\Render\Tile</Filter>
     </FxCompile>
-    <FxCompile Include="TileShadow.fx">
-      <Filter>ShaderCode\Render\Tile</Filter>
+    <FxCompile Include="AimCursor.fx">
+      <Filter>ShaderCode\Render\Player</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

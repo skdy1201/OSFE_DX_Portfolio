@@ -1,0 +1,24 @@
+TileRed
+0
+0
+0 0 0
+120 75 1
+0 0 0
+1
+1
+0 0 0
+100 25 1
+1
+0
+9
+1
+RectMesh
+1
+1
+material\TileRed.mtrl
+0
+material\TileRed.mtrl
+15
+1
+CTileScript
+0

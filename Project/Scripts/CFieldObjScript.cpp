@@ -10,6 +10,7 @@ CFieldObjScript::CFieldObjScript()
 	, IsPlayer(true)
 
 {
+
 }
 
 CFieldObjScript::CFieldObjScript(const CFieldObjScript& _Origin)

@@ -1,12 +1,10 @@
-TileAnimator
+temptest
 0
 0
-0 0 0
-104 68 1
+0 0 500
+200 200 1
 0 0 0
 1
-3
-0
 9
 1
 RectMesh
@@ -15,5 +13,6 @@ RectMesh
 Std2DMtrl
 1
 15
-0
+1
+CFieldObjScript
 0

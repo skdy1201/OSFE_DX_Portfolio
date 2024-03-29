@@ -288,40 +288,39 @@ void CAssetMgr::CreateDefaultGraphicsShader()
 	pShader->CreatePixelShader(L"shader\\Tile.fx", "PS_TileFX");
 
 	pShader->SetRSType(RS_TYPE::CULL_NONE);
-	pShader->SetDSType(DS_TYPE::NO_WRITE);
+	pShader->SetDSType(DS_TYPE::LESS);
 	pShader->SetBSType(BS_TYPE::ALPHA_BLEND);
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
 
 	AddAsset(L"TileShader", pShader.Get());
 
-
 	// =================================
-	// TileCampFxShader
-	// =================================
-	pShader = new CGraphicsShader;
-	pShader->CreateVertexShader(L"shader\\Tilecamp.fx", "VS_TileCampFX");
-	pShader->CreatePixelShader(L"shader\\Tilecamp.fx", "PS_TileCampFX");
-
-	pShader->SetRSType(RS_TYPE::CULL_NONE);
-	pShader->SetDSType(DS_TYPE::LESS);
-	pShader->SetBSType(BS_TYPE::DEFAULT);
-	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_OPAQUE);
-
-	AddAsset(L"TilecampShader", pShader.Get());
-
-	// =================================
-	// TileShadowFxShader
+	// TileAnimFxShader
 	// =================================
 	pShader = new CGraphicsShader;
-	pShader->CreateVertexShader(L"shader\\TileShadow.fx", "VS_TileShadowFX");
-	pShader->CreatePixelShader(L"shader\\TileShadow.fx", "PS_TileShadowFX");
+	pShader->CreateVertexShader(L"shader\\TileAnim.fx", "VS_TileAnimFX");
+	pShader->CreatePixelShader(L"shader\\TileAnim.fx", "PS_TileAnimFX");
 
 	pShader->SetRSType(RS_TYPE::CULL_NONE);
 	pShader->SetDSType(DS_TYPE::LESS);
 	pShader->SetBSType(BS_TYPE::ALPHA_BLEND);
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
 
-	AddAsset(L"TileShadowShader", pShader.Get());
+	AddAsset(L"TileAnimShader", pShader.Get());
+
+	// =================================
+	// AimCursorFxShader
+	// =================================
+	pShader = new CGraphicsShader;
+	pShader->CreateVertexShader(L"shader\\AimCursor.fx", "VS_AimCursorFX");
+	pShader->CreatePixelShader(L"shader\\AimCursor.fx", "PS_AimCursorFX");
+
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::ALPHA_BLEND);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
+
+	AddAsset(L"AimCursorShader", pShader.Get());
 }
 
 
@@ -379,54 +378,41 @@ void CAssetMgr::CreateDefaultMaterial()
 	pMtrl->SetShader(FindAsset<CGraphicsShader>(L"DebugShapeShader"));
 	AddAsset<CMaterial>(L"DebugShapeMtrl", pMtrl);
 
-	// TileMtrl
+	// TileBlueMtrl
 	pMtrl = new CMaterial(true);
 	pMtrl->SetShader(FindAsset<CGraphicsShader>(L"TileShader"));
-	pMtrl->SetTexParam(TEX_PARAM::TEX_0, Load<CTexture>(L"texture\\Tile\\TileBasicTallX.png", L"texture\\Tile\\TileBasicTallX.png"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_0, Load<CTexture>(L"texture\\Tile\\TileBlue.png", L"texture\\Tile\\TileBlue.png"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_1, Load<CTexture>(L"texture\\Tile\\TileBlueOn.png", L"texture\\Tile\\TileBlueOn.png"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_2, Load<CTexture>(L"texture\\Tile\\TileBlueCrack.png", L"texture\\Tile\\TileBlueCrack.png"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_3, Load<CTexture>(L"texture\\Tile\\TileBlueBroken.png", L"texture\\Tile\\TileBlueBroken.png"));
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
-	pMtrl->SetScalarParam(SCALAR_PARAM::VEC4_0, Vec4{ 0.f , 0.f, 0.f, 0.f });
 
 	// Parameter	
 	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "Tile");
-	pMtrl->AddScalarParam(SCALAR_PARAM::VEC4_0, "Tile Info");
+	pMtrl->AddScalarParam(SCALAR_PARAM::VEC4_0, "Tile Current");
 
 	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "In Tile");
 
 
-	AddAsset<CMaterial>(L"TileMtrl", pMtrl);
+	AddAsset<CMaterial>(L"TileBlueMtrl", pMtrl);
 
-	// TileCampMtrl
+	// TileRedMtrl
 	pMtrl = new CMaterial(true);
-	pMtrl->SetShader(FindAsset<CGraphicsShader>(L"TilecampShader"));
-	pMtrl->SetTexParam(TEX_PARAM::TEX_0, Load<CTexture>(L"texture\\Tile\\TileBlue.png", L"texture\\Tile\\TileBlue.png"));
-	pMtrl->SetTexParam(TEX_PARAM::TEX_1, Load<CTexture>(L"texture\\Tile\\TileRed.png", L"texture\\Tile\\TileRed.png"));
-	pMtrl->SetTexParam(TEX_PARAM::TEX_2, Load<CTexture>(L"texture\\Tile\\TileNeutral.png", L"texture\\Tile\\TileNeutral.png"));
+	pMtrl->SetShader(FindAsset<CGraphicsShader>(L"TileShader"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_0, Load<CTexture>(L"texture\\Tile\\TileRed.png", L"texture\\Tile\\TileRed.png"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_1, Load<CTexture>(L"texture\\Tile\\TileRedOn.png", L"texture\\Tile\\TileRedOn.png"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_2, Load<CTexture>(L"texture\\Tile\\TileRedCrack.png", L"texture\\Tile\\TileRedCrack.png"));
+	pMtrl->SetTexParam(TEX_PARAM::TEX_3, Load<CTexture>(L"texture\\Tile\\TileRedBroken.png", L"texture\\Tile\\TileRedBroken.png"));
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
-	
 
 	// Parameter	
-	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "In TileCamp");
-	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "CampColorBlue");
-	pMtrl->SetTexDesc(TEX_PARAM::TEX_1, "CampColorRed");
-	pMtrl->SetTexDesc(TEX_PARAM::TEX_2, "CampColorNeutral");
+	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "Tile");
+	pMtrl->AddScalarParam(SCALAR_PARAM::VEC4_0, "Tile Current");
 
-	AddAsset<CMaterial>(L"TilecampMtrl", pMtrl);
-
-	// TileShadowMtrl
-	pMtrl = new CMaterial(true);
-	pMtrl->SetShader(FindAsset<CGraphicsShader>(L"TileShadowShader"));
-	pMtrl->SetTexParam(TEX_PARAM::TEX_0, Load<CTexture>(L"texture\\Tile\\TileShadow.png", L"texture\\Tile\\TileShadow.png"));
-	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
-	pMtrl->SetScalarParam(SCALAR_PARAM::VEC4_0, Vec4{ 0.f , 0.f, 0.f, 0.f });
-
-	// Parameter	
-	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "TileShadow");
-	pMtrl->AddScalarParam(SCALAR_PARAM::VEC4_0, "Shadow Info");
-
-	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "Tile Shadow");
+	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "In Tile");
 
 
-	AddAsset<CMaterial>(L"TileShadowMtrl", pMtrl);
+	AddAsset<CMaterial>(L"TileRedMtrl", pMtrl);
 
 }
 

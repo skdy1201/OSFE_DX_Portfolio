@@ -214,6 +214,8 @@ TreeNode* TreeUI::AddTreeNode(TreeNode* _Parent, string _strName, DWORD_PTR _dwD
 
 void TreeUI::SetSelectedNode(TreeNode* _SelectedNode)
 {
+
+
 	if (m_Selected)
 	{
 		m_Selected->m_bSelected  = false;

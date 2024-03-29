@@ -22,8 +22,17 @@
     <ClInclude Include="CMonsterScript.h">
       <Filter>02. Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="CTileChangeScript.h">
-      <Filter>02. Scripts</Filter>
+    <ClInclude Include="CTileScript.h">
+      <Filter>02. Scripts\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>01.Define</Filter>
+    </ClInclude>
+    <ClInclude Include="CFieldScript.h">
+      <Filter>02. Scripts\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="CFieldObjScript.h">
+      <Filter>02. Scripts\FieldObj</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -48,8 +57,14 @@
     <ClCompile Include="CMonsterScript.cpp">
       <Filter>02. Scripts</Filter>
     </ClCompile>
-    <ClCompile Include="CTileChangeScript.cpp">
-      <Filter>02. Scripts</Filter>
+    <ClCompile Include="CTileScript.cpp">
+      <Filter>02. Scripts\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="CFieldScript.cpp">
+      <Filter>02. Scripts\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="CFieldObjScript.cpp">
+      <Filter>02. Scripts\FieldObj</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +76,18 @@
     </Filter>
     <Filter Include="02. Scripts">
       <UniqueIdentifier>{af5c3808-4d30-476b-b2ab-d844558017d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\Tile">
+      <UniqueIdentifier>{04df237e-a970-46b6-8926-228d23b0b689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Define">
+      <UniqueIdentifier>{5ee0f412-064e-402a-9434-be7f6fd05333}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\Field">
+      <UniqueIdentifier>{a4d1a0c2-dd2b-400c-a2e4-08928c3f2953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\FieldObj">
+      <UniqueIdentifier>{9c1b643a-913d-4331-a5d8-3d7cf246dd37}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
