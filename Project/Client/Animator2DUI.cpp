@@ -17,7 +17,7 @@ Animator2DUI::Animator2DUI()
 	: ComponentUI("Animator2D", "##Animator2D", COMPONENT_TYPE::ANIMATOR2D)
 {
 	SetSize(ImVec2(0.f, 120.f));
-	SetComopnentTitle("Animator2D");
+	SetComponentTitle("Animator2D");
 
 	//detail ui »ý¼º
 	m_ChildDetailUI = new CSubAnimator2DUI(this);

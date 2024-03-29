@@ -30,7 +30,7 @@ void CStateMachine::finaltick()
 void CStateMachine::SetFSM(Ptr<CFSM> _FSM)
 {
 	m_FSM = _FSM;
-	m_FSM_Inst = nullptr;
+	m_FSM_Inst = m_FSM->GetFSMIstance();
 }
 
 void CStateMachine::AddBlackboardData(const wstring& _strKey, BB_DATA _Type, void* _pData)

@@ -65,3 +65,6 @@
 
 #include "C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\Project\Client\imgui_draw.cpp"
 
+
+#include "C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\Project\Client\imgui_impl_dx11.cpp"
+

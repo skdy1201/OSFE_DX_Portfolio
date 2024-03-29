@@ -4,6 +4,7 @@
 #include "Inspector.h"
 
 #include "ScriptUI.h"
+#include "StateMachineUI.h"
 
 void Inspector::CreateChildUI()
 {
@@ -46,6 +47,9 @@ void Inspector::CreateComponentUI()
 	m_arrComUI[(UINT)COMPONENT_TYPE::CAMERA]->Deactivate();
 	AddChildUI(m_arrComUI[(UINT)COMPONENT_TYPE::CAMERA]);
 
+	m_arrComUI[(UINT)COMPONENT_TYPE::STATEMACHINE] = new StateMachineUI;
+	m_arrComUI[(UINT)COMPONENT_TYPE::STATEMACHINE]->Deactivate();
+	AddChildUI(m_arrComUI[(UINT)COMPONENT_TYPE::STATEMACHINE]);
 
 }
 

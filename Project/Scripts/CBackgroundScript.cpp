@@ -12,7 +12,7 @@ void CBackgroundScript::LoadFromFile(ifstream& _File)
 }
 
 CBackgroundScript::CBackgroundScript()
-	: CScript(SCRIPT_TYPE::BACKGROUNDSCRIPT)
+	: CScript((UINT)SCRIPT_TYPE::BACKGROUNDSCRIPT)
 {
 }
 

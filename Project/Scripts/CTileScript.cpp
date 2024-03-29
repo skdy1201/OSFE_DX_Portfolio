@@ -5,7 +5,7 @@
 
 
 CTileScript::CTileScript()
-	:CScript(TILESCRIPT)
+	:CScript((UINT)SCRIPT_TYPE::TILESCRIPT)
 {
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "Breaking State", &StateTimer[(int)TileState::Breaking]);
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "Break State", &StateTimer[(int)TileState::Break]);
@@ -13,7 +13,7 @@ CTileScript::CTileScript()
 }
 
 CTileScript::CTileScript(const CTileScript& _Origin)
-	 : CScript(TILESCRIPT)
+	 : CScript((UINT)SCRIPT_TYPE::TILESCRIPT)
 {
 	for (int i = 0; i < (int)TileState::End; ++i)
 	{

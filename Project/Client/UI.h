@@ -31,6 +31,10 @@ public:
 		_ChildUI->m_Parent = this;
 	}
 
+	void ButtonTitle(const char* _name);
+
+	bool SearchableComboBox(const char* id, int* _idx, vector<string>& _vec);
+
 	UI* GetParentUI() { return m_Parent; }
 	virtual void Activate()  { m_bActive = true; }
 	virtual void Deactivate() { m_bActive = false; }

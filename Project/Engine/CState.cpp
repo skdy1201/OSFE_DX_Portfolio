@@ -23,3 +23,11 @@ void CState::ChangeState(const wstring& _strStateName)
 	assert(m_FSM);
 	m_FSM->ChangeState(_strStateName);
 }
+
+void CState::Save(ofstream& _fout)
+{
+}
+
+void CState::Load(ifstream& _fin)
+{
+}

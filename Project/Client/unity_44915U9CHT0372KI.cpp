@@ -1,8 +1,5 @@
 #include "pch.h"
 
-#include "C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\Project\Client\imgui_impl_dx11.cpp"
-
-
 #include "C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\Project\Client\imgui_impl_win32.cpp"
 
 
@@ -52,6 +49,9 @@
 
 
 #include "C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\Project\Client\SoundUI.cpp"
+
+
+#include "C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\Project\Client\StateMachineUI.cpp"
 
 
 #include "C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\Project\Client\TextureUI.cpp"

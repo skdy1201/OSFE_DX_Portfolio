@@ -34,6 +34,15 @@
     <ClInclude Include="CFieldObjScript.h">
       <Filter>02. Scripts\FieldObj</Filter>
     </ClInclude>
+    <ClInclude Include="CProjectileScript.h">
+      <Filter>02. Scripts\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="CTest.h">
+      <Filter>08. States</Filter>
+    </ClInclude>
+    <ClInclude Include="CStateMgr.h">
+      <Filter>ScriptMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -66,13 +75,19 @@
     <ClCompile Include="CFieldObjScript.cpp">
       <Filter>02. Scripts\FieldObj</Filter>
     </ClCompile>
+    <ClCompile Include="CProjectileScript.cpp">
+      <Filter>02. Scripts\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="CTest.cpp">
+      <Filter>08. States</Filter>
+    </ClCompile>
+    <ClCompile Include="CStateMgr.cpp">
+      <Filter>ScriptMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
       <UniqueIdentifier>{4f2f6642-c0f0-494a-9d81-0124398fdb95}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ScriptMgr">
-      <UniqueIdentifier>{b42de7fc-e585-40cf-9c65-79e91e2b59d4}</UniqueIdentifier>
     </Filter>
     <Filter Include="02. Scripts">
       <UniqueIdentifier>{af5c3808-4d30-476b-b2ab-d844558017d2}</UniqueIdentifier>
@@ -88,6 +103,15 @@
     </Filter>
     <Filter Include="02. Scripts\FieldObj">
       <UniqueIdentifier>{9c1b643a-913d-4331-a5d8-3d7cf246dd37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\Projectile">
+      <UniqueIdentifier>{937e56aa-d228-4938-b781-ced8e5becfea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptMgr">
+      <UniqueIdentifier>{b42de7fc-e585-40cf-9c65-79e91e2b59d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. States">
+      <UniqueIdentifier>{6cb957da-fd9a-456f-ad00-45ea75aaa3fe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

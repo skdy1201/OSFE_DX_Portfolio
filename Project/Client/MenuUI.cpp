@@ -240,15 +240,39 @@ void MenuUI::Asset()
                 swprintf_s(szPath, L"Material//New Material_%d.mtrl", num);
                 if (!exists(FilePath + szPath))
                     break;
-                
+                ++num;
             }
 
-            ++num;
+           
 
             CMaterial* pMtrl = new CMaterial;
             pMtrl->SetName(szPath);
             pMtrl->Save(szPath);
             GamePlayStatic::AddAsset(pMtrl);
+        }
+
+        if (ImGui::MenuItem("Create Empty FSM"))
+        {
+            wchar_t szPath[255] = {};
+            wstring FilePath = CPathMgr::GetContentPath();
+
+            static int num = 0;
+            while (true)
+            {
+                swprintf_s(szPath, L"fsm//NewFSM%d.fsm", num);
+                if (!exists(FilePath + szPath))
+                    break;
+
+                ++num;
+
+            }
+
+            
+
+            CFSM* pFsm = new CFSM;
+            pFsm->SetName(szPath);
+            pFsm->Save(szPath);
+            GamePlayStatic::AddAsset(pFsm);
         }
 
         ImGui::EndMenu();

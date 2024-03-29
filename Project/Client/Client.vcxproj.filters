@@ -128,6 +128,9 @@
     <Filter Include="02. UI\3. Inspector\ComponentUI\Camera">
       <UniqueIdentifier>{ad612989-c809-4a11-81e2-69fb4507faf7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. UI\3. Inspector\ComponentUI\StateMachineUI">
+      <UniqueIdentifier>{af93f85f-98dc-40c3-a325-a60058918a46}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -273,6 +276,9 @@
     </ClInclude>
     <ClInclude Include="CameraUI.h">
       <Filter>02. UI\3. Inspector\ComponentUI\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachineUI.h">
+      <Filter>02. UI\3. Inspector\ComponentUI\StateMachineUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -421,6 +427,9 @@
     </ClCompile>
     <ClCompile Include="CameraUI.cpp">
       <Filter>02. UI\3. Inspector\ComponentUI\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachineUI.cpp">
+      <Filter>02. UI\3. Inspector\ComponentUI\StateMachineUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

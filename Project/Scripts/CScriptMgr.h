@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-enum SCRIPT_TYPE
+enum class SCRIPT_TYPE
 {
 	BACKGROUNDSCRIPT,
 	MISSILESCRIPT,
@@ -12,6 +12,7 @@ enum SCRIPT_TYPE
 	TILESCRIPT,
 	FIELDSCRIPT,
 	FIELDOBJSCRIPT,
+	PROJECTILESCRIPT,
 	END,
 };
 
