@@ -18,6 +18,8 @@ struct Health
 	int				Defense; // 방어력
 	int				Shield; // 쉴드
 
+	float			m_Speed = 500.f; // 속도
+
 	int				Level;
 	int				Exp;
 	int				RewardExp; // 처치시 경험치
@@ -35,13 +37,21 @@ private:
 	CFieldScript*		m_Field;
 	bool				IsPlayer;
 
-
+	Vec2			    CurFieldIdx;
+	
 public:
 	Health& GetHealth() { return m_Health; }
 	void Move();
 
 
 	void SetField(CFieldScript* _Field) { m_Field = _Field; }
+	CFieldScript* GetField() { return m_Field; }
+
+	void SetPlayer(bool input) { IsPlayer = input; }
+	void SetOwner(CGameObject* _object) { m_Owner = _object; }
+
+	Vec2 GetOwnerIdx() { return CurFieldIdx; }
+	void SetOwnerIdx(Vec2 _index) { CurFieldIdx = _index; }
 
 	virtual void begin() override;
 	virtual void tick() override;

@@ -3,6 +3,7 @@
 
 #include <Engine/components.h>
 #include "CTileScript.h"
+#include "CFieldObjScript.h"
 
 CFieldScript::CFieldScript()
 	:CScript(FIELDSCRIPT)
@@ -16,6 +17,7 @@ CFieldScript::CFieldScript(const CFieldScript& _Origin)
 	, MaxTileRow(_Origin.MaxTileRow)
 	, MaxTileCol(_Origin.MaxTileCol)
 {
+
 
 }
 
@@ -39,9 +41,9 @@ void CFieldScript::LoadFromFile(ifstream& _File)
 void CFieldScript::begin()
 {
 	SpawnTile(MaxTileRow, MaxTileCol);
-
-
 	SpawnFieldObj(Vec2{ 5, 2 }, L"prefab\\temptest.pref");
+
+
 }
 
 void CFieldScript::tick()
@@ -55,8 +57,11 @@ void CFieldScript::SpawnTile(int Row, int Col)
 	Ptr<CPrefab> Rprefab = CAssetMgr::GetInst()->Load<CPrefab>(RTILEPrefabKey, RTILEPrefabKey);
 	CGameObject* GameObj;
 
+	TileRegistry.resize(Row);
+
 	for (int i = 0; i < MaxTileRow; ++i)
 	{
+		TileRegistry[i].resize(Col);
 		for (int j = 0; j < MaxTileCol; ++j)
 		{
 			if(j < 8)
@@ -68,15 +73,12 @@ void CFieldScript::SpawnTile(int Row, int Col)
 				GameObj = Rprefab->Instantiate();
 
 			}
-			
+
 			CTileScript* pScript = GameObj->GetScript<CTileScript>();
 			pScript ->SetTilePosition(i, j);
 			GamePlayStatic::SpawnGameObject(GameObj, 0);
 			this->GetOwner()->AddChild(GameObj);
-
-			Vec2 idx = { i , j };
-			pair<CGameObject*, Vec2> temp = make_pair(GameObj, idx);
-			TileRegistry.push_back(temp);
+			TileRegistry[i][j] = GameObj;
 
 			if (j < 4 || j > 11)
 			{
@@ -94,19 +96,24 @@ void CFieldScript::SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey)
 	GameObj = prefab->Instantiate();
 
 
+	SpawnPosition = TileRegistry[TileIndex.y][TileIndex.x]->Transform()->GetRelativePos();
 
-	for(int i = 0; i < TileRegistry.size(); ++i)
-	{
-		if(TileRegistry[i].second == Vec2(TileIndex.y, TileIndex.x))
-		{
-			SpawnPosition = TileRegistry[i].first->Transform()->GetRelativePos();
-		}
-	}
 
 	GameObj->Transform()->SetRelativePos(SpawnPosition);
 	GamePlayStatic::SpawnGameObject(GameObj, 0);
 	CFieldObjScript* pScript = GameObj->GetScript<CFieldObjScript>();
+	pScript->SetOwnerIdx(Vec2(TileIndex.x, TileIndex.y));
+	pScript->SetPlayer(true);
+	pScript->SetOwner(GameObj);
+	CurFieldMember.push_back(GameObj);
 	pScript->SetField(this);
 
+
 	this->GetOwner()->AddChild(GameObj);
+}
+
+void CFieldScript::MoveToTile(CGameObject* _Owner, Vec2 _Index)
+{
+	Vec3 Position = TileRegistry[_Index.y][_Index.x]->Transform()->GetRelativePos();
+	_Owner->Transform()->SetRelativePos(Position);
 }

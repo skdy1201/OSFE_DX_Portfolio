@@ -12,7 +12,7 @@ public:
 	int MaxTileRow;
 	int MaxTileCol;
 
-	vector<pair<CGameObject*, Vec2>> TileRegistry;
+	vector<vector<CGameObject*>> TileRegistry;
 
 	vector<CGameObject*> CurFieldMember;
 
@@ -20,7 +20,7 @@ public:
 	void SpawnTile(int Row, int Col);
 	void SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey);
 
-
+	void MoveToTile(CGameObject* _Owner, Vec2 _Index);
 public:
 	virtual void begin() override;
 	virtual void tick() override;
