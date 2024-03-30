@@ -21,6 +21,9 @@ public:
 	void SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey);
 
 	void MoveToTile(CGameObject* _Owner, Vec2 _Index);
+
+	Vec3 GetTilePosition(Vec2 _TileIdx);
+
 public:
 	virtual void begin() override;
 	virtual void tick() override;

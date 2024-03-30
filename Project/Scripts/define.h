@@ -16,3 +16,5 @@
 #define Tilespacex 3
 #define Tilespacey 3
 
+
+#define ProjZ 300.f

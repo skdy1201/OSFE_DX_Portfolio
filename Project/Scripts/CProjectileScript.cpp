@@ -1,14 +1,17 @@
 #include "pch.h"
 
 #include "CProjectileScript.h"
+#include "CFieldScript.h"
+
+#include <Engine/CGameObject.h>
+#include <Engine/CComponent.h>
+
 
 CProjectileScript::CProjectileScript()
 	: CScript((UINT)SCRIPT_TYPE::PROJECTILESCRIPT)
 	, m_Shooter(nullptr)
-	, m_Speed(0.f)
-	, Damage(0)
-	, MaxRange(0)
-	, CurIndex(0.f, 0.f)
+	, m_ProjInfo{}
+	, m_CurField(nullptr)
 {
 }
 
@@ -21,34 +24,51 @@ CProjectileScript::~CProjectileScript()
 {
 }
 
-void CProjectileScript::FillInfo(CGameObject* _Target, float _Speed, int _Dmg, int _Range, Vec2 _Index)
+void CProjectileScript::FillInfo( float _Speed, int _Dmg, int _Range, float _Life, Vec2 _Index,
+	Vec2 _DirIdx, bool IsTile)
 {
-	SetShooter(_Target);
+
 	SetSpeed(_Speed);
 	SetDamage(_Dmg);
 	SetMaxRange(_Range);
+	SetLife(_Life);
 	SetIndex(_Index);
+	SetTargetIdx(_DirIdx);
+	SetTargetTile(IsTile);
 }
 
 void CProjectileScript::Move(float _DT)
 {
-	Vec3 Position = m_Owner->Transform()->GetWorldPos();
+	Vec2 TargetIdx = m_ProjInfo.TargetIdx;
+	Vec2 StartIdx = m_ProjInfo.CurIndex;
 
+	Vec3 TargetDirection = m_CurField->GetTilePosition(TargetIdx);
+	Vec3 SpawnPostion = Transform()->GetRelativePos();
 
-	if (m_Type == Bullet_Type::straight)
-	{
-		Position.x += _DT;
-	}
+	TargetDirection -= SpawnPostion;
+	TargetDirection.z = 0;
+	TargetDirection.Normalize();
 
-	m_Owner->Transform()->SetRelativePos(Position);
+	SpawnPostion += TargetDirection * (TileX + Tilespacex) * (m_ProjInfo.m_Speed * _DT);
+
+	Transform()->SetRelativePos(SpawnPostion);
+
 }
 
 void CProjectileScript::begin()
 {
+	if(m_Shooter != nullptr)
+	{
+	
+		Vec2 SpawnIdx = m_ProjInfo.CurIndex;
+		Vec2 TargetIdx = SpawnIdx + Vec2{ 1, 0 };
+		FillInfo(1.0f, 50, 3, 1, SpawnIdx, TargetIdx, false);
+	}
 }
 
 void CProjectileScript::tick()
 {
+	Move(DT);
 }
 
 void CProjectileScript::BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)

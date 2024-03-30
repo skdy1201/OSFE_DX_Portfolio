@@ -74,19 +74,38 @@ void CFieldObjScript::Move()
 				m_Field->MoveToTile(m_Owner, NextIndex);
 				SetOwnerIdx(NextIndex);
 			}
+
 	}
 }
 
 void CFieldObjScript::Shoot()
 {
-	if(KEY_TAP(KEY::E))
+	if (KEY_TAP(KEY::E))
 	{
 		CGameObject* GameObj;
-		//Ptr<CPrefab> prefab = CAssetMgr::GetInst()->Load<CPrefab>(_prefabkey, _prefabkey);
+		Ptr<CPrefab> prefab = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\PlayerBullet.pref", L"prefab\\PlayerBullet.pref");
+		GameObj = prefab->Instantiate();
+
+
+		CProjectileScript* pProjScript = GameObj->GetScript<CProjectileScript>();
+		pProjScript->SetShooter(m_Owner);
+
+		CFieldScript* pFieldScript = this->GetField();
+
+		Vec3 ProjTransform = m_Owner->Transform()->GetWorldPos();
+		ProjTransform.x += 10.f;
+		ProjTransform.z = ProjZ;
+		GameObj->Transform()->SetRelativePos(ProjTransform);
+
+		pProjScript->SetIndex(this->CurFieldIdx);
+		pProjScript->SetField(pFieldScript);
+
+		GamePlayStatic::SpawnGameObject(GameObj, 0);
 
 	}
-
 }
+
+
 
 void CFieldObjScript::begin()
 {

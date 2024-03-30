@@ -2,15 +2,21 @@
 
 #include <Engine/CScript.h>
 
-enum class Bullet_Type
-{
-	straight,
-    diagnal,
-    upside,
-    downside,
-    back,
-    Beam,
+class CFieldScript;
 
+struct Proj_Struct
+{
+
+    float           m_Speed;
+    int             Damage;
+    int             MaxRange;
+
+    float           LifeCount;
+
+    Vec2            CurIndex;
+    Vec2            TargetIdx;
+
+    bool            TargetTile;
 };
 
 class CProjectileScript :
@@ -18,24 +24,22 @@ class CProjectileScript :
 {
 private:
     CGameObject*    m_Shooter;
-    CGameObject*    m_Owner;
-
-
-    float           m_Speed;
-	int             Damage;
-    int             MaxRange;
-
-	Vec2            CurIndex;
-    Bullet_Type     m_Type;
+    CFieldScript*    m_CurField;
+    Proj_Struct     m_ProjInfo;
 
 public:
     void SetShooter(CGameObject* _Shooter) { m_Shooter = _Shooter; }
-    void SetSpeed(float _Speed) { m_Speed = _Speed; }
-    void SetDamage(int Dmg) { Damage = Dmg; }
-    void SetMaxRange(int _Range) { MaxRange = _Range; }
-    void SetIndex(Vec2 _Idx) { CurIndex = _Idx; }
+    void SetSpeed(float _Speed) { m_ProjInfo.m_Speed = _Speed; }
+    void SetDamage(int Dmg) { m_ProjInfo.Damage = Dmg; }
+    void SetMaxRange(int _Range) { m_ProjInfo.MaxRange = _Range; }
+    void SetLife(float _life) { m_ProjInfo.LifeCount = _life; }
+    void SetIndex(Vec2 _Idx) { m_ProjInfo.CurIndex = _Idx; }
+    void SetTargetIdx(Vec2 _DirIdx) { m_ProjInfo.TargetIdx = _DirIdx; }
+    void SetTargetTile(bool IsTile) { m_ProjInfo.TargetTile = IsTile; }
 
-    void FillInfo(CGameObject* _Target, float _Speed, int _Dmg, int _Range, Vec2 _Index);
+    void SetField(CFieldScript* _Field) { m_CurField = _Field; }
+
+    void FillInfo(float _Speed, int _Dmg, int _Range, float _Life, Vec2 _Index, Vec2 _DirIdx, bool IsTile);
 
     void Move(float _DT);
 

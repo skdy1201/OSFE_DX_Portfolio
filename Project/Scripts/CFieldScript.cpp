@@ -112,8 +112,17 @@ void CFieldScript::SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey)
 	this->GetOwner()->AddChild(GameObj);
 }
 
+//Fieldobj 전용 함수로 이름 변경예정
 void CFieldScript::MoveToTile(CGameObject* _Owner, Vec2 _Index)
 {
 	Vec3 Position = TileRegistry[_Index.y][_Index.x]->Transform()->GetRelativePos();
 	_Owner->Transform()->SetRelativePos(Position);
+}
+
+Vec3 CFieldScript::GetTilePosition(Vec2 _TileIdx)
+{
+	Vec3 Position = TileRegistry[_TileIdx.y][_TileIdx.x]->Transform()->GetRelativePos();
+
+	return Position;
+
 }
