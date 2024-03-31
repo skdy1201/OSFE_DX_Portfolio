@@ -10,6 +10,7 @@
 #include "CFieldObjScript.h"
 #include "CProjectileScript.h"
 #include "CPlayerCursorScript.h"
+#include "CMagicScript.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -22,6 +23,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CFieldObjScript");
 	_vec.push_back(L"CProjectileScript");
 	_vec.push_back(L"CPlayerCursorScript");
+	_vec.push_back(L"CMagicScript");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -44,6 +46,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CProjectileScript;
 	if (L"CPlayerCursorScript" == _strScriptName)
 		return new CPlayerCursorScript;
+	if (L"CMagicScript" == _strScriptName)
+		return new CMagicScript;
 	return nullptr;
 }
 
@@ -77,6 +81,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::PLAYERCURSORSCRIPT:
 		return new CPlayerCursorScript;
+		break;
+	case (UINT)SCRIPT_TYPE::MAGICSCRIPT:
+		return new CMagicScript;
 		break;
 	}
 	return nullptr;
@@ -120,6 +127,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::PLAYERCURSORSCRIPT:
 		return L"CPlayerCursorScript";
+		break;
+
+	case SCRIPT_TYPE::MAGICSCRIPT:
+		return L"CMagicScript";
 		break;
 
 	}
