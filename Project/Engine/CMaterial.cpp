@@ -163,7 +163,7 @@ int CMaterial::Save(const wstring& _strRelativePath)
 
 	for(int i = 0; i < scalarparamcount; ++i)
 	{
-		fout << temp[i] << endl;
+		fout << temp[i];
 	}
 
 	fout << "Tex Param" << endl;
