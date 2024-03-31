@@ -142,6 +142,7 @@ void CFSM::ChangeState(const wstring& _strStateName)
 
 	m_CurState = FindState(_strStateName);
 	m_CurState->SetName(_strStateName);
+	m_CurState->m_FSM = this;
 
 	assert(m_CurState);
 

@@ -3,8 +3,9 @@
 
 #include "CStateMachine.h"
 
-CState::CState()
-	: m_FSM(nullptr)
+CState::CState(UINT _StateType)
+	: m_iStateType(_StateType)
+	, m_FSM(nullptr)
 {
 }
 

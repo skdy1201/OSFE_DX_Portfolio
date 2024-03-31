@@ -65,6 +65,7 @@ void FSMUI::StateList()
 {
 	map<wstring, CState*>& states = m_target->GetStates();
 
+	int cnt = 0;
 	for(auto iter = states.begin(); iter != states.end();)
 	{
 		string statename = ToString(iter->first);
@@ -76,7 +77,8 @@ void FSMUI::StateList()
 		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(0.f, 0.6f, 0.6f));
 		ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(0.f, 0.6f, 0.6f));
 
-		if(ImGui::Button("Delete"))
+		string deleteid = "Delete##" + to_string(cnt);
+		if(ImGui::Button(deleteid.c_str()))
 		{
 			delete iter->second;
 			iter = states.erase((iter));

@@ -20,6 +20,7 @@
 
 #include "define.h"
 #include "CScriptMgr.h"
+#include "CStateMgr.h"
 
 
 #endif //PCH_H
