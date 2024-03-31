@@ -31,7 +31,7 @@
 #include "CImGuiMgr.h"
 #include "CEditorObjMgr.h"
 #include "CCreateTempLevel.h"
-
+#include <Engine/CBlackboard.h>
 
 //#define _RELEASE_GAME
 
@@ -76,6 +76,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     CPrefab::GAMEOBJECT_SAVE = &CLevelSaveLoad::SaveGameObject;
     CPrefab::GAMEOBJECT_LOAD = &CLevelSaveLoad::LoadGameObject;
     CFSM::LoadStateFunc = &CLevelSaveLoad::LoadState;
+    CBlackboard::SaveGameObject = &CLevelSaveLoad::SaveGameObject;
+    CBlackboard::LoadGameObject = &CLevelSaveLoad::LoadGameObject;
+
     
 #ifndef _RELEASE_GAME
     // 임시 레벨 생성

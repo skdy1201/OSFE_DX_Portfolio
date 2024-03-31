@@ -53,6 +53,8 @@ int CFSM::Save(const wstring& _strRelativePath)
 	}
 
 	// 블랙보드 예정
+	m_Blackboard->Save(fout);
+
 
 	return S_OK;
 }
@@ -87,6 +89,8 @@ int CFSM::Load(const wstring& _strFilePath)
 			state->Load(fin);
 		}
 	}
+
+	m_Blackboard->Load(fin);
 
 	return MB_OK;
 }
@@ -137,6 +141,7 @@ void CFSM::ChangeState(const wstring& _strStateName)
 		m_CurState->Exit();
 
 	m_CurState = FindState(_strStateName);
+	m_CurState->SetName(_strStateName);
 
 	assert(m_CurState);
 
