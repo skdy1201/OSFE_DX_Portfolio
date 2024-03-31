@@ -17,6 +17,9 @@ CProjectileScript::CProjectileScript()
 
 CProjectileScript::CProjectileScript(const CProjectileScript& _Origin)
 	: CScript((UINT)SCRIPT_TYPE::PROJECTILESCRIPT)
+	, m_Shooter(nullptr)
+	, m_ProjInfo(_Origin.m_ProjInfo)
+	, m_CurField(_Origin.m_CurField)
 {
 }
 
@@ -53,7 +56,7 @@ void CProjectileScript::begin()
 	{
 	
 		Vec2 SpawnIdx = m_ProjInfo.CurIndex;
-		Vec2 TargetIdx = SpawnIdx + Vec2{ 1, -1 };
+		Vec2 TargetIdx = SpawnIdx + Vec2{ 1, 0 };
 
 		Vec3 TargetDirection = m_CurField->GetTilePosition(TargetIdx);
 		Vec3 SpawnPostion = Transform()->GetRelativePos();
@@ -70,7 +73,9 @@ void CProjectileScript::begin()
 		float angle = acos(cosTheta); // θ
 
 		Vec3 vRot = Transform()->GetRelativeRotation();
-		vRot.z += -(angle / 2);
+
+			/*대각선일때 활성화 시키자
+		 *vRot.z += -(angle / 2);*/
 
 		Transform()->SetRelativeRotation(vRot);
 

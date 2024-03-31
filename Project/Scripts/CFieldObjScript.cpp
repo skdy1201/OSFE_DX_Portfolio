@@ -3,6 +3,7 @@
 #include "CFieldScript.h"
 
 #include "CProjectileScript.h"
+#include "CPlayerCursorScript.h"
 
 
 CFieldObjScript::CFieldObjScript()
@@ -36,8 +37,7 @@ void CFieldObjScript::Move()
 			if (NextIndex.y >= TileMaxRow)
 				return;
 
-			m_Field->MoveToTile(m_Owner, NextIndex);
-			SetOwnerIdx(NextIndex);
+			m_Field->MoveToTile(m_Owner, NextIndex, PlayerZ);
 
 
 		}
@@ -51,8 +51,8 @@ void CFieldObjScript::Move()
 			if (NextIndex.y < 0)
 				return;
 				
-			m_Field->MoveToTile(m_Owner, NextIndex);
-			SetOwnerIdx(NextIndex);
+			m_Field->MoveToTile(m_Owner, NextIndex, PlayerZ);
+
 		}
 
 			if (KEY_TAP(KEY::LEFT))
@@ -61,8 +61,8 @@ void CFieldObjScript::Move()
 
 				Vec2 NextIndex = { Index.x - 1, Index.y };
 
-				m_Field->MoveToTile(m_Owner, NextIndex);
-				SetOwnerIdx(NextIndex);
+				m_Field->MoveToTile(m_Owner, NextIndex, PlayerZ);
+
 			}
 
 			if (KEY_TAP(KEY::RIGHT))
@@ -71,8 +71,8 @@ void CFieldObjScript::Move()
 
 				Vec2 NextIndex = { Index.x + 1, Index.y};
 
-				m_Field->MoveToTile(m_Owner, NextIndex);
-				SetOwnerIdx(NextIndex);
+				m_Field->MoveToTile(m_Owner, NextIndex, PlayerZ);
+
 			}
 
 	}
@@ -94,7 +94,7 @@ void CFieldObjScript::Shoot()
 
 		Vec3 ProjTransform = m_Owner->Transform()->GetWorldPos();
 		ProjTransform.x += 10.f;
-		ProjTransform.z = ProjZ;
+		ProjTransform.z = ProjectileZ;
 		GameObj->Transform()->SetRelativePos(ProjTransform);
 
 		pProjScript->SetIndex(this->CurFieldIdx);
@@ -109,6 +109,22 @@ void CFieldObjScript::Shoot()
 
 void CFieldObjScript::begin()
 {
+	if(IsPlayer)
+	{
+		CGameObject* Cursor;
+		Ptr<CPrefab> Cursorprefab = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\PlayerCursor.pref", L"prefab\\PlayerCursor.pref");
+		Cursor = Cursorprefab->Instantiate();
+
+		CPlayerCursorScript* pScript = Cursor->GetScript<CPlayerCursorScript>();
+		pScript->SetField(m_Field);
+		pScript->SetPlayerScript(this);
+		pScript->SetIndex((this->GetOwnerIdx() + PlayerAttackRange));
+
+		GamePlayStatic::SpawnGameObject(Cursor, 0);
+		m_Owner->AddChild(Cursor);
+		
+
+	}
 }
 
 void CFieldObjScript::tick()

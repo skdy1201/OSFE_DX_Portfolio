@@ -97,7 +97,7 @@ void CFieldScript::SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey)
 
 
 	SpawnPosition = TileRegistry[TileIndex.y][TileIndex.x]->Transform()->GetRelativePos();
-
+	SpawnPosition.z = PlayerZ;
 
 	GameObj->Transform()->SetRelativePos(SpawnPosition);
 	GamePlayStatic::SpawnGameObject(GameObj, 0);
@@ -113,13 +113,17 @@ void CFieldScript::SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey)
 }
 
 //Fieldobj 전용 함수로 이름 변경예정
-void CFieldScript::MoveToTile(CGameObject* _Owner, Vec2 _Index)
+void CFieldScript::MoveToTile(CGameObject* _Owner, Vec2 _Index, float _PositionZ)
 {
-	Vec3 Position = TileRegistry[_Index.y][_Index.x]->Transform()->GetRelativePos();
+	Vec3 Position = GetTilePosition(_Index);
+	Position.z = _PositionZ;
 	_Owner->Transform()->SetRelativePos(Position);
+
+	CFieldObjScript* pScript = _Owner->GetScript<CFieldObjScript>();
+	pScript->SetOwnerIdx(_Index);
 }
 
-Vec3 CFieldScript::GetTilePosition(Vec2 _TileIdx)
+Vec3 CFieldScript::GetTilePosition(Vec2& _TileIdx)
 {
 	Vec3 Position = {};
 
@@ -129,11 +133,13 @@ Vec3 CFieldScript::GetTilePosition(Vec2 _TileIdx)
 	{
 		Position = TileRegistry[TileMaxRow - 1][_TileIdx.x]->Transform()->GetRelativePos();
 		Position.y += (TileY + Tilespacey);
+		_TileIdx.y = TileMaxRow - 1;
 	}
 	else if (_TileIdx.y < 0)
 	{
 		Position = TileRegistry[0][_TileIdx.x]->Transform()->GetRelativePos();
 		Position.y -= (TileY + Tilespacey);
+		_TileIdx.y = 0;
 	}
 
 	return Position;

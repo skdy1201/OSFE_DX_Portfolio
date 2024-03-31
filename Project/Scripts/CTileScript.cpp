@@ -121,7 +121,7 @@ bool CTileScript::CheckState(TileState _State)
 
 void CTileScript::SetTilePosition(int row, int col)
 {
-	Vec3 Ttransform = Vec3(TileStartPointx + (Tilespacex + TileX) * col, TileStartPointy + (Tilespacey + TileY) * row, 500);
+	Vec3 Ttransform = Vec3(TileStartPointx + (Tilespacex + TileX) * col, TileStartPointy + (Tilespacey + TileY) * row, TileZ);
 	Transform()->SetRelativePos(Ttransform);
 }
 

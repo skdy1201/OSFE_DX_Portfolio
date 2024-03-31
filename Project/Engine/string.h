@@ -6,6 +6,8 @@
 #define EMPTYSYMBOL "EMPTYSYMBOL"
 
 //Prefab ฐüทร string
+#define FieldPrefabKey L"prefab\\123.pref"
+
 #define BTILEPrefabKey L"prefab\\TileBlue.pref"
 #define RTILEPrefabKey L"prefab\\TileRed.pref"
 #define InTile L"prefab\\InTile.pref"

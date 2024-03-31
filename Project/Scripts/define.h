@@ -17,4 +17,9 @@
 #define Tilespacey 3
 
 
-#define ProjZ 300.f
+#define CursorZ  0.f
+#define ProjectileZ 300.f
+#define PlayerZ 500.f
+#define TileZ 600.f
+#define BackGroundZ 1000.f
+#define PlayerAttackRange Vec2{4, 0}
