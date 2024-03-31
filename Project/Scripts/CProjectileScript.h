@@ -16,6 +16,9 @@ struct Proj_Struct
     Vec2            CurIndex;
     Vec2            TargetIdx;
 
+    Vec3            FrontDir;
+    Vec3            ShootDir;
+
     bool            TargetTile;
 };
 

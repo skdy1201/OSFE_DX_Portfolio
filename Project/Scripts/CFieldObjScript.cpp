@@ -27,7 +27,7 @@ void CFieldObjScript::Move()
 {
 	if(IsPlayer == true)
 	{
-		if(KEY_TAP(KEY::W))
+		if(KEY_TAP(KEY::UP))
 		{
 			Vec2 Index = GetOwnerIdx();
 
@@ -42,7 +42,7 @@ void CFieldObjScript::Move()
 
 		}
 
-		if (KEY_TAP(KEY::S))
+		if (KEY_TAP(KEY::DOWN))
 		{
 			Vec2 Index = GetOwnerIdx();
 
@@ -55,7 +55,7 @@ void CFieldObjScript::Move()
 			SetOwnerIdx(NextIndex);
 		}
 
-			if (KEY_TAP(KEY::A))
+			if (KEY_TAP(KEY::LEFT))
 			{
 				Vec2 Index = GetOwnerIdx();
 
@@ -65,7 +65,7 @@ void CFieldObjScript::Move()
 				SetOwnerIdx(NextIndex);
 			}
 
-			if (KEY_TAP(KEY::D))
+			if (KEY_TAP(KEY::RIGHT))
 			{
 				Vec2 Index = GetOwnerIdx();
 

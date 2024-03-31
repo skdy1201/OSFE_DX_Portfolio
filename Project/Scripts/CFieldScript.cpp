@@ -121,7 +121,20 @@ void CFieldScript::MoveToTile(CGameObject* _Owner, Vec2 _Index)
 
 Vec3 CFieldScript::GetTilePosition(Vec2 _TileIdx)
 {
-	Vec3 Position = TileRegistry[_TileIdx.y][_TileIdx.x]->Transform()->GetRelativePos();
+	Vec3 Position = {};
+
+	if (_TileIdx.y < 4 && _TileIdx.y >= 0)
+		Position = TileRegistry[_TileIdx.y][_TileIdx.x]->Transform()->GetRelativePos();
+	else if (_TileIdx.y >= TileMaxRow)
+	{
+		Position = TileRegistry[TileMaxRow - 1][_TileIdx.x]->Transform()->GetRelativePos();
+		Position.y += (TileY + Tilespacey);
+	}
+	else if (_TileIdx.y < 0)
+	{
+		Position = TileRegistry[0][_TileIdx.x]->Transform()->GetRelativePos();
+		Position.y -= (TileY + Tilespacey);
+	}
 
 	return Position;
 

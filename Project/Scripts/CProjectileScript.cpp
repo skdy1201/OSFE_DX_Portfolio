@@ -39,19 +39,11 @@ void CProjectileScript::FillInfo( float _Speed, int _Dmg, int _Range, float _Lif
 
 void CProjectileScript::Move(float _DT)
 {
-	Vec2 TargetIdx = m_ProjInfo.TargetIdx;
-	Vec2 StartIdx = m_ProjInfo.CurIndex;
+	
+	Vec3 ProjPosition = Transform()->GetRelativePos();
+	ProjPosition += m_ProjInfo.ShootDir * (TileX + Tilespacex)  * (TileY + Tilespacey) * (m_ProjInfo.m_Speed * _DT);
 
-	Vec3 TargetDirection = m_CurField->GetTilePosition(TargetIdx);
-	Vec3 SpawnPostion = Transform()->GetRelativePos();
-
-	TargetDirection -= SpawnPostion;
-	TargetDirection.z = 0;
-	TargetDirection.Normalize();
-
-	SpawnPostion += TargetDirection * (TileX + Tilespacex) * (m_ProjInfo.m_Speed * _DT);
-
-	Transform()->SetRelativePos(SpawnPostion);
+	Transform()->SetRelativePos(ProjPosition);
 
 }
 
@@ -61,7 +53,28 @@ void CProjectileScript::begin()
 	{
 	
 		Vec2 SpawnIdx = m_ProjInfo.CurIndex;
-		Vec2 TargetIdx = SpawnIdx + Vec2{ 1, 0 };
+		Vec2 TargetIdx = SpawnIdx + Vec2{ 1, -1 };
+
+		Vec3 TargetDirection = m_CurField->GetTilePosition(TargetIdx);
+		Vec3 SpawnPostion = Transform()->GetRelativePos();
+
+		m_ProjInfo.FrontDir = Transform()->GetWorldDir(DIR_TYPE::FRONT);
+
+		TargetDirection -= SpawnPostion;
+		TargetDirection.z = 0;
+		TargetDirection.Normalize();
+
+		m_ProjInfo.FrontDir.Dot(TargetDirection);
+
+		float cosTheta = m_ProjInfo.FrontDir.Dot(TargetDirection); // cos(еш)
+		float angle = acos(cosTheta); // еш
+
+		Vec3 vRot = Transform()->GetRelativeRotation();
+		vRot.z += -(angle / 2);
+
+		Transform()->SetRelativeRotation(vRot);
+
+		m_ProjInfo.ShootDir = TargetDirection;
 		FillInfo(1.0f, 50, 3, 1, SpawnIdx, TargetIdx, false);
 	}
 }
