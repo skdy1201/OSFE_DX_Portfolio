@@ -90,4 +90,9 @@ void CEngine::DebugFunctionCheck()
 	{
 		CRenderMgr::GetInst()->IsDebugPosition() ? CRenderMgr::GetInst()->SetDebugPosition(false) : CRenderMgr::GetInst()->SetDebugPosition(true);		
 	}
+
+	if (KEY_TAP(KEY::I))
+	{
+		CRenderMgr::GetInst()->IsDebShape() ? CRenderMgr::GetInst()->SetDebShape(false) : CRenderMgr::GetInst()->SetDebShape(true);
+	}
 }

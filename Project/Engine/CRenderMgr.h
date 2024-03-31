@@ -42,6 +42,9 @@ public:
     void SetDebugPosition(bool _OnOff) { m_DebugPosition = _OnOff; }
     bool IsDebugPosition() { return m_DebugPosition ; }
 
+    void SetDebShape(bool Change) { m_DebShape = Change; }
+    bool IsDebShape() { return m_DebShape; }
+
     void RegisterLight2D(CLight2D* _Light2D) { m_vecLight2D.push_back(_Light2D); }
 
     void CopyRenderTargetToPostProcessTarget();
