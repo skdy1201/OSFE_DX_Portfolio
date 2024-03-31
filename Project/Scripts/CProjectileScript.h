@@ -44,6 +44,9 @@ public:
 
     void FillInfo(float _Speed, int _Dmg, int _Range, float _Life, Vec2 _Index, Vec2 _DirIdx, bool IsTile);
 
+    void SetInfo(Proj_Struct _info) { m_ProjInfo = _info;}
+    Proj_Struct GetInfo() { return m_ProjInfo; };
+
     void Move(float _DT);
 
     virtual void begin() override;
