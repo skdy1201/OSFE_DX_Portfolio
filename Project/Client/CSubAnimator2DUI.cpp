@@ -371,23 +371,7 @@ wstring CSubAnimator2DUI::LoadFile()
 
 wstring CSubAnimator2DUI::MakePath(wstring FullPath)
 {
-	int pathslash = 0;
-	int startidx = 0;
-
-	for (int i = FullPath.size(); i > 0; --i)
-	{
-
-		if (FullPath[i] == '\\')
-			++pathslash;
-
-		if (pathslash == 2)
-		{
-			startidx = i+1;
-			break;
-		}
-	}
-
-	return FullPath.substr(startidx);
+	return FullPath.substr(FullPath.find(L"content") + 7);
 }
 
 wstring CSubAnimator2DUI::MakeKey(wstring FullPath)
