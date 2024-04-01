@@ -48,6 +48,7 @@ public:
     CScript* Clone() = 0;
 public:
     CScript(UINT _ScriptType);
+    CScript(const CScript& _Origin);
     ~CScript();
 };
 

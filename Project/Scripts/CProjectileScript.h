@@ -41,6 +41,7 @@ public:
     void SetInfo(Proj_Struct _info) { m_ProjInfo = _info;}
     Proj_Struct GetInfo() { return m_ProjInfo; };
 
+    void Shoot(CGameObject* Shooter, CFieldScript* CurField, Proj_Struct& Info);
     void Move(float _DT);
 
     virtual void begin() override;

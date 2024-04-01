@@ -32,6 +32,23 @@ CProjectileScript::~CProjectileScript()
 }
 
 
+void CProjectileScript::Shoot(CGameObject* Shooter, CFieldScript* CurField, Proj_Struct& Info)
+{
+	this->SetShooter(Shooter);
+
+	Proj_Struct Projinfo = Info;
+	Projinfo.StartIndex = Shooter->GetScript<CFieldObjScript>()->GetOwnerIdx();
+
+	Vec3 ProjTransform = Shooter->Transform()->GetWorldPos();
+	ProjTransform.x += 10.f;
+	ProjTransform.z = ProjectileZ;
+	this->GetOwner()->Transform()->SetRelativePos(ProjTransform);
+
+	this->SetField(CurField);
+
+	this->SetInfo(Projinfo);
+}
+
 void CProjectileScript::Move(float _DT)
 {
 	

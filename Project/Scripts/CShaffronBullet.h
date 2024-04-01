@@ -6,7 +6,6 @@ class CShaffronBullet :
     public CProjectileScript
 {
 private:
-    
 
 public:
     virtual void begin() override;
