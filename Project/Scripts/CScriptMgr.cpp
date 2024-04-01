@@ -11,6 +11,7 @@
 #include "CProjectileScript.h"
 #include "CPlayerCursorScript.h"
 #include "CMagicScript.h"
+#include "CShaffronBullet.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -24,6 +25,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CProjectileScript");
 	_vec.push_back(L"CPlayerCursorScript");
 	_vec.push_back(L"CMagicScript");
+	_vec.push_back(L"CShaffronBullet");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -48,6 +50,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CPlayerCursorScript;
 	if (L"CMagicScript" == _strScriptName)
 		return new CMagicScript;
+	if (L"CShaffronBullet" == _strScriptName)
+		return new CShaffronBullet;
 	return nullptr;
 }
 
@@ -84,6 +88,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::MAGICSCRIPT:
 		return new CMagicScript;
+		break;
+	case (UINT)SCRIPT_TYPE::SHAFFRONBULLET:
+		return new CShaffronBullet;
 		break;
 	}
 	return nullptr;
@@ -131,6 +138,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::MAGICSCRIPT:
 		return L"CMagicScript";
+		break;
+
+	case SCRIPT_TYPE::SHAFFRONBULLET:
+		return L"CShaffronBullet";
 		break;
 
 	}

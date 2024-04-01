@@ -89,15 +89,18 @@ void CFieldObjScript::Shoot()
 
 		CProjectileScript* pProjScript = GameObj->GetScript<CProjectileScript>();
 		pProjScript->SetShooter(m_Owner);
-
 		CFieldScript* pFieldScript = this->GetField();
+
+		Proj_Struct Projinfo = pProjScript->GetInfo();
+		Projinfo.StartIndex = this->CurFieldIdx;
+		pProjScript->SetInfo(Projinfo);
+
 
 		Vec3 ProjTransform = m_Owner->Transform()->GetWorldPos();
 		ProjTransform.x += 10.f;
 		ProjTransform.z = ProjectileZ;
 		GameObj->Transform()->SetRelativePos(ProjTransform);
 
-		pProjScript->SetIndex(this->CurFieldIdx);
 		pProjScript->SetField(pFieldScript);
 
 		GamePlayStatic::SpawnGameObject(GameObj, 0);
