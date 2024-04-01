@@ -5,7 +5,6 @@
 
 enum class STATE_TYPE
 {
-	TEST,
 	END,
 };
 
@@ -21,3 +20,4 @@ public:
 	static CState* GetState(UINT _iStateType);
 	static const wchar_t* GetStateName(CState* _pState);
 };
+

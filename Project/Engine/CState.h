@@ -34,8 +34,11 @@ protected:
 public:
     CLONE_DISABLE(CState);
 
-    CState();
+    CState(UINT _StateType);
     ~CState();
 
     friend class CFSM;
 };
+
+// begin 할때 change entry 같은 상태를 넣어라
+// 현재 구조는 무조건 entry가 들어가야 한다.
