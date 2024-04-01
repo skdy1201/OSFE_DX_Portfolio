@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CCollider2D.h"
 
+#include "CRenderMgr.h"
 #include "CTransform.h"
 #include "CScript.h"
 
@@ -9,7 +10,7 @@ CCollider2D::CCollider2D()
 	, m_CollisionCount(0)
 	, m_bAbsolute(false)
 	, m_Type(COLLIDER2D_TYPE::RECT)
-	, m_bDrawDebug()
+	, m_bDrawDebug(true)
 {
 }
 
@@ -51,8 +52,8 @@ void CCollider2D::finaltick()
 		m_matColWorld *= matObjWorld;
 	}	
 
-	if (m_bDrawDebug == false)
-		return;
+	if(CRenderMgr::GetInst()->IsDebShape() == false)
+	return;
 
 	// 충돌중이면 Red, 충돌하고 있지 않으면 Green
 	if (0 == m_CollisionCount)
