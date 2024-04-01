@@ -6,3 +6,5 @@ CTileScript
 CFieldScript
 CFieldObjScript
 CProjectileScript
+CPlayerCursorScript
+CMagicScript

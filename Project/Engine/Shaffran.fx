@@ -37,7 +37,7 @@ VS_OUT VS_ShaffranFX(VS_IN _in)
 
 float4 PS_ShaffranFX(VS_OUT _in) : SV_Target
 {
-    float4 vColor = float4(1.f, 0.f, 1.f, 1.f);
+    float4 vOutColor = float4(1.f, 0.f, 1.f, 1.f);
 
 
     //인호 코드
@@ -53,26 +53,33 @@ float4 PS_ShaffranFX(VS_OUT _in) : SV_Target
 	   // }
     //}
 
-    if (g_btex_0)
-    {
-        vColor = g_tex_0.Sample(g_sam_1, _in.vUV);
-        
-        float sum = vColor.r + vColor.g + vColor.b;
+    vOutColor = g_tex_0.Sample(g_sam_1, _in.vUV);
 
-        if (sum < 2.8f)
+    // 부분이 나뉘어서 파라미터를 두개줌
+    
+
+    if ((vOutColor.r <= 1.f)
+      && (vOutColor.g <= 1.f)
+        && (vOutColor.b < 1.f))
+    {
+        if (vOutColor.b == 0.f)
         {
-            vColor.rgb += inputColor.rgb;
+            vOutColor.rgb += g_vec4_0.rgb;
+        }
+        else
+        {
+            vOutColor.rgb *= g_vec4_1.rgb;
         }
     }
 
 
-    if (0.01 > vColor.a)
+    if (0.01 > vOutColor.a)
     {
 	    discard;
     }
 
 
-    return vColor;
+    return vOutColor;
 
 }
 

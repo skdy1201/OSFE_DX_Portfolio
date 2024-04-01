@@ -37,11 +37,14 @@
     <ClInclude Include="CProjectileScript.h">
       <Filter>02. Scripts\Projectile</Filter>
     </ClInclude>
-    <ClInclude Include="CTest.h">
-      <Filter>08. States</Filter>
-    </ClInclude>
     <ClInclude Include="CStateMgr.h">
       <Filter>ScriptMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerCursorScript.h">
+      <Filter>02. Scripts\PlayerModule</Filter>
+    </ClInclude>
+    <ClInclude Include="CMagicScript.h">
+      <Filter>02. Scripts\Magic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -78,11 +81,14 @@
     <ClCompile Include="CProjectileScript.cpp">
       <Filter>02. Scripts\Projectile</Filter>
     </ClCompile>
-    <ClCompile Include="CTest.cpp">
-      <Filter>08. States</Filter>
-    </ClCompile>
     <ClCompile Include="CStateMgr.cpp">
       <Filter>ScriptMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerCursorScript.cpp">
+      <Filter>02. Scripts\PlayerModule</Filter>
+    </ClCompile>
+    <ClCompile Include="CMagicScript.cpp">
+      <Filter>02. Scripts\Magic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +118,12 @@
     </Filter>
     <Filter Include="08. States">
       <UniqueIdentifier>{6cb957da-fd9a-456f-ad00-45ea75aaa3fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\PlayerModule">
+      <UniqueIdentifier>{14c98dc5-cbef-401b-b224-a357f9d5d0af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\Magic">
+      <UniqueIdentifier>{0c60bb3d-9562-402e-8cb5-c79f9811179a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

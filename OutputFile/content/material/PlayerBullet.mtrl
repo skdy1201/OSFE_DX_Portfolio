@@ -1,5 +1,5 @@
 MtrlConst
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.26 0 0.9 1 1 0 10 0 0 0 0 0 0 0 0 
 1 0 0 0 
 0 1 0 0 
 0 0 1 0 
@@ -17,13 +17,14 @@ MtrlConst
 0 0 1 0 
 0 0 0 1 
  
-1 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 
 
 Scalar Param
-1
+2
 12
-InputColor
-
+input param
+13
+input param2
 Tex Param
 1
 texture\Player\BasicBullet.png

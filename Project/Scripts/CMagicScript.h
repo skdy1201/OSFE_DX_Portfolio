@@ -28,7 +28,7 @@ struct Magic_Info
 	int				TotalHit;
 
 	CGameObject*	Caster;
-	vector<Vec2>	CastRange; // 발동하는 idx 들을 담는 벡터
+	vector<Vec2>	CastRange; // 발동하는 idx 들을 담는 벡터. 시작 위치를 무조건 첫번째에 넣자
 
 	//buff 구조체 추가 예정. 시스템이 구현된다면
 	// 설명카드 추가 가능성 string 부분
@@ -45,11 +45,14 @@ private:
 	Magic_Info				m_MagicInfo;
 	vector<vector<bool>>	MagicField;
 
+
 public:
 
 	void Set_MagicInfo(Magic_Info _NewInfo) { m_MagicInfo = _NewInfo; }
 	Magic_Info Get_MagicInfo() { return m_MagicInfo; }
 
+	void SetMagicField();
+	vector<vector<bool>>& CalculateRange(Vec2 _StartIdx);
 	virtual void Cast() {};
 
 	virtual void begin() override;

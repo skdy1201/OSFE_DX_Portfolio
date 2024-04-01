@@ -11870,7 +11870,8 @@ static bool ImGui::NavScoreItem(ImGuiNavItemData* result)
     const ImGuiDir move_dir = g.NavMoveDir;
 #if IMGUI_DEBUG_NAV_SCORING
     char buf[200];
-    if (g.IO.KeyCtrl) // Hold CTRL to preview score in matching quadrant. CTRL+Arrow to rotate.
+    if (g.IO.KeyCtrl) // Hold CTRL to preview score in matching quadrant. CTRL+Arrow to 
+        .
     {
         if (quadrant == move_dir)
         {

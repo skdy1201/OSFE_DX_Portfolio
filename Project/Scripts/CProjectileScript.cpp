@@ -74,13 +74,13 @@ void CProjectileScript::begin()
 
 		Vec3 vRot = Transform()->GetRelativeRotation();
 
-			/*대각선일때 활성화 시키자
-		 *vRot.z += -(angle / 2);*/
+		//대각선일때 활성화 시키자
+		// vRot.z += -(angle / 2);
 
 		Transform()->SetRelativeRotation(vRot);
 
 		m_ProjInfo.ShootDir = TargetDirection;
-		FillInfo(1.0f, 50, 3, 1, SpawnIdx, TargetIdx, false);
+		FillInfo(0.3f, 50, 3, 1, SpawnIdx, TargetIdx, false);
 	}
 }
 

@@ -1,0 +1,19 @@
+PlayerCursor
+0
+0
+0 0 0
+400 400 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\AimCursor.mtrl
+0
+material\AimCursor.mtrl
+15
+1
+CPlayerCursorScript
+0

@@ -32,10 +32,28 @@ CMagicScript::CMagicScript(const CMagicScript& _Origin)
 
 CMagicScript::~CMagicScript()
 {
+	
+}
+
+void CMagicScript::SetMagicField()
+{
+	for(int i = 0; i < m_MagicInfo.CastRange.size(); ++i)
+	{
+		Vec2 TileIdx = m_MagicInfo.CastRange[i];
+
+		MagicField[TileIdx.x][TileIdx.y] = true;
+	}
+}
+
+vector<vector<bool>>& CMagicScript::CalculateRange(Vec2 _StartIdx)
+{
+	vector<vector<bool>> temp;
+	return temp;
 }
 
 void CMagicScript::begin()
 {
+	SetMagicField();
 }
 
 void CMagicScript::tick()
