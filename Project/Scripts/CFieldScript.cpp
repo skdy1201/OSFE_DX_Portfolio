@@ -51,6 +51,8 @@ void CFieldScript::tick()
 
 }
 
+
+
 void CFieldScript::SpawnTile(int Row, int Col)
 {
 	Ptr<CPrefab> Bprefab = CAssetMgr::GetInst()->Load<CPrefab>(BTILEPrefabKey, BTILEPrefabKey);
@@ -76,7 +78,9 @@ void CFieldScript::SpawnTile(int Row, int Col)
 
 			CTileScript* pScript = GameObj->GetScript<CTileScript>();
 			pScript ->SetTilePosition(i, j);
+
 			GamePlayStatic::SpawnGameObject(GameObj, 0);
+
 			this->GetOwner()->AddChild(GameObj);
 			TileRegistry[i][j] = GameObj;
 
@@ -90,26 +94,47 @@ void CFieldScript::SpawnTile(int Row, int Col)
 
 void CFieldScript::SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey)
 {
-	Vec3 SpawnPosition;
-	Ptr<CPrefab> prefab = CAssetMgr::GetInst()->Load<CPrefab>(_prefabkey, _prefabkey);
-	CGameObject* GameObj;
-	GameObj = prefab->Instantiate();
+	//프리팹 받아두기
+	CGameObject* GameObj = this->LinkPrefabtoObj(_prefabkey);
 
+	// 위치 선정
+	SetObjPosinTile(TileIndex, GameObj);
 
-	SpawnPosition = TileRegistry[TileIndex.y][TileIndex.x]->Transform()->GetRelativePos();
-	SpawnPosition.z = PlayerZ;
-
-	GameObj->Transform()->SetRelativePos(SpawnPosition);
-	GamePlayStatic::SpawnGameObject(GameObj, 0);
+	// Obj의 Script를 받아둔다.
 	CFieldObjScript* pScript = GameObj->GetScript<CFieldObjScript>();
 	pScript->SetOwnerIdx(Vec2(TileIndex.x, TileIndex.y));
 	pScript->SetPlayer(true);
 	pScript->SetOwner(GameObj);
-	CurFieldMember.push_back(GameObj);
 	pScript->SetField(this);
 
+	//외부 설정(Field 내에서 해당 obj에 해야 하는 일
+	SetFObjAboutField(GameObj);
 
-	this->GetOwner()->AddChild(GameObj);
+	GamePlayStatic::SpawnGameObject(GameObj, 0);
+}
+
+CGameObject* CFieldScript::LinkPrefabtoObj(wstring namekey)
+{
+	Ptr<CPrefab> prefab = CAssetMgr::GetInst()->Load<CPrefab>(namekey, namekey);
+	CGameObject* GameObj;
+	GameObj = prefab->Instantiate();
+
+	return GameObj;
+}
+
+void CFieldScript::SetObjPosinTile(Vec2 TileIndex, CGameObject* Obj)
+{
+	Vec3 SpawnPosition;
+	SpawnPosition = TileRegistry[TileIndex.y][TileIndex.x]->Transform()->GetRelativePos();
+	SpawnPosition.z = PlayerZ;
+	Obj->Transform()->SetRelativePos(SpawnPosition);
+
+}
+
+void CFieldScript::SetFObjAboutField(CGameObject* Object)
+{
+	this->GetOwner()->AddChild(Object);
+	CurFieldMember.push_back(Object);
 }
 
 //Fieldobj 전용 함수로 이름 변경예정

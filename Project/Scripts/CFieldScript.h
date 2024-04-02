@@ -17,6 +17,11 @@ public:
 	vector<CGameObject*> CurFieldMember;
 
 public:
+	CGameObject* LinkPrefabtoObj(wstring namekey);
+	void SetObjPosinTile(Vec2 TileIndex , CGameObject* Obj);
+	void SetFObjAboutField(CGameObject* Object);
+
+public:
 	void SpawnTile(int Row, int Col);
 	void SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey);
 
