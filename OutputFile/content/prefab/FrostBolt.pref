@@ -1,0 +1,47 @@
+FrostBolt
+0
+0
+0 0 0
+130 20 1
+0 0 0
+1
+1
+0 0 0
+100 75 1
+1
+0
+3
+1
+FrostBlast
+3
+0 0
+0.333333 1
+0 0
+0.333333 1
+0.09
+0.333333 0
+0.333333 1
+0 0
+0.333333 1
+0.09
+0.666667 0
+0.333333 1
+0 0
+0.333333 1
+0.09
+1
+FrostboltAtlas.png
+0
+\texture\magic\FrostboltAtlas.png
+9
+1
+RectMesh
+1
+1
+material\IceBlastShader.mtrl
+0
+material\IceBlastShader.mtrl
+15
+1
+CFrostBolt
+0

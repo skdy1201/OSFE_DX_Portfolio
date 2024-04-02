@@ -1,14 +1,15 @@
 #include "pch.h"
 #include "CFieldObjScript.h"
 #include "CFieldScript.h"
+#include "CMagic.h"
 
 #include "CProjectileScript.h"
 #include "CPlayerCursorScript.h"
-
+#include "FrostBoltMagic.h"
 
 CFieldObjScript::CFieldObjScript()
 	: CScript((UINT)SCRIPT_TYPE::FIELDOBJSCRIPT)
-	, m_Health{}
+	, m_status{}
 	, IsPlayer(true)
 
 {
@@ -75,6 +76,13 @@ void CFieldObjScript::Move()
 
 			}
 
+
+			if(KEY_TAP(KEY::Q))
+			{
+				FrostBoltMagic* bolt = new FrostBoltMagic;
+				bolt->SetCaster(this->m_Owner);
+				bolt->cast(this->GetOwnerIdx()- Vec2{4, 0});
+			}
 	}
 }
 
@@ -96,6 +104,13 @@ void CFieldObjScript::Shoot()
 	}
 }
 
+void CFieldObjScript::Cast()
+{
+	if(IsPlayer == true)
+	{
+		
+	}
+}
 
 
 void CFieldObjScript::begin()

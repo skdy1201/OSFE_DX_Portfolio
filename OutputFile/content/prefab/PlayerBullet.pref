@@ -2,9 +2,14 @@ PlayerBullet
 0
 0
 0 0 0
-200 200 1
+360 360 1
 0 0 0
 1
+1
+0 0 0
+40 20 1
+0
+0
 9
 1
 RectMesh
@@ -15,5 +20,5 @@ material\PlayerBullet.mtrl
 material\PlayerBullet.mtrl
 15
 1
-CProjectileScript
+CShaffronBullet
 0

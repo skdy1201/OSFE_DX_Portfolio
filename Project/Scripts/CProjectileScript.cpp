@@ -32,12 +32,25 @@ CProjectileScript::~CProjectileScript()
 }
 
 
+Proj_Struct::Proj_Struct()
+{
+	m_Speed =  1.f;
+	Damage = 1.f;
+	MaxRange = -1;
+
+	LifeCount = -1;
+	LifeTime = 10.f;
+
+
+	TargetTile = false;
+}
+
 void CProjectileScript::Shoot(CGameObject* Shooter, CFieldScript* CurField, Proj_Struct& Info)
 {
 	this->SetShooter(Shooter);
 
 	Proj_Struct Projinfo = Info;
-	Projinfo.StartIndex = Shooter->GetScript<CFieldObjScript>()->GetOwnerIdx();
+	this->SetStartIdx(Shooter->GetScript<CFieldObjScript>()->GetOwnerIdx());
 
 	Vec3 ProjTransform = Shooter->Transform()->GetWorldPos();
 	ProjTransform.x += 10.f;

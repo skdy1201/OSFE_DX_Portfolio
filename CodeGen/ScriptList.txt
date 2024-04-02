@@ -7,4 +7,5 @@ CFieldScript
 CFieldObjScript
 CProjectileScript
 CPlayerCursorScript
-CMagicScript
+CShaffronBullet
+CFrostBolt

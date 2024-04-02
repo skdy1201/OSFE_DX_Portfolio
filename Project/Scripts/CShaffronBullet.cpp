@@ -30,7 +30,7 @@ void CShaffronBullet::begin()
 		Info.TargetTile = false;
 		Info.m_Speed = 0.45f;
 
-		Vec2 SpawnIdx = Info.StartIndex;
+		Vec2 SpawnIdx = StartIndex;
 		Vec2 TargetIdx = SpawnIdx + Vec2{ 1, 0 };
 
 		Vec3 TargetDirection = this->GetField()->GetTilePosition(TargetIdx);

@@ -549,5 +549,8 @@
     <FxCompile Include="Shaffran.fx">
       <Filter>ShaderCode\Render\Projectile</Filter>
     </FxCompile>
+    <FxCompile Include="ProjStd.fx">
+      <Filter>ShaderCode\Render\Projectile</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

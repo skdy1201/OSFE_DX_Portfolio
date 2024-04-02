@@ -1,0 +1,44 @@
+MtrlConst
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+1 0 0 0 
+0 1 0 0 
+0 0 1 0 
+0 0 0 1 
+ 1 0 0 0 
+0 1 0 0 
+0 0 1 0 
+0 0 0 1 
+ 1 0 0 0 
+0 1 0 0 
+0 0 1 0 
+0 0 0 1 
+ 1 0 0 0 
+0 1 0 0 
+0 0 1 0 
+0 0 0 1 
+ 
+0 0 0 0 0 0 0 0 0 0 
+
+Scalar Param
+0
+Tex Param
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+
+1
+ProjDefaultShader
+1

@@ -23,6 +23,7 @@ public:
 	void MoveToTile(CGameObject* _Owner, Vec2 _Index , float _PositionZ);
 
 	Vec3 GetTilePosition(Vec2& _TileIdx);
+	Vec3 GetTilePositionToMagic(Vec2& _TileIdx);
 
 
 public:

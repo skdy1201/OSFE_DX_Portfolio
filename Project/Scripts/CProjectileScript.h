@@ -14,24 +14,36 @@ struct Proj_Struct
     float           LifeCount;
     float           LifeTime;
 
-    Vec2            StartIndex;
-    Vec2            TargetIdx;
 
     Vec3            FrontDir;
     Vec3            ShootDir;
 
     bool            TargetTile;
+
+public:
+    Proj_Struct();
+
 };
 
 class CProjectileScript :
     public CScript
 {
-private:
+protected:
     CGameObject*    m_Shooter;
     CFieldScript*    m_CurField;
     Proj_Struct     m_ProjInfo;
 
+
+    Vec2            StartIndex;
+    Vec2            TargetIdx;
+
 public:
+    void SetStartIdx(Vec2 _index) { StartIndex = _index; }
+    Vec2 GetStartIdx() { return TargetIdx; }
+
+    void SetTargetIdx(Vec2 _index) { TargetIdx = _index; }
+    Vec2 GetTargetIdx() { return TargetIdx; }
+
     void SetShooter(CGameObject* Shooter) { m_Shooter = Shooter; }
     CGameObject* GetShooter() { return m_Shooter; }
 

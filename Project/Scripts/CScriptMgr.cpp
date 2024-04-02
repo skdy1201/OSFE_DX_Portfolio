@@ -10,8 +10,8 @@
 #include "CFieldObjScript.h"
 #include "CProjectileScript.h"
 #include "CPlayerCursorScript.h"
-#include "CMagicScript.h"
 #include "CShaffronBullet.h"
+#include "CFrostBolt.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -24,8 +24,8 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CFieldObjScript");
 	_vec.push_back(L"CProjectileScript");
 	_vec.push_back(L"CPlayerCursorScript");
-	_vec.push_back(L"CMagicScript");
 	_vec.push_back(L"CShaffronBullet");
+	_vec.push_back(L"CFrostBolt");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -48,10 +48,10 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CProjectileScript;
 	if (L"CPlayerCursorScript" == _strScriptName)
 		return new CPlayerCursorScript;
-	if (L"CMagicScript" == _strScriptName)
-		return new CMagicScript;
 	if (L"CShaffronBullet" == _strScriptName)
 		return new CShaffronBullet;
+	if (L"CFrostBolt" == _strScriptName)
+		return new CFrostBolt;
 	return nullptr;
 }
 
@@ -86,11 +86,11 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::PLAYERCURSORSCRIPT:
 		return new CPlayerCursorScript;
 		break;
-	case (UINT)SCRIPT_TYPE::MAGICSCRIPT:
-		return new CMagicScript;
-		break;
 	case (UINT)SCRIPT_TYPE::SHAFFRONBULLET:
 		return new CShaffronBullet;
+		break;
+	case (UINT)SCRIPT_TYPE::FROSTBOLT:
+		return new CFrostBolt;
 		break;
 	}
 	return nullptr;
@@ -136,12 +136,12 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 		return L"CPlayerCursorScript";
 		break;
 
-	case SCRIPT_TYPE::MAGICSCRIPT:
-		return L"CMagicScript";
-		break;
-
 	case SCRIPT_TYPE::SHAFFRONBULLET:
 		return L"CShaffronBullet";
+		break;
+
+	case SCRIPT_TYPE::FROSTBOLT:
+		return L"CFrostBolt";
 		break;
 
 	}

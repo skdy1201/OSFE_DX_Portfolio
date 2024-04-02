@@ -145,3 +145,25 @@ Vec3 CFieldScript::GetTilePosition(Vec2& _TileIdx)
 	return Position;
 
 }
+
+Vec3 CFieldScript::GetTilePositionToMagic(Vec2& _TileIdx)
+{
+	Vec3 Position = {};
+
+	if (_TileIdx.y < 4 && _TileIdx.y >= 0)
+		Position = TileRegistry[_TileIdx.y][_TileIdx.x+4]->Transform()->GetRelativePos();
+	else if (_TileIdx.y >= TileMaxRow)
+	{
+		Position = TileRegistry[TileMaxRow - 1][_TileIdx.x+4]->Transform()->GetRelativePos();
+		Position.y += (TileY + Tilespacey);
+		_TileIdx.y = TileMaxRow - 1;
+	}
+	else if (_TileIdx.y < 0)
+	{
+		Position = TileRegistry[0][_TileIdx.x+4]->Transform()->GetRelativePos();
+		Position.y -= (TileY + Tilespacey);
+		_TileIdx.y = 0;
+	}
+
+	return Position;
+}

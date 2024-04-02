@@ -19,7 +19,15 @@
 
 #define CursorZ  0.f
 #define ProjectileZ 300.f
+
 #define PlayerZ 500.f
 #define TileZ 600.f
 #define BackGroundZ 1000.f
 #define PlayerAttackRange Vec2{4, 0}
+
+#define BlueMagicLayer 9
+#define RedMagicLayer 10
+
+#define MagicFieldIndexY 7
+#define MagicFieldIndexX 15
+

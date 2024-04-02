@@ -2,9 +2,10 @@
 
 #include <Engine/CScript.h>
 
-class CFieldScript;
+class CMagic;
 
-struct Health
+class CFieldScript;
+struct Status
 {
 	CGameObject*	Owner;
 	int				HP;
@@ -31,7 +32,7 @@ class CFieldObjScript :
     public CScript
 {
 private:
-	Health	m_Health;
+	Status	m_status;
 
 	CGameObject*		m_Owner;
 	CFieldScript*		m_Field;
@@ -40,9 +41,11 @@ private:
 	Vec2			    CurFieldIdx;
 	
 public:
-	Health& GetHealth() { return m_Health; }
+	Status& GetStatus() { return m_status; }
+	void SetStatus(const Status& _status) { m_status = _status; }
 	void Move();
 	void Shoot();
+	void Cast();
 
 
 	void SetField(CFieldScript* _Field) { m_Field = _Field; }

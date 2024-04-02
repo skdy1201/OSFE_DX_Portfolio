@@ -43,9 +43,16 @@
     <ClInclude Include="CPlayerCursorScript.h">
       <Filter>02. Scripts\PlayerModule</Filter>
     </ClInclude>
-    <ClInclude Include="CMagicScript.h">
-      <Filter>02. Scripts\Magic</Filter>
+    <ClInclude Include="CShaffronBullet.h">
+      <Filter>02. Scripts\Projectile</Filter>
     </ClInclude>
+    <ClInclude Include="CFrostBolt.h">
+      <Filter>02. Scripts\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="CMagic.h">
+      <Filter>03. Magic</Filter>
+    </ClInclude>
+    <ClInclude Include="FrostBoltMagic.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -87,9 +94,16 @@
     <ClCompile Include="CPlayerCursorScript.cpp">
       <Filter>02. Scripts\PlayerModule</Filter>
     </ClCompile>
-    <ClCompile Include="CMagicScript.cpp">
-      <Filter>02. Scripts\Magic</Filter>
+    <ClCompile Include="CShaffronBullet.cpp">
+      <Filter>02. Scripts\Projectile</Filter>
     </ClCompile>
+    <ClCompile Include="CFrostBolt.cpp">
+      <Filter>02. Scripts\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="CMagic.cpp">
+      <Filter>03. Magic</Filter>
+    </ClCompile>
+    <ClCompile Include="FrostBoltMagic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -124,6 +138,9 @@
     </Filter>
     <Filter Include="02. Scripts\Magic">
       <UniqueIdentifier>{0c60bb3d-9562-402e-8cb5-c79f9811179a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Magic">
+      <UniqueIdentifier>{93861677-149a-4676-9852-430f80279d0f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
