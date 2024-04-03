@@ -377,7 +377,7 @@ void CAssetMgr::CreateDefaultMaterial()
 	AddAsset<CMaterial>(L"Std2DMtrl", pMtrl);
 
 	// Parameter	
-	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "Test Param");
+	pMtrl->SetScalarDesc(SCALAR_PARAM::INT_0, "Test Param");
 	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "Output Texture 1");
 
 
@@ -430,8 +430,8 @@ void CAssetMgr::CreateDefaultMaterial()
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
 
 	// Parameter	
-	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "Tile");
-	pMtrl->AddScalarParam(SCALAR_PARAM::VEC4_0, "Tile Current");
+	pMtrl->SetScalarDesc(SCALAR_PARAM::INT_0, "Tile");
+	pMtrl->SetScalarDesc(SCALAR_PARAM::VEC4_0, "Tile Current");
 
 	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "In Tile");
 
@@ -448,8 +448,8 @@ void CAssetMgr::CreateDefaultMaterial()
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
 
 	// Parameter	
-	pMtrl->AddScalarParam(SCALAR_PARAM::INT_0, "Tile");
-	pMtrl->AddScalarParam(SCALAR_PARAM::VEC4_0, "Tile Current");
+	pMtrl->SetScalarDesc(SCALAR_PARAM::INT_0, "Tile");
+	pMtrl->SetScalarDesc(SCALAR_PARAM::VEC4_0, "Tile Current");
 
 	pMtrl->SetTexDesc(TEX_PARAM::TEX_0, "In Tile");
 

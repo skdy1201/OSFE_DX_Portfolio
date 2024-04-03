@@ -24,24 +24,6 @@ CMaterial::~CMaterial()
 {
 }
 
-ofstream& operator<<(ofstream& _fout, tScalarParam _sout)
-{
-	_fout << (int)_sout.Type << endl;
-	_fout << _sout.Desc << endl;
-
-	return _fout;
-}
-ifstream& operator>>(ifstream& _fin, tScalarParam _sin)
-{
-	int num;
-	_fin >> num >>_sin.Desc;
-
-	_sin.Type = (SCALAR_PARAM)num;
-
-	return _fin;
-
-}
-
 
 void CMaterial::SetTexDesc(TEX_PARAM _Param, const string& _desc)
 {
@@ -156,15 +138,15 @@ int CMaterial::Save(const wstring& _strRelativePath)
 
 	fout << "Scalar Param" << endl;
 	// 재질 파라미터 값 저장
-	vector<tScalarParam> temp = this->GetScalarParam();
-	int scalarparamcount = temp.size();
-
-	fout << scalarparamcount << endl;
-
-	for(int i = 0; i < scalarparamcount; ++i)
-	{
-		fout << temp[i];
+	for (int i = 0; i < (int)SCALAR_PARAM::END; i++) {
+		if (m_ScalarParam[i] == "") {
+			fout << EMPTYSYMBOL << endl;
+		}
+		else {
+			fout << m_TexParam[i] << endl;
+		}
 	}
+	fout << endl;
 
 	fout << "Tex Param" << endl;
 
@@ -207,22 +189,13 @@ int CMaterial::Load(const wstring& _strFilePath)
 		if (temp != "" && temp !=" ")break;
 	}
 
-	pFile >> scalarparamcount;
-
-	for(int i = 0; i < scalarparamcount; ++i)
-	{
-		int num;
-		pFile >> num;
-
-		SCALAR_PARAM tempScalar;
-		tempScalar = (SCALAR_PARAM)num;
-
-		string strTemp = "";
-		while (getline(pFile, strTemp)) {
-			if (strTemp != "")break;
+	for (int i = 0; i < (int)SCALAR_PARAM::END; i++) {
+		string t;
+		while (getline(pFile, t))
+		{
+			if (t != "") break;
 		}
-
-		this->AddScalarParam(tempScalar, strTemp);
+		m_ScalarParam[i] = t;
 	}
 
 	while (getline(pFile, temp)) {

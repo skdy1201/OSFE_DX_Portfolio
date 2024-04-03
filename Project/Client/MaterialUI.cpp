@@ -59,19 +59,18 @@ void MaterialUI::render_update()
 
 
 		//Scalar Param get
-		vector<tScalarParam> TargetMtrlScalar = currentMtrl->GetScalarParam();
 
-		if (TargetMtrlScalar.size() > 0)
+		for (size_t i = 0; i < (UINT)SCALAR_PARAM::END; ++i)
 		{
-			for (int j = 0; j < TargetMtrlScalar.size(); ++j)
-			{
-				SCALAR_PARAM tempscalar = TargetMtrlScalar[j].Type;
-				string tempdesc = TargetMtrlScalar[j].Desc;
+			SCALAR_PARAM Type = (SCALAR_PARAM)i;
+			string desc = currentMtrl->GetScalarDesc(Type);
 
-				m_inscalarparamnum.push_back((int)tempscalar);
+			if (desc == "" || desc == EMPTYSYMBOL) {
+				continue;
 			}
-
+			m_inscalarparamnum.push_back((int)i);
 		}
+
 
 		for(int k = 0; k < m_inscalarparamnum.size(); ++k)
 		{
@@ -187,34 +186,39 @@ void MaterialUI::render_update()
 
 
 
-	const vector<tScalarParam>& vecScalarParam = pMtrl->GetScalarParam();
-	for (size_t i = 0; i < vecScalarParam.size(); ++i)
+	for (size_t i = 0; i < (UINT)SCALAR_PARAM::END; ++i)
 	{
-		switch (vecScalarParam[i].Type)
+		SCALAR_PARAM Type = (SCALAR_PARAM)i;
+		string desc = pMtrl->GetScalarDesc(Type);
+
+		if (desc == "" || desc == EMPTYSYMBOL) {
+			continue;
+		}
+		switch (Type)
 		{
 		case SCALAR_PARAM::INT_0:
 		case SCALAR_PARAM::INT_1:
 		case SCALAR_PARAM::INT_2:
 		case SCALAR_PARAM::INT_3:
-			ParamUI::Param_INT((int*)pMtrl->GetScalarParam(vecScalarParam[i].Type), vecScalarParam[i].Desc);
+			ParamUI::Param_INT((int*)pMtrl->GetScalarParam(Type), desc);
 			break;
 		case SCALAR_PARAM::FLOAT_0:
 		case SCALAR_PARAM::FLOAT_1:
 		case SCALAR_PARAM::FLOAT_2:
 		case SCALAR_PARAM::FLOAT_3:
-			ParamUI::Param_FLOAT((float*)pMtrl->GetScalarParam(vecScalarParam[i].Type), vecScalarParam[i].Desc);
+			ParamUI::Param_FLOAT((float*)pMtrl->GetScalarParam(Type), desc);
 			break;
 		case SCALAR_PARAM::VEC2_0:
 		case SCALAR_PARAM::VEC2_1:
 		case SCALAR_PARAM::VEC2_2:
 		case SCALAR_PARAM::VEC2_3:
-			ParamUI::Param_VEC2((Vec2*)pMtrl->GetScalarParam(vecScalarParam[i].Type), vecScalarParam[i].Desc);
+			ParamUI::Param_VEC2((Vec2*)pMtrl->GetScalarParam(Type), desc);
 			break;
 		case SCALAR_PARAM::VEC4_0:
 		case SCALAR_PARAM::VEC4_1:
 		case SCALAR_PARAM::VEC4_2:
 		case SCALAR_PARAM::VEC4_3:
-			ParamUI::Param_VEC4((Vec4*)pMtrl->GetScalarParam(vecScalarParam[i].Type), vecScalarParam[i].Desc);
+			ParamUI::Param_VEC4((Vec4*)pMtrl->GetScalarParam(Type), desc);
 			break;
 		case SCALAR_PARAM::MAT_0:
 		case SCALAR_PARAM::MAT_1:
@@ -347,9 +351,9 @@ void MaterialUI::make_Scalartable(bool* _scalararr, Ptr<CMaterial>& pMtrl)
 			CheckboxscalarKey = MTRL_SCALAR_STRING[i];
 			if(ImGui::Checkbox(CheckboxscalarKey.c_str(), &_scalararr[i]))
 			{
-				if(newscalarparam != nullptr)
+				if (newscalarparam != nullptr && string(newscalarparam) != EMPTYSYMBOL)
 				{
-					pMtrl->AddScalarParam((SCALAR_PARAM)i, newscalarparam);
+					pMtrl->SetScalarDesc((SCALAR_PARAM)i, newscalarparam);
 				}
 			}
 

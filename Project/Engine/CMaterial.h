@@ -4,15 +4,6 @@
 #include "CTexture.h"
 #include "CGraphicsShader.h"
 
-struct tScalarParam
-{
-	SCALAR_PARAM    Type;
-	string          Desc;
-
-	friend ofstream& operator<<(ofstream& _fout, tScalarParam _sout);
-	friend ifstream& operator>>(ifstream& _fin, tScalarParam _sin);
-};
-
 
 class CMaterial :
     public CAsset
@@ -23,7 +14,7 @@ private:
     Ptr<CGraphicsShader>    m_pShader;
 
 	// 재질 파라미터 목록
-	vector<tScalarParam>  m_ScalarParam;
+	string  m_ScalarParam[(UINT)SCALAR_PARAM::END];
 	string               m_TexParam[(UINT)TEX_PARAM::END];
 
 public:
@@ -38,12 +29,11 @@ public:
 	Ptr<CTexture> GetTexParam(TEX_PARAM _ParamType) { return m_arrTex[(UINT)_ParamType]; }
 	
 
-	const vector<tScalarParam>& GetScalarParam() { return  m_ScalarParam; }
-	const tScalarParam& GetSpecificParam(SCALAR_PARAM _TYPE) { return m_ScalarParam[(int)_TYPE]; }
+	const string GetScalarDesc(SCALAR_PARAM _TYPE) { return m_ScalarParam[(int)_TYPE]; }
 	const string GetTexDesc(TEX_PARAM _Param) { return m_TexParam[(int)_Param]; }
 	const string GetTexDesc(int _idx) { return m_TexParam[_idx]; }
 
-	void AddScalarParam(SCALAR_PARAM _Param, const string& _Desc) { m_ScalarParam.push_back(tScalarParam{ _Param , _Desc }); }
+	void SetScalarDesc(SCALAR_PARAM _Param, const string& _Desc) { m_ScalarParam[(int)_Param] = _Desc; }
 	void SetTexDesc(TEX_PARAM _Param, const string& _desc);
 
 	
