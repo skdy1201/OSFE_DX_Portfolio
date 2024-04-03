@@ -21,6 +21,11 @@ CFieldObjScript::CFieldObjScript(const CFieldObjScript& _Origin)
 {
 }
 
+CFieldObjScript::CFieldObjScript(UINT _SCRIPTYPE)
+	:CScript((UINT)_SCRIPTYPE)
+{
+}
+
 CFieldObjScript::~CFieldObjScript()
 {
 }

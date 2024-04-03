@@ -64,6 +64,9 @@
     <ClInclude Include="CSniperMoveState.h">
       <Filter>08. States\SniperState</Filter>
     </ClInclude>
+    <ClInclude Include="CSniperAttackState.h">
+      <Filter>08. States\SniperState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -124,6 +127,9 @@
       <Filter>02. Scripts\Monster</Filter>
     </ClCompile>
     <ClCompile Include="CSniperMoveState.cpp">
+      <Filter>08. States\SniperState</Filter>
+    </ClCompile>
+    <ClCompile Include="CSniperAttackState.cpp">
       <Filter>08. States\SniperState</Filter>
     </ClCompile>
   </ItemGroup>

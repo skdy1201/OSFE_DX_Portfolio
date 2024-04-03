@@ -6,8 +6,9 @@
 
 #include "CFieldObjScript.h"
 
+
 CSniperScript::CSniperScript()
-	: CScript((UINT)SCRIPT_TYPE::SNIPERSCRIPT)
+	: CFieldObjScript((UINT)SCRIPT_TYPE::SNIPERSCRIPT)
 	, m_MoveCooltime(0.f)
 	, MoveDir(0)
 {
@@ -24,10 +25,9 @@ void CSniperScript::begin()
 
 		StateMachine()->AddBlackboardData(L"MoveCooldown", BB_DATA::FLOAT, &m_MoveCooltime);
 		StateMachine()->AddBlackboardData(L"Current Row", BB_DATA::INT, &CurRow);
+		StateMachine()->AddBlackboardData((L"Move Dir"), BB_DATA::INT, &MoveDir);
 
 		StateMachine()->AddBlackboardData(L"Owner", BB_DATA::OBJECT, this->GetOwner());
-
-		StateMachine()->AddBlackboardData((L"Move Dir"), BB_DATA::INT, &MoveDir);
 
 		CGameObject* pPlayer = CLevelMgr::GetInst()->GetCurrentLevel()->FindObjectByName(L"Player");
 		if (pPlayer)

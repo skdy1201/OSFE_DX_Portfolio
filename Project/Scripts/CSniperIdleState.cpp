@@ -26,12 +26,11 @@ void CSniperIdleState::finaltick()
 
 	float MoveTimer = *(float*)GetBlackboardData(L"MoveCooldown");
 
-	if(PlayerRow != SniperRow && MoveTimer >= 3.f)
+	if(PlayerRow != SniperRow && MoveTimer >= 2.f)
 	{
 		int* movedir = (int*)GetBlackboardData(L"Move Dir");
-		
 
-		if(PlayerRow-SniperRow > 0)
+		 if(PlayerRow-SniperRow > 0)
 		{
 			*movedir = 1;
 			ChangeState(L"CSniperMoveState");
@@ -44,11 +43,11 @@ void CSniperIdleState::finaltick()
 		}
 	}
 
+	if(PlayerRow == SniperRow)
+	{
+		ChangeState(L"CSniperAttackState");
+	}
 
-	//타이머에 따라 플레이어가 자신과 같은 행이 아니라면 이동한다.
-	
-
-	
 }
 
 void CSniperIdleState::Exit()

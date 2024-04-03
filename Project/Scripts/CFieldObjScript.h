@@ -5,41 +5,42 @@
 class CMagic;
 
 class CFieldScript;
+
 struct Status
 {
-	CGameObject*	Owner;
-	int				HP;
-	int				MP;
+	CGameObject* Owner;
+	int HP;
+	int MP;
 
-	int				Current_HP;
-	int				Current_MP;
+	int Current_HP;
+	int Current_MP;
 
-	int				SpellPower; // 주문력
+	int SpellPower; // 주문력
 
-	int				Defense; // 방어력
-	int				Shield; // 쉴드
+	int Defense; // 방어력
+	int Shield; // 쉴드
 
-	float			m_Speed = 500.f; // 속도
+	float m_Speed = 500.f; // 속도
 
-	int				Level;
-	int				Exp;
-	int				RewardExp; // 처치시 경험치
+	int Level;
+	int Exp;
+	int RewardExp; // 처치시 경험치
 
-	int				Camp; // 진영
+	int Camp; // 진영
 };
 
 class CFieldObjScript :
-    public CScript
+	public CScript
 {
 private:
-	Status	m_status;
+	Status m_status;
 
-	CGameObject*		m_Owner;
-	CFieldScript*		m_Field;
-	bool				IsPlayer;
+	CGameObject* m_Owner;
+	CFieldScript* m_Field;
+	bool IsPlayer;
 
-	Vec2			    CurFieldIdx;
-	
+	Vec2 CurFieldIdx;
+
 public:
 	Status& GetStatus() { return m_status; }
 	void SetStatus(const Status& _status) { m_status = _status; }
@@ -66,6 +67,6 @@ public:
 	CLONE(CFieldObjScript);
 	CFieldObjScript();
 	CFieldObjScript(const CFieldObjScript& _Origin);
+	CFieldObjScript(UINT _SCRIPTYPE);
 	~CFieldObjScript();
 };
-

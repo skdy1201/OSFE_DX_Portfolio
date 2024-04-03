@@ -217,12 +217,12 @@ void CCreateTempLevel::CreateTempLevel()
 
 	pObj->StateMachine()->SetFSM(CAssetMgr::GetInst()->FindAsset<CFSM>(L"NormalMonsterFSM"));
 
-	pTempLevel->AddObject(pObj, L"Monster", false);
+	pTempLevel->AddObject(pObj, L"Monster", false);*/
 
 
 	Ptr<CPrefab> temp = CAssetMgr::GetInst()->Load<CPrefab>(FieldPrefabKey, FieldPrefabKey);
 	pObj = temp->Instantiate();
-	pTempLevel->AddObject(pObj, 0, true);*/
+	pTempLevel->AddObject(pObj, 0, true);
 	
 
 

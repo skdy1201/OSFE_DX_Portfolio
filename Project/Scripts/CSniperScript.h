@@ -2,10 +2,12 @@
 
 #include <Engine/CScript.h>
 
+#include "CFieldObjScript.h"
+
 class CFieldObjScript;
 
 class CSniperScript :
-    public CScript
+    public CFieldObjScript
 {
 private:
     float            m_MoveCooltime;
