@@ -1,11 +1,6 @@
 #pragma once
 
 #include <Engine/CScript.h>
-#include <Engine/components.h>
-
-
-
-
 enum class TileState
 {
 	Breaking,

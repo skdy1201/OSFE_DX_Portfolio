@@ -2,8 +2,7 @@
 #include "CSniperAttackState.h"
 
 #include <Engine/CAnimator2D.h>
-
-#include "../Engine/CRenderComponent.h"
+#include <Engine/CAnim.h>
 
 CSniperAttackState::CSniperAttackState()
 	: CState((UINT)STATE_TYPE::SNIPERATTACKSTATE)

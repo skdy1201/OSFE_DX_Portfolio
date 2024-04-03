@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Engine/CScript.h>
 
 #include "CFieldObjScript.h"
 

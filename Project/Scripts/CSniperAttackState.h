@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Engine/CAnim.h>
 #include <Engine/CState.h>
 
 class CSniperAttackState :
