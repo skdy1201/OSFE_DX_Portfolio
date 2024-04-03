@@ -10,7 +10,7 @@ class CSniperScript :
 private:
     float            m_MoveCooltime;
     int              CurRow;
-
+    int             MoveDir; // 1 :: down, 2 :: up
     CFieldObjScript* OwnerFojScript;
 
 public:

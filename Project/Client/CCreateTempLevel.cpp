@@ -167,7 +167,7 @@ void CCreateTempLevel::CreateTempLevel()
 	pTempLevel->AddObject(pObj, L"Background", false);
 
 	// Player Object 持失
-	pObj = new CGameObject;
+	/*pObj = new CGameObject;
 	pObj->SetName(L"Player");
 
 	pObj->AddComponent(new CTransform);
@@ -191,11 +191,11 @@ void CCreateTempLevel::CreateTempLevel()
 
 	pObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, CAssetMgr::GetInst()->Load<CTexture>(L"texture\\Character.png", L"texture\\Character.png"));
 
-	pTempLevel->AddObject(pObj, L"Player", false);
+	pTempLevel->AddObject(pObj, L"Player", false);*/
 
 
 	// Monster Object 持失
-	pObj = new CGameObject;
+	/*pObj = new CGameObject;
 	pObj->SetName(L"Monster");
 
 	pObj->AddComponent(new CTransform);
@@ -222,7 +222,7 @@ void CCreateTempLevel::CreateTempLevel()
 
 	Ptr<CPrefab> temp = CAssetMgr::GetInst()->Load<CPrefab>(FieldPrefabKey, FieldPrefabKey);
 	pObj = temp->Instantiate();
-	pTempLevel->AddObject(pObj, 0, true);
+	pTempLevel->AddObject(pObj, 0, true);*/
 	
 
 

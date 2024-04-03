@@ -6,6 +6,7 @@
 enum class STATE_TYPE
 {
 	SNIPERIDLESTATE,
+	SNIPERMOVESTATE,
 	END,
 };
 

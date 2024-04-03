@@ -13,6 +13,10 @@ private:
     CGameObject*     Player;
     CFieldObjScript* PlayerScript;
 
+    CFieldObjScript* SniperScript;
+
+
+
 
  public:
 

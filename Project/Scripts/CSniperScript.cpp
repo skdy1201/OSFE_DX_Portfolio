@@ -7,10 +7,9 @@
 #include "CFieldObjScript.h"
 
 CSniperScript::CSniperScript()
-	: CScript((UINT)STATE_TYPE::SNIPERIDLESTATE)
+	: CScript((UINT)SCRIPT_TYPE::SNIPERSCRIPT)
 	, m_MoveCooltime(0.f)
-	, 
-
+	, MoveDir(0)
 {
 }
 
@@ -22,23 +21,29 @@ void CSniperScript::begin()
 {
 	if (StateMachine())
 	{
+
+		StateMachine()->AddBlackboardData(L"MoveCooldown", BB_DATA::FLOAT, &m_MoveCooltime);
+		StateMachine()->AddBlackboardData(L"Current Row", BB_DATA::INT, &CurRow);
+
+		StateMachine()->AddBlackboardData(L"Owner", BB_DATA::OBJECT, this->GetOwner());
+
+		StateMachine()->AddBlackboardData((L"Move Dir"), BB_DATA::INT, &MoveDir);
+
 		CGameObject* pPlayer = CLevelMgr::GetInst()->GetCurrentLevel()->FindObjectByName(L"Player");
 		if (pPlayer)
 		{
-			StateMachine()->AddBlackboardData(L"TargetObject", BB_DATA::OBJECT, pPlayer);
+			StateMachine()->AddBlackboardData(L"Player", BB_DATA::OBJECT, pPlayer);
 		}
 
 		if (nullptr != StateMachine()->GetFSM())
 		{
-			StateMachine()->GetFSM()->SetState(L"IdleState");
+			StateMachine()->GetFSM()->ChangeState(L"CSniperIdleState");
 		}
 
 	}
 
 	
-
-	StateMachine()->AddBlackboardData(L"MoveCooldown", BB_DATA::FLOAT, &m_MoveCooltime);
-	StateMachine()->AddBlackboardData(L"Current Row", BB_DATA::INT, &CurRow);
+	OwnerFojScript = GetOwner()->GetScript<CFieldObjScript>();
 
 }
 

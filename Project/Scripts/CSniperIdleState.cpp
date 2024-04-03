@@ -4,6 +4,7 @@
 CSniperIdleState::CSniperIdleState()
 	:CState((UINT)STATE_TYPE::SNIPERIDLESTATE)
 
+
 {
 }
 
@@ -13,6 +14,8 @@ CSniperIdleState::~CSniperIdleState()
 
 void CSniperIdleState::Enter()
 {
+	Player = (CGameObject*)GetBlackboardData(L"Player");
+	PlayerScript = Player->GetScript<CFieldObjScript>();
 
 }
 
@@ -23,9 +26,22 @@ void CSniperIdleState::finaltick()
 
 	float MoveTimer = *(float*)GetBlackboardData(L"MoveCooldown");
 
-	if(PlayerRow != SniperRow && MoveTimer == 3.f)
+	if(PlayerRow != SniperRow && MoveTimer >= 3.f)
 	{
-		//ChangeState(L"MoveState");
+		int* movedir = (int*)GetBlackboardData(L"Move Dir");
+		
+
+		if(PlayerRow-SniperRow > 0)
+		{
+			*movedir = 1;
+			ChangeState(L"CSniperMoveState");
+		}
+		else
+		{
+			*movedir = 2;
+			ChangeState(L"CSniperMoveState");
+
+		}
 	}
 
 

@@ -41,7 +41,8 @@ void CFieldScript::LoadFromFile(ifstream& _File)
 void CFieldScript::begin()
 {
 	SpawnTile(MaxTileRow, MaxTileCol);
-	SpawnFieldObj(Vec2{ 5, 2 }, L"prefab\\temptest.pref");
+	SpawnFieldObj(Vec2{ 5, 2 }, L"prefab\\temptest.pref", true);
+	SpawnFieldObj(Vec2{8 , 2 }, L"prefab\\SniperTest.pref" , false);
 
 
 
@@ -93,7 +94,7 @@ void CFieldScript::SpawnTile(int Row, int Col)
 	}
 }
 
-void CFieldScript::SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey)
+void CFieldScript::SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey, bool IsPlayer)
 {
 	//프리팹 받아두기
 	CGameObject* GameObj = nullptr;
@@ -105,12 +106,15 @@ void CFieldScript::SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey)
 	// Obj의 Script를 받아둔다.
 	CFieldObjScript* pScript = GameObj->GetScript<CFieldObjScript>();
 	pScript->SetOwnerIdx(Vec2(TileIndex.x, TileIndex.y));
-	pScript->SetPlayer(true);
+	pScript->SetPlayer(IsPlayer);
 	pScript->SetOwner(GameObj);
 	pScript->SetField(this);
 
-	Player = GameObj;
-
+	if(IsPlayer)
+	{
+		GameObj->SetName(L"Player");
+		Player = GameObj;
+	}
 	//외부 설정(Field 내에서 해당 obj에 해야 하는 일
 	SetFObjAboutField(GameObj);
 
