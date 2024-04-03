@@ -47,7 +47,6 @@ public:
 	void Shoot();
 	void Cast();
 
-
 	void SetField(CFieldScript* _Field) { m_Field = _Field; }
 	CFieldScript* GetField() { return m_Field; }
 

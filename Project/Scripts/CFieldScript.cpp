@@ -44,6 +44,7 @@ void CFieldScript::begin()
 	SpawnFieldObj(Vec2{ 5, 2 }, L"prefab\\temptest.pref");
 
 
+
 }
 
 void CFieldScript::tick()
@@ -95,7 +96,8 @@ void CFieldScript::SpawnTile(int Row, int Col)
 void CFieldScript::SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey)
 {
 	//프리팹 받아두기
-	CGameObject* GameObj = this->LinkPrefabtoObj(_prefabkey);
+	CGameObject* GameObj = nullptr;
+	GameObj = CPrefab::GetPrefabObj(_prefabkey);
 
 	// 위치 선정
 	SetObjPosinTile(TileIndex, GameObj);
@@ -107,19 +109,12 @@ void CFieldScript::SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey)
 	pScript->SetOwner(GameObj);
 	pScript->SetField(this);
 
+	Player = GameObj;
+
 	//외부 설정(Field 내에서 해당 obj에 해야 하는 일
 	SetFObjAboutField(GameObj);
 
 	GamePlayStatic::SpawnGameObject(GameObj, 0);
-}
-
-CGameObject* CFieldScript::LinkPrefabtoObj(wstring namekey)
-{
-	Ptr<CPrefab> prefab = CAssetMgr::GetInst()->Load<CPrefab>(namekey, namekey);
-	CGameObject* GameObj;
-	GameObj = prefab->Instantiate();
-
-	return GameObj;
 }
 
 void CFieldScript::SetObjPosinTile(Vec2 TileIndex, CGameObject* Obj)

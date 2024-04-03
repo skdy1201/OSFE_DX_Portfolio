@@ -24,28 +24,23 @@ CFrostBolt::~CFrostBolt()
 void CFrostBolt::begin()
 {
 
-	CProjectileScript::begin();
+	// 정보 세팅
+	Proj_Struct Info = this->GetInfo();
 
-	m_ProjInfo.LifeTime = 10.f;
-	m_ProjInfo.m_Speed = 1.f;
+	Info.Damage = 50;
+	Info.MaxRange = 4;
+	Info.LifeCount = -1;
+	Info.LifeTime = 4.f;
+	Info.TargetTile = false;
+	Info.m_Speed = 5000.f;
+
+
+	m_CurField;
+	CalculateDir(StartIndex, Vec2{ 1, 0 });
+
+	this->SetInfo(Info);
 
 	Animator2D()->Play(L"FrostBlast", true);
-	TargetIdx = Vec2{ 1, 0 };
-
-	m_CurField = m_Shooter->GetScript<CFieldObjScript>()->GetField();
-
-	Vec2 TargetIdx = StartIndex + Vec2{ 1, 0 };
-	Vec3 TargetDirection = m_CurField->GetTilePosition(TargetIdx);
-
-	m_ProjInfo.FrontDir = Transform()->GetWorldDir(DIR_TYPE::FRONT);
-
-	Vec3 SpawnPostion = Transform()->GetRelativePos();
-	TargetDirection -= SpawnPostion;
-	TargetDirection.z = 0;
-	TargetDirection.Normalize();
-
-	m_ProjInfo.FrontDir.Dot(TargetDirection);
-	m_ProjInfo.ShootDir = m_ProjInfo.FrontDir;
 	
 }
 

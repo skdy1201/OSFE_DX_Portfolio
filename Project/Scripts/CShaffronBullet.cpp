@@ -21,6 +21,7 @@ void CShaffronBullet::begin()
 {
 	if (this->GetShooter() != nullptr)
 	{
+		// 정보 세팅
 		Proj_Struct Info = this->GetInfo();
 
 		Info.Damage = 50;
@@ -28,34 +29,10 @@ void CShaffronBullet::begin()
 		Info.LifeCount = -1;
 		Info.LifeTime = 4.f;
 		Info.TargetTile = false;
-		Info.m_Speed = 0.45f;
+		Info.m_Speed = 3000.f;
+		TargetDir = Vec2{ 1, 0 };
 
-		Vec2 SpawnIdx = StartIndex;
-		Vec2 TargetIdx = SpawnIdx + Vec2{ 1, 0 };
-
-		Vec3 TargetDirection = this->GetField()->GetTilePosition(TargetIdx);
-		Vec3 SpawnPostion = Transform()->GetRelativePos();
-
-		Info.FrontDir = Transform()->GetWorldDir(DIR_TYPE::FRONT);
-
-		TargetDirection -= SpawnPostion;
-		TargetDirection.z = 0;
-		TargetDirection.Normalize();
-
-		Info.FrontDir.Dot(TargetDirection);
-
-		float cosTheta = Info.FrontDir.Dot(TargetDirection); // cos(θ)
-		float angle = acos(cosTheta); // θ
-
-		Vec3 vRot = Transform()->GetRelativeRotation();
-
-
-		//대각선일때 활성화 시키자
-		// vRot.z += -(angle / 2);
-
-		Transform()->SetRelativeRotation(vRot);
-
-		Info.ShootDir = TargetDirection;
+		CalculateDir(StartIndex, TargetDir);
 
 		this->SetInfo(Info);
 

@@ -34,7 +34,7 @@ class CMagic
 {
 protected:
 
-	CGameObject* Caster;
+	CGameObject*			Caster;
 	Magic_Info				m_Info;
 	Vec2					CenterPoint; // 주문 범위 계산 좌표의 원점
 	Vec2					StartPoint; // 실제 타일에서의 발동 위치
@@ -43,6 +43,9 @@ protected:
 public:
 	void SetCaster(CGameObject* __Caster);
 	virtual void cast(Vec2 StartPoint) = 0;
+
+	void SetField(CFieldScript* Field) { CurField = Field; }
+	CFieldScript* GetField() { return CurField; }
 
 	Magic_Info GetMagicInfo() { return m_Info; }
 

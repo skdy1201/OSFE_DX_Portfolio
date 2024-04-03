@@ -69,3 +69,13 @@ int CPrefab::Load(const wstring& _strFilePath)
 
 	return S_OK;
 }
+
+CGameObject* CPrefab::GetPrefabObj(wstring NameKey)
+{
+	CGameObject* Obj;
+
+	Ptr<CPrefab> prefab = CAssetMgr::GetInst()->Load<CPrefab>(NameKey, NameKey);
+	Obj = prefab->Instantiate();
+
+	return Obj;
+}

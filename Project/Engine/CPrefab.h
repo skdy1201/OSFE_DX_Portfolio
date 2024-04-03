@@ -20,6 +20,9 @@ public:
     CGameObject* Instantiate();
     int GetPrefabIndex() { return m_ProtoObj->GetLayerIdx(); }
 
+    static CGameObject* GetPrefabObj(wstring NameKey);
+
+
     CLONE_DISABLE(CPrefab);
 public:
     virtual int Save(const wstring& _strRelativePath);

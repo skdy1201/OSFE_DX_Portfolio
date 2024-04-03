@@ -25,6 +25,12 @@ CFieldObjScript::~CFieldObjScript()
 {
 }
 
+void CFieldObjScript::tick()
+{
+	Move();
+	Shoot();
+}
+
 void CFieldObjScript::Move()
 {
 	if(IsPlayer == true)
@@ -81,7 +87,25 @@ void CFieldObjScript::Move()
 			{
 				FrostBoltMagic* bolt = new FrostBoltMagic;
 				bolt->SetCaster(this->m_Owner);
-				bolt->cast(this->GetOwnerIdx()- Vec2{4, 0});
+				Vec2 StartPoint = this->GetOwnerIdx();
+				StartPoint.x  += 1;
+				bolt->cast(StartPoint - Vec2{4, 0});
+
+				StartPoint.x - 1;
+
+				FrostBoltMagic* bolt2 = new FrostBoltMagic;
+				bolt->SetCaster(this->m_Owner);
+				StartPoint += Vec2{ 0, -1 };
+				bolt->cast(StartPoint - Vec2{ 4, 0 });
+
+				StartPoint.y += 1;
+				StartPoint.x += -1;
+
+
+				FrostBoltMagic* bolt3 = new FrostBoltMagic;
+				bolt->SetCaster(this->m_Owner);
+				StartPoint += Vec2{ 0, 1 };
+				bolt->cast(StartPoint - Vec2{ 4, 0 });
 			}
 	}
 }
@@ -91,11 +115,11 @@ void CFieldObjScript::Shoot()
 	if (KEY_TAP(KEY::E))
 	{
 		CGameObject* GameObj;
-		Ptr<CPrefab> prefab = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\PlayerBullet.pref", L"prefab\\PlayerBullet.pref");
-		GameObj = prefab->Instantiate();
+		GameObj = CPrefab::GetPrefabObj(L"prefab\\PlayerBullet.pref");
+		//Ptr<CPrefab> prefab = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\PlayerBullet.pref", L"prefab\\PlayerBullet.pref");
+		//GameObj = prefab->Instantiate();
 
 		CProjectileScript* pProjScript = GameObj->GetScript<CProjectileScript>();
-
 		Proj_Struct info = pProjScript->GetInfo();
 
 		pProjScript->Shoot(this->GetOwner(), this->m_Field, info);
@@ -131,12 +155,6 @@ void CFieldObjScript::begin()
 		
 
 	}
-}
-
-void CFieldObjScript::tick()
-{
-	Move();
-	Shoot();
 }
 
 void CFieldObjScript::SaveToFile(ofstream& _File)

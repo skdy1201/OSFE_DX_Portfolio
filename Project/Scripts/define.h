@@ -31,3 +31,6 @@
 #define MagicFieldIndexY 7
 #define MagicFieldIndexX 15
 
+
+// 에니메이션 매크로
+#define frostblastanim FrostBlast

@@ -13,11 +13,12 @@ public:
 	int MaxTileCol;
 
 	vector<vector<CGameObject*>> TileRegistry;
-
 	vector<CGameObject*> CurFieldMember;
+	CGameObject* Player;
+
 
 public:
-	CGameObject* LinkPrefabtoObj(wstring namekey);
+	//CGameObject* LinkPrefabtoObj(wstring namekey);
 	void SetObjPosinTile(Vec2 TileIndex , CGameObject* Obj);
 	void SetFObjAboutField(CGameObject* Object);
 
@@ -30,6 +31,8 @@ public:
 	Vec3 GetTilePosition(Vec2& _TileIdx);
 	Vec3 GetTilePositionToMagic(Vec2& _TileIdx);
 
+	void SetPlayer(CGameObject* obj) { Player = obj; }
+	CGameObject* GetPlayer() { return Player; }
 
 public:
 	virtual void begin() override;
