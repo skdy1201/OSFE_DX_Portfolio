@@ -5,6 +5,7 @@
 
 enum class STATE_TYPE
 {
+	SNIPERIDLESTATE,
 	END,
 };
 
@@ -20,4 +21,3 @@ public:
 	static CState* GetState(UINT _iStateType);
 	static const wchar_t* GetStateName(CState* _pState);
 };
-

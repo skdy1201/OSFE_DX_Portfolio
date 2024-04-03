@@ -349,6 +349,20 @@ void CAssetMgr::CreateDefaultGraphicsShader()
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
 
 	AddAsset(L"ProjDefaultShader", pShader.Get());
+
+	// =================================
+	// SniperFxShader
+	// =================================
+	pShader = new CGraphicsShader;
+	pShader->CreateVertexShader(L"shader\\Sniper.fx", "VS_Sniper");
+	pShader->CreatePixelShader(L"shader\\Sniper.fx", "PS_Sniper");
+
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::ALPHA_BLEND);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
+
+	AddAsset(L"SniperShader", pShader.Get());
 }
 
 

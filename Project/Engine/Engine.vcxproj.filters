@@ -500,6 +500,9 @@
     <Filter Include="ShaderCode\Render\Projectile">
       <UniqueIdentifier>{b97a30ce-36f4-4095-b4a9-e2b1573c8354}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ShaderCode\Render\Monster">
+      <UniqueIdentifier>{e8680f86-0ddd-42ee-b72a-0db458e78dae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -551,6 +554,9 @@
     </FxCompile>
     <FxCompile Include="ProjStd.fx">
       <Filter>ShaderCode\Render\Projectile</Filter>
+    </FxCompile>
+    <FxCompile Include="Sniper.fx">
+      <Filter>ShaderCode\Render\Monster</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

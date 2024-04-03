@@ -52,8 +52,6 @@ int CFSM::Save(const wstring& _strRelativePath)
 		iter->second->Save(fout);
 	}
 
-	// 블랙보드 예정
-	m_Blackboard->Save(fout);
 
 
 	return S_OK;
@@ -89,8 +87,6 @@ int CFSM::Load(const wstring& _strFilePath)
 			state->Load(fin);
 		}
 	}
-
-	m_Blackboard->Load(fin);
 
 	return MB_OK;
 }

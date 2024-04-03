@@ -12,6 +12,7 @@
 #include "CPlayerCursorScript.h"
 #include "CShaffronBullet.h"
 #include "CFrostBolt.h"
+#include "CSniperScript.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -26,6 +27,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CPlayerCursorScript");
 	_vec.push_back(L"CShaffronBullet");
 	_vec.push_back(L"CFrostBolt");
+	_vec.push_back(L"CSniperScript");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -52,6 +54,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CShaffronBullet;
 	if (L"CFrostBolt" == _strScriptName)
 		return new CFrostBolt;
+	if (L"CSniperScript" == _strScriptName)
+		return new CSniperScript;
 	return nullptr;
 }
 
@@ -91,6 +95,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::FROSTBOLT:
 		return new CFrostBolt;
+		break;
+	case (UINT)SCRIPT_TYPE::SNIPERSCRIPT:
+		return new CSniperScript;
 		break;
 	}
 	return nullptr;
@@ -142,6 +149,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::FROSTBOLT:
 		return L"CFrostBolt";
+		break;
+
+	case SCRIPT_TYPE::SNIPERSCRIPT:
+		return L"CSniperScript";
 		break;
 
 	}

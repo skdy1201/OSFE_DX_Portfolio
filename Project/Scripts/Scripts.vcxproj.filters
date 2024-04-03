@@ -52,7 +52,15 @@
     <ClInclude Include="CMagic.h">
       <Filter>03. Magic</Filter>
     </ClInclude>
-    <ClInclude Include="FrostBoltMagic.h" />
+    <ClInclude Include="FrostBoltMagic.h">
+      <Filter>03. Magic\FrostBolt</Filter>
+    </ClInclude>
+    <ClInclude Include="CSniperIdleState.h">
+      <Filter>08. States\SniperState</Filter>
+    </ClInclude>
+    <ClInclude Include="CSniperScript.h">
+      <Filter>02. Scripts\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -103,7 +111,15 @@
     <ClCompile Include="CMagic.cpp">
       <Filter>03. Magic</Filter>
     </ClCompile>
-    <ClCompile Include="FrostBoltMagic.cpp" />
+    <ClCompile Include="FrostBoltMagic.cpp">
+      <Filter>03. Magic\FrostBolt</Filter>
+    </ClCompile>
+    <ClCompile Include="CSniperIdleState.cpp">
+      <Filter>08. States\SniperState</Filter>
+    </ClCompile>
+    <ClCompile Include="CSniperScript.cpp">
+      <Filter>02. Scripts\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -141,6 +157,15 @@
     </Filter>
     <Filter Include="03. Magic">
       <UniqueIdentifier>{93861677-149a-4676-9852-430f80279d0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. States\SniperState">
+      <UniqueIdentifier>{2925800b-ec60-407c-94ef-be1551a7046c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Magic\FrostBolt">
+      <UniqueIdentifier>{261289bf-0472-413e-b526-34588bb3aff0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\Monster">
+      <UniqueIdentifier>{a4d3ba83-08b1-4bc9-a226-045628f6e156}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

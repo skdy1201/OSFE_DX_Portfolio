@@ -9,3 +9,4 @@ CProjectileScript
 CPlayerCursorScript
 CShaffronBullet
 CFrostBolt
+CSniperScript
