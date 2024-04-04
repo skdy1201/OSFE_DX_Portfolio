@@ -42,10 +42,6 @@ EMPTYSYMBOL
 EMPTYSYMBOL
 
 Tex Param
-1
-texture\Background\Ice-bg.png
-0
-texture\Background\Ice-bg.png
 0
 0
 0
@@ -55,7 +51,8 @@ texture\Background\Ice-bg.png
 0
 0
 0
-Temp
+0
+EMPTYSYMBOL
 EMPTYSYMBOL
 EMPTYSYMBOL
 EMPTYSYMBOL
@@ -63,5 +60,5 @@ EMPTYSYMBOL
 EMPTYSYMBOL
 
 1
-Std2DShader
+ProjDefaultShader
 1

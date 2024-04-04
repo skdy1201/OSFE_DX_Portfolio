@@ -15,9 +15,9 @@ TileRed
 RectMesh
 1
 1
-material\TileRed.mtrl
+material\RedTile.mtrl
 0
-material\TileRed.mtrl
+material\RedTile.mtrl
 15
 1
 CTileScript

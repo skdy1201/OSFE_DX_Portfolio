@@ -117,12 +117,13 @@ void CFieldObjScript::Move()
 
 void CFieldObjScript::Shoot()
 {
-	if (KEY_TAP(KEY::E))
+	
+	if (IsPlayer)
 	{
+		if (KEY_TAP(KEY::E))
+		{
 		CGameObject* GameObj;
 		GameObj = CPrefab::GetPrefabObj(L"prefab\\PlayerBullet.pref");
-		//Ptr<CPrefab> prefab = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\PlayerBullet.pref", L"prefab\\PlayerBullet.pref");
-		//GameObj = prefab->Instantiate();
 
 		CProjectileScript* pProjScript = GameObj->GetScript<CProjectileScript>();
 		Proj_Struct info = pProjScript->GetInfo();
@@ -130,8 +131,9 @@ void CFieldObjScript::Shoot()
 		pProjScript->Shoot(this->GetOwner(), this->m_Field, info);
 
 		GamePlayStatic::SpawnGameObject(GameObj, 0);
+		}
 	}
-}
+}	
 
 void CFieldObjScript::Cast()
 {

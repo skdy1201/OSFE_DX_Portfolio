@@ -15,9 +15,9 @@ TileBlue
 RectMesh
 1
 1
-material\TileBlue.mtrl
+material\BlueTile.mtrl
 0
-material\TileBlue.mtrl
+material\BlueTile.mtrl
 15
 1
 CTileScript

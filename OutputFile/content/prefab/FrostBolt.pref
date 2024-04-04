@@ -38,9 +38,9 @@ FrostboltAtlas.png
 RectMesh
 1
 1
-material\IceBlastShader.mtrl
+material\IceBlast.mtrl
 0
-material\IceBlastShader.mtrl
+material\IceBlast.mtrl
 15
 1
 CFrostBolt
