@@ -7,6 +7,10 @@
 #include <Engine/CMeshRender.h>
 #include <Engine/CMaterial.h>
 
+#include "CFieldObjScript.h"
+#include "CSniperProj.h"
+
+
 
 CSniperAttackState::CSniperAttackState()
 	: CState((UINT)STATE_TYPE::SNIPERATTACKSTATE)
@@ -24,7 +28,8 @@ void CSniperAttackState::Enter()
 	Sniper = (CGameObject*)GetBlackboardData(L"Owner");
 	AnimatorObject = (CGameObject*)GetBlackboardData(L"ChildAnim");
 
-	AttackTime = (float*)GetBlackboardData((L"AttackCooldown"));
+	AttackTimer = (float*)GetBlackboardData((L"AttackCooldown"));
+	MoveTimer = (float*)GetBlackboardData(L"MoveCooldown");
 
 
 
@@ -42,9 +47,23 @@ void CSniperAttackState::finaltick()
 {
 	
 
-	if(Sniper->Animator2D()->GetCurAnim()->IsFinish())
+	if (Sniper->Animator2D()->GetCurAnim()->IsFinish())
 	{
-		*AttackTime = 0.f;
+		*AttackTimer = 0.f;
+
+		CGameObject* Bullet = CPrefab::GetPrefabObj(L"prefab\\SniperBullet.pref");
+		CSniperProj* pSniperPorj = Bullet->GetScript<CSniperProj>();
+
+		CFieldScript* CurField = Sniper->GetScript<CFieldObjScript>()->GetField();
+		Proj_Struct Info = pSniperPorj->GetInfo();
+
+		pSniperPorj->Shoot(Sniper, CurField, Vec2(-40.f, 71.f), Info);
+
+		//밖에서 방향을 설정할 수 있도록 하는 것이 중요하다.
+		//그냥 쓰면 일반을 쓰자.
+		pSniperPorj->SetDir(Vec3{ -1.f, 0.f, 0.f });
+		GamePlayStatic::SpawnGameObject(Bullet, 3);
+
 		ChangeState(L"CSniperIdleState");
 	}
 }
@@ -59,4 +78,5 @@ void CSniperAttackState::Exit()
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_1, 0);
 
 	AnimatorObject->Animator2D()->Play(L"EmptyAnimation", true);
+	*MoveTimer -= 2.f;
 }

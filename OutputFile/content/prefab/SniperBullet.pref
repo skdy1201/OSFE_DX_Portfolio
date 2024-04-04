@@ -1,0 +1,52 @@
+SniperBullet
+0
+0
+0 0 0
+45 45 1
+0 0 0
+1
+1
+0 -70 0
+30 30 1
+1
+0
+3
+1
+Redball
+4
+0 0
+0.25 1
+0 0
+0.25 1
+0.075
+0.25 0
+0.25 1
+0 0
+0.25 1
+0.075
+0.5 0
+0.25 1
+0 0
+0.25 1
+0.075
+0.75 0
+0.25 1
+0 0
+0.25 1
+0.075
+1
+Redball.png
+0
+\texture\Monster\Redball.png
+9
+1
+RectMesh
+1
+1
+material\SniperBullet.mtrl
+0
+material\SniperBullet.mtrl
+15
+1
+CSniperProj
+0

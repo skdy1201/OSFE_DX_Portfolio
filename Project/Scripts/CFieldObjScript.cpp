@@ -93,48 +93,32 @@ void CFieldObjScript::Move()
 				FrostBoltMagic* bolt = new FrostBoltMagic;
 				bolt->SetCaster(this->m_Owner);
 				Vec2 StartPoint = this->GetOwnerIdx();
-				StartPoint.x  += 1;
 				bolt->cast(StartPoint - Vec2{4, 0});
 
-				StartPoint.x - 1;
-
-				FrostBoltMagic* bolt2 = new FrostBoltMagic;
-				bolt->SetCaster(this->m_Owner);
-				StartPoint += Vec2{ 0, -1 };
-				bolt->cast(StartPoint - Vec2{ 4, 0 });
-
-				StartPoint.y += 1;
-				StartPoint.x += -1;
-
-
-				FrostBoltMagic* bolt3 = new FrostBoltMagic;
-				bolt->SetCaster(this->m_Owner);
-				StartPoint += Vec2{ 0, 1 };
-				bolt->cast(StartPoint - Vec2{ 4, 0 });
 			}
 	}
 }
 
 void CFieldObjScript::Shoot()
 {
-
-	if (KEY_TAP(KEY::E))
-	{
-		CGameObject* GameObj;
-		GameObj = CPrefab::GetPrefabObj(L"prefab\\PlayerBullet.pref");
-
-		CProjectileScript* pProjScript = GameObj->GetScript<CProjectileScript>();
-		Proj_Struct info = pProjScript->GetInfo();
-
-		pProjScript->Shoot(this->GetOwner(), this->m_Field, info);
-
-		GamePlayStatic::SpawnGameObject(GameObj, 0);
-	}
-
 	if (IsPlayer)
 	{
-		
+		if (KEY_TAP(KEY::E))
+		{
+			CGameObject* GameObj;
+			GameObj = CPrefab::GetPrefabObj(L"prefab\\PlayerBullet.pref");
+
+			CProjectileScript* pProjScript = GameObj->GetScript<CProjectileScript>();
+			Proj_Struct info = pProjScript->GetInfo();
+
+			pProjScript->Shoot(this->GetOwner(), this->m_Field, Vec2(10.f, 0.f), info);
+			pProjScript->SetDir(Vec3(1.f, 0.f, 0.f));
+
+			GamePlayStatic::SpawnGameObject(GameObj, 0);
+		}
+
 	}
+	
 }	
 
 void CFieldObjScript::Cast()

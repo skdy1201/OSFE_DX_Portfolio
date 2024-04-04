@@ -13,7 +13,9 @@ FrostBoltMagic::FrostBoltMagic()
 	m_Info.Dmg = 50;
 	m_Info.TotalHit = 1;
 	
-	m_Info.CastRange[3][7] = true;
+	m_Info.CastRange[3][8] = true;
+	m_Info.CastRange[2][7] = true;
+	m_Info.CastRange[4][7] = true;
 
 	FrostBolt = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\FrostBolt.pref", L"prefab\\FrostBolt.pref");
 }
@@ -40,11 +42,13 @@ void FrostBoltMagic::cast(Vec2 StartPoint)
 				Position.z = ProjectileZ;
 
 				bolt->GetScript<CFrostBolt>()->SetStartIdx(SpawnRowCol);
-				bolt->GetScript<CFrostBolt>()->SetTargetDir(Vec2(SpawnRowCol.y,SpawnRowCol.x + 1 ));
+				bolt->GetScript<CFrostBolt>()->SetDir(Vec3(1.f, 0.f, 0.f));
 				bolt->GetScript<CFrostBolt>()->SetShooter(Caster);
 				bolt->GetScript<CFrostBolt>()->SetField(this->GetField());
 				bolt->Transform()->SetRelativePos(Position);
 
+				CProjectileScript* Proj = bolt->GetScript<CProjectileScript>();
+				
 			
 				GamePlayStatic::SpawnGameObject(bolt, 0);
 

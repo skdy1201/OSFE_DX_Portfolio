@@ -51,12 +51,14 @@ public:
 	void SetInfo(Proj_Struct _info) { m_ProjInfo = _info; }
 	Proj_Struct GetInfo() { return m_ProjInfo; };
 
-	void Shoot(CGameObject* Shooter, CFieldScript* CurField, Proj_Struct& Info);
+	void Shoot(CGameObject* Shooter, CFieldScript* CurField, Vec2 Offset, Proj_Struct& Info);
 	void Move(float _DT);
 
 	void SetOuterOption(CGameObject* Object, CFieldScript* CurrentField);
 	void ResetProjTransform(Vec2 Transform);
+
 	void CalculateDir(Vec2 StartIdx, Vec2 TargetDir);
+	void SetDir(Vec3 _Dir) { ShootDir = _Dir; }
 
 	virtual void begin() override;
 	virtual void tick() override;

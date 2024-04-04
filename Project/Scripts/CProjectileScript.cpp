@@ -45,13 +45,13 @@ Proj_Struct::Proj_Struct()
 	TargetTile = false;
 }
 
-void CProjectileScript::Shoot(CGameObject* Shooter, CFieldScript* CurField, Proj_Struct& Info)
+void CProjectileScript::Shoot(CGameObject* Shooter, CFieldScript* CurField,Vec2 Offset, Proj_Struct& Info)
 {
 	// 외부 세팅. 사격자, 시작 인덱스
 	SetOuterOption(Shooter, CurField);
 
 	// 위치 재설정. Z축만 proj쪽으로 올려버리기
-	ResetProjTransform(Vec2{ 10.f, 0.f });
+	ResetProjTransform(Vec2{ Offset });
 
 	//정보 세팅
 	this->SetInfo(Info);

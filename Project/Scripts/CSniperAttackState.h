@@ -10,7 +10,8 @@ class CSniperAttackState :
 
 	Ptr<CPrefab> SniperShoot;
 
-	float*		AttackTime;
+	float*		AttackTimer;
+	float*		MoveTimer;
 
 public:
 

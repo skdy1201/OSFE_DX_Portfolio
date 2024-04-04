@@ -27,11 +27,9 @@ void CSniperProj::begin()
 	Info.TargetTile = false;
 	Info.m_Speed = 3000.f;
 
-	CalculateDir(StartIndex, Vec2{ 1, 0 });
-
 	this->SetInfo(Info);
 
-	//Animator2D()->Play(L"FrostBlast", true);
+	Animator2D()->Play(L"Redball", true);
 }
 
 void CSniperProj::tick()
