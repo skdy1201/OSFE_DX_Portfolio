@@ -34,8 +34,6 @@ void CFrostBolt::begin()
 	Info.TargetTile = false;
 	Info.m_Speed = 5000.f;
 
-
-	m_CurField;
 	CalculateDir(StartIndex, Vec2{ 1, 0 });
 
 	this->SetInfo(Info);

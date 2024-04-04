@@ -11,6 +11,7 @@ class CSniperAttackState :
 	Ptr<CPrefab> SniperShoot;
 
 	float*		AttackTime;
+
 public:
 
 	virtual void finaltick() override;

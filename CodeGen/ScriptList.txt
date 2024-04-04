@@ -5,8 +5,9 @@ CMonsterScript
 CTileScript
 CFieldScript
 CFieldObjScript
-CProjectileScript
 CPlayerCursorScript
 CShaffronBullet
 CFrostBolt
 CSniperScript
+CSniperProj
+CProjectileScript

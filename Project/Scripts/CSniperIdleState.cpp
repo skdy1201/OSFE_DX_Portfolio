@@ -17,6 +17,7 @@ void CSniperIdleState::Enter()
 	Player = (CGameObject*)GetBlackboardData(L"Player");
 	PlayerScript = Player->GetScript<CFieldObjScript>();
 
+	*(float*)GetBlackboardData(L"MoveCooldown") = 0.f;
 }
 
 void CSniperIdleState::finaltick()

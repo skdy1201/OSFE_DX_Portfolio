@@ -11,6 +11,8 @@
 CSniperAttackState::CSniperAttackState()
 	: CState((UINT)STATE_TYPE::SNIPERATTACKSTATE)
 {
+	//SniperShoot 프리팹은안바뀌니까 enter에서 가질 필요가 없고
+	// 아까 애니메이션도 공격단계에서 할 필요가 없다. 그냥 script가 갖고 컨트롤
 }
 
 CSniperAttackState::~CSniperAttackState()
@@ -24,7 +26,7 @@ void CSniperAttackState::Enter()
 
 	AttackTime = (float*)GetBlackboardData((L"AttackCooldown"));
 
-	//SniperShoot
+
 
 	Ptr<CMaterial> pMtrl = AnimatorObject->MeshRender()->GetMaterial();
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 1);
@@ -38,6 +40,8 @@ void CSniperAttackState::Enter()
 
 void CSniperAttackState::finaltick()
 {
+	
+
 	if(Sniper->Animator2D()->GetCurAnim()->IsFinish())
 	{
 		*AttackTime = 0.f;

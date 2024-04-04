@@ -8,11 +8,12 @@
 #include "CTileScript.h"
 #include "CFieldScript.h"
 #include "CFieldObjScript.h"
-#include "CProjectileScript.h"
 #include "CPlayerCursorScript.h"
 #include "CShaffronBullet.h"
 #include "CFrostBolt.h"
 #include "CSniperScript.h"
+#include "CSniperProj.h"
+#include "CProjectileScript.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -23,11 +24,12 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CTileScript");
 	_vec.push_back(L"CFieldScript");
 	_vec.push_back(L"CFieldObjScript");
-	_vec.push_back(L"CProjectileScript");
 	_vec.push_back(L"CPlayerCursorScript");
 	_vec.push_back(L"CShaffronBullet");
 	_vec.push_back(L"CFrostBolt");
 	_vec.push_back(L"CSniperScript");
+	_vec.push_back(L"CSniperProj");
+	_vec.push_back(L"CProjectileScript");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -46,8 +48,6 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CFieldScript;
 	if (L"CFieldObjScript" == _strScriptName)
 		return new CFieldObjScript;
-	if (L"CProjectileScript" == _strScriptName)
-		return new CProjectileScript;
 	if (L"CPlayerCursorScript" == _strScriptName)
 		return new CPlayerCursorScript;
 	if (L"CShaffronBullet" == _strScriptName)
@@ -56,6 +56,10 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CFrostBolt;
 	if (L"CSniperScript" == _strScriptName)
 		return new CSniperScript;
+	if (L"CSniperProj" == _strScriptName)
+		return new CSniperProj;
+	if (L"CProjectileScript" == _strScriptName)
+		return new CProjectileScript;
 	return nullptr;
 }
 
@@ -84,9 +88,6 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::FIELDOBJSCRIPT:
 		return new CFieldObjScript;
 		break;
-	case (UINT)SCRIPT_TYPE::PROJECTILESCRIPT:
-		return new CProjectileScript;
-		break;
 	case (UINT)SCRIPT_TYPE::PLAYERCURSORSCRIPT:
 		return new CPlayerCursorScript;
 		break;
@@ -98,6 +99,12 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::SNIPERSCRIPT:
 		return new CSniperScript;
+		break;
+	case (UINT)SCRIPT_TYPE::SNIPERPROJ:
+		return new CSniperProj;
+		break;
+	case (UINT)SCRIPT_TYPE::PROJECTILESCRIPT:
+		return new CProjectileScript;
 		break;
 	}
 	return nullptr;
@@ -135,10 +142,6 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 		return L"CFieldObjScript";
 		break;
 
-	case SCRIPT_TYPE::PROJECTILESCRIPT:
-		return L"CProjectileScript";
-		break;
-
 	case SCRIPT_TYPE::PLAYERCURSORSCRIPT:
 		return L"CPlayerCursorScript";
 		break;
@@ -153,6 +156,14 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::SNIPERSCRIPT:
 		return L"CSniperScript";
+		break;
+
+	case SCRIPT_TYPE::SNIPERPROJ:
+		return L"CSniperProj";
+		break;
+
+	case SCRIPT_TYPE::PROJECTILESCRIPT:
+		return L"CProjectileScript";
 		break;
 
 	}

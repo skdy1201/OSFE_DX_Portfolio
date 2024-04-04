@@ -34,9 +34,6 @@
     <ClInclude Include="CFieldObjScript.h">
       <Filter>02. Scripts\FieldObj</Filter>
     </ClInclude>
-    <ClInclude Include="CProjectileScript.h">
-      <Filter>02. Scripts\Projectile</Filter>
-    </ClInclude>
     <ClInclude Include="CStateMgr.h">
       <Filter>ScriptMgr</Filter>
     </ClInclude>
@@ -67,7 +64,12 @@
     <ClInclude Include="CSniperAttackState.h">
       <Filter>08. States\SniperState</Filter>
     </ClInclude>
-    <ClInclude Include="CSniperProj.h" />
+    <ClInclude Include="CSniperProj.h">
+      <Filter>02. Scripts\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="CProjectileScript.h">
+      <Filter>02. Scripts\Projectile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -100,9 +102,6 @@
     <ClCompile Include="CFieldObjScript.cpp">
       <Filter>02. Scripts\FieldObj</Filter>
     </ClCompile>
-    <ClCompile Include="CProjectileScript.cpp">
-      <Filter>02. Scripts\Projectile</Filter>
-    </ClCompile>
     <ClCompile Include="CStateMgr.cpp">
       <Filter>ScriptMgr</Filter>
     </ClCompile>
@@ -133,7 +132,12 @@
     <ClCompile Include="CSniperAttackState.cpp">
       <Filter>08. States\SniperState</Filter>
     </ClCompile>
-    <ClCompile Include="CSniperProj.cpp" />
+    <ClCompile Include="CSniperProj.cpp">
+      <Filter>02. Scripts\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="CProjectileScript.cpp">
+      <Filter>02. Scripts\Projectile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">

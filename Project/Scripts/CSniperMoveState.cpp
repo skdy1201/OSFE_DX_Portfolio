@@ -39,8 +39,6 @@ void CSniperMoveState::finaltick()
 	}
 
 	*MoveDir = 0;
-	float* Timer = (float*)GetBlackboardData(L"MoveCooldown");
-	*Timer = 0.f;
 
 	*MoveCooldown = 0.f;
 	ChangeState(L"CSniperIdleState");
