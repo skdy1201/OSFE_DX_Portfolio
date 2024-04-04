@@ -10,6 +10,7 @@ class CSniperScript :
 {
 private:
     float            m_MoveCooltime;
+    float            m_AttackCooltime;
     int              CurRow;
     int             MoveDir; // 1 :: down, 2 :: up
 

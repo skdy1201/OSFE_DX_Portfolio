@@ -19,8 +19,11 @@ void CSniperMoveState::Enter()
 	SniperScript = pOwner->GetScript<CFieldObjScript>();
 
 	MoveDir = (int*)GetBlackboardData(L"Move Dir");
+	MoveCooldown = (float*)GetBlackboardData(L"MoveCooldown");
+
 
 	m_OwnerIdx = SniperScript->GetOwnerIdx();
+
 }
 
 void CSniperMoveState::finaltick()
@@ -39,9 +42,11 @@ void CSniperMoveState::finaltick()
 	float* Timer = (float*)GetBlackboardData(L"MoveCooldown");
 	*Timer = 0.f;
 
+	*MoveCooldown = 0.f;
 	ChangeState(L"CSniperIdleState");
 }
 
 void CSniperMoveState::Exit()
 {
+	
 }

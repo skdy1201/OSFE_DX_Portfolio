@@ -22,6 +22,7 @@ void CSniperAttackState::Enter()
 	Sniper = (CGameObject*)GetBlackboardData(L"Owner");
 	AnimatorObject = (CGameObject*)GetBlackboardData(L"ChildAnim");
 
+	AttackTime = (float*)GetBlackboardData((L"AttackCooldown"));
 
 	//SniperShoot
 
@@ -39,6 +40,7 @@ void CSniperAttackState::finaltick()
 {
 	if(Sniper->Animator2D()->GetCurAnim()->IsFinish())
 	{
+		*AttackTime = 0.f;
 		ChangeState(L"CSniperIdleState");
 	}
 }

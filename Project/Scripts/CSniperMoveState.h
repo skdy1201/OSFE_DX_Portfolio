@@ -12,6 +12,7 @@ private:
     CFieldObjScript*    SniperScript;
     Vec2                m_OwnerIdx;
     int*                MoveDir;
+    float*              MoveCooldown;
 
 public:
 

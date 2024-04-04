@@ -11,6 +11,7 @@ CSniperScript::CSniperScript()
 	: CFieldObjScript((UINT)SCRIPT_TYPE::SNIPERSCRIPT)
 	, m_MoveCooltime(0.f)
 	, MoveDir(0)
+    , m_AttackCooltime(0)
 {
 }
 
@@ -24,6 +25,7 @@ void CSniperScript::begin()
 	{
 
 		StateMachine()->AddBlackboardData(L"MoveCooldown", BB_DATA::FLOAT, &m_MoveCooltime);
+		StateMachine()->AddBlackboardData(L"AttackCooldown", BB_DATA::FLOAT, &m_AttackCooltime);
 		StateMachine()->AddBlackboardData(L"Current Row", BB_DATA::INT, &CurRow);
 		StateMachine()->AddBlackboardData((L"Move Dir"), BB_DATA::INT, &MoveDir);
 
@@ -70,6 +72,11 @@ void CSniperScript::tick()
 	if(m_MoveCooltime <= 3.f)
 	{
 		m_MoveCooltime += DT;
+	}
+
+	if(m_AttackCooltime  <= 5.f)
+	{
+		m_AttackCooltime += DT;
 	}
 
 	CurRow = (int)OwnerFojScript->GetOwnerIdx().y;

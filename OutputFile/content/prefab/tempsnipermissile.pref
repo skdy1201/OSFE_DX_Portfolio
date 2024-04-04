@@ -1,0 +1,25 @@
+tempsnipermissile
+0
+0
+0 0 0
+1 1 1
+0 0 0
+1
+1
+0 0 0
+0 0 1
+0
+0
+3
+0
+9
+1
+RectMesh
+1
+1
+material\PlayerBullet.mtrl
+0
+material\PlayerBullet.mtrl
+15
+0
+0

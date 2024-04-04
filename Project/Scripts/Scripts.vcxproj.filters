@@ -67,6 +67,7 @@
     <ClInclude Include="CSniperAttackState.h">
       <Filter>08. States\SniperState</Filter>
     </ClInclude>
+    <ClInclude Include="CSniperProj.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -132,6 +133,7 @@
     <ClCompile Include="CSniperAttackState.cpp">
       <Filter>08. States\SniperState</Filter>
     </ClCompile>
+    <ClCompile Include="CSniperProj.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">

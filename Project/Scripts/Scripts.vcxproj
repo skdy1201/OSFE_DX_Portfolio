@@ -177,6 +177,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CSniperAttackState.h" />
     <ClInclude Include="CSniperIdleState.h" />
     <ClInclude Include="CSniperMoveState.h" />
+    <ClInclude Include="CSniperProj.h" />
     <ClInclude Include="CSniperScript.h" />
     <ClInclude Include="CStateMgr.h" />
     <ClInclude Include="CTileScript.h" />
@@ -201,6 +202,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CSniperAttackState.cpp" />
     <ClCompile Include="CSniperIdleState.cpp" />
     <ClCompile Include="CSniperMoveState.cpp" />
+    <ClCompile Include="CSniperProj.cpp" />
     <ClCompile Include="CSniperScript.cpp" />
     <ClCompile Include="CStateMgr.cpp" />
     <ClCompile Include="CTileScript.cpp" />

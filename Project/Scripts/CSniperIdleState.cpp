@@ -25,6 +25,7 @@ void CSniperIdleState::finaltick()
 	int SniperRow = *(int*)GetBlackboardData(L"Current Row");
 
 	float MoveTimer = *(float*)GetBlackboardData(L"MoveCooldown");
+	float AttackTimer = *(float*)GetBlackboardData(L"AttackCooldown");
 
 	if(PlayerRow != SniperRow && MoveTimer >= 2.f)
 	{
@@ -42,7 +43,7 @@ void CSniperIdleState::finaltick()
 
 		}
 	}
-	else if(PlayerRow == SniperRow)
+	else if(PlayerRow == SniperRow && AttackTimer >= 5.f)
 	{
 		ChangeState(L"CSniperAttackState");
 	}
