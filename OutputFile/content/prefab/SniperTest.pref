@@ -1,10 +1,15 @@
 SniperTest
 0
 0
-84 -200 500
-200 200 1
+0 0 0
+350 350 1
 0 -3.14159 0
 1
+1
+0 0 0
+0 0 1
+0
+0
 3
 1
 SniperShoot
@@ -60,9 +65,9 @@ SniperShoot
 0.1 1
 0.08
 1
-Sniper.png
+Snipertt.png
 0
-\texture\Monster\Sniper.png
+\texture\Monster\Snipertt.png
 8
 1
 fsm\SniperTestFsm.fsm
@@ -77,7 +82,6 @@ material\Sniper.mtrl
 0
 material\Sniper.mtrl
 15
-2
+1
 CSniperScript
-CFieldObjScript
 0

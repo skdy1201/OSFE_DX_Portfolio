@@ -117,11 +117,9 @@ void CFieldObjScript::Move()
 
 void CFieldObjScript::Shoot()
 {
-	
-	if (IsPlayer)
+
+	if (KEY_TAP(KEY::E))
 	{
-		if (KEY_TAP(KEY::E))
-		{
 		CGameObject* GameObj;
 		GameObj = CPrefab::GetPrefabObj(L"prefab\\PlayerBullet.pref");
 
@@ -131,7 +129,11 @@ void CFieldObjScript::Shoot()
 		pProjScript->Shoot(this->GetOwner(), this->m_Field, info);
 
 		GamePlayStatic::SpawnGameObject(GameObj, 0);
-		}
+	}
+
+	if (IsPlayer)
+	{
+		
 	}
 }	
 

@@ -1,5 +1,5 @@
 MtrlConst
-1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 1 0 0 0 
 0 1 0 0 
 0 0 1 0 
@@ -20,8 +20,8 @@ MtrlConst
 0 0 0 0 0 0 0 0 0 0 
 
 Scalar Param
-Texture
-Animator
+EMPTYSYMBOL
+EMPTYSYMBOL
 EMPTYSYMBOL
 EMPTYSYMBOL
 EMPTYSYMBOL
@@ -42,10 +42,6 @@ EMPTYSYMBOL
 EMPTYSYMBOL
 
 Tex Param
-1
-texture\Monster\sniper_idle.png
-0
-texture\Monster\sniper_idle.png
 0
 0
 0
@@ -55,7 +51,8 @@ texture\Monster\sniper_idle.png
 0
 0
 0
-Temp
+0
+EMPTYSYMBOL
 EMPTYSYMBOL
 EMPTYSYMBOL
 EMPTYSYMBOL
@@ -63,5 +60,5 @@ EMPTYSYMBOL
 EMPTYSYMBOL
 
 1
-SniperShader
+OnlyAnimShader
 1

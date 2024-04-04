@@ -139,7 +139,7 @@ int CMaterial::Save(const wstring& _strRelativePath)
 	fout << "Scalar Param" << endl;
 	// 재질 파라미터 값 저장
 	for (int i = 0; i < (int)SCALAR_PARAM::END; i++) {
-		if (m_ScalarParam[i] == "") {
+		if (m_ScalarParam[i] == "" || m_ScalarParam[i][0] == '\0') {
 			fout << EMPTYSYMBOL << endl;
 		}
 		else {

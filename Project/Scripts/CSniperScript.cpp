@@ -45,6 +45,17 @@ void CSniperScript::begin()
 	
 	OwnerFojScript = GetOwner()->GetScript<CFieldObjScript>();
 
+	//자식애니메이터 소환하기
+
+	CGameObject* Obj;
+	Obj = CPrefab::GetPrefabObj(L"prefab\\SniperCharge.pref");
+	Obj->Transform()->SetRelativePos(Vec3{ 34.f ,63.f, 1.f });
+	
+
+	GamePlayStatic::SpawnGameObject(Obj, 0);
+
+	this->GetOwner()->AddChild(Obj);
+
 }
 
 void CSniperScript::tick()

@@ -1,0 +1,76 @@
+SniperCharge
+0
+0
+0 0 0
+150 150 1
+0 0 0
+1
+3
+1
+SniperCharge
+10
+0 0
+0.2 1
+0 0
+0.2 1
+0.08
+0.2 0
+0.2 1
+0 0
+0.2 1
+0.08
+0.4 0
+0.2 1
+0 0
+0.2 1
+0.08
+0.6 0
+0.2 1
+0 0
+0.2 1
+0.08
+0.8 0
+0.2 1
+0 0
+0.2 1
+0.08
+0 0
+0.2 1
+0 0
+0.2 1
+0.08
+0.2 0
+0.2 1
+0 0
+0.2 1
+0.08
+0.4 0
+0.2 1
+0 0
+0.2 1
+0.08
+0.6 0
+0.2 1
+0 0
+0.2 1
+0.08
+0.8 0
+0.2 1
+0 0
+0.2 1
+0.08
+1
+SniperCharge.png
+0
+\texture\Monster\SniperCharge.png
+9
+1
+RectMesh
+1
+1
+material\SniperSubAnimMtrl.mtrl
+0
+material\SniperSubAnimMtrl.mtrl
+15
+0
+0

@@ -151,7 +151,11 @@ void StateMachineUI::Blackboard()
 
 void StateMachineUI::CurrentState()
 {
+	if (m_stateMachine->m_FSM_Inst == nullptr)
+		return;
+
 	CState* state = m_stateMachine->m_FSM_Inst->m_CurState;
+
 
 	ImGui::Text("CurState");
 	ImGui::SameLine();
