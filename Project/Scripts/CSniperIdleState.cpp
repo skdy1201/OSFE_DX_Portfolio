@@ -42,8 +42,7 @@ void CSniperIdleState::finaltick()
 
 		}
 	}
-
-	if(PlayerRow == SniperRow)
+	else if(PlayerRow == SniperRow)
 	{
 		ChangeState(L"CSniperAttackState");
 	}

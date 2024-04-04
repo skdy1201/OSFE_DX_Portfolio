@@ -1,13 +1,18 @@
 SniperCharge
 0
 0
-0 0 0
-150 150 1
+453 34 600
+175 175 1
 0 0 0
 1
+1
+0 0 0
+100 25 1
+1
+0
 3
-1
-SniperCharge
+2
+ChargeCircle
 10
 0 0
 0.2 1
@@ -63,14 +68,70 @@ SniperCharge
 SniperCharge.png
 0
 \texture\Monster\SniperCharge.png
+EmptyAnimation
+10
+0 0.0194444
+0.01 0.00972222
+0 0
+0 0
+0.08
+0 0.0194444
+0.01 0.00972222
+0 0
+0 0
+0.08
+0 0.0194444
+0.01 0.00972222
+0 0
+0 0
+0.08
+0 0.0194444
+0.01 0.00972222
+0 0
+0 0
+0.08
+0 0.0194444
+0.01 0.00972222
+0 0
+0 0
+0.08
+0 0.0194444
+0.01 0.00972222
+0 0
+0 0
+0.08
+0 0.0194444
+0.01 0.00972222
+0 0
+0 0
+0.08
+0 0.0194444
+0.01 0.00972222
+0 0
+0 0
+0.08
+0 0.0194444
+0.01 0.00972222
+0 0
+0 0
+0.08
+0 0.0194444
+0.01 0.00972222
+0 0
+0 0
+0.08
+1
+Ex.png
+0
+\texture\Ex.png
 9
 1
 RectMesh
 1
 1
-material\SniperSubAnimMtrl.mtrl
+material\SniperCharge.mtrl
 0
-material\SniperSubAnimMtrl.mtrl
+material\SniperCharge.mtrl
 15
 0
 0

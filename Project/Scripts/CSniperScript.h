@@ -12,7 +12,9 @@ private:
     float            m_MoveCooltime;
     int              CurRow;
     int             MoveDir; // 1 :: down, 2 :: up
-    CFieldObjScript* OwnerFojScript;
+
+	CFieldObjScript* OwnerFojScript;
+    CGameObject*     ChildAnim;
 
 public:
     virtual void begin() override;

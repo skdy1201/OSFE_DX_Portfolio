@@ -113,3 +113,10 @@ void CKeyMgr::tick()
 		m_vMouseDrag = m_vMousePos - m_vMousePrevPos;
 	}
 }
+
+#include "CDevice.h"
+Vec2 CKeyMgr::GetMousePos()
+{
+	auto resolution = CDevice::GetInst()->GetRenderResolution();
+	return Vec2(m_vMousePos.x - resolution.x / 2.f, -(m_vMousePos.y - resolution.y / 2.f));
+}

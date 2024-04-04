@@ -51,9 +51,9 @@ private:
 
 public:
 	KEY_STATE GetKeyState(KEY _Key) { return m_vecKeyData[_Key].eState; }
-	Vec2 GetMousePos() { return m_vMousePos; }
+	Vec2 GetMousePos();
 	Vec2 GetMouseDrag() { return m_vMouseDrag; }
-
+	
 public:
 	void init();
 	void tick();

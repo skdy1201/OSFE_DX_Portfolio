@@ -38,7 +38,7 @@ float4 PS_OnlyAnim(VS_OUT _in) : SV_Target
     float4 vColor = float4(1.f, 0.f, 1.f, 0.f);
     
 
-    if (g_int_0 == 1 && g_UseAnim2D)
+    if (g_UseAnim2D)
     {
         vColor.a = 1.f;
 

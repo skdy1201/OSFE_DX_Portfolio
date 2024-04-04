@@ -50,12 +50,19 @@ void CSniperScript::begin()
 	CGameObject* Obj;
 	Obj = CPrefab::GetPrefabObj(L"prefab\\SniperCharge.pref");
 	Obj->Transform()->SetRelativePos(Vec3{ 34.f ,63.f, 1.f });
-	
 
+	Ptr<CMaterial> pMtrl = Obj->MeshRender()->GetMaterial();
+	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
+
+	ChildAnim = Obj;
 	GamePlayStatic::SpawnGameObject(Obj, 0);
 
 	this->GetOwner()->AddChild(Obj);
 
+	StateMachine()->AddBlackboardData(L"ChildAnim", BB_DATA::OBJECT, Obj);
+
+
+	//ChildAnim->Animator2D()->Play(L"EmptyAnimation", true);
 }
 
 void CSniperScript::tick()

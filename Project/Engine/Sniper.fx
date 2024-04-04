@@ -60,6 +60,7 @@ float4 PS_Sniper(VS_OUT _in) : SV_Target
         }
     }
 
+   
 
     return vColor;
 }
