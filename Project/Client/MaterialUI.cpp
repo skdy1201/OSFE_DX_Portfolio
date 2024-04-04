@@ -43,7 +43,49 @@ void MaterialUI::render_update()
 	{
 		currentMtrl = target;
 		m_IsChange = true;
-		m_inscalarparamnum.clear();
+
+		for(int i = 0; i < (int)SCALAR_PARAM::END; ++i)
+		{
+			SCALAR_PARAM Type = (SCALAR_PARAM)i;
+			string desc = currentMtrl->GetScalarDesc(Type);
+
+			if (desc == "" || desc == EMPTYSYMBOL) {
+				continue;
+			}
+			switch (Type)
+			{
+			case SCALAR_PARAM::INT_0:
+			case SCALAR_PARAM::INT_1:
+			case SCALAR_PARAM::INT_2:
+			case SCALAR_PARAM::INT_3:
+				ParamUI::Param_INT((int*)currentMtrl->GetScalarParam(Type), desc);
+				break;
+			case SCALAR_PARAM::FLOAT_0:
+			case SCALAR_PARAM::FLOAT_1:
+			case SCALAR_PARAM::FLOAT_2:
+			case SCALAR_PARAM::FLOAT_3:
+				ParamUI::Param_FLOAT((float*)currentMtrl->GetScalarParam(Type), desc);
+				break;
+			case SCALAR_PARAM::VEC2_0:
+			case SCALAR_PARAM::VEC2_1:
+			case SCALAR_PARAM::VEC2_2:
+			case SCALAR_PARAM::VEC2_3:
+				ParamUI::Param_VEC2((Vec2*)currentMtrl->GetScalarParam(Type), desc);
+				break;
+			case SCALAR_PARAM::VEC4_0:
+			case SCALAR_PARAM::VEC4_1:
+			case SCALAR_PARAM::VEC4_2:
+			case SCALAR_PARAM::VEC4_3:
+				ParamUI::Param_VEC4((Vec4*)currentMtrl->GetScalarParam(Type), desc);
+				break;
+			case SCALAR_PARAM::MAT_0:
+			case SCALAR_PARAM::MAT_1:
+			case SCALAR_PARAM::MAT_2:
+			case SCALAR_PARAM::MAT_3:
+				break;
+			}
+		}
+
 
 		for (int i = 0; i < (int)TEX_PARAM::TEX_5; ++i)
 		{
@@ -68,13 +110,13 @@ void MaterialUI::render_update()
 			if (desc == "" || desc == EMPTYSYMBOL) {
 				continue;
 			}
-			m_inscalarparamnum.push_back((int)i);
+			currentMtrl->SetScalarDesc((SCALAR_PARAM)i, desc);
 		}
 
 
-		for(int k = 0; k < m_inscalarparamnum.size(); ++k)
+		for(int k = 0; k < (int)SCALAR_PARAM::END ; ++k)
 		{
-			m_CheckScalar[m_inscalarparamnum[k]] = true;
+			m_CheckScalar[k] = true;
 		}
 	}
 
@@ -321,26 +363,19 @@ void MaterialUI::make_Scalartable(bool* _scalararr, Ptr<CMaterial>& pMtrl)
 		if (m_IsChange == true)
 		{
 			fill_n(_scalararr, static_cast<int>(SCALAR_PARAM::END), false);
-			// inparam √ ±‚»≠
-			int inparam = 0;
+		
 
-			if (m_inscalarparamnum.size() != 0)
-			{
 				for (int j = 0; j < (int)SCALAR_PARAM::END; ++j)
 				{
-					if (inparam < m_inscalarparamnum.size() && j == m_inscalarparamnum[inparam])
-					{
+
+					if (pMtrl->GetScalarDesc((SCALAR_PARAM)j).c_str() != "")
 						_scalararr[j] = true;
-						++inparam;
-					}
 					else
-					{
-						_scalararr[j] = false;
-					}
+						_scalararr[j]= false; 
 				}
 			}
 		}
-	}
+	
 
 
 		string CheckboxscalarKey = "";

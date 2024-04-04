@@ -10,7 +10,7 @@ private:
     bool            m_CheckMaterial[10];
 
     bool            m_CheckScalar[(int)SCALAR_PARAM::END];
-    vector<int>     m_inscalarparamnum;
+    float           m_inscalarparamnum[(int)SCALAR_PARAM::END];
     char            newscalarparam[128];
 
     bool            m_IsChange;
