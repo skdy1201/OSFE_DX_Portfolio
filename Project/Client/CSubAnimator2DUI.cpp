@@ -308,7 +308,7 @@ void CSubAnimator2DUI::render_update()
 
 
 				// ImGui::Image È£Ãâ
-				ImGui::Image(m_AtlasTex->GetSRV().Get(), ShowBackGroundPix, uv_min_adjusted, uv_max_adjusted, tint_col, border_col);
+				ImGui::Image(m_AtlasTex->GetSRV().Get(), ImVec2(400.f, 400.f*ShowBackGroundPix.y / ShowBackGroundPix.x), uv_min_adjusted, uv_max_adjusted, tint_col, border_col);
 			}
 
 			if (ImGui::Button("Play Preview", ImVec2{ 100.f , 30.f }))

@@ -13,8 +13,8 @@ FrostBoltMagic::FrostBoltMagic()
 	m_Info.Dmg = 50;
 	m_Info.TotalHit = 1;
 	
-	m_Info.CastRange[3][8] = true;
 	m_Info.CastRange[2][7] = true;
+	m_Info.CastRange[3][8] = true;
 	m_Info.CastRange[4][7] = true;
 
 	FrostBolt = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\FrostBolt.pref", L"prefab\\FrostBolt.pref");
@@ -49,9 +49,17 @@ void FrostBoltMagic::cast(Vec2 StartPoint)
 
 				CProjectileScript* Proj = bolt->GetScript<CProjectileScript>();
 				
-			
-				GamePlayStatic::SpawnGameObject(bolt, 0);
+				if (castrow == 2 && castcol == 7)
+				{
+					GamePlayStatic::SpawnGameObject(bolt, 0, 0.2f);
+				}else if (castrow == 3 && castcol == 8)
+				{
+					GamePlayStatic::SpawnGameObject(bolt, 0);
 
+				}else
+				{
+					GamePlayStatic::SpawnGameObject(bolt, 0, 0.1f);
+				}
 
 			}
 

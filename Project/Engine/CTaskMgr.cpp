@@ -8,7 +8,7 @@
 
 #include "CAssetMgr.h"
 #include "CRenderMgr.h"
-
+#include "CTimeMgr.h"
 CTaskMgr::CTaskMgr()
 	: m_bCreateObject(false)
 	, m_bDeleteObject(false)
@@ -25,6 +25,7 @@ void CTaskMgr::tick()
 {
 	Clear();
 
+	PushDelay();
 
 	for (size_t i = 0; i < m_vecTask.size(); ++i)
 	{
@@ -34,6 +35,15 @@ void CTaskMgr::tick()
 		{
 			int LayerIdx = (int)m_vecTask[i].Param_1;
 			CGameObject* Object = (CGameObject*)m_vecTask[i].Param_2;
+			float Delay = (float)m_vecTask[i].Param_3;
+
+				if(Delay > 0.f)
+				{
+					Delay -= DT;
+					m_vecTask[i].Param_3 = Delay;
+					m_DelayTask.push_back(m_vecTask[i]);
+					continue;
+				}
 
 			CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurrentLevel();
 			pCurLevel->AddObject(Object, LayerIdx, true);
@@ -145,4 +155,14 @@ void CTaskMgr::Clear()
 	}		
 
 	m_bAssetChange = false;
+}
+
+void CTaskMgr::PushDelay()
+{
+	for(int i = 0; i < m_DelayTask.size(); ++i)
+	{
+		m_vecTask.push_back(m_DelayTask[i]);
+	}
+
+	m_DelayTask.clear();
 }
