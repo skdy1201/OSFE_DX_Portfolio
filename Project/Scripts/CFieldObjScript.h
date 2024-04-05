@@ -27,6 +27,7 @@ struct Status
 	int RewardExp; // 처치시 경험치
 
 	int Camp; // 진영
+
 };
 
 class CFieldObjScript :
@@ -40,6 +41,8 @@ private:
 	bool IsPlayer;
 
 	Vec2 CurFieldIdx;
+
+	int temp;
 
 public:
 	Status& GetStatus() { return m_status; }

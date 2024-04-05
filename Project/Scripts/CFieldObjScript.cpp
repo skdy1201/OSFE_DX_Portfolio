@@ -1,5 +1,8 @@
 #include "pch.h"
 #include "CFieldObjScript.h"
+
+#include <Engine/CAnim.h>
+
 #include "CFieldScript.h"
 #include "CMagic.h"
 
@@ -11,9 +14,10 @@ CFieldObjScript::CFieldObjScript()
 	: CScript((UINT)SCRIPT_TYPE::FIELDOBJSCRIPT)
 	, m_status{}
 	, IsPlayer(true)
+	, temp(0)
 
 {
-
+	
 }
 
 CFieldObjScript::CFieldObjScript(const CFieldObjScript& _Origin)
@@ -34,6 +38,11 @@ void CFieldObjScript::tick()
 {
 	Move();
 	Shoot();
+	
+	if(IsPlayer && m_Owner->Animator2D()->GetCurAnim()->IsFinish() == true)
+	{
+		m_Owner->Animator2D()->Play(L"SaffronIdle", true);
+	}
 }
 
 void CFieldObjScript::Move()
@@ -51,6 +60,7 @@ void CFieldObjScript::Move()
 
 			m_Field->MoveToTile(m_Owner, NextIndex, PlayerZ);
 
+			m_Owner->Animator2D()->Play(L"SaffronMoveUp" , false);
 
 		}
 
@@ -65,6 +75,8 @@ void CFieldObjScript::Move()
 				
 			m_Field->MoveToTile(m_Owner, NextIndex, PlayerZ);
 
+			m_Owner->Animator2D()->Play(L"SaffronMoveDown", false);
+
 		}
 
 			if (KEY_TAP(KEY::LEFT))
@@ -75,6 +87,8 @@ void CFieldObjScript::Move()
 
 				m_Field->MoveToTile(m_Owner, NextIndex, PlayerZ);
 
+				m_Owner->Animator2D()->Play(L"SaffronMoveBack", false);
+
 			}
 
 			if (KEY_TAP(KEY::RIGHT))
@@ -84,6 +98,8 @@ void CFieldObjScript::Move()
 				Vec2 NextIndex = { Index.x + 1, Index.y};
 
 				m_Field->MoveToTile(m_Owner, NextIndex, PlayerZ);
+
+				m_Owner->Animator2D()->Play(L"SaffronMoveFront", false);
 
 			}
 
@@ -115,6 +131,7 @@ void CFieldObjScript::Shoot()
 			pProjScript->SetDir(Vec3(1.f, 0.f, 0.f));
 
 			GamePlayStatic::SpawnGameObject(GameObj, 0);
+
 		}
 
 	}
@@ -146,6 +163,7 @@ void CFieldObjScript::begin()
 		GamePlayStatic::SpawnGameObject(Cursor, 0);
 		m_Owner->AddChild(Cursor);
 		
+		m_Owner->Animator2D()->Play(L"SaffronSpawn", false);
 
 	}
 }
