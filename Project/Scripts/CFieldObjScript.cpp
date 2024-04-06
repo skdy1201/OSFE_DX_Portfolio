@@ -44,25 +44,6 @@ void CFieldObjScript::tick()
 
 void CFieldObjScript::Shoot()
 {
-	if (IsPlayer)
-	{
-		if (KEY_TAP(KEY::E))
-		{
-			CGameObject* GameObj;
-			GameObj = CPrefab::GetPrefabObj(L"prefab\\PlayerBullet.pref");
-
-			CProjectileScript* pProjScript = GameObj->GetScript<CProjectileScript>();
-			Proj_Struct info = pProjScript->GetInfo();
-
-			pProjScript->Shoot(this->GetOwner(), this->m_Field, Vec2(10.f, 0.f), info);
-			pProjScript->SetDir(Vec3(1.f, 0.f, 0.f));
-
-			GamePlayStatic::SpawnGameObject(GameObj, 0);
-
-		}
-
-	}
-	
 }	
 
 void CFieldObjScript::Cast()

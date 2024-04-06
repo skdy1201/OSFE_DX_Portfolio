@@ -15,10 +15,15 @@ private:
     CFieldObjScript*    PlayerScript;
     CFieldScript*       Field;
 
-    float*              MoveTimer;
-    float*              AttackTimer;
+    float             AttackTimer;
+
+    float             AttackRelayTimer;
+
 
 public:
+
+    void Shoot(float _Dt);
+
     virtual void finaltick() override;
     virtual void Enter() override;
     virtual void Exit() override;
