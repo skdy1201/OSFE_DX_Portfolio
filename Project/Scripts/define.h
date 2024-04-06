@@ -34,3 +34,6 @@
 
 // 에니메이션 매크로
 #define frostblastanim FrostBlast
+
+// FSM 매크로
+#define BlackBoardPlayer (CGameObject*)GetBlackboardData(L"Player");

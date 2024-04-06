@@ -39,12 +39,7 @@ void CFieldObjScript::tick()
 	Move();
 	Shoot();
 	
-	if(IsPlayer && m_Owner->Animator2D()->GetCurAnim()->GetName() == wstring(L"SaffronSpawn")
-		&& m_Owner->Animator2D()->GetCurAnim()->IsFinish())
-	{
-		StateMachine()->GetFSM()->ChangeState(L"CPlayerIdleState");
-		
-	}
+
 }
 
 void CFieldObjScript::Move()
@@ -163,15 +158,12 @@ void CFieldObjScript::begin()
 
 		GamePlayStatic::SpawnGameObject(Cursor, 0);
 		m_Owner->AddChild(Cursor);
-		
-		m_Owner->Animator2D()->Play(L"SaffronSpawn", false);
 
 		if(StateMachine())
 		{
 			StateMachine()->AddBlackboardData(L"Player", BB_DATA::OBJECT, m_Owner);
-
+			StateMachine()->GetFSM()->ChangeState(L"CPlayerEntryState");
 		}
-
 	}
 }
 

@@ -1,7 +1,10 @@
 #include "pch.h"
 #include "CPlayerIdleState.h"
 
+#include "CFieldObjScript.h"
+
 #include <Engine/CAnimator2D.h>
+#include <Engine/CAnim.h>
 
 
 CPlayerIdleState::CPlayerIdleState()
@@ -17,7 +20,8 @@ CPlayerIdleState::~CPlayerIdleState()
 
 void CPlayerIdleState::Enter()
 {
-	Player = (CGameObject*)GetBlackboardData(L"Player");
+	Player = BlackBoardPlayer;
+	PlayerScript = Player->GetScript<CFieldObjScript>();
 
 	Player->Animator2D()->Play(L"SaffronIdle", true);
 }
