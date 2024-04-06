@@ -4,12 +4,14 @@
 #include "CSniperIdleState.h"
 #include "CSniperMoveState.h"
 #include "CSniperAttackState.h"
+#include "CPlayerIdleState.h"
 
 void CStateMgr::GetStateInfo(vector<wstring>& _vec)
 {
 	_vec.push_back(L"CSniperIdleState");
 	_vec.push_back(L"CSniperMoveState");
 	_vec.push_back(L"CSniperAttackState");
+	_vec.push_back(L"CPlayerIdleState");
 }
 
 CState * CStateMgr::GetState(const wstring& _strStateName)
@@ -20,6 +22,8 @@ CState * CStateMgr::GetState(const wstring& _strStateName)
 		return new CSniperMoveState;
 	if (L"CSniperAttackState" == _strStateName)
 		return new CSniperAttackState;
+	if (L"CPlayerIdleState" == _strStateName)
+		return new CPlayerIdleState;
 	return nullptr;
 }
 
@@ -35,6 +39,9 @@ CState * CStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::SNIPERATTACKSTATE:
 		return new CSniperAttackState;
+		break;
+	case (UINT)STATE_TYPE::PLAYERIDLESTATE:
+		return new CPlayerIdleState;
 		break;
 	}
 	return nullptr;
@@ -54,6 +61,10 @@ const wchar_t * CStateMgr::GetStateName(CState * _pState)
 
 	case STATE_TYPE::SNIPERATTACKSTATE:
 		return L"CSniperAttackState";
+		break;
+
+	case STATE_TYPE::PLAYERIDLESTATE:
+		return L"CPlayerIdleState";
 		break;
 
 	}

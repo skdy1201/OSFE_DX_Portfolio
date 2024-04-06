@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CSniperIdleState.h"
 
+#include "CFieldObjScript.h"
+
 CSniperIdleState::CSniperIdleState()
 	:CState((UINT)STATE_TYPE::SNIPERIDLESTATE)
 	, MoveTimer(nullptr)

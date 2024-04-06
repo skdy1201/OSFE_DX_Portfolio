@@ -432,6 +432,11 @@ SaffronStagger
 Saffron.png
 0
 \texture\Player\Saffron.png
+8
+1
+fsm\PlayerFSM.fsm
+0
+fsm\PlayerFSM.fsm
 9
 1
 RectMesh

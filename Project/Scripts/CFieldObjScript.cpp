@@ -39,9 +39,11 @@ void CFieldObjScript::tick()
 	Move();
 	Shoot();
 	
-	if(IsPlayer && m_Owner->Animator2D()->GetCurAnim()->IsFinish() == true)
+	if(IsPlayer && m_Owner->Animator2D()->GetCurAnim()->GetName() == wstring(L"SaffronSpawn")
+		&& m_Owner->Animator2D()->GetCurAnim()->IsFinish())
 	{
-		m_Owner->Animator2D()->Play(L"SaffronIdle", true);
+		StateMachine()->GetFSM()->ChangeState(L"CPlayerIdleState");
+		
 	}
 }
 
@@ -146,7 +148,6 @@ void CFieldObjScript::Cast()
 	}
 }
 
-
 void CFieldObjScript::begin()
 {
 	if(IsPlayer)
@@ -164,6 +165,12 @@ void CFieldObjScript::begin()
 		m_Owner->AddChild(Cursor);
 		
 		m_Owner->Animator2D()->Play(L"SaffronSpawn", false);
+
+		if(StateMachine())
+		{
+			StateMachine()->AddBlackboardData(L"Player", BB_DATA::OBJECT, m_Owner);
+
+		}
 
 	}
 }

@@ -70,6 +70,9 @@
     <ClInclude Include="CProjectileScript.h">
       <Filter>02. Scripts\Projectile</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayerIdleState.h">
+      <Filter>08. States\PlayerState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -138,6 +141,9 @@
     <ClCompile Include="CProjectileScript.cpp">
       <Filter>02. Scripts\Projectile</Filter>
     </ClCompile>
+    <ClCompile Include="CPlayerIdleState.cpp">
+      <Filter>08. States\PlayerState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -184,6 +190,9 @@
     </Filter>
     <Filter Include="02. Scripts\Monster">
       <UniqueIdentifier>{a4d3ba83-08b1-4bc9-a226-045628f6e156}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. States\PlayerState">
+      <UniqueIdentifier>{cdcc246b-d414-43d0-86ec-ef2a7d30bbc3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

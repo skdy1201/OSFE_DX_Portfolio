@@ -3,7 +3,8 @@
 #include  <Engine/CState.h>
 
 #include <Engine/CGameObject.h>
-#include "CFieldObjScript.h"
+
+class CFieldObjScript;
 
 class CSniperIdleState :
 	public CState
