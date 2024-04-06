@@ -3,6 +3,7 @@
 #include <Engine/CState.h>
 
 class CFieldObjScript;
+class CFieldScript;
 
 
 class CPlayerMoveState :
@@ -11,8 +12,15 @@ class CPlayerMoveState :
 private:
     CGameObject* Player;
     CFieldObjScript* PlayerScript;
+    CFieldScript* Field;
 
-    float* MoveTimer;
+    Vec2   NextIdx;
+    Vec2   MoveIdx;
+    Vec3   TargetPos;
+    float MovingTime;
+
+    float Distance;
+    float Speed;
 
 public:
     virtual void finaltick() override;

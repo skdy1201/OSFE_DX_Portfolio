@@ -28,15 +28,18 @@ void CSniperMoveState::Enter()
 
 void CSniperMoveState::finaltick()
 {
+	Vec3 SniperPos = {};
+
 	if(*MoveDir == 1)
 	{
-		SniperScript->GetField()->MoveToTile(SniperScript->GetOwner(), Vec2(m_OwnerIdx.x, m_OwnerIdx.y + 1), PlayerZ);
+		SniperPos = SniperScript->GetField()->GetNextTilePos(SniperScript->GetOwner(), Vec2(m_OwnerIdx.x, m_OwnerIdx.y + 1), PlayerZ);
 	}
 	else
 	{
-		SniperScript->GetField()->MoveToTile(SniperScript->GetOwner(), Vec2(m_OwnerIdx.x, m_OwnerIdx.y - 1), PlayerZ);
-
+		SniperPos = SniperScript->GetField()->GetNextTilePos(SniperScript->GetOwner(), Vec2(m_OwnerIdx.x, m_OwnerIdx.y - 1), PlayerZ);
 	}
+
+	SniperScript->GetOwner()->Transform()->SetRelativePos(SniperPos);
 
 	*MoveDir = 0;
 

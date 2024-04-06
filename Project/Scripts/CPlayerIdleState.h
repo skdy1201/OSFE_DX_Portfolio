@@ -2,6 +2,7 @@
 
 #include <Engine/CState.h>
 
+class CFieldScript;
 class CFieldObjScript;
 
 
@@ -12,6 +13,7 @@ private:
 
     CGameObject*        Player;
     CFieldObjScript*    PlayerScript;
+    CFieldScript*       Field;
 
     float*              MoveTimer;
     float*              AttackTimer;

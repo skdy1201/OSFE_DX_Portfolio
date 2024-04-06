@@ -33,6 +33,7 @@ class CFieldObjScript :
 	public CScript
 {
 private:
+	Vec2 NextIdx;
 	Status m_status;
 
 	CGameObject* m_Owner;
@@ -46,7 +47,6 @@ private:
 public:
 	Status& GetStatus() { return m_status; }
 	void SetStatus(const Status& _status) { m_status = _status; }
-	void Move();
 	void Shoot();
 	void Cast();
 
@@ -59,7 +59,7 @@ public:
 	Vec2 GetOwnerIdx() { return CurFieldIdx; }
 	void SetOwnerIdx(Vec2 _index) { CurFieldIdx = _index; }
 
-	Vec2 CFieldObjScript::GetMoveIdx(Vec2 TargetDirIdx);
+	Vec2 GetMoveIdx(Vec2 TargetDirIdx);
 
 	virtual void begin() override;
 	virtual void tick() override;

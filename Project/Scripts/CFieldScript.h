@@ -26,7 +26,7 @@ public:
 	void SpawnTile(int Row, int Col);
 	void SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey, bool IsPlayer);
 
-	void MoveToTile(CGameObject* _Owner, Vec2 _Index , float _PositionZ);
+	Vec3 GetNextTilePos(CGameObject* _Owner, Vec2 _Index , float _PositionZ);
 
 	Vec3 GetTilePosition(Vec2& _TileIdx);
 	Vec3 GetTilePositionToMagic(Vec2& _TileIdx);

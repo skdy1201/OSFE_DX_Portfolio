@@ -36,72 +36,11 @@ CFieldObjScript::~CFieldObjScript()
 
 void CFieldObjScript::tick()
 {
-	Move();
 	Shoot();
 	Cast();
 
 }
 
-void CFieldObjScript::Move()
-{
-	if(IsPlayer == true)
-	{
-		if(KEY_TAP(KEY::UP))
-		{
-			Vec2 Index = GetOwnerIdx();
-
-			Vec2 NextIndex = { Index.x, Index.y + 1 };
-
-			if (NextIndex.y >= TileMaxRow)
-				return;
-
-			m_Field->MoveToTile(m_Owner, NextIndex, PlayerZ);
-
-			m_Owner->Animator2D()->Play(L"SaffronMoveUp" , false);
-
-		}
-
-		if (KEY_TAP(KEY::DOWN))
-		{
-			Vec2 Index = GetOwnerIdx();
-
-			Vec2 NextIndex = { Index.x, Index.y - 1 };
-
-			if (NextIndex.y < 0)
-				return;
-				
-			m_Field->MoveToTile(m_Owner, NextIndex, PlayerZ);
-
-			m_Owner->Animator2D()->Play(L"SaffronMoveDown", false);
-
-		}
-
-			if (KEY_TAP(KEY::LEFT))
-			{
-				Vec2 Index = GetOwnerIdx();
-
-				Vec2 NextIndex = { Index.x - 1, Index.y };
-
-				m_Field->MoveToTile(m_Owner, NextIndex, PlayerZ);
-
-				m_Owner->Animator2D()->Play(L"SaffronMoveBack", false);
-
-			}
-
-			if (KEY_TAP(KEY::RIGHT))
-			{
-				Vec2 Index = GetOwnerIdx();
-
-				Vec2 NextIndex = { Index.x + 1, Index.y};
-
-				m_Field->MoveToTile(m_Owner, NextIndex, PlayerZ);
-
-				m_Owner->Animator2D()->Play(L"SaffronMoveFront", false);
-
-			}
-
-	}
-}
 
 void CFieldObjScript::Shoot()
 {
@@ -175,6 +114,7 @@ void CFieldObjScript::begin()
 		if(StateMachine())
 		{
 			StateMachine()->AddBlackboardData(L"Player", BB_DATA::OBJECT, m_Owner);
+			StateMachine()->AddBlackboardData(L"NextIdx", BB_DATA::VEC2, &NextIdx);
 			StateMachine()->GetFSM()->ChangeState(L"CPlayerEntryState");
 		}
 	}

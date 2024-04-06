@@ -137,14 +137,15 @@ void CFieldScript::SetFObjAboutField(CGameObject* Object)
 }
 
 //Fieldobj 전용 함수로 이름 변경예정
-void CFieldScript::MoveToTile(CGameObject* _Owner, Vec2 _Index, float _PositionZ)
+Vec3 CFieldScript::GetNextTilePos(CGameObject* _Owner, Vec2 _Index, float _PositionZ)
 {
 	Vec3 Position = GetTilePosition(_Index);
 	Position.z = _PositionZ;
-	_Owner->Transform()->SetRelativePos(Position);
 
 	CFieldObjScript* pScript = _Owner->GetScript<CFieldObjScript>();
 	pScript->SetOwnerIdx(_Index);
+
+	return Position;
 }
 
 Vec3 CFieldScript::GetTilePosition(Vec2& _TileIdx)
