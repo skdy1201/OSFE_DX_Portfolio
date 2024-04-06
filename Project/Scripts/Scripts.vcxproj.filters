@@ -76,6 +76,9 @@
     <ClInclude Include="CPlayerEntryState.h">
       <Filter>08. States\PlayerState</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayerMoveState.h">
+      <Filter>08. States\PlayerState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -148,6 +151,9 @@
       <Filter>08. States\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="CPlayerEntryState.cpp">
+      <Filter>08. States\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerMoveState.cpp">
       <Filter>08. States\PlayerState</Filter>
     </ClCompile>
   </ItemGroup>

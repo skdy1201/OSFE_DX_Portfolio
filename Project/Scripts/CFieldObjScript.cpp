@@ -38,7 +38,7 @@ void CFieldObjScript::tick()
 {
 	Move();
 	Shoot();
-	
+	Cast();
 
 }
 
@@ -100,15 +100,6 @@ void CFieldObjScript::Move()
 
 			}
 
-
-			if(KEY_TAP(KEY::Q))
-			{
-				FrostBoltMagic* bolt = new FrostBoltMagic;
-				bolt->SetCaster(this->m_Owner);
-				Vec2 StartPoint = this->GetOwnerIdx();
-				bolt->cast(StartPoint - Vec2{4, 0});
-
-			}
 	}
 }
 
@@ -139,8 +130,30 @@ void CFieldObjScript::Cast()
 {
 	if(IsPlayer == true)
 	{
-		
+		if (KEY_TAP(KEY::Q))
+		{
+			FrostBoltMagic* bolt = new FrostBoltMagic;
+			bolt->SetCaster(this->m_Owner);
+			Vec2 StartPoint = this->GetOwnerIdx();
+			bolt->cast(StartPoint - Vec2{ 4, 0 });
+
+		}
 	}
+}
+
+Vec2 CFieldObjScript::GetMoveIdx(Vec2 TargetDirIdx)
+{
+	Vec2 Index = GetOwnerIdx();
+
+	Vec2 NextIndex = { Index.x + TargetDirIdx.x, Index.y + TargetDirIdx.y };
+
+	if (NextIndex.y >= TileMaxRow)
+		NextIndex.y = 3;
+
+	if (NextIndex.x <= 3)
+		NextIndex.x = 3;
+
+	return NextIndex;
 }
 
 void CFieldObjScript::begin()

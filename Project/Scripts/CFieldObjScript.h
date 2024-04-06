@@ -27,7 +27,6 @@ struct Status
 	int RewardExp; // 처치시 경험치
 
 	int Camp; // 진영
-
 };
 
 class CFieldObjScript :
@@ -59,6 +58,8 @@ public:
 
 	Vec2 GetOwnerIdx() { return CurFieldIdx; }
 	void SetOwnerIdx(Vec2 _index) { CurFieldIdx = _index; }
+
+	Vec2 CFieldObjScript::GetMoveIdx(Vec2 TargetDirIdx);
 
 	virtual void begin() override;
 	virtual void tick() override;

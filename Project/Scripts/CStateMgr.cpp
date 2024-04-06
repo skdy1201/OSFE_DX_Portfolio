@@ -6,6 +6,7 @@
 #include "CSniperAttackState.h"
 #include "CPlayerIdleState.h"
 #include "CPlayerEntryState.h"
+#include "CPlayerMoveState.h"
 
 void CStateMgr::GetStateInfo(vector<wstring>& _vec)
 {
@@ -14,6 +15,7 @@ void CStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CSniperAttackState");
 	_vec.push_back(L"CPlayerIdleState");
 	_vec.push_back(L"CPlayerEntryState");
+	_vec.push_back(L"CPlayerMoveState");
 }
 
 CState * CStateMgr::GetState(const wstring& _strStateName)
@@ -28,6 +30,8 @@ CState * CStateMgr::GetState(const wstring& _strStateName)
 		return new CPlayerIdleState;
 	if (L"CPlayerEntryState" == _strStateName)
 		return new CPlayerEntryState;
+	if (L"CPlayerMoveState" == _strStateName)
+		return new CPlayerMoveState;
 	return nullptr;
 }
 
@@ -49,6 +53,9 @@ CState * CStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::PLAYERENTRYSTATE:
 		return new CPlayerEntryState;
+		break;
+	case (UINT)STATE_TYPE::PLAYERMOVESTATE:
+		return new CPlayerMoveState;
 		break;
 	}
 	return nullptr;
@@ -76,6 +83,10 @@ const wchar_t * CStateMgr::GetStateName(CState * _pState)
 
 	case STATE_TYPE::PLAYERENTRYSTATE:
 		return L"CPlayerEntryState";
+		break;
+
+	case STATE_TYPE::PLAYERMOVESTATE:
+		return L"CPlayerMoveState";
 		break;
 
 	}
