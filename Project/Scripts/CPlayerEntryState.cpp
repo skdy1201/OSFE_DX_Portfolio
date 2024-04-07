@@ -6,6 +6,10 @@
 #include <Engine/CAnimator2D.h>
 #include <Engine/CAnim.h>
 
+#include <Engine/CTransform.h>
+
+#include  <Engine/CGameObject.h>
+
 CPlayerEntryState::CPlayerEntryState()
 	: CState((UINT)STATE_TYPE::PLAYERENTRYSTATE)
 	, Player(nullptr)
@@ -21,9 +25,11 @@ CPlayerEntryState::~CPlayerEntryState()
 
 void CPlayerEntryState::Enter()
 {
-	Player = BlackBoardPlayer;
+	Player = BlackBoardPlayer
 
 	Player->Animator2D()->Play(L"SaffronSpawn", false);
+
+	Player->Transform()->SetOffset(Vec2{ 0.f, 10.f });
 }
 
 void CPlayerEntryState::finaltick()

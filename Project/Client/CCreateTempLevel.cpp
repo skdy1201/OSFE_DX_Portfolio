@@ -34,6 +34,8 @@
 
 #include "../Scripts/define.h"
 
+#include <Engine/CAnimator2D.h>
+
 
 void CCreateTempLevel::Init()
 {
@@ -223,8 +225,6 @@ void CCreateTempLevel::CreateTempLevel()
 	Ptr<CPrefab> temp = CAssetMgr::GetInst()->Load<CPrefab>(FieldPrefabKey, FieldPrefabKey);
 	pObj = temp->Instantiate();
 	pTempLevel->AddObject(pObj, 0, true);
-	
-
 
 
 	// 충돌 설정

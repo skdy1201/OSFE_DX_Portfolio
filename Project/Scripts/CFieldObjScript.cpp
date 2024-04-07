@@ -81,7 +81,7 @@ void CFieldObjScript::begin()
 	if(IsPlayer)
 	{
 		CGameObject* Cursor;
-		Ptr<CPrefab> Cursorprefab = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\PlayerCursor.pref", L"prefab\\PlayerCursor.pref");
+		Ptr<CPrefab> Cursorprefab = CAssetMgr::GetInst()->Load<CPrefab>(PrefabPlayerCursor, PrefabPlayerCursor);
 		Cursor = Cursorprefab->Instantiate();
 
 		CPlayerCursorScript* pScript = Cursor->GetScript<CPlayerCursorScript>();

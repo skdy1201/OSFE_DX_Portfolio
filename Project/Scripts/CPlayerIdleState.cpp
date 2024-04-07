@@ -30,7 +30,7 @@ void CPlayerIdleState::Enter()
 
 	Player->Animator2D()->Play(L"SaffronIdle", true);
 
-	AttackTimer = 0.03f;
+	AttackTimer = 0.02f;
 }
 
 
@@ -84,21 +84,21 @@ void CPlayerIdleState::Exit()
 void CPlayerIdleState::Shoot(float _Dt)
 {
 	CGameObject* GameObj;
-	GameObj = CPrefab::GetPrefabObj(L"prefab\\PlayerBullet.pref");
+	GameObj = CPrefab::GetPrefabObj(PrefabPlayerBullet);
 
 	CProjectileScript* pProjScript = GameObj->GetScript<CProjectileScript>();
 	Proj_Struct info = pProjScript->GetInfo();
 
-	pProjScript->Shoot(Player, Field, Vec2(10.f, 0.f), info);
+	pProjScript->Shoot(Player, Field, Vec2(100.f, 0.f), info);
 	pProjScript->SetDir(Vec3(1.f, 0.f, 0.f));
 
-	if (KEY_TAP(KEY::E) && AttackTimer >= 0.03f)
+	if (KEY_TAP(KEY::E) && AttackTimer >= 0.02f)
 	{
 		GamePlayStatic::SpawnGameObject(GameObj, 0);
 
 		AttackTimer = 0.f;
 	}
-	else if(KEY_PRESSED((KEY::E)) && AttackTimer >= 0.1f)
+	else if(KEY_PRESSED((KEY::E)) && AttackTimer >= 0.17f)
 	{
 		CAnim* pAnim;
 

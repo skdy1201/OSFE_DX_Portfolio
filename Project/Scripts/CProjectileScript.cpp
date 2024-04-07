@@ -134,7 +134,6 @@ void CProjectileScript::CalculateDir(Vec2 StartIdx, Vec2 TargetDir)
 
 void CProjectileScript::begin()
 {
-
 }
 
 void CProjectileScript::tick()

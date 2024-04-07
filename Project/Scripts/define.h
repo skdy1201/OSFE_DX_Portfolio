@@ -32,8 +32,28 @@
 #define MagicFieldIndexX 15
 
 
+// 프리팹 매크로
+#define PrefabPlayer L"prefab\\temptest.pref"
+#define PrefabPlayerBullet L"prefab\\PlayerBullet.pref"
+
+
+#define PrefabSniper L"prefab\\SniperTest.pref"
+#define PrefabSniperBullet L"prefab\\SniperBullet.pref"
+
+
+#define PrefabPlayerCursor L"prefab\\PlayerCursor.pref"
+
+
 // 에니메이션 매크로
 #define frostblastanim FrostBlast
 
+
 // FSM 매크로
-#define BlackBoardPlayer (CGameObject*)GetBlackboardData(L"Player");
+#define BlackBoardPlayer (CGameObject*)GetBlackboardData(BBPlayer);
+#define BlackBoardOwner (CGameObject*)GetBlackboardData(L"Owner");
+
+
+//BB 매크로
+#define  BBPlayer L"Player"
+#define  MoveCooldown (float*)GetBlackboardData(L"MoveCooldown");
+#define  AttackCooldown (float*)GetBlackboardData(L"AttackCooldown");

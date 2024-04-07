@@ -15,6 +15,8 @@ private:
     Matrix  m_matWorld; // 상태행렬
     bool    m_bAbsolute;
 
+    Vec2    m_Offset;
+
 public:
     virtual void finaltick() override;
     virtual void UpdateData() override;
@@ -41,6 +43,9 @@ public:
 
     Vec3 GetLocalDir(DIR_TYPE _type) { return m_arrLocalDir[(UINT)_type]; }
     Vec3 GetWorldDir(DIR_TYPE _type) { return m_arrWorldDir[(UINT)_type]; }
+
+    void SetOffset(Vec2 _Offset) { m_Offset = _Offset; }
+    Vec2 GetOffet() { return m_Offset; }
 
     virtual void SaveToFile(ofstream& _File) override;
     virtual void LoadFromFile(ifstream& _File) override;

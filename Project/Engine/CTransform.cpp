@@ -10,6 +10,7 @@ CTransform::CTransform()
 	: CComponent(COMPONENT_TYPE::TRANSFORM)
 	, m_vRelativeScale(Vec3(1.f, 1.f, 1.f))
 	, m_bAbsolute(true)
+	, m_Offset(0.f, 0.f)
 {
 }
 
@@ -80,6 +81,8 @@ void CTransform::finaltick()
 
 void CTransform::UpdateData()
 {
+	m_matWorld._41 += m_Offset.x;
+	m_matWorld._42 += m_Offset.y;
 	g_Transform.matWorld = m_matWorld;
 	g_Transform.matWV = g_Transform.matWorld * g_Transform.matView;
 	g_Transform.matWVP = g_Transform.matWV * g_Transform.matProj;

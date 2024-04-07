@@ -41,8 +41,8 @@ void CFieldScript::LoadFromFile(ifstream& _File)
 void CFieldScript::begin()
 {
 	SpawnTile(MaxTileRow, MaxTileCol);
-	SpawnFieldObj(Vec2{ 5, 2 }, L"prefab\\temptest.pref", true);
-	SpawnFieldObj(Vec2{8 , 2 }, L"prefab\\SniperTest.pref" , false);
+	SpawnFieldObj(Vec2{ 5, 2 }, PrefabPlayer, true);
+	SpawnFieldObj(Vec2{8 , 2 }, PrefabSniper, false);
 
 
 

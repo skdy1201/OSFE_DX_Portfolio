@@ -7,20 +7,8 @@
     <ClInclude Include="pch.h">
       <Filter>Default</Filter>
     </ClInclude>
-    <ClInclude Include="CBackgroundScript.h">
-      <Filter>02. Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="CMissileScript.h">
-      <Filter>02. Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlayerScript.h">
-      <Filter>02. Scripts</Filter>
-    </ClInclude>
     <ClInclude Include="CScriptMgr.h">
       <Filter>ScriptMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="CMonsterScript.h">
-      <Filter>02. Scripts</Filter>
     </ClInclude>
     <ClInclude Include="CTileScript.h">
       <Filter>02. Scripts\Tile</Filter>
@@ -79,6 +67,18 @@
     <ClInclude Include="CPlayerMoveState.h">
       <Filter>08. States\PlayerState</Filter>
     </ClInclude>
+    <ClInclude Include="CBackgroundScript.h">
+      <Filter>02. Scripts\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CMissileScript.h">
+      <Filter>02. Scripts\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonsterScript.h">
+      <Filter>02. Scripts\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerScript.h">
+      <Filter>02. Scripts\Default</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -87,20 +87,8 @@
     <ClCompile Include="Scripts.cpp">
       <Filter>Default</Filter>
     </ClCompile>
-    <ClCompile Include="CBackgroundScript.cpp">
-      <Filter>02. Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="CMissileScript.cpp">
-      <Filter>02. Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlayerScript.cpp">
-      <Filter>02. Scripts</Filter>
-    </ClCompile>
     <ClCompile Include="CScriptMgr.cpp">
       <Filter>ScriptMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="CMonsterScript.cpp">
-      <Filter>02. Scripts</Filter>
     </ClCompile>
     <ClCompile Include="CTileScript.cpp">
       <Filter>02. Scripts\Tile</Filter>
@@ -156,6 +144,18 @@
     <ClCompile Include="CPlayerMoveState.cpp">
       <Filter>08. States\PlayerState</Filter>
     </ClCompile>
+    <ClCompile Include="CBackgroundScript.cpp">
+      <Filter>02. Scripts\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="CMissileScript.cpp">
+      <Filter>02. Scripts\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonsterScript.cpp">
+      <Filter>02. Scripts\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerScript.cpp">
+      <Filter>02. Scripts\Default</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -205,6 +205,9 @@
     </Filter>
     <Filter Include="08. States\PlayerState">
       <UniqueIdentifier>{cdcc246b-d414-43d0-86ec-ef2a7d30bbc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\Default">
+      <UniqueIdentifier>{3d376934-94e9-410a-9211-06ee9fdf1668}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

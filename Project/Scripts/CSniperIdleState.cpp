@@ -16,11 +16,11 @@ CSniperIdleState::~CSniperIdleState()
 
 void CSniperIdleState::Enter()
 {
-	Player = (CGameObject*)GetBlackboardData(L"Player");
+	Player = BlackBoardPlayer
 	PlayerScript = Player->GetScript<CFieldObjScript>();
 
-	MoveTimer = (float*)GetBlackboardData(L"MoveCooldown");
-	AttackTimer = (float*)GetBlackboardData(L"AttackCooldown");
+	MoveTimer = MoveCooldown
+	AttackTimer = AttackCooldown
 
 	if (*MoveTimer > 3.5f)
 		*MoveTimer -= 1.5f;

@@ -25,11 +25,11 @@ CSniperAttackState::~CSniperAttackState()
 
 void CSniperAttackState::Enter()
 {
-	Sniper = (CGameObject*)GetBlackboardData(L"Owner");
+	Sniper = BlackBoardOwner
 	AnimatorObject = (CGameObject*)GetBlackboardData(L"ChildAnim");
 
-	AttackTimer = (float*)GetBlackboardData((L"AttackCooldown"));
-	MoveTimer = (float*)GetBlackboardData(L"MoveCooldown");
+	AttackTimer = AttackCooldown
+	MoveTimer = MoveCooldown
 
 
 
@@ -51,7 +51,7 @@ void CSniperAttackState::finaltick()
 	{
 		*AttackTimer = 0.f;
 
-		CGameObject* Bullet = CPrefab::GetPrefabObj(L"prefab\\SniperBullet.pref");
+		CGameObject* Bullet = CPrefab::GetPrefabObj(PrefabSniperBullet);
 		CSniperProj* pSniperPorj = Bullet->GetScript<CSniperProj>();
 
 		CFieldScript* CurField = Sniper->GetScript<CFieldObjScript>()->GetField();

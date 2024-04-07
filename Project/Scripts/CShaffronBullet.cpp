@@ -19,6 +19,8 @@ CShaffronBullet::~CShaffronBullet()
 
 void CShaffronBullet::begin()
 {
+	this->GetOwner()->Transform()->SetOffset(Vec2{ 0.f, 80.f });
+
 	if (this->GetShooter() != nullptr)
 	{
 		// 정보 세팅
