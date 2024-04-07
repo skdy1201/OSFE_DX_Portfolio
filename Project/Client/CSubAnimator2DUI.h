@@ -33,7 +33,7 @@ private:
     int AtlasRow;
     bool IsSetIdx;
 
-    ImVec2 Padding;
+    Vec2 Padding;
    
     //프레임 관리
     ImVec2 FramePosition;
@@ -71,7 +71,7 @@ private:
 
     void FloatAnimStruct();
     void FloatFrmStruct();
-    void DrawGrid(ImVec2 ImgPosition, ImVec2 _ImgSize, ImVec2 _Padding, int _ColRow[2]);
+    void DrawGrid(ImVec2 ImgPosition, ImVec2 _ImgSize, Vec2 _Padding, int _ColRow[2]);
     void LoadAtlasButton(const char* BtnName, ImVec2 _Size);
     void AddFrmButton(const char* BtnName, ImVec2 _Size);
     void PlayPreview();

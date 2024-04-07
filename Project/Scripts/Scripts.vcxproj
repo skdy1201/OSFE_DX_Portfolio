@@ -162,6 +162,7 @@ call CodeGen.exe</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAnimatorModule.h" />
     <ClInclude Include="CBackgroundScript.h" />
     <ClInclude Include="CFieldObjScript.h" />
     <ClInclude Include="CFieldScript.h" />
@@ -169,6 +170,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CMagic.h" />
     <ClInclude Include="CMissileScript.h" />
     <ClInclude Include="CMonsterScript.h" />
+    <ClInclude Include="CPlayerBulletAnim.h" />
     <ClInclude Include="CPlayerCursorScript.h" />
     <ClInclude Include="CPlayerEntryState.h" />
     <ClInclude Include="CPlayerIdleState.h" />
@@ -190,6 +192,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAnimatorModule.cpp" />
     <ClCompile Include="CBackgroundScript.cpp" />
     <ClCompile Include="CFieldObjScript.cpp" />
     <ClCompile Include="CFieldScript.cpp" />
@@ -197,6 +200,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CMagic.cpp" />
     <ClCompile Include="CMissileScript.cpp" />
     <ClCompile Include="CMonsterScript.cpp" />
+    <ClCompile Include="CPlayerBulletAnim.cpp" />
     <ClCompile Include="CPlayerCursorScript.cpp" />
     <ClCompile Include="CPlayerEntryState.cpp" />
     <ClCompile Include="CPlayerIdleState.cpp" />

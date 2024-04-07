@@ -532,7 +532,7 @@ void CSubAnimator2DUI::FloatFrmStruct()
 	}
 }
 
-void CSubAnimator2DUI::DrawGrid(ImVec2 ImgPosition, ImVec2 _ImgSize, ImVec2 _Padding, int _ColRow[2])
+void CSubAnimator2DUI::DrawGrid(ImVec2 ImgPosition, ImVec2 _ImgSize, Vec2 _Padding, int _ColRow[2])
 {
 	int Acol = _ColRow[0];
 	int Arow = _ColRow[1];
@@ -586,11 +586,25 @@ void CSubAnimator2DUI::AddFrmButton(const char* BtnName, ImVec2 _Size)
 	{
 		tAnimFrm temp = {};
 
-		temp.vSlice = Vec2(OneFrmSize.x / (float)m_AtlasTex->GetWidth(), OneFrmSize.y / (float)m_AtlasTex->GetHeight());
-		temp.vLeftTop = Vec2(LeftTop.x / (float)m_AtlasTex->GetWidth(), LeftTop.y / (float)m_AtlasTex->GetHeight());
+		temp.vSlice = Vec2((OneFrmSize.x - (Padding.x/ AtlasCol))  / (float)m_AtlasTex->GetWidth(), (OneFrmSize.y - (Padding.y / AtlasRow)) / (float)m_AtlasTex->GetHeight());
+
+		Vec2 TempLeftTop = LeftTop - Padding;
+
+		if (TempLeftTop.x < 0.f)
+			TempLeftTop.x = 0.f;
+
+		if (LeftTop.y == 0)
+			TempLeftTop.y = 0;
+
+		float tLeftTopx = TempLeftTop.x;
+		float tLeftTopy = TempLeftTop.y;
+
+		temp.vLeftTop = Vec2{ tLeftTopx / (float)m_AtlasTex->GetWidth(), tLeftTopy / (float)m_AtlasTex->GetHeight() };
 		temp.vOffset = Vec2(Offset.x / (float)m_AtlasTex->GetWidth(), Offset.y / (float)m_AtlasTex->GetHeight());
 		temp.vBackground = Vec2(Background.x / (float)m_AtlasTex->GetWidth(), Background.y / (float)m_AtlasTex->GetHeight());
 		temp.Duration = Duration;
+
+		
 
 		tm_vecFrm.push_back(temp);
 

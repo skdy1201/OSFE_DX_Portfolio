@@ -2,6 +2,7 @@
 
 #include "CProjectileScript.h"
 #include "CFieldScript.h"
+#include "CPlayerBulletAnim.h"
 
 #include <Engine/CGameObject.h>
 #include <Engine/CComponent.h>
@@ -55,6 +56,7 @@ void CProjectileScript::Shoot(CGameObject* Shooter, CFieldScript* CurField,Vec2 
 
 	//정보 세팅
 	this->SetInfo(Info);
+
 }
 
 void CProjectileScript::Move(float _DT)

@@ -31,6 +31,8 @@ public:
     CAnim* FindAnim(const wstring& _strAnimName);
     void Play(const wstring& _strAnimName, bool _bRepeat = true);
 
+    void PlayModule(const wstring& _strAnimName, int& count);
+
     virtual void SaveToFile(ofstream& _File) override;
     virtual void LoadFromFile(ifstream& _File) override;
     CLONE(CAnimator2D);

@@ -110,6 +110,16 @@ void CAnimator2D::Play(const wstring& _strAnimName, bool _bRepeat)
 	m_CurAnim->Reset();
 }
 
+void CAnimator2D::PlayModule(const wstring& _strAnimNam, int& count)
+{
+		if(count >0)
+		{
+			this->Play(_strAnimNam, false);
+		}
+
+		--count;
+}
+
 void CAnimator2D::SaveToFile(ofstream& _fout)
 {
 	// 애니메이션 개수 저장

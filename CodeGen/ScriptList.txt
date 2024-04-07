@@ -11,3 +11,5 @@ CBackgroundScript
 CMissileScript
 CMonsterScript
 CPlayerScript
+CAnimatorModule
+CPlayerBulletAnim

@@ -39,6 +39,16 @@ void CShaffronBullet::begin()
 		this->SetInfo(Info);
 
 	}
+
+	//에니메이션 객체생성
+	CGameObject* GAnimation;
+	GAnimation = CPrefab::GetPrefabObj(PrefabPlayerBulletAnim);
+
+	Vec3 AnimTransform = Transform()->GetRelativePos();
+
+	GAnimation->Transform()->SetRelativePos(AnimTransform);
+
+	GamePlayStatic::SpawnGameObject(GAnimation, 0);
 }
 
 void CShaffronBullet::tick()

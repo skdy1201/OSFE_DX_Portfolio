@@ -26,7 +26,7 @@
       <Filter>ScriptMgr</Filter>
     </ClInclude>
     <ClInclude Include="CPlayerCursorScript.h">
-      <Filter>02. Scripts\PlayerModule</Filter>
+      <Filter>02. Scripts\Module\PlayerModule</Filter>
     </ClInclude>
     <ClInclude Include="CShaffronBullet.h">
       <Filter>02. Scripts\Projectile</Filter>
@@ -79,6 +79,12 @@
     <ClInclude Include="CPlayerScript.h">
       <Filter>02. Scripts\Default</Filter>
     </ClInclude>
+    <ClInclude Include="CAnimatorModule.h">
+      <Filter>02. Scripts\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerBulletAnim.h">
+      <Filter>02. Scripts\Module\PlayerModule</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -103,7 +109,7 @@
       <Filter>ScriptMgr</Filter>
     </ClCompile>
     <ClCompile Include="CPlayerCursorScript.cpp">
-      <Filter>02. Scripts\PlayerModule</Filter>
+      <Filter>02. Scripts\Module\PlayerModule</Filter>
     </ClCompile>
     <ClCompile Include="CShaffronBullet.cpp">
       <Filter>02. Scripts\Projectile</Filter>
@@ -156,6 +162,12 @@
     <ClCompile Include="CPlayerScript.cpp">
       <Filter>02. Scripts\Default</Filter>
     </ClCompile>
+    <ClCompile Include="CAnimatorModule.cpp">
+      <Filter>02. Scripts\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerBulletAnim.cpp">
+      <Filter>02. Scripts\Module\PlayerModule</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -185,9 +197,6 @@
     <Filter Include="08. States">
       <UniqueIdentifier>{6cb957da-fd9a-456f-ad00-45ea75aaa3fe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02. Scripts\PlayerModule">
-      <UniqueIdentifier>{14c98dc5-cbef-401b-b224-a357f9d5d0af}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02. Scripts\Magic">
       <UniqueIdentifier>{0c60bb3d-9562-402e-8cb5-c79f9811179a}</UniqueIdentifier>
     </Filter>
@@ -208,6 +217,12 @@
     </Filter>
     <Filter Include="02. Scripts\Default">
       <UniqueIdentifier>{3d376934-94e9-410a-9211-06ee9fdf1668}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\Module">
+      <UniqueIdentifier>{431b2b1d-576b-4586-9a9e-1768e6257d4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\Module\PlayerModule">
+      <UniqueIdentifier>{14c98dc5-cbef-401b-b224-a357f9d5d0af}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
