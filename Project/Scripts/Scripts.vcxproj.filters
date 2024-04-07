@@ -85,6 +85,9 @@
     <ClInclude Include="CPlayerBulletAnim.h">
       <Filter>02. Scripts\Module\PlayerModule</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayerSpawnAnim.h">
+      <Filter>02. Scripts\Module\PlayerModule</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -166,6 +169,9 @@
       <Filter>02. Scripts\Module</Filter>
     </ClCompile>
     <ClCompile Include="CPlayerBulletAnim.cpp">
+      <Filter>02. Scripts\Module\PlayerModule</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerSpawnAnim.cpp">
       <Filter>02. Scripts\Module\PlayerModule</Filter>
     </ClCompile>
   </ItemGroup>

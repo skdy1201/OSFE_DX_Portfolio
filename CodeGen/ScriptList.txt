@@ -13,3 +13,4 @@ CMonsterScript
 CPlayerScript
 CAnimatorModule
 CPlayerBulletAnim
+CPlayerSpawnAnim

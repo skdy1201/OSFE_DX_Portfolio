@@ -16,6 +16,7 @@
 #include "CPlayerScript.h"
 #include "CAnimatorModule.h"
 #include "CPlayerBulletAnim.h"
+#include "CPlayerSpawnAnim.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -34,6 +35,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CPlayerScript");
 	_vec.push_back(L"CAnimatorModule");
 	_vec.push_back(L"CPlayerBulletAnim");
+	_vec.push_back(L"CPlayerSpawnAnim");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -68,6 +70,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CAnimatorModule;
 	if (L"CPlayerBulletAnim" == _strScriptName)
 		return new CPlayerBulletAnim;
+	if (L"CPlayerSpawnAnim" == _strScriptName)
+		return new CPlayerSpawnAnim;
 	return nullptr;
 }
 
@@ -119,6 +123,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::PLAYERBULLETANIM:
 		return new CPlayerBulletAnim;
+		break;
+	case (UINT)SCRIPT_TYPE::PLAYERSPAWNANIM:
+		return new CPlayerSpawnAnim;
 		break;
 	}
 	return nullptr;
@@ -186,6 +193,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::PLAYERBULLETANIM:
 		return L"CPlayerBulletAnim";
+		break;
+
+	case SCRIPT_TYPE::PLAYERSPAWNANIM:
+		return L"CPlayerSpawnAnim";
 		break;
 
 	}

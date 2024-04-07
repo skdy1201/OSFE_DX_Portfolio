@@ -36,7 +36,7 @@
 #define PrefabPlayer L"prefab\\temptest.pref"
 #define PrefabPlayerBullet L"prefab\\PlayerBullet.pref"
 #define PrefabPlayerBulletAnim L"prefab\\PlayerBulletAnim.pref"
-
+#define PrefabPlayerSpawnAnim L"prefab\\PlayerSpawnAnim.pref"
 
 #define PrefabSniper L"prefab\\SniperTest.pref"
 #define PrefabSniperBullet L"prefab\\SniperBullet.pref"
@@ -48,6 +48,7 @@
 // 에니메이션 매크로
 #define frostblastanim FrostBlast
 #define BulletBasicCast L"BasicCast"
+#define SpawnEffect L"SaffronSpawnFX"
 
 // FSM 매크로
 #define BlackBoardPlayer (CGameObject*)GetBlackboardData(BBPlayer);
