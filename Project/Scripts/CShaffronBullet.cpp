@@ -48,7 +48,7 @@ void CShaffronBullet::begin()
 
 	GAnimation->Transform()->SetRelativePos(AnimTransform);
 
-	GamePlayStatic::SpawnGameObject(GAnimation, 0);
+	GamePlayStatic::SpawnGameObject(GAnimation, LayerPlayerAttack);
 }
 
 void CShaffronBullet::tick()

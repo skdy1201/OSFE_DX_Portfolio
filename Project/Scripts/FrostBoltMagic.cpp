@@ -51,14 +51,14 @@ void FrostBoltMagic::cast(Vec2 StartPoint)
 				
 				if (castrow == 2 && castcol == 7)
 				{
-					GamePlayStatic::SpawnGameObject(bolt, 0, 0.2f);
+					GamePlayStatic::SpawnGameObject(bolt, LayerPlayerAttack, 0.2f);
 				}else if (castrow == 3 && castcol == 8)
 				{
-					GamePlayStatic::SpawnGameObject(bolt, 0);
+					GamePlayStatic::SpawnGameObject(bolt, LayerPlayerAttack);
 
 				}else
 				{
-					GamePlayStatic::SpawnGameObject(bolt, 0, 0.1f);
+					GamePlayStatic::SpawnGameObject(bolt, LayerPlayerAttack, 0.1f);
 				}
 
 			}

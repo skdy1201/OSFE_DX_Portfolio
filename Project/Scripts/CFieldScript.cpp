@@ -41,8 +41,8 @@ void CFieldScript::LoadFromFile(ifstream& _File)
 void CFieldScript::begin()
 {
 	SpawnTile(MaxTileRow, MaxTileCol);
-	SpawnFieldObj(Vec2{ 5, 2 }, PrefabPlayer, true);
-	SpawnFieldObj(Vec2{8 , 2 }, PrefabSniper, false);
+	SpawnFieldObj(Vec2{ 5, 2 }, PrefabPlayer,3, true);
+	SpawnFieldObj(Vec2{8 , 2 }, PrefabSniper, 4, false);
 
 
 
@@ -81,7 +81,7 @@ void CFieldScript::SpawnTile(int Row, int Col)
 			CTileScript* pScript = GameObj->GetScript<CTileScript>();
 			pScript ->SetTilePosition(i, j);
 
-			GamePlayStatic::SpawnGameObject(GameObj, 0);
+			GamePlayStatic::SpawnGameObject(GameObj, LayerTile);
 
 			this->GetOwner()->AddChild(GameObj);
 			TileRegistry[i][j] = GameObj;
@@ -94,7 +94,7 @@ void CFieldScript::SpawnTile(int Row, int Col)
 	}
 }
 
-void CFieldScript::SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey, bool IsPlayer)
+void CFieldScript::SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey, int Layernum, bool IsPlayer)
 {
 	//프리팹 받아두기
 	CGameObject* GameObj = nullptr;
@@ -118,7 +118,7 @@ void CFieldScript::SpawnFieldObj(Vec2 TileIndex, wstring _prefabkey, bool IsPlay
 	//외부 설정(Field 내에서 해당 obj에 해야 하는 일
 	SetFObjAboutField(GameObj);
 
-	GamePlayStatic::SpawnGameObject(GameObj, 0);
+	GamePlayStatic::SpawnGameObject(GameObj, Layernum);
 }
 
 void CFieldScript::SetObjPosinTile(Vec2 TileIndex, CGameObject* Obj)

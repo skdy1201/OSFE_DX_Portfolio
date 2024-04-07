@@ -32,7 +32,6 @@ void CPlayerEntryState::Enter()
 	Player->Transform()->SetOffset(Vec2{ 0.f, 10.f });
 
 	CGameObject* obj = CPrefab::GetPrefabObj(PrefabPlayerSpawnAnim);
-	Vec3 T
 	obj->Transform()->SetRelativePos(Player->Transform()->GetRelativePos());
 	
 	GamePlayStatic::SpawnGameObject(obj, 0);

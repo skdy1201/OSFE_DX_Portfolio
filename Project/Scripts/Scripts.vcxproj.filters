@@ -31,9 +31,6 @@
     <ClInclude Include="CShaffronBullet.h">
       <Filter>02. Scripts\Projectile</Filter>
     </ClInclude>
-    <ClInclude Include="CFrostBolt.h">
-      <Filter>02. Scripts\Projectile</Filter>
-    </ClInclude>
     <ClInclude Include="CMagic.h">
       <Filter>03. Magic</Filter>
     </ClInclude>
@@ -88,6 +85,9 @@
     <ClInclude Include="CPlayerSpawnAnim.h">
       <Filter>02. Scripts\Module\PlayerModule</Filter>
     </ClInclude>
+    <ClInclude Include="CFrostBolt.h">
+      <Filter>02. Scripts\Magic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -115,9 +115,6 @@
       <Filter>02. Scripts\Module\PlayerModule</Filter>
     </ClCompile>
     <ClCompile Include="CShaffronBullet.cpp">
-      <Filter>02. Scripts\Projectile</Filter>
-    </ClCompile>
-    <ClCompile Include="CFrostBolt.cpp">
       <Filter>02. Scripts\Projectile</Filter>
     </ClCompile>
     <ClCompile Include="CMagic.cpp">
@@ -173,6 +170,9 @@
     </ClCompile>
     <ClCompile Include="CPlayerSpawnAnim.cpp">
       <Filter>02. Scripts\Module\PlayerModule</Filter>
+    </ClCompile>
+    <ClCompile Include="CFrostBolt.cpp">
+      <Filter>02. Scripts\Magic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

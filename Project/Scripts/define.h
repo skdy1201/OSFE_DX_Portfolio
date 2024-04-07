@@ -32,6 +32,17 @@
 #define MagicFieldIndexX 15
 
 
+// 레이어 매크로
+#define LayerDefault 0
+#define LayerField 1
+#define LayerTile 2
+#define LayerPlayer 3
+#define LayerMonster 4
+#define LayerLight 5
+#define LayerPlayerAttack 6
+#define LayerMonsterAttack 7
+#define LayerUI	31
+
 // 프리팹 매크로
 #define PrefabPlayer L"prefab\\temptest.pref"
 #define PrefabPlayerBullet L"prefab\\PlayerBullet.pref"

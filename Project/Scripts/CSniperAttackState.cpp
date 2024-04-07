@@ -62,7 +62,7 @@ void CSniperAttackState::finaltick()
 		//밖에서 방향을 설정할 수 있도록 하는 것이 중요하다.
 		//그냥 쓰면 일반을 쓰자.
 		pSniperPorj->SetDir(Vec3{ -1.f, 0.f, 0.f });
-		GamePlayStatic::SpawnGameObject(Bullet, 3);
+		GamePlayStatic::SpawnGameObject(Bullet, LayerMonsterAttack);
 
 		ChangeState(L"CSniperIdleState");
 	}

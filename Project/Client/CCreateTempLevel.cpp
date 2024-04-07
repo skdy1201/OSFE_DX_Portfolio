@@ -85,7 +85,7 @@ void CCreateTempLevel::CreateTempLevel()
 	CLevel* pTempLevel = new CLevel;
 
 	pTempLevel->GetLayer(0)->SetName(L"Default");
-	pTempLevel->GetLayer(1)->SetName(L"Background");
+	pTempLevel->GetLayer(1)->SetName(L"Field");
 	pTempLevel->GetLayer(2)->SetName(L"Tile");
 	pTempLevel->GetLayer(3)->SetName(L"Player");
 	pTempLevel->GetLayer(4)->SetName(L"Monster");
@@ -224,7 +224,7 @@ void CCreateTempLevel::CreateTempLevel()
 
 	Ptr<CPrefab> temp = CAssetMgr::GetInst()->Load<CPrefab>(FieldPrefabKey, FieldPrefabKey);
 	pObj = temp->Instantiate();
-	pTempLevel->AddObject(pObj, 0, true);
+	pTempLevel->AddObject(pObj, LayerField, true);
 
 
 	// 충돌 설정
