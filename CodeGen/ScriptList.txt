@@ -3,7 +3,6 @@ CFieldScript
 CFieldObjScript
 CPlayerCursorScript
 CShaffronBullet
-CFrostBolt
 CSniperScript
 CSniperProj
 CProjectileScript
@@ -14,3 +13,4 @@ CPlayerScript
 CAnimatorModule
 CPlayerBulletAnim
 CPlayerSpawnAnim
+CFrostBolt

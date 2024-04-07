@@ -6,7 +6,6 @@
 #include "CFieldObjScript.h"
 #include "CPlayerCursorScript.h"
 #include "CShaffronBullet.h"
-#include "CFrostBolt.h"
 #include "CSniperScript.h"
 #include "CSniperProj.h"
 #include "CProjectileScript.h"
@@ -17,6 +16,7 @@
 #include "CAnimatorModule.h"
 #include "CPlayerBulletAnim.h"
 #include "CPlayerSpawnAnim.h"
+#include "CFrostBolt.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -25,7 +25,6 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CFieldObjScript");
 	_vec.push_back(L"CPlayerCursorScript");
 	_vec.push_back(L"CShaffronBullet");
-	_vec.push_back(L"CFrostBolt");
 	_vec.push_back(L"CSniperScript");
 	_vec.push_back(L"CSniperProj");
 	_vec.push_back(L"CProjectileScript");
@@ -36,6 +35,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CAnimatorModule");
 	_vec.push_back(L"CPlayerBulletAnim");
 	_vec.push_back(L"CPlayerSpawnAnim");
+	_vec.push_back(L"CFrostBolt");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -50,8 +50,6 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CPlayerCursorScript;
 	if (L"CShaffronBullet" == _strScriptName)
 		return new CShaffronBullet;
-	if (L"CFrostBolt" == _strScriptName)
-		return new CFrostBolt;
 	if (L"CSniperScript" == _strScriptName)
 		return new CSniperScript;
 	if (L"CSniperProj" == _strScriptName)
@@ -72,6 +70,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CPlayerBulletAnim;
 	if (L"CPlayerSpawnAnim" == _strScriptName)
 		return new CPlayerSpawnAnim;
+	if (L"CFrostBolt" == _strScriptName)
+		return new CFrostBolt;
 	return nullptr;
 }
 
@@ -93,9 +93,6 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::SHAFFRONBULLET:
 		return new CShaffronBullet;
-		break;
-	case (UINT)SCRIPT_TYPE::FROSTBOLT:
-		return new CFrostBolt;
 		break;
 	case (UINT)SCRIPT_TYPE::SNIPERSCRIPT:
 		return new CSniperScript;
@@ -127,6 +124,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::PLAYERSPAWNANIM:
 		return new CPlayerSpawnAnim;
 		break;
+	case (UINT)SCRIPT_TYPE::FROSTBOLT:
+		return new CFrostBolt;
+		break;
 	}
 	return nullptr;
 }
@@ -153,10 +153,6 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::SHAFFRONBULLET:
 		return L"CShaffronBullet";
-		break;
-
-	case SCRIPT_TYPE::FROSTBOLT:
-		return L"CFrostBolt";
 		break;
 
 	case SCRIPT_TYPE::SNIPERSCRIPT:
@@ -197,6 +193,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::PLAYERSPAWNANIM:
 		return L"CPlayerSpawnAnim";
+		break;
+
+	case SCRIPT_TYPE::FROSTBOLT:
+		return L"CFrostBolt";
 		break;
 
 	}

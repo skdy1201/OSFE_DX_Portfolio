@@ -58,6 +58,9 @@ float4 PS_OnlyAnim(VS_OUT _in) : SV_Target
         }
     }
 
+    if( vColor.a < 0.1f)
+        discard;
+
     return vColor;
 }
 

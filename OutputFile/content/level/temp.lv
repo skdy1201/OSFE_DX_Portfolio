@@ -1,6 +1,6 @@
 C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\OutputFile\content\level\temp.lv
 Default
-3
+2
 MainCamera
 0
 0
@@ -39,8 +39,10 @@ UICamera
 15
 0
 0
+Field
+1
 123
-0
+1
 0
 0 0 0
 1 1 1
@@ -50,26 +52,6 @@ UICamera
 1
 CFieldScript
 4 16
-0
-Background
-1
-Background
-1
-0
-0 0 1000
-1600 800 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-BackgroundMtrl
-1
-15
-1
-CBackgroundScript
 0
 Tile
 0
@@ -148,6 +130,24 @@ DirectionalLight
 29
 0
 30
+1
+IceBackGround
+30
+0
+0 0 9000
+1600 800 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\Ice_BG.mtrl
+0
+material\Ice_BG.mtrl
+15
+0
 0
 UI
 0

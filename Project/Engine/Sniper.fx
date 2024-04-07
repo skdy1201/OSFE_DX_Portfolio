@@ -60,6 +60,11 @@ float4 PS_Sniper(VS_OUT _in) : SV_Target
         }
     }
 
+    if (vColor.a < 0.1f)
+    {
+            // ÇÈ¼¿ ½¦ÀÌ´õ¸¦ Áß°£¿¡ Æó±âÃ³¸®
+        discard; //clip(-1);            
+    }
    
 
     return vColor;

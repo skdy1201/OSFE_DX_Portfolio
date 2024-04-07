@@ -120,7 +120,7 @@ void CCreateTempLevel::CreateTempLevel()
 	pCamObj->Camera()->LayerCheckAll();
 	pCamObj->Camera()->LayerCheck(31, false);
 
-	pTempLevel->AddObject(pCamObj, 0);
+	pTempLevel->AddObject(pCamObj, LayerDefault);
 
 	// UI 카메라 생성
 	pCamObj = new CGameObject;
@@ -134,7 +134,7 @@ void CCreateTempLevel::CreateTempLevel()
 	pCamObj->Camera()->SetCameraPriority(1);
 	pCamObj->Camera()->LayerCheck(31, true);
 
-	pTempLevel->AddObject(pCamObj, 0);
+	pTempLevel->AddObject(pCamObj, LayerDefault);
 
 	// 전역 광원 추가
 	CGameObject* pLight = new CGameObject;
@@ -144,29 +144,29 @@ void CCreateTempLevel::CreateTempLevel()
 
 	pLight->Light2D()->SetLightType(LIGHT_TYPE::DIRECTIONAL);
 	pLight->Light2D()->SetAmbient(Vec3(0.8f, 0.8f, 0.8f));
-	pTempLevel->AddObject(pLight, L"Light");
+	pTempLevel->AddObject(pLight, LayerLight);
 
 
 	CGameObject* pObj = nullptr;
 
 	// Backgruond Object 생성
-	pObj = new CGameObject;
-	pObj->SetName(L"Background");
+	//pObj = new CGameObject;
+	//pObj->SetName(L"Background");
 
-	pObj->AddComponent(new CTransform);
-	pObj->AddComponent(new CMeshRender);
-	pObj->AddComponent(new CBackgroundScript);
+	//pObj->AddComponent(new CTransform);
+	//pObj->AddComponent(new CMeshRender);
+	//pObj->AddComponent(new CBackgroundScript);
 
-	pObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, BackGroundZ));
-	pObj->Transform()->SetRelativeScale(Vec3(1600.f, 800.f, 1.f));
+	//pObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, BackGroundZ));
+	//pObj->Transform()->SetRelativeScale(Vec3(1600.f, 800.f, 1.f));
 
-	pObj->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh"));
-	pObj->MeshRender()->SetMaterial(CAssetMgr::GetInst()->FindAsset<CMaterial>(L"BackgroundMtrl"));
+	//pObj->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh"));
+	//pObj->MeshRender()->SetMaterial(CAssetMgr::GetInst()->FindAsset<CMaterial>(L"BackgroundMtrl"));
 
-	Ptr<CTexture> pTex = CAssetMgr::GetInst()->Load<CTexture>(L"texture\\Background.jpg", L"texture\\Background.jpg");
-	pObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
+	//Ptr<CTexture> pTex = CAssetMgr::GetInst()->Load<CTexture>(L"texture\\Background.jpg", L"texture\\Background.jpg");
+	//pObj->MeshRender()->GetMaterial()->SetTexParam(TEX_PARAM::TEX_0, pTex);
 
-	pTempLevel->AddObject(pObj, L"Background", false);
+	//pTempLevel->AddObject(pObj, LayerBackGround, false);
 
 	// Player Object 생성
 	/*pObj = new CGameObject;
@@ -226,6 +226,9 @@ void CCreateTempLevel::CreateTempLevel()
 	pObj = temp->Instantiate();
 	pTempLevel->AddObject(pObj, LayerField, true);
 
+	 temp = CAssetMgr::GetInst()->Load<CPrefab>(PrefabBackGround, PrefabBackGround);
+	pObj = temp->Instantiate();
+	pTempLevel->AddObject(pObj, LayerBackGround, true);
 
 	// 충돌 설정
 	CCollisionMgr::GetInst()->LayerCheck(3, 4);

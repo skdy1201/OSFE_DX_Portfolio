@@ -41,6 +41,7 @@
 #define LayerLight 5
 #define LayerPlayerAttack 6
 #define LayerMonsterAttack 7
+#define LayerBackGround 30
 #define LayerUI	31
 
 // 프리팹 매크로
@@ -55,6 +56,7 @@
 
 #define PrefabPlayerCursor L"prefab\\PlayerCursor.pref"
 
+#define PrefabBackGround L"prefab\\IceBackGround.pref"
 
 // 에니메이션 매크로
 #define frostblastanim FrostBlast
