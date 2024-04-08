@@ -28,6 +28,8 @@ void CSniperAttackState::Enter()
 	Sniper = BlackBoardOwner
 	AnimatorObject = (CGameObject*)GetBlackboardData(L"ChildAnim");
 
+	OwnerScript = Sniper->GetScript<CFieldObjScript>();
+
 	AttackTimer = AttackCooldown
 	MoveTimer = MoveCooldown
 
@@ -45,7 +47,10 @@ void CSniperAttackState::Enter()
 
 void CSniperAttackState::finaltick()
 {
-	
+	if (OwnerScript->GetStatus().Current_HP <= 0)
+	{
+		Sniper->StateMachine()->GetFSM()->ChangeState(L"CSniperDeadState");
+	}
 
 	if (Sniper->Animator2D()->GetCurAnim()->IsFinish())
 	{

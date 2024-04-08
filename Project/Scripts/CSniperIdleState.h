@@ -2,7 +2,6 @@
 
 #include  <Engine/CState.h>
 
-#include <Engine/CGameObject.h>
 
 class CFieldObjScript;
 
@@ -12,6 +11,9 @@ class CSniperIdleState :
 private:
 	CGameObject*			Player;
 	CFieldObjScript*		PlayerScript;
+
+	CGameObject*			Owner;
+	CFieldObjScript*		OwnerScript;
 
 	CFieldObjScript*		SniperScript;
 

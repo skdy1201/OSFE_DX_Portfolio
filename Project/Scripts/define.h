@@ -68,7 +68,7 @@
 #define PlayerAttack2 L"SaffronAttack2"
 #define SpawnEffect L"SaffronSpawnFX"
  
-
+#define MonsterDead L"DeathExplosion"
 
 // FSM ∏≈≈©∑Œ
 #define BlackBoardPlayer (CGameObject*)GetBlackboardData(BBPlayer);

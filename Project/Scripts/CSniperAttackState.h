@@ -2,13 +2,17 @@
 
 #include <Engine/CState.h>
 
+class CFieldObjScript;
+
 class CSniperAttackState :
     public CState
 {
 	CGameObject* Sniper;
+	CFieldObjScript* OwnerScript;
 	CGameObject* AnimatorObject;
 
 	Ptr<CPrefab> SniperShoot;
+
 
 	float*		AttackTimer;
 	float*		MoveTimer;

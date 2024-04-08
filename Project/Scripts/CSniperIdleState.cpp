@@ -19,6 +19,9 @@ void CSniperIdleState::Enter()
 	Player = BlackBoardPlayer
 	PlayerScript = Player->GetScript<CFieldObjScript>();
 
+	Owner = BlackBoardOwner
+	OwnerScript = Owner->GetScript<CFieldObjScript>();
+
 	MoveTimer = MoveCooldown
 	AttackTimer = AttackCooldown
 
@@ -33,6 +36,11 @@ void CSniperIdleState::Enter()
 
 void CSniperIdleState::finaltick()
 {
+	if(OwnerScript->GetStatus().Current_HP <= 0)
+	{
+		Owner->StateMachine()->GetFSM()->ChangeState(L"CSniperDeadState");
+	}
+
 	int PlayerRow = (int)PlayerScript->GetOwnerIdx().y;
 	int SniperRow = *(int*)GetBlackboardData(L"Current Row");
 
