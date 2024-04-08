@@ -23,12 +23,12 @@ void CHitAnimationModule::SetRandomPos()
 	int random = CRandomMgr::GetInst()->GetRandom(MaxPos);
 	random -= HitFXRamdonPosScale;
 
-	RandomPosition.x = random;
+	RandomPosition.x += random;
 
 	random = CRandomMgr::GetInst()->GetRandom(MaxPos);
 	random -= HitFXRamdonPosScale;
 
-	RandomPosition.y = random;
+	RandomPosition.y += random;
 
 	pObj->Transform()->SetRelativePos(RandomPosition);
 }
@@ -39,13 +39,13 @@ void CHitAnimationModule::SetRandomScale()
 
 	Vec3 RandomScale = pObj->Transform()->GetRelativeScale();
 	random -= HitFXRamdonPosScale;
-	RandomScale.x = random;
+	RandomScale.x += random;
 
 	random = CRandomMgr::GetInst()->GetRandom(MaxPos);
 	random -= HitFXRamdonPosScale;
-	RandomScale.y = random;
+	RandomScale.y += random;
 
-	pObj->Transform()->SetRelativePos(RandomScale);
+	pObj->Transform()->SetRelativeScale(RandomScale);
 }
 
 void CHitAnimationModule::begin()

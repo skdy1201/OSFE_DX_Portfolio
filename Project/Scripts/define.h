@@ -50,14 +50,14 @@
 #define PrefabPlayerBulletAnim L"prefab\\PlayerBulletAnim.pref"
 #define PrefabPlayerSpawnAnim L"prefab\\PlayerSpawnAnim.pref"
 
-
 #define PrefabSniper L"prefab\\SniperTest.pref"
 #define PrefabSniperBullet L"prefab\\SniperBullet.pref"
-
 
 #define PrefabPlayerCursor L"prefab\\PlayerCursor.pref"
 
 #define PrefabBackGround L"prefab\\IceBackGround.pref"
+
+#define PrefabHitFX L"prefab\\HitFxObj.pref"
 
 // 에니메이션 매크로
 #define frostblastanim FrostBlast
