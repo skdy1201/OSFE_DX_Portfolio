@@ -17,6 +17,7 @@
 #include "CPlayerBulletAnim.h"
 #include "CPlayerSpawnAnim.h"
 #include "CFrostBolt.h"
+#include "CHitAnimationModule.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -36,6 +37,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CPlayerBulletAnim");
 	_vec.push_back(L"CPlayerSpawnAnim");
 	_vec.push_back(L"CFrostBolt");
+	_vec.push_back(L"CHitAnimationModule");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -72,6 +74,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CPlayerSpawnAnim;
 	if (L"CFrostBolt" == _strScriptName)
 		return new CFrostBolt;
+	if (L"CHitAnimationModule" == _strScriptName)
+		return new CHitAnimationModule;
 	return nullptr;
 }
 
@@ -126,6 +130,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::FROSTBOLT:
 		return new CFrostBolt;
+		break;
+	case (UINT)SCRIPT_TYPE::HITANIMATIONMODULE:
+		return new CHitAnimationModule;
 		break;
 	}
 	return nullptr;
@@ -197,6 +204,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::FROSTBOLT:
 		return L"CFrostBolt";
+		break;
+
+	case SCRIPT_TYPE::HITANIMATIONMODULE:
+		return L"CHitAnimationModule";
 		break;
 
 	}

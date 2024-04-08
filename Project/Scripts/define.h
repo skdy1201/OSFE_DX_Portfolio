@@ -70,6 +70,11 @@
  
 #define MonsterDead L"DeathExplosion"
 
+#define HitFX0 L"HitAnimation"
+#define HitFX1 L"HitAnimation1"
+#define HitFX2 L"HitAnimation2"
+
+
 // FSM 매크로
 #define BlackBoardPlayer (CGameObject*)GetBlackboardData(BBPlayer);
 #define BlackBoardOwner (CGameObject*)GetBlackboardData(L"Owner");
@@ -83,3 +88,6 @@
 //Random 관련 매크로
 #define GETRANDOM(bound) CRandomMgr::GetInst()->GetRandom(bound)
 #define RandomAccuracy 100
+
+#define HitFXRandomcount 2
+#define HitFXRamdonPosScale 20
