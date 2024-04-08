@@ -50,6 +50,7 @@
 #define PrefabPlayerBulletAnim L"prefab\\PlayerBulletAnim.pref"
 #define PrefabPlayerSpawnAnim L"prefab\\PlayerSpawnAnim.pref"
 
+
 #define PrefabSniper L"prefab\\SniperTest.pref"
 #define PrefabSniperBullet L"prefab\\SniperBullet.pref"
 
@@ -61,7 +62,13 @@
 // 에니메이션 매크로
 #define frostblastanim FrostBlast
 #define BulletBasicCast L"BasicCast"
+#define PlayerIdle L"SaffronIdle"
+#define PlayerAttack1 L"SaffronAttack1"
+#define PlayerAttack2 L"SaffronAttack3"
+#define PlayerAttack3 L"SaffronAttack2"
 #define SpawnEffect L"SaffronSpawnFX"
+ 
+
 
 // FSM 매크로
 #define BlackBoardPlayer (CGameObject*)GetBlackboardData(BBPlayer);

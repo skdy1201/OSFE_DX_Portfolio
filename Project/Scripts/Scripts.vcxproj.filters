@@ -88,6 +88,9 @@
     <ClInclude Include="CFrostBolt.h">
       <Filter>02. Scripts\Magic</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayerAttackState.h">
+      <Filter>08. States\PlayerState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -173,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="CFrostBolt.cpp">
       <Filter>02. Scripts\Magic</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerAttackState.cpp">
+      <Filter>08. States\PlayerState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

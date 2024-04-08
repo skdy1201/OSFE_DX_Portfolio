@@ -26,7 +26,7 @@ void CShaffronBullet::begin()
 		// 정보 세팅
 		Proj_Struct Info = this->GetInfo();
 
-		Info.Damage = 50;
+		Info.Damage = 2;
 		Info.MaxRange = 4;
 		Info.LifeCount = -1;
 		Info.LifeTime = 4.f;
@@ -58,6 +58,7 @@ void CShaffronBullet::tick()
 
 void CShaffronBullet::BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)
 {
+
 }
 
 void CShaffronBullet::Overlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)

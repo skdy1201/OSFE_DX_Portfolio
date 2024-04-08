@@ -8,8 +8,7 @@
 #include <Engine/CAnimator2D.h>
 #include <Engine/CAnim.h>
 
-#include <Engine/CAnim.h>
-#include <Engine/CAnimator2D.h>
+
 
 CPlayerIdleState::CPlayerIdleState()
 	: CState((UINT)STATE_TYPE::PLAYERIDLESTATE)
@@ -28,9 +27,8 @@ void CPlayerIdleState::Enter()
 	PlayerScript = Player->GetScript<CFieldObjScript>();
 	Field = PlayerScript->GetField();
 
-	Player->Animator2D()->Play(L"SaffronIdle", true);
+	Player->Animator2D()->Play(PlayerIdle, true);
 
-	AttackTimer = 0.02f;
 }
 
 
@@ -71,8 +69,10 @@ void CPlayerIdleState::finaltick()
 		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerMoveState");
 	}
 
-
-	Shoot(DT);
+	if (KEY_TAP(KEY::E))
+	{
+		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerAttackState");
+	}
 
 }
 
@@ -81,30 +81,3 @@ void CPlayerIdleState::Exit()
 }
 
 
-void CPlayerIdleState::Shoot(float _Dt)
-{
-	CGameObject* GameObj;
-	GameObj = CPrefab::GetPrefabObj(PrefabPlayerBullet);
-
-	CProjectileScript* pProjScript = GameObj->GetScript<CProjectileScript>();
-	Proj_Struct info = pProjScript->GetInfo();
-
-	pProjScript->Shoot(Player, Field, Vec2(100.f, 0.f), info);
-	pProjScript->SetDir(Vec3(1.f, 0.f, 0.f));
-
-	if (KEY_TAP(KEY::E) && AttackTimer >= 0.02f)
-	{
-		GamePlayStatic::SpawnGameObject(GameObj, 0);
-
-		AttackTimer = 0.f;
-	}
-	else if(KEY_PRESSED((KEY::E)) && AttackTimer >= 0.17f)
-	{
-		CAnim* pAnim;
-
-			GamePlayStatic::SpawnGameObject(GameObj, 0);
-			AttackTimer = 0.f;
-	}
-
-	AttackTimer += _Dt;
-}

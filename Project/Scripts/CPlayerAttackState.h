@@ -1,28 +1,25 @@
 #pragma once
 
-#include <Engine/CState.h>
+#include <Engine/CScript.h>
 
 class CFieldScript;
 class CFieldObjScript;
 
-
-class CPlayerIdleState :
+class CPlayerAttackState :
     public CState
 {
-private:
+    CGameObject* Player;
+    CFieldObjScript* PlayerScript;
+    CFieldScript* Field;
 
-    CGameObject*        Player;
-    CFieldObjScript*    PlayerScript;
-    CFieldScript*       Field;
+    CGameObject* Bullet;
 
     float             AttackTimer;
 
     float             AttackRelayTimer;
     int               AnimationCount;
 
-
 public:
-
     void Shoot(float _Dt);
 
     virtual void finaltick() override;
@@ -30,7 +27,7 @@ public:
     virtual void Exit() override;
 
 public:
-    CPlayerIdleState();
-    ~CPlayerIdleState();
+    CPlayerAttackState();
+    ~CPlayerAttackState();
 };
 
