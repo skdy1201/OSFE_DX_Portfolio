@@ -39,7 +39,7 @@ void CSniperAttackState::Enter()
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 1);
 
 	pMtrl = Sniper->MeshRender()->GetMaterial();
-	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
+	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 2);
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_1, 1);
 	Sniper->Animator2D()->Play(L"SniperShoot", false);
 	AnimatorObject->Animator2D()->Play(L"ChargeCircle", false);

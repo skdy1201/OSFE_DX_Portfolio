@@ -111,6 +111,8 @@ void CFieldObjScript::begin()
 			StateMachine()->GetFSM()->ChangeState(L"CPlayerEntryState");
 		}
 	}
+
+	this->GetOwner()->GetRenderComopnent()->SetMaterial(this->GetRenderComponent()->GetDynamicMaterial());
 }
 
 void CFieldObjScript::SaveToFile(ofstream& _File)

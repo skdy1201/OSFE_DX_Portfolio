@@ -20,8 +20,8 @@ MtrlConst
 0 0 0 0 0 0 0 0 0 0 
 
 Scalar Param
-Texture
-Animator
+Idel
+Hit
 EMPTYSYMBOL
 EMPTYSYMBOL
 EMPTYSYMBOL
@@ -46,6 +46,10 @@ Tex Param
 texture\Monster\sniper_idle.png
 0
 texture\Monster\sniper_idle.png
+1
+texture\Monster\sniper_hitS.png
+0
+texture\Monster\sniper_hitS.png
 0
 0
 0
@@ -54,9 +58,8 @@ texture\Monster\sniper_idle.png
 0
 0
 0
-0
-Temp
-EMPTYSYMBOL
+Idel
+Hit
 EMPTYSYMBOL
 EMPTYSYMBOL
 EMPTYSYMBOL

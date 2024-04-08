@@ -23,7 +23,7 @@ void CSniperDeadState::Enter()
 	Owner = BlackBoardOwner
 
 	Ptr<CMaterial>pMtrl = Owner->MeshRender()->GetMaterial();
-	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
+	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 3);
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_1, 1);
 
 	Owner->Transform()->SetOffset(Vec2{ 0.f, 80.f });

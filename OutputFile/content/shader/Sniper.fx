@@ -41,6 +41,10 @@ float4 PS_Sniper(VS_OUT _in) : SV_Target
     {
         vColor = g_tex_0.Sample(g_sam_1, _in.vUV);
     }
+    else if(g_int_0 == 0)
+    {
+        vColor = g_tex_1.Sample(g_sam_1, _in.vUV);
+    }
     else if(g_int_1 == 1 && g_UseAnim2D)
     {
 

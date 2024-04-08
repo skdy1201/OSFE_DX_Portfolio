@@ -48,8 +48,8 @@ public:
 	void SetStatus(const Status& _status) { m_status = _status; }
 	void Shoot();
 	void Cast();
-	void Hit(int Damage);
-	void GetBuff();
+	virtual void Hit(int Damage);
+	 void GetBuff();
 
 
 	void SetField(CFieldScript* _Field) { m_Field = _Field; }
