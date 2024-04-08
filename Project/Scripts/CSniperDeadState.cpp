@@ -7,6 +7,8 @@
 #include <Engine/CMeshRender.h>
 #include <Engine/CMaterial.h>
 
+#include <Engine/CTransform.h>
+
 CSniperDeadState::CSniperDeadState()
 	: CState((UINT)STATE_TYPE::SNIPERDEADSTATE)
 {
@@ -24,6 +26,8 @@ void CSniperDeadState::Enter()
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_0, 0);
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_1, 1);
 
+	Owner->Transform()->SetOffset(Vec2{ 0.f, 80.f });
+	Owner->Transform()->SetRelativeScale(Owner->Transform()->GetRelativeScale() * 3);
 	Owner->Animator2D()->Play(MonsterDead);
 }
 

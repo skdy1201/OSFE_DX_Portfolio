@@ -27,7 +27,7 @@ void CSaffronBullet::begin()
 		// 정보 세팅
 		Proj_Struct Info = this->GetInfo();
 
-		Info.Damage = 2;
+		Info.Damage = 25;
 		Info.MaxRange = 4;
 		Info.LifeCount = -1;
 		Info.LifeTime = 4.f;
