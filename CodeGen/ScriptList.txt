@@ -2,7 +2,7 @@ CTileScript
 CFieldScript
 CFieldObjScript
 CPlayerCursorScript
-CShaffronBullet
+CSaffronBullet
 CSniperScript
 CSniperProj
 CProjectileScript

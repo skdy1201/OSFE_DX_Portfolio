@@ -21,6 +21,10 @@ CSniperScript::~CSniperScript()
 
 void CSniperScript::begin()
 {
+	m_status.HP = 50;
+	m_status.Current_HP = m_status.HP;
+	m_status.Camp = 2;
+
 	if (StateMachine())
 	{
 
@@ -80,6 +84,11 @@ void CSniperScript::tick()
 	}
 
 	CurRow = (int)OwnerFojScript->GetOwnerIdx().y;
+
+	if(m_status.Current_HP == 0)
+	{
+		int d = 0;
+	}
 }
 
 void CSniperScript::SaveToFile(ofstream& _File)

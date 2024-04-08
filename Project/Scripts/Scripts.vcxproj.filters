@@ -28,7 +28,7 @@
     <ClInclude Include="CPlayerCursorScript.h">
       <Filter>02. Scripts\Module\PlayerModule</Filter>
     </ClInclude>
-    <ClInclude Include="CShaffronBullet.h">
+    <ClInclude Include="CSaffronBullet.h">
       <Filter>02. Scripts\Projectile</Filter>
     </ClInclude>
     <ClInclude Include="CMagic.h">
@@ -117,7 +117,7 @@
     <ClCompile Include="CPlayerCursorScript.cpp">
       <Filter>02. Scripts\Module\PlayerModule</Filter>
     </ClCompile>
-    <ClCompile Include="CShaffronBullet.cpp">
+    <ClCompile Include="CSaffronBullet.cpp">
       <Filter>02. Scripts\Projectile</Filter>
     </ClCompile>
     <ClCompile Include="CMagic.cpp">

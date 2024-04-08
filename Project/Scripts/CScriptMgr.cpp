@@ -5,7 +5,7 @@
 #include "CFieldScript.h"
 #include "CFieldObjScript.h"
 #include "CPlayerCursorScript.h"
-#include "CShaffronBullet.h"
+#include "CSaffronBullet.h"
 #include "CSniperScript.h"
 #include "CSniperProj.h"
 #include "CProjectileScript.h"
@@ -24,7 +24,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CFieldScript");
 	_vec.push_back(L"CFieldObjScript");
 	_vec.push_back(L"CPlayerCursorScript");
-	_vec.push_back(L"CShaffronBullet");
+	_vec.push_back(L"CSaffronBullet");
 	_vec.push_back(L"CSniperScript");
 	_vec.push_back(L"CSniperProj");
 	_vec.push_back(L"CProjectileScript");
@@ -48,8 +48,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CFieldObjScript;
 	if (L"CPlayerCursorScript" == _strScriptName)
 		return new CPlayerCursorScript;
-	if (L"CShaffronBullet" == _strScriptName)
-		return new CShaffronBullet;
+	if (L"CSaffronBullet" == _strScriptName)
+		return new CSaffronBullet;
 	if (L"CSniperScript" == _strScriptName)
 		return new CSniperScript;
 	if (L"CSniperProj" == _strScriptName)
@@ -91,8 +91,8 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::PLAYERCURSORSCRIPT:
 		return new CPlayerCursorScript;
 		break;
-	case (UINT)SCRIPT_TYPE::SHAFFRONBULLET:
-		return new CShaffronBullet;
+	case (UINT)SCRIPT_TYPE::SAFFRONBULLET:
+		return new CSaffronBullet;
 		break;
 	case (UINT)SCRIPT_TYPE::SNIPERSCRIPT:
 		return new CSniperScript;
@@ -151,8 +151,8 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 		return L"CPlayerCursorScript";
 		break;
 
-	case SCRIPT_TYPE::SHAFFRONBULLET:
-		return L"CShaffronBullet";
+	case SCRIPT_TYPE::SAFFRONBULLET:
+		return L"CSaffronBullet";
 		break;
 
 	case SCRIPT_TYPE::SNIPERSCRIPT:

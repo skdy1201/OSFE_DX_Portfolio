@@ -32,7 +32,7 @@ struct Status
 class CFieldObjScript :
 	public CScript
 {
-private:
+protected:
 	Vec2 NextIdx;
 	Status m_status;
 
@@ -42,13 +42,15 @@ private:
 
 	Vec2 CurFieldIdx;
 
-	int temp;
 
 public:
 	Status& GetStatus() { return m_status; }
 	void SetStatus(const Status& _status) { m_status = _status; }
 	void Shoot();
 	void Cast();
+	void Hit(int Damage);
+	void GetBuff();
+
 
 	void SetField(CFieldScript* _Field) { m_Field = _Field; }
 	CFieldScript* GetField() { return m_Field; }

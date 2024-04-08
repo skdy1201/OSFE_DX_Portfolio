@@ -1,6 +1,6 @@
 #pragma once
 #include "CProjectileScript.h"
-#include "CShaffronBullet.h"
+#include "CSaffronBullet.h"
 
 
 class CFrostBolt :

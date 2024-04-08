@@ -14,7 +14,6 @@ CFieldObjScript::CFieldObjScript()
 	: CScript((UINT)SCRIPT_TYPE::FIELDOBJSCRIPT)
 	, m_status{}
 	, IsPlayer(true)
-	, temp(0)
 
 {
 	
@@ -59,6 +58,19 @@ void CFieldObjScript::Cast()
 
 		}
 	}
+}
+
+void CFieldObjScript::Hit(int Damage)
+{
+	Status OwnerStatus = GetStatus();
+	OwnerStatus.Current_HP -= Damage;
+
+	SetStatus(OwnerStatus);
+
+}
+
+void CFieldObjScript::GetBuff()
+{
 }
 
 Vec2 CFieldObjScript::GetMoveIdx(Vec2 TargetDirIdx)

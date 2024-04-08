@@ -180,7 +180,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CPlayerSpawnAnim.h" />
     <ClInclude Include="CProjectileScript.h" />
     <ClInclude Include="CScriptMgr.h" />
-    <ClInclude Include="CShaffronBullet.h" />
+    <ClInclude Include="CSaffronBullet.h" />
     <ClInclude Include="CSniperAttackState.h" />
     <ClInclude Include="CSniperIdleState.h" />
     <ClInclude Include="CSniperMoveState.h" />
@@ -212,7 +212,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CPlayerSpawnAnim.cpp" />
     <ClCompile Include="CProjectileScript.cpp" />
     <ClCompile Include="CScriptMgr.cpp" />
-    <ClCompile Include="CShaffronBullet.cpp" />
+    <ClCompile Include="CSaffronBullet.cpp" />
     <ClCompile Include="CSniperAttackState.cpp" />
     <ClCompile Include="CSniperIdleState.cpp" />
     <ClCompile Include="CSniperMoveState.cpp" />

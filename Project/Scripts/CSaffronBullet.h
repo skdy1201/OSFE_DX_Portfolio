@@ -2,7 +2,7 @@
 
 #include "CProjectileScript.h"
 
-class CShaffronBullet :
+class CSaffronBullet :
     public CProjectileScript
 {
 private:
@@ -17,9 +17,9 @@ public:
 
 public:
 
-    CShaffronBullet();
-    CShaffronBullet(const CShaffronBullet& _Origin);
-    ~CShaffronBullet();
-    CLONE(CShaffronBullet);
+    CSaffronBullet();
+    CSaffronBullet(const CSaffronBullet& _Origin);
+    ~CSaffronBullet();
+    CLONE(CSaffronBullet);
 };
 
