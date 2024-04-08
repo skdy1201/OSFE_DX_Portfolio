@@ -63,9 +63,9 @@
 #define frostblastanim FrostBlast
 #define BulletBasicCast L"BasicCast"
 #define PlayerIdle L"SaffronIdle"
-#define PlayerAttack1 L"SaffronAttack1"
-#define PlayerAttack2 L"SaffronAttack3"
-#define PlayerAttack3 L"SaffronAttack2"
+#define PlayerAttack0 L"SaffronAttack1"
+#define PlayerAttack1 L"SaffronAttack3"
+#define PlayerAttack2 L"SaffronAttack2"
 #define SpawnEffect L"SaffronSpawnFX"
  
 

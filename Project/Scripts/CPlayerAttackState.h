@@ -8,6 +8,8 @@ class CFieldObjScript;
 class CPlayerAttackState :
     public CState
 {
+private:
+
     CGameObject* Player;
     CFieldObjScript* PlayerScript;
     CFieldScript* Field;
@@ -17,7 +19,9 @@ class CPlayerAttackState :
     float             AttackTimer;
 
     float             AttackRelayTimer;
-    int               AnimationCount;
+    
+public:
+	static int        AnimationCount;
 
 public:
     void Shoot(float _Dt);

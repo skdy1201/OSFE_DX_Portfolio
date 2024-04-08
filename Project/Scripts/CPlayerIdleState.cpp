@@ -69,7 +69,7 @@ void CPlayerIdleState::finaltick()
 		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerMoveState");
 	}
 
-	if (KEY_TAP(KEY::E))
+	if (KEY_PRESSED(KEY::E))
 	{
 		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerAttackState");
 	}

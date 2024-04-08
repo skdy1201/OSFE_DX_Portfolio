@@ -9,9 +9,11 @@
 #include <Engine/CAnimator2D.h>
 #include <Engine/CAnim.h>
 
+
+int CPlayerAttackState::AnimationCount = 2;
+
 CPlayerAttackState::CPlayerAttackState()
 	: CState((UINT)STATE_TYPE::PLAYERATTACKSTATE)
-	, AnimationCount(0)
 {
 }
 
@@ -39,13 +41,23 @@ void CPlayerAttackState::Enter()
 	GamePlayStatic::SpawnGameObject(Bullet, LayerPlayerAttack);
 
 	AttackTimer = 0.f;
-	Player->Animator2D()->Play(PlayerAttack1, false);
-	
+
+	++AnimationCount;
+	AnimationCount %= 3;
+
+
+	if(AnimationCount == 0)
+	Player->Animator2D()->Play(PlayerAttack0, false);
+	else if (AnimationCount == 1)
+		Player->Animator2D()->Play(PlayerAttack1, false);
+	else
+		Player->Animator2D()->Play(PlayerAttack2, false);
+
 }
 
 void CPlayerAttackState::finaltick()
 {
-	if (KEY_PRESSED((KEY::E)) && AttackTimer >= 0.17f)
+	if (KEY_PRESSED((KEY::E)) && AttackTimer >= 0.2f)
 	{
 		Bullet = CPrefab::GetPrefabObj(PrefabPlayerBullet);
 
@@ -58,23 +70,24 @@ void CPlayerAttackState::finaltick()
 		GamePlayStatic::SpawnGameObject(Bullet, LayerPlayerAttack);
 
 		AttackTimer = 0.f;
-		++AnimationCount;
 
+		++AnimationCount;
 		AnimationCount %= 3;
 
-		if (AnimationCount == 1 && Player->Animator2D()->GetCurAnim()->IsFinish())
+		if (AnimationCount ==0 && Player->Animator2D()->GetCurAnim()->IsFinish())
 		{
-			Player->Animator2D()->Play(PlayerAttack2, false);
+			Player->Animator2D()->Play(PlayerAttack0,false);
+		}
+		else if (AnimationCount == 1 && Player->Animator2D()->GetCurAnim()->IsFinish())
+		{
+			Player->Animator2D()->Play(PlayerAttack1, false);
 		}
 		else if (AnimationCount == 2 && Player->Animator2D()->GetCurAnim()->IsFinish())
 		{
-			Player->Animator2D()->Play(PlayerAttack3, false);
-		}
-		else if (AnimationCount == 0 && Player->Animator2D()->GetCurAnim()->IsFinish())
-		{
-			Player->Animator2D()->Play(PlayerAttack1, false);
+			Player->Animator2D()->Play(PlayerAttack2, false);
 
 		}
+
 
 	}
 
@@ -83,6 +96,45 @@ void CPlayerAttackState::finaltick()
 	if(KEY_RELEASED(KEY::E))
 	{
 		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerIdleState");
+	}
+
+	if (KEY_TAP(KEY::UP))
+	{
+		*(Vec2*)GetBlackboardData(L"NextIdx") = Vec2(0, 1);
+		Player->Animator2D()->Play(L"SaffronMoveUp", false);
+
+
+		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerMoveState");
+	}
+
+	if (KEY_TAP(KEY::DOWN))
+	{
+		*(Vec2*)GetBlackboardData(L"NextIdx") = Vec2(0, -1);
+		Player->Animator2D()->Play(L"SaffronMoveDown", false);
+
+
+		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerMoveState");
+	}
+
+	if (KEY_TAP(KEY::LEFT))
+	{
+		*(Vec2*)GetBlackboardData(L"NextIdx") = Vec2(-1, 0);
+		Player->Animator2D()->Play(L"SaffronMoveBack", false);
+
+		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerMoveState");
+	}
+
+	if (KEY_TAP(KEY::RIGHT))
+	{
+		*(Vec2*)GetBlackboardData(L"NextIdx") = Vec2(1, 0);
+		Player->Animator2D()->Play(L"SaffronMoveFront", false);
+
+		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerMoveState");
+	}
+
+	if (KEY_TAP(KEY::E))
+	{
+		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerAttackState");
 	}
 }
 
