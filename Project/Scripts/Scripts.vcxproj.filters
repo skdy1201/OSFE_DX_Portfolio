@@ -94,6 +94,10 @@
     <ClInclude Include="CSniperDeadState.h">
       <Filter>08. States\SniperState</Filter>
     </ClInclude>
+    <ClInclude Include="CHitAnimationModule.h">
+      <Filter>02. Scripts\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="CRandomMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -186,6 +190,10 @@
     <ClCompile Include="CSniperDeadState.cpp">
       <Filter>08. States\SniperState</Filter>
     </ClCompile>
+    <ClCompile Include="CHitAnimationModule.cpp">
+      <Filter>02. Scripts\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="CRandomMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">

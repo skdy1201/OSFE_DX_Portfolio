@@ -79,3 +79,7 @@
 #define  BBPlayer L"Player"
 #define  MoveCooldown (float*)GetBlackboardData(L"MoveCooldown");
 #define  AttackCooldown (float*)GetBlackboardData(L"AttackCooldown");
+
+//Random 관련 매크로
+#define GETRANDOM(bound) CRandomMgr::GetInst()->GetRandom(bound)
+#define RandomAccuracy 100

@@ -167,6 +167,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CFieldObjScript.h" />
     <ClInclude Include="CFieldScript.h" />
     <ClInclude Include="CFrostBolt.h" />
+    <ClInclude Include="CHitAnimationModule.h" />
     <ClInclude Include="CMagic.h" />
     <ClInclude Include="CMissileScript.h" />
     <ClInclude Include="CMonsterScript.h" />
@@ -179,6 +180,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CPlayerScript.h" />
     <ClInclude Include="CPlayerSpawnAnim.h" />
     <ClInclude Include="CProjectileScript.h" />
+    <ClInclude Include="CRandomMgr.h" />
     <ClInclude Include="CScriptMgr.h" />
     <ClInclude Include="CSaffronBullet.h" />
     <ClInclude Include="CSniperAttackState.h" />
@@ -200,6 +202,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CFieldObjScript.cpp" />
     <ClCompile Include="CFieldScript.cpp" />
     <ClCompile Include="CFrostBolt.cpp" />
+    <ClCompile Include="CHitAnimationModule.cpp" />
     <ClCompile Include="CMagic.cpp" />
     <ClCompile Include="CMissileScript.cpp" />
     <ClCompile Include="CMonsterScript.cpp" />
@@ -212,6 +215,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CPlayerScript.cpp" />
     <ClCompile Include="CPlayerSpawnAnim.cpp" />
     <ClCompile Include="CProjectileScript.cpp" />
+    <ClCompile Include="CRandomMgr.cpp" />
     <ClCompile Include="CScriptMgr.cpp" />
     <ClCompile Include="CSaffronBullet.cpp" />
     <ClCompile Include="CSniperAttackState.cpp" />
