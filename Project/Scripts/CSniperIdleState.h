@@ -3,6 +3,7 @@
 #include  <Engine/CState.h>
 
 
+class CSniperScript;
 class CFieldObjScript;
 
 class CSniperIdleState :
@@ -13,9 +14,8 @@ private:
 	CFieldObjScript*		PlayerScript;
 
 	CGameObject*			Owner;
-	CFieldObjScript*		OwnerScript;
+	CSniperScript*			OwnerScript;
 
-	CFieldObjScript*		SniperScript;
 
 	float*					MoveTimer;
 	float*					AttackTimer;

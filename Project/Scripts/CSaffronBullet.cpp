@@ -62,16 +62,6 @@ void CSaffronBullet::BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObj
 	CFieldObjScript* Script = _OtherObj->GetScript<CFieldObjScript>();
 	Script->Hit(this->GetInfo().Damage);
 
-	CGameObject* pObj;
-	pObj = CPrefab::GetPrefabObj(PrefabHitFX);
-
-	Vec3 Hitposition = _OtherObj->Transform()->GetRelativePos();
-	pObj->Transform()->SetRelativePos(Hitposition);
-
-	pObj->Transform()->SetOffset(Vec2{ 0.f, 30.f });
-	pObj->Transform()->SetRelativeScale(pObj->Transform()->GetRelativeScale() * 2);
-	GamePlayStatic::SpawnGameObject(pObj, LayerDefault);
-
 	this->GetOwner()->Destroy();
 }
 

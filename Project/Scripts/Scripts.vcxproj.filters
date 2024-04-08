@@ -98,6 +98,9 @@
       <Filter>02. Scripts\Module</Filter>
     </ClInclude>
     <ClInclude Include="CRandomMgr.h" />
+    <ClInclude Include="CSniperHitState.h">
+      <Filter>08. States\SniperState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -194,6 +197,9 @@
       <Filter>02. Scripts\Module</Filter>
     </ClCompile>
     <ClCompile Include="CRandomMgr.cpp" />
+    <ClCompile Include="CSniperHitState.cpp">
+      <Filter>08. States\SniperState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">

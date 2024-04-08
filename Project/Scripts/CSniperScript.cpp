@@ -13,6 +13,7 @@ CSniperScript::CSniperScript()
 	, MoveDir(0)
     , m_AttackCooltime(0)
 	, m_HurtTime(0)
+	, b_Heat(false)
 {
 }
 
@@ -86,17 +87,6 @@ void CSniperScript::tick()
 
 	CurRow = (int)OwnerFojScript->GetOwnerIdx().y;
 
-	if(m_HurtTime > 0.f && m_status.Current_HP > 0)
-	{
-		m_Owner->GetRenderComopnent()->GetMaterial()->SetScalarParam(SCALAR_PARAM::INT_0, 0);
-		m_HurtTime -= DT;
-	}
-	else if(m_HurtTime <= 0.f)
-	{
-		m_Owner->GetRenderComopnent()->GetMaterial()->SetScalarParam(SCALAR_PARAM::INT_0, 1);
-		m_HurtTime = 0.f;
-
-	}
 
 
 }
@@ -105,7 +95,7 @@ void CSniperScript::Hit(int Damage)
 {
 	CFieldObjScript::Hit(Damage);
 
-	m_HurtTime += 0.2f;
+	b_Heat = true;
 }
 
 void CSniperScript::SaveToFile(ofstream& _File)

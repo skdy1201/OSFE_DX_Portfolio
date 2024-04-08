@@ -78,6 +78,8 @@ void CPlayerIdleState::finaltick()
 
 void CPlayerIdleState::Exit()
 {
+
+
 }
 
 

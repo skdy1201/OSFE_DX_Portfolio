@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CSniperIdleState.h"
 
-#include "CFieldObjScript.h"
+#include "CSniperScript.h"
 
 CSniperIdleState::CSniperIdleState()
 	:CState((UINT)STATE_TYPE::SNIPERIDLESTATE)
@@ -20,17 +20,10 @@ void CSniperIdleState::Enter()
 	PlayerScript = Player->GetScript<CFieldObjScript>();
 
 	Owner = BlackBoardOwner
-	OwnerScript = Owner->GetScript<CFieldObjScript>();
+	OwnerScript = Owner->GetScript<CSniperScript>();
 
 	MoveTimer = MoveCooldown
 	AttackTimer = AttackCooldown
-
-	if (*MoveTimer > 3.5f)
-		*MoveTimer -= 1.5f;
-
-	if (*AttackTimer > 3.5f)
-		*AttackTimer -= 1.0f;
-
 
 }
 
@@ -66,8 +59,14 @@ void CSniperIdleState::finaltick()
 		ChangeState(L"CSniperAttackState");
 	}
 
+	if(OwnerScript->GetHit() == true)
+	{
+		ChangeState(L"CSniperHitState");
+	}
+
 }
 
 void CSniperIdleState::Exit()
 {
+
 }

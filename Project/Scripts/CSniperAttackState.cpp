@@ -83,5 +83,8 @@ void CSniperAttackState::Exit()
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_1, 0);
 
 	AnimatorObject->Animator2D()->Play(L"EmptyAnimation", true);
-	*MoveTimer -= 2.f;
+
+	if (*MoveTimer > 3.5f)
+		*MoveTimer -= 1.5f;
+
 }

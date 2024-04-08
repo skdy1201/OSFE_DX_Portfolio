@@ -1,6 +1,7 @@
 fsm\SniperTestFsm.fsm
-4
+5
 CSniperAttackState
 CSniperDeadState
+CSniperHitState
 CSniperIdleState
 CSniperMoveState

@@ -13,6 +13,7 @@ private:
     Vec2                m_OwnerIdx;
     int*                MoveDir;
     float*              MoveCooldtime;
+    float*              AttackCooltime;
 
 public:
 

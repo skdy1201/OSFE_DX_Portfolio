@@ -185,6 +185,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CSaffronBullet.h" />
     <ClInclude Include="CSniperAttackState.h" />
     <ClInclude Include="CSniperDeadState.h" />
+    <ClInclude Include="CSniperHitState.h" />
     <ClInclude Include="CSniperIdleState.h" />
     <ClInclude Include="CSniperMoveState.h" />
     <ClInclude Include="CSniperProj.h" />
@@ -220,6 +221,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CSaffronBullet.cpp" />
     <ClCompile Include="CSniperAttackState.cpp" />
     <ClCompile Include="CSniperDeadState.cpp" />
+    <ClCompile Include="CSniperHitState.cpp" />
     <ClCompile Include="CSniperIdleState.cpp" />
     <ClCompile Include="CSniperMoveState.cpp" />
     <ClCompile Include="CSniperProj.cpp" />

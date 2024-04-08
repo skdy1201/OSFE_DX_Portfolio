@@ -21,6 +21,7 @@ void CSniperMoveState::Enter()
 	MoveDir = (int*)GetBlackboardData(L"Move Dir");
 	MoveCooldtime = (float*)GetBlackboardData(L"MoveCooldown");
 
+	AttackCooltime = (float*)GetBlackboardData(L"AttackCooldown");
 
 	m_OwnerIdx = SniperScript->GetOwnerIdx();
 
@@ -49,5 +50,6 @@ void CSniperMoveState::finaltick()
 
 void CSniperMoveState::Exit()
 {
-	
+	if (*AttackCooltime > 3.5f)
+		*AttackCooltime -= 1.0f;
 }
