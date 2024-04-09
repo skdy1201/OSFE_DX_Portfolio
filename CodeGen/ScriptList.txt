@@ -15,3 +15,5 @@ CPlayerBulletAnim
 CPlayerSpawnAnim
 CFrostBolt
 CHitAnimationModule
+CUIScript
+CManaBackGroundUIScript

@@ -506,6 +506,9 @@
     <Filter Include="ShaderCode\Render\Default">
       <UniqueIdentifier>{277542ef-d2d5-42d7-8ada-7bb55dc8ea02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ShaderCode\Render\UI">
+      <UniqueIdentifier>{0efc53e1-8303-4ee5-96ba-e44b7bef7acd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -563,6 +566,9 @@
     </FxCompile>
     <FxCompile Include="OnlyAnim.fx">
       <Filter>ShaderCode\Render\Default</Filter>
+    </FxCompile>
+    <FxCompile Include="UI.fx">
+      <Filter>ShaderCode\Render\UI</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

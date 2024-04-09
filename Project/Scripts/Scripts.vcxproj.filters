@@ -101,6 +101,12 @@
     <ClInclude Include="CSniperHitState.h">
       <Filter>08. States\SniperState</Filter>
     </ClInclude>
+    <ClInclude Include="CUIScript.h">
+      <Filter>02. Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CManaBackGroundUIScript.h">
+      <Filter>02. Scripts\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -200,6 +206,12 @@
     <ClCompile Include="CSniperHitState.cpp">
       <Filter>08. States\SniperState</Filter>
     </ClCompile>
+    <ClCompile Include="CUIScript.cpp">
+      <Filter>02. Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CManaBackGroundUIScript.cpp">
+      <Filter>02. Scripts\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -255,6 +267,9 @@
     </Filter>
     <Filter Include="02. Scripts\Module\PlayerModule">
       <UniqueIdentifier>{14c98dc5-cbef-401b-b224-a357f9d5d0af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\UI">
+      <UniqueIdentifier>{9f6c3e48-0ef5-49e8-93fa-43a968efc694}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

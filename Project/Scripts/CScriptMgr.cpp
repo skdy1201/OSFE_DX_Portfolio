@@ -18,6 +18,8 @@
 #include "CPlayerSpawnAnim.h"
 #include "CFrostBolt.h"
 #include "CHitAnimationModule.h"
+#include "CUIScript.h"
+#include "CManaBackGroundUIScript.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -38,6 +40,8 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CPlayerSpawnAnim");
 	_vec.push_back(L"CFrostBolt");
 	_vec.push_back(L"CHitAnimationModule");
+	_vec.push_back(L"CUIScript");
+	_vec.push_back(L"CManaBackGroundUIScript");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -76,6 +80,10 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CFrostBolt;
 	if (L"CHitAnimationModule" == _strScriptName)
 		return new CHitAnimationModule;
+	if (L"CUIScript" == _strScriptName)
+		return new CUIScript;
+	if (L"CManaBackGroundUIScript" == _strScriptName)
+		return new CManaBackGroundUIScript;
 	return nullptr;
 }
 
@@ -133,6 +141,12 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::HITANIMATIONMODULE:
 		return new CHitAnimationModule;
+		break;
+	case (UINT)SCRIPT_TYPE::UISCRIPT:
+		return new CUIScript;
+		break;
+	case (UINT)SCRIPT_TYPE::MANABACKGROUNDUISCRIPT:
+		return new CManaBackGroundUIScript;
 		break;
 	}
 	return nullptr;
@@ -208,6 +222,14 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::HITANIMATIONMODULE:
 		return L"CHitAnimationModule";
+		break;
+
+	case SCRIPT_TYPE::UISCRIPT:
+		return L"CUIScript";
+		break;
+
+	case SCRIPT_TYPE::MANABACKGROUNDUISCRIPT:
+		return L"CManaBackGroundUIScript";
 		break;
 
 	}

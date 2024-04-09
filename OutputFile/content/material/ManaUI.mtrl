@@ -1,0 +1,73 @@
+MtrlConst
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+1 0 0 0 
+0 1 0 0 
+0 0 1 0 
+0 0 0 1 
+ 1 0 0 0 
+0 1 0 0 
+0 0 1 0 
+0 0 0 1 
+ 1 0 0 0 
+0 1 0 0 
+0 0 1 0 
+0 0 0 1 
+ 1 0 0 0 
+0 1 0 0 
+0 0 1 0 
+0 0 0 1 
+ 
+0 0 0 0 0 0 0 0 0 0 
+
+Scalar Param
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+
+Tex Param
+1
+texture\UI\ManaBar_Outer.png
+0
+texture\UI\ManaBar_Outer.png
+1
+texture\UI\ManaBarBackGround.png
+0
+texture\UI\ManaBarBackGround.png
+1
+texture\UI\ManaBarProgressBar.png
+0
+texture\UI\ManaBarProgressBar.png
+0
+0
+0
+0
+0
+0
+0
+Temp
+Temp
+Temp
+EMPTYSYMBOL
+EMPTYSYMBOL
+EMPTYSYMBOL
+
+1
+UIShader
+1

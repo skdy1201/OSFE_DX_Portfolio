@@ -1,6 +1,6 @@
 C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\OutputFile\content\level\temp.lv
 Default
-2
+3
 MainCamera
 0
 0
@@ -28,7 +28,7 @@ UICamera
 0 0 0
 1
 7
-1
+0
 1.5708
 0
 1
@@ -38,6 +38,61 @@ UICamera
 1
 15
 0
+0
+ManaCrystalUI
+0
+0
+0 0 0
+125 125 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\ManaCrystalUI.mtrl
+0
+material\ManaCrystalUI.mtrl
+15
+0
+2
+ManaOuter
+0
+0
+100 0 145
+200 50 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\ManaUI.mtrl
+0
+material\ManaUI.mtrl
+15
+0
+0
+ManaUIBackGround
+0
+0
+100 -1 129
+200 40 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\ManaBackGround.mtrl
+0
+material\ManaBackGround.mtrl
+15
+1
+CManaBackGroundUIScript
 0
 Field
 1

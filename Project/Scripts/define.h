@@ -59,6 +59,8 @@
 
 #define PrefabHitFX L"prefab\\HitFxObj.pref"
 
+#define PrefabManaLine L"prefab\\ManaLineUI.pref"
+
 // 에니메이션 매크로
 #define frostblastanim FrostBlast
 #define BulletBasicCast L"BasicCast"
