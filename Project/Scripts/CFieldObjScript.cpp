@@ -16,8 +16,6 @@ CFieldObjScript::CFieldObjScript()
 	, IsPlayer(true)
 
 {
-	m_status.Current_MP = 0.f;
-	m_status.Owner = this->GetOwner();
 }
 
 CFieldObjScript::CFieldObjScript(const CFieldObjScript& _Origin)
@@ -95,6 +93,7 @@ void CFieldObjScript::begin()
 	if(IsPlayer)
 	{
 		Status PlayerState = this->GetStatus();
+		m_status.Owner = this->GetOwner();
 		PlayerState.HP = 500;
 		PlayerState.MP = 4.f;
 

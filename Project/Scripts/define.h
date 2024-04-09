@@ -97,10 +97,12 @@
 
 
 // UI 관련 매크로
-#define ManaProgrssScaleX 375
+#define ManaProgrssScaleX 370
 
 
 // 기타 매크로
 
 # define PlayerMaxMana 4.f
 # define PlayerMaxRegen 0.5f
+
+#define CalculUIRate (DT * ManaRegen) * ManaProgrssScaleX / MaxMana

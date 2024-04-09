@@ -1,14 +1,19 @@
 #pragma once
 #include "CUIScript.h"
 
+class CFieldObjScript;
+struct Status;
+
 class CManaProgrssUIScript :
     public CUIScript
 {
-    CGameObject* Owner;
+    CGameObject*        Owner;
+    CFieldObjScript*    OwnerScript;
 
-    float         MaxMana;
-    float         CurMana;
-    float         ManaRegen;
+    float MaxMana;
+    float CurrentMana;
+    float ManaRegen;
+
 
 public:
     virtual void begin() override;
