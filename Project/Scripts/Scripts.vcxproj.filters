@@ -107,6 +107,9 @@
     <ClInclude Include="CManaBackGroundUIScript.h">
       <Filter>02. Scripts\UI</Filter>
     </ClInclude>
+    <ClInclude Include="CManaProgrssUIScript.h">
+      <Filter>02. Scripts\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -210,6 +213,9 @@
       <Filter>02. Scripts\UI</Filter>
     </ClCompile>
     <ClCompile Include="CManaBackGroundUIScript.cpp">
+      <Filter>02. Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CManaProgrssUIScript.cpp">
       <Filter>02. Scripts\UI</Filter>
     </ClCompile>
   </ItemGroup>

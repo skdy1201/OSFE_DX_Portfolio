@@ -61,6 +61,7 @@
 
 #define PrefabManaLine L"prefab\\ManaLineUI.pref"
 
+
 // 에니메이션 매크로
 #define frostblastanim FrostBlast
 #define BulletBasicCast L"BasicCast"
@@ -93,3 +94,7 @@
 
 #define HitFXRandomcount 2
 #define HitFXRamdonPosScale 20
+
+
+// UI 관련 매크로
+#define ManaProgrssScaleX 375

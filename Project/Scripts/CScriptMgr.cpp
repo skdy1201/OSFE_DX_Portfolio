@@ -20,6 +20,7 @@
 #include "CHitAnimationModule.h"
 #include "CUIScript.h"
 #include "CManaBackGroundUIScript.h"
+#include "CManaProgrssUIScript.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -42,6 +43,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CHitAnimationModule");
 	_vec.push_back(L"CUIScript");
 	_vec.push_back(L"CManaBackGroundUIScript");
+	_vec.push_back(L"CManaProgrssUIScript");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -84,6 +86,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CUIScript;
 	if (L"CManaBackGroundUIScript" == _strScriptName)
 		return new CManaBackGroundUIScript;
+	if (L"CManaProgrssUIScript" == _strScriptName)
+		return new CManaProgrssUIScript;
 	return nullptr;
 }
 
@@ -147,6 +151,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::MANABACKGROUNDUISCRIPT:
 		return new CManaBackGroundUIScript;
+		break;
+	case (UINT)SCRIPT_TYPE::MANAPROGRSSUISCRIPT:
+		return new CManaProgrssUIScript;
 		break;
 	}
 	return nullptr;
@@ -230,6 +237,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::MANABACKGROUNDUISCRIPT:
 		return L"CManaBackGroundUIScript";
+		break;
+
+	case SCRIPT_TYPE::MANAPROGRSSUISCRIPT:
+		return L"CManaProgrssUIScript";
 		break;
 
 	}

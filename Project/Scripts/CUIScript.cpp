@@ -22,13 +22,7 @@ void CUIScript::begin()
 
 void CUIScript::tick()
 {
-	Vec3 Scale = pObj->Transform()->GetRelativeScale();
-	Scale.x += DT* 50;
-	pObj->Transform()->SetRelativeScale(Scale);
 
-	Vec3 Transform = pObj->Transform()->GetRelativePos();
-	Transform.x += DT * 25;
-	pObj->Transform()->SetRelativePos(Transform);
 }
 
 void CUIScript::SaveToFile(ofstream& _File)

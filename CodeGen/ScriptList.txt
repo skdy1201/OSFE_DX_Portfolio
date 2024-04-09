@@ -17,3 +17,4 @@ CFrostBolt
 CHitAnimationModule
 CUIScript
 CManaBackGroundUIScript
+CManaProgrssUIScript
