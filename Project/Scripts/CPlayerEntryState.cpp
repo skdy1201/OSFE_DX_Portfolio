@@ -9,6 +9,7 @@
 #include <Engine/CTransform.h>
 
 #include  <Engine/CGameObject.h>
+#include "CFieldObjScript.h"
 
 CPlayerEntryState::CPlayerEntryState()
 	: CState((UINT)STATE_TYPE::PLAYERENTRYSTATE)
@@ -33,7 +34,9 @@ void CPlayerEntryState::Enter()
 
 	CGameObject* obj = CPrefab::GetPrefabObj(PrefabPlayerSpawnAnim);
 	obj->Transform()->SetRelativePos(Player->Transform()->GetRelativePos());
-	
+
+	PlayerScript = Player->GetScript<CFieldObjScript>();
+
 	GamePlayStatic::SpawnGameObject(obj, 0);
 }
 

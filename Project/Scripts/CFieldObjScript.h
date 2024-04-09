@@ -10,10 +10,12 @@ struct Status
 {
 	CGameObject* Owner;
 	int HP;
-	int MP;
+	float MP;
 
 	int Current_HP;
-	int Current_MP;
+	float Current_MP;
+
+	float Mana_Regen;
 
 	int SpellPower; // ÁÖ¹®·Â
 
@@ -49,7 +51,9 @@ public:
 	void Shoot();
 	void Cast();
 	virtual void Hit(int Damage);
-	 void GetBuff();
+	void GetBuff();
+
+	void FillMana();
 
 
 	void SetField(CFieldScript* _Field) { m_Field = _Field; }

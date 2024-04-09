@@ -13,6 +13,8 @@ CManaProgrssUIScript::~CManaProgrssUIScript()
 void CManaProgrssUIScript::begin()
 {
 	CUIScript::begin();
+
+	pObj->MeshRender()->GetDynamicMaterial()->SetScalarParam(SCALAR_PARAM::VEC4_0, Vec4{ 0.2f, 0.6f, 0.86f, 1.f });
 }
 
 void CManaProgrssUIScript::tick()

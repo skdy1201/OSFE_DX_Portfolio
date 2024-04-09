@@ -16,7 +16,8 @@ CFieldObjScript::CFieldObjScript()
 	, IsPlayer(true)
 
 {
-	
+	m_status.Current_MP = 0.f;
+	m_status.Owner = this->GetOwner();
 }
 
 CFieldObjScript::CFieldObjScript(const CFieldObjScript& _Origin)
@@ -37,7 +38,8 @@ void CFieldObjScript::tick()
 {
 	Shoot();
 	Cast();
-
+	FillMana();
+	
 }
 
 
@@ -92,6 +94,25 @@ void CFieldObjScript::begin()
 {
 	if(IsPlayer)
 	{
+		Status PlayerState = this->GetStatus();
+		PlayerState.HP = 500;
+		PlayerState.MP = 4.f;
+
+		PlayerState.Current_MP = PlayerState.HP;
+		PlayerState.Current_MP = 0.f;
+
+		PlayerState.Mana_Regen = 0.3;
+
+		PlayerState.SpellPower = 0;
+
+		PlayerState.Defense = 0;
+		PlayerState.Shield = 0;
+
+		PlayerState.Camp = 1;
+
+		this->SetStatus(PlayerState);
+
+
 		CGameObject* Cursor;
 		Ptr<CPrefab> Cursorprefab = CAssetMgr::GetInst()->Load<CPrefab>(PrefabPlayerCursor, PrefabPlayerCursor);
 		Cursor = Cursorprefab->Instantiate();
@@ -114,6 +135,25 @@ void CFieldObjScript::begin()
 
 	this->GetOwner()->GetRenderComopnent()->SetMaterial(this->GetRenderComponent()->GetDynamicMaterial());
 }
+
+void CFieldObjScript::FillMana()
+{
+	if (m_Owner == nullptr)
+		return;
+
+	m_status.Current_MP += DT * m_status.Mana_Regen;
+
+	if(m_status.Current_MP >= m_status.MP)
+	{
+		m_status.Current_MP = m_status.MP;
+	}
+
+	if (m_status.Current_MP < 0.f)
+	{
+		m_status.Current_MP = 0;
+	}
+}
+
 
 void CFieldObjScript::SaveToFile(ofstream& _File)
 {

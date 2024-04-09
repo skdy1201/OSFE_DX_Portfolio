@@ -8,6 +8,8 @@ private:
 
     CGameObject* Player;
     int          PlayerMana;
+
+    float        CurMana;
     bool         ManaChange;
 
 public:

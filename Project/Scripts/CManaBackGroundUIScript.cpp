@@ -3,7 +3,8 @@
 
 CManaBackGroundUIScript::CManaBackGroundUIScript()
 	: CUIScript((UINT)SCRIPT_TYPE::MANABACKGROUNDUISCRIPT)
-	, PlayerMana(12)
+	, PlayerMana(4.f)
+	, CurMana(0.f)
 
 {
 }
@@ -18,7 +19,7 @@ void CManaBackGroundUIScript::begin()
 
 	for(int i = 1; i < PlayerMana; ++i)
 	{
-		Vec3 ManaBarPos = pObj->Transform()->GetRelativePos();
+		Vec3 ManaBarPos = pObj->Transform()->GetWorldPos();
 		ManaBarPos.z = 0.f;
 
 		Vec3 ManaBarScale = pObj->Transform()->GetRelativeScale();
@@ -29,7 +30,7 @@ void CManaBackGroundUIScript::begin()
 		ManaBarPos.x = (ManaBarPos.x - (ManaBarScale.x/2)) + ((ManaBarScale.x / PlayerMana) * i);
 
 		pOBJ->Transform()->SetRelativePos(ManaBarPos);
-		GamePlayStatic::SpawnGameObject(pOBJ, 0);
+		GamePlayStatic::SpawnGameObject(pOBJ, 31);
 
 	}
 }

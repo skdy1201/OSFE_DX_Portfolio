@@ -1,6 +1,6 @@
 C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\OutputFile\content\level\temp.lv
 Default
-3
+2
 MainCamera
 0
 0
@@ -38,25 +38,6 @@ UICamera
 1
 15
 0
-0
-ManaProgress
-0
-0
-0 0 0
-10 30 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\ManaProgress.mtrl
-0
-material\ManaProgress.mtrl
-15
-1
-CUIScript
 0
 Field
 1

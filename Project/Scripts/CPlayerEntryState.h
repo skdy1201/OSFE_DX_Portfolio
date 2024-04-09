@@ -3,14 +3,14 @@
 #include <Engine/CState.h>
 
 class CGameObject;
-class CFieldObjectScript;
+class CFieldObjScript;
 
 
 class CPlayerEntryState :
     public CState
 {
     CGameObject*        Player;
-    CFieldObjectScript* PlayerScript;
+    CFieldObjScript* PlayerScript;
 
 public:
 
