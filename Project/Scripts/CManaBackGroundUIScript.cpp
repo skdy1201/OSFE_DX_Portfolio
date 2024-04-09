@@ -3,7 +3,7 @@
 
 CManaBackGroundUIScript::CManaBackGroundUIScript()
 	: CUIScript((UINT)SCRIPT_TYPE::MANABACKGROUNDUISCRIPT)
-	, PlayerMana(3)
+	, PlayerMana(12)
 
 {
 }

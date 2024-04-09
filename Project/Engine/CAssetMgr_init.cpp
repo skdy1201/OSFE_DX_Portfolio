@@ -391,6 +391,20 @@ void CAssetMgr::CreateDefaultGraphicsShader()
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
 
 	AddAsset(L"UIShader", pShader.Get());
+
+	// =================================
+	// ManaUIFxShader
+	// =================================
+	pShader = new CGraphicsShader;
+	pShader->CreateVertexShader(L"shader\\ManaUI.fx", "VS_MANAUI");
+	pShader->CreatePixelShader(L"shader\\ManaUI.fx", "PS_MANAUI");
+
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::ALPHA_BLEND);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
+
+	AddAsset(L"ManaUIShader", pShader.Get());
 }
 
 

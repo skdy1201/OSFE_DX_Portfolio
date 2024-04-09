@@ -570,5 +570,8 @@
     <FxCompile Include="UI.fx">
       <Filter>ShaderCode\Render\UI</Filter>
     </FxCompile>
+    <FxCompile Include="ManaUI.fx">
+      <Filter>ShaderCode\Render\UI</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
