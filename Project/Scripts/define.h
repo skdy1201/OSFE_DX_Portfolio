@@ -61,6 +61,8 @@
 
 #define PrefabManaLine L"prefab\\ManaLineUI.pref"
 
+#define PrefabManaUI L"prefab\\ManaCrystalUI.pref"
+
 
 // 에니메이션 매크로
 #define frostblastanim FrostBlast

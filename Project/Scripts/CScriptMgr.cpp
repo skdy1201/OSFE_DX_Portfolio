@@ -21,6 +21,7 @@
 #include "CUIScript.h"
 #include "CManaBackGroundUIScript.h"
 #include "CManaProgrssUIScript.h"
+#include "CManaProgressWhiteUI.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -44,6 +45,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CUIScript");
 	_vec.push_back(L"CManaBackGroundUIScript");
 	_vec.push_back(L"CManaProgrssUIScript");
+	_vec.push_back(L"CManaProgressWhiteUI");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -88,6 +90,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CManaBackGroundUIScript;
 	if (L"CManaProgrssUIScript" == _strScriptName)
 		return new CManaProgrssUIScript;
+	if (L"CManaProgressWhiteUI" == _strScriptName)
+		return new CManaProgressWhiteUI;
 	return nullptr;
 }
 
@@ -154,6 +158,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::MANAPROGRSSUISCRIPT:
 		return new CManaProgrssUIScript;
+		break;
+	case (UINT)SCRIPT_TYPE::MANAPROGRESSWHITEUI:
+		return new CManaProgressWhiteUI;
 		break;
 	}
 	return nullptr;
@@ -241,6 +248,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::MANAPROGRSSUISCRIPT:
 		return L"CManaProgrssUIScript";
+		break;
+
+	case SCRIPT_TYPE::MANAPROGRESSWHITEUI:
+		return L"CManaProgressWhiteUI";
 		break;
 
 	}

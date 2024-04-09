@@ -41,6 +41,11 @@ void CFieldObjScript::tick()
 }
 
 
+void CFieldObjScript::UseMana(int Mana)
+{
+	m_status.Current_MP -= Mana;
+}
+
 void CFieldObjScript::Shoot()
 {
 }	
@@ -51,6 +56,7 @@ void CFieldObjScript::Cast()
 	{
 		if (KEY_TAP(KEY::Q))
 		{
+			UseMana(2);
 			FrostBoltMagic* bolt = new FrostBoltMagic;
 			bolt->SetCaster(this->m_Owner);
 			Vec2 StartPoint = this->GetOwnerIdx();

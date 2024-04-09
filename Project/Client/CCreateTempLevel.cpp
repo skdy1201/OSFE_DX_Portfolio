@@ -227,6 +227,10 @@ void CCreateTempLevel::CreateTempLevel()
 	pObj = temp->Instantiate();
 	pTempLevel->AddObject(pObj, LayerField, true);
 
+	 temp = CAssetMgr::GetInst()->Load<CPrefab>(PrefabManaUI, PrefabManaUI);
+	pObj = temp->Instantiate();
+	pTempLevel->AddObject(pObj, LayerUI, true);
+
 	 temp = CAssetMgr::GetInst()->Load<CPrefab>(PrefabBackGround, PrefabBackGround);
 	pObj = temp->Instantiate();
 	pTempLevel->AddObject(pObj, LayerBackGround, true);

@@ -15,7 +15,7 @@ material\ManaCrystalUI.mtrl
 material\ManaCrystalUI.mtrl
 15
 0
-3
+4
 ManaOuter
 31
 0
@@ -71,4 +71,23 @@ material\ManaProgress.mtrl
 15
 1
 CManaProgrssUIScript
+0
+ManaProgressWhite
+0
+0
+0 0 0
+10 30 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\ManaProgress.mtrl
+0
+material\ManaProgress.mtrl
+15
+1
+CManaProgressWhiteUI
 0

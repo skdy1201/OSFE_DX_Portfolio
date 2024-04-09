@@ -18,3 +18,4 @@ CHitAnimationModule
 CUIScript
 CManaBackGroundUIScript
 CManaProgrssUIScript
+CManaProgressWhiteUI

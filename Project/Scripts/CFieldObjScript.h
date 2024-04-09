@@ -47,6 +47,8 @@ protected:
 
 public:
 	Status& GetStatus() { return m_status; }
+	float GetMpPersent() { return m_status.Current_MP / m_status.MP; }
+	void UseMana(int Mana);
 	void SetStatus(const Status& _status) { m_status = _status; }
 	void Shoot();
 	void Cast();
