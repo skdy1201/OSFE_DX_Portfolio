@@ -15,4 +15,22 @@ material\Slot.mtrl
 material\Slot.mtrl
 15
 0
+1
+HandSlotOpen
+0
+0
+0 0 0
+83 83 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\SlotOpen.mtrl
+0
+material\SlotOpen.mtrl
+15
+0
 0

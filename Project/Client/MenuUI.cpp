@@ -17,7 +17,10 @@
 
 #include "CImGuiMgr.h"
 #include "Inspector.h"
+#include "Content.h"
+#include "Outliner.h"
 #include "CLevelSaveLoad.h"
+#include "TreeUI.h"
 
 
 
@@ -156,7 +159,15 @@ void MenuUI::Level()
             {
                 CLevelSaveLoad::SaveLevel(pCurLevel, L"level\\temp.lv");
             }
-            
+
+          /*  Content* pContent = (Content*)CImGuiMgr::GetInst()->FindUI("##Content");
+            TreeNode* m_Tree = pContent->GetTreeUI()->GetSelectedNode();
+            m_Tree = nullptr;
+
+            Outliner* pOutliner = (Outliner*)CImGuiMgr::GetInst()->FindUI("OutLiner");
+            m_Tree = pOutliner->GetTree()->GetSelectedNode();
+            m_Tree = nullptr;*/
+
             CLevelMgr::GetInst()->ChangeLevelState(LEVEL_STATE::PLAY);
         }
 

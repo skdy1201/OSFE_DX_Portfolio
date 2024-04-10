@@ -9,6 +9,7 @@
 
 CDeck::CDeck()
 	: IsShaffle(false)
+	, UseHand(false)
 {
 }
 
@@ -105,6 +106,8 @@ void CDeck::CastFirst()
 		Grave.push_back(QHand);
 		QHand = nullptr;
 		FillHand();
+
+		SetUseHand(true);
 	}
 
 }
@@ -120,6 +123,9 @@ void CDeck::CastSecond()
 		Grave.push_back(WHand);
 		WHand = nullptr;
 		FillHand();
+
+		SetUseHand(true);
+
 	}
 }
 

@@ -42,7 +42,7 @@ protected:
 
 	class CFieldScript*		CurField;
 
-	wstring					MagicIconKey;
+	CGameObject*			MagicIcon;
 
 public:
 	void SetCaster(CGameObject* __Caster);
@@ -53,7 +53,7 @@ public:
 
 	Magic_Info GetMagicInfo() { return m_Info; }
 
-	wstring GetMagicIconKey() { return MagicIconKey; }
+	CGameObject* GetMagicIcon() { return MagicIcon; }
 
 public:
 	CMagic();

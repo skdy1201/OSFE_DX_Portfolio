@@ -23,10 +23,13 @@ public:
 public:
     virtual void render_update() override;
 
+    TreeUI* GetTreeUI() { return m_Tree; }
 
 private:
     void FindFileName(const wstring& _Directory);
     ASSET_TYPE GetAssetTypeByExt(const path& _relativePath);
+
+ 
 
 public:
     Content();

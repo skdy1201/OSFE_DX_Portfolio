@@ -16,10 +16,10 @@ private:
     CFieldObjScript*    PlayerScript;
     CDeck*              PlayerDeck;
 
-	Vec2 IconOffset;
+	Vec2                IconOffset;
 
     vector<CGameObject*> IconObjvector;
-    MagicManager*        pMagicmanager;
+    bool                 FirstSet;
 
 public:
     virtual void begin() override;

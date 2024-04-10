@@ -21,6 +21,7 @@ private:
     CFieldObjScript* OwnerScript;
 
     bool    IsShaffle;
+    bool    UseHand;
 
 public:
     void begin();
@@ -37,6 +38,17 @@ public:
     void Shuffle();
 
     deque<CMagic*> GetMagicList() { return MagicList; }
+    deque<CMagic*> GetUnusedDeck() { return UnusedDeck; }
+
+    CMagic* GetQHand() { return QHand; }
+    CMagic* GetWHand() { return WHand; }
+
+    bool GetUseHand() { return UseHand; }
+    bool GetIsShuffle() { return IsShaffle; }
+
+    void SetUseHand(bool fact) { UseHand = fact; }
+    void SetIsShuffle(bool fact) { IsShaffle = fact; }
+
 
     CLONE(CDeck);
 public:

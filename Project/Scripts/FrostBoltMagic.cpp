@@ -24,7 +24,9 @@ FrostBoltMagic::FrostBoltMagic()
 
 	FrostBolt = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\FrostBolt.pref", L"prefab\\FrostBolt.pref");
 
-	MagicIconKey = PrefabFrosticon;
+	MagicIcon = CPrefab::GetPrefabObj(PrefabFrosticon);
+	MagicIcon->Transform()->SetRelativePos(SpellHidePos);
+	GamePlayStatic::SpawnGameObject(MagicIcon, LayerDefault);
 }
 
 FrostBoltMagic::~FrostBoltMagic()

@@ -2,9 +2,7 @@
 
 #include <Engine/CScript.h>
 #include <Engine/components.h>
-
 #include "CFieldObjScript.h"
-#include "MagicManager.h"
 
 
 class CFieldScript :
@@ -18,7 +16,6 @@ public:
 	vector<CGameObject*> CurFieldMember;
 	CGameObject* Player;
 
-	MagicManager* magic_manager;
 
 
 public:

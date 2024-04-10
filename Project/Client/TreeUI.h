@@ -118,5 +118,6 @@ public:
     ~TreeUI();
 
     friend class TreeNode;
+    friend class CLevelMgr;
 };
 

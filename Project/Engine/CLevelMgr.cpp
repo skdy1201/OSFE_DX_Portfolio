@@ -13,6 +13,7 @@
 #include "CTaskMgr.h"
 
 
+
 CLevelMgr::CLevelMgr()
 	: m_CurLevel(nullptr)
 {
@@ -71,6 +72,7 @@ void CLevelMgr::ChangeLevelState(LEVEL_STATE _State)
 	task.Type = TASK_TYPE::CHANGE_LEVELSTATE;
 	task.Param_1 = (DWORD_PTR)m_CurLevel;
 	task.Param_2 = (DWORD_PTR)_State;
+
 
 	CTaskMgr::GetInst()->AddTask(task);
 }
