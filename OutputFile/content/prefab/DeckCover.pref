@@ -1,18 +1,24 @@
 DeckCover
-31
+2
 0
--540 -275 0
-150 150 1
+-39 -44 600
+120 75 1
 0 0 0
 1
+1
+0 0 0
+100 25 1
+1
+0
 9
 1
 RectMesh
 1
 1
-material\Deck.mtrl
+material\BlueTile.mtrl
 0
-material\Deck.mtrl
+material\BlueTile.mtrl
 15
-0
+1
+CTileScript
 0

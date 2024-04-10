@@ -1,4 +1,4 @@
-#pragma once
+	#pragma once
 enum class KeyWard
 {
 	Trinity,
@@ -25,6 +25,7 @@ struct Magic_Info
 	int				Dmg; // 다단이면 반대로 나눠서 계산하자
 	int				TotalHit;
 
+	Vec2			StartIdx;
 	bool			CastRange[MagicFieldIndexY][MagicFieldIndexX]; // 마법 계산시 발동하는 idx 들을 담는 벡터. 시작 위치는 따로
 
 	//buff 구조체 추가 예정. 시스템이 구현된다면

@@ -2,6 +2,7 @@
 
 #include <Engine/CScript.h>
 
+class CDeck;
 class CMagic;
 
 class CFieldScript;
@@ -44,6 +45,9 @@ protected:
 
 	Vec2 CurFieldIdx;
 
+	CDeck* m_Deck;
+
+
 
 public:
 	Status& GetStatus() { return m_status; }
@@ -56,6 +60,9 @@ public:
 	void GetBuff();
 
 	void FillMana();
+
+	void AddMagic(CMagic* Magic);
+	void SubMagic(string Name);
 
 
 	void SetField(CFieldScript* _Field) { m_Field = _Field; }

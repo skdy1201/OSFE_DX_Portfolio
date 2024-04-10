@@ -113,6 +113,9 @@
     <ClInclude Include="CManaProgressWhiteUI.h">
       <Filter>02. Scripts\UI</Filter>
     </ClInclude>
+    <ClInclude Include="CDeck.h">
+      <Filter>Deck</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -224,6 +227,9 @@
     <ClCompile Include="CManaProgressWhiteUI.cpp">
       <Filter>02. Scripts\UI</Filter>
     </ClCompile>
+    <ClCompile Include="CDeck.cpp">
+      <Filter>Deck</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -282,6 +288,9 @@
     </Filter>
     <Filter Include="02. Scripts\UI">
       <UniqueIdentifier>{9f6c3e48-0ef5-49e8-93fa-43a968efc694}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Deck">
+      <UniqueIdentifier>{4ad517aa-8016-4d7c-8d0f-c0f7230a9a80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

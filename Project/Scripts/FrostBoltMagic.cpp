@@ -12,7 +12,9 @@ FrostBoltMagic::FrostBoltMagic()
 	m_Info.m_Type = MagicType::Shot;
 	m_Info.Dmg = 50;
 	m_Info.TotalHit = 1;
-	
+
+	m_Info.StartIdx = Vec2{ -4, 0 };
+
 	m_Info.CastRange[2][7] = true;
 	m_Info.CastRange[3][8] = true;
 	m_Info.CastRange[4][7] = true;
@@ -26,6 +28,8 @@ FrostBoltMagic::~FrostBoltMagic()
 
 void FrostBoltMagic::cast(Vec2 StartPoint)
 {
+	StartPoint += m_Info.StartIdx;
+
 	for (int row = 0; row < TileMaxRow; ++row)
 	{
 		for (int col = 0; col < TileMaxCol - 8; ++col)

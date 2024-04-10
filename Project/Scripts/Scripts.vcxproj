@@ -164,6 +164,7 @@ call CodeGen.exe</Command>
   <ItemGroup>
     <ClInclude Include="CAnimatorModule.h" />
     <ClInclude Include="CBackgroundScript.h" />
+    <ClInclude Include="CDeck.h" />
     <ClInclude Include="CFieldObjScript.h" />
     <ClInclude Include="CFieldScript.h" />
     <ClInclude Include="CFrostBolt.h" />
@@ -204,6 +205,7 @@ call CodeGen.exe</Command>
   <ItemGroup>
     <ClCompile Include="CAnimatorModule.cpp" />
     <ClCompile Include="CBackgroundScript.cpp" />
+    <ClCompile Include="CDeck.cpp" />
     <ClCompile Include="CFieldObjScript.cpp" />
     <ClCompile Include="CFieldScript.cpp" />
     <ClCompile Include="CFrostBolt.cpp" />

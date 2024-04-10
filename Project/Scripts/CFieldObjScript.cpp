@@ -3,6 +3,7 @@
 
 #include <Engine/CAnim.h>
 
+#include "CDeck.h"
 #include "CFieldScript.h"
 #include "CMagic.h"
 
@@ -30,6 +31,7 @@ CFieldObjScript::CFieldObjScript(UINT _SCRIPTYPE)
 
 CFieldObjScript::~CFieldObjScript()
 {
+	delete m_Deck;
 }
 
 void CFieldObjScript::tick()
@@ -56,13 +58,7 @@ void CFieldObjScript::Cast()
 	{
 		if (KEY_TAP(KEY::Q))
 		{
-			
-			UseMana(2);
-			FrostBoltMagic* bolt = new FrostBoltMagic;
-			bolt->SetCaster(this->m_Owner);
-			Vec2 StartPoint = this->GetOwnerIdx();
-			bolt->cast(StartPoint - Vec2{ 4, 0 });
-
+			m_Deck->CastFirst();
 		}
 	}
 }
@@ -139,7 +135,12 @@ void CFieldObjScript::begin()
 		}
 	}
 
+	m_Deck = new CDeck;
+
+	m_Deck->AddMagic(new FrostBoltMagic);
+	m_Deck->SetOwner(this->m_Owner);
 	this->GetOwner()->GetRenderComopnent()->SetMaterial(this->GetRenderComponent()->GetDynamicMaterial());
+	m_Deck->begin();
 }
 
 void CFieldObjScript::FillMana()
@@ -159,7 +160,6 @@ void CFieldObjScript::FillMana()
 		m_status.Current_MP = 0;
 	}
 }
-
 
 void CFieldObjScript::SaveToFile(ofstream& _File)
 {
