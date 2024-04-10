@@ -24,11 +24,14 @@ CSniperHitState::~CSniperHitState()
 
 void CSniperHitState::Enter()
 {
+
+
 	Sniper = BlackBoardOwner
 	SniperScript = Sniper->GetScript<CSniperScript>();
 
 	Player = BlackBoardPlayer
 	PlayerScript = Player->GetScript<CFieldObjScript>();
+
 
 	CurRow = *(int*)GetBlackboardData(L"Current Row");
 	PlayerRow = (int)PlayerScript->GetOwnerIdx().y;
@@ -39,7 +42,7 @@ void CSniperHitState::Enter()
 	HitFX->Transform()->SetRelativePos(Hitposition);
 
 	HitFX->Transform()->SetOffset(Vec2{ 0.f, 0.f });
-	HitFX->Transform()->SetRelativeScale(Sniper->Transform()->GetRelativeScale() * 2);
+	HitFX->Transform()->SetRelativeScale(Sniper->Transform()->GetRelativeScale() *2);
 	GamePlayStatic::SpawnGameObject(HitFX, LayerDefault);
 
 	Sniper->GetRenderComopnent()->GetDynamicMaterial()->SetScalarParam(SCALAR_PARAM::INT_0, 0);
@@ -49,6 +52,11 @@ void CSniperHitState::Enter()
 
 void CSniperHitState::finaltick()
 {
+	if (SniperScript->GetStatus().Current_HP <= 0)
+	{
+		Sniper->StateMachine()->GetFSM()->ChangeState(L"CSniperDeadState");
+	}
+
 	if(HitFX->Animator2D()->GetCurAnim()->IsFinish())
 	{
 		Sniper->StateMachine()->GetFSM()->ChangeState(L"CSniperIdleState");

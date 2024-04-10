@@ -23,7 +23,7 @@ CSniperScript::~CSniperScript()
 
 void CSniperScript::begin()
 {
-	m_status.HP = 5;
+	m_status.HP = 50;
 	m_status.Current_HP = m_status.HP;
 	m_status.Camp = 2;
 
