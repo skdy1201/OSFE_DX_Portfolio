@@ -8,11 +8,29 @@
 #include "CRandomMgr.h"
 
 CDeck::CDeck()
+	: IsShaffle(false)
 {
 }
 
 CDeck::~CDeck()
 {
+	for (int i = 0; i < MagicList.size(); ++i)
+	{
+		if (MagicList[i] != nullptr)
+			delete MagicList[i];
+	}
+
+	for (int j = 0; j < UnusedDeck.size(); ++j)
+	{
+		if (UnusedDeck[j] != nullptr)
+			UnusedDeck[j] = nullptr;
+	}
+		if (QHand != nullptr)
+			QHand = nullptr;
+
+		if (WHand != nullptr)
+			WHand = nullptr;
+	
 }
 
 void CDeck::begin()
@@ -31,17 +49,34 @@ void CDeck::begin()
 
 void CDeck::FillHand()
 {
-	if(UnusedDeck.size() == 0)
+	if(UnusedDeck.size() == 0 && QHand == nullptr && WHand == nullptr)
 	{
+		IsShaffle = true;
 		Shuffle();
 	}
 
-	if(QHand != nullptr)
+	if(IsShaffle == true)
 	{
-		WHand = UnusedDeck.front();
-	}
+		QHand = UnusedDeck.front();
+		UnusedDeck.pop_front();
 
-	QHand = UnusedDeck.front();
+		WHand = UnusedDeck.front();
+		UnusedDeck.pop_front();
+
+		IsShaffle = false;
+	}
+	else
+	{
+		if (QHand != nullptr)
+		{
+			WHand = UnusedDeck.front();
+		}
+		else
+		{
+			QHand = UnusedDeck.front();
+
+		}
+	}
 
 	UnusedDeck.pop_front();
 }
@@ -76,6 +111,16 @@ void CDeck::CastFirst()
 
 void CDeck::CastSecond()
 {
+	if (!(OwnerScript->GetStatus().Current_MP < WHand->GetMagicInfo().ManaCost))
+	{
+		OwnerScript->UseMana(WHand->GetMagicInfo().ManaCost);
+		WHand->SetCaster(Owner);
+		WHand->cast(OwnerScript->GetOwnerIdx());
+
+		Grave.push_back(WHand);
+		WHand = nullptr;
+		FillHand();
+	}
 }
 
 void CDeck::Shuffle()
@@ -91,4 +136,7 @@ void CDeck::Shuffle()
 
 		Generator.erase(Generator.begin() + idx);
 	}
+
+	Grave.clear();
+	
 }

@@ -60,6 +60,11 @@ void CFieldObjScript::Cast()
 		{
 			m_Deck->CastFirst();
 		}
+
+		if(KEY_TAP((KEY::W)))
+		{
+			m_Deck->CastSecond();
+		}
 	}
 }
 
@@ -137,6 +142,10 @@ void CFieldObjScript::begin()
 
 	m_Deck = new CDeck;
 
+	m_Deck->AddMagic(new FrostBoltMagic);
+	m_Deck->AddMagic(new FrostBoltMagic);
+	m_Deck->AddMagic(new FrostBoltMagic);
+	m_Deck->AddMagic(new FrostBoltMagic);
 	m_Deck->AddMagic(new FrostBoltMagic);
 	m_Deck->SetOwner(this->m_Owner);
 	this->GetOwner()->GetRenderComopnent()->SetMaterial(this->GetRenderComponent()->GetDynamicMaterial());

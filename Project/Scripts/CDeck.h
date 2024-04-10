@@ -20,7 +20,7 @@ private:
 
     CFieldObjScript* OwnerScript;
 
-    
+    bool    IsShaffle;
 
 public:
     void begin();
