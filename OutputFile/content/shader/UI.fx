@@ -43,6 +43,9 @@ float4 PS_UI(VS_OUT _in) : SV_Target
 
     }
 
+    if (0.f == vColor.a)
+        discard;
+
     return vColor;
 }
 

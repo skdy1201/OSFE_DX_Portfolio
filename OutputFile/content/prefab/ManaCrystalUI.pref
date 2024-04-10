@@ -1,7 +1,7 @@
 ManaCrystalUI
 31
 0
--360 -315 0
+-180 -315 0
 125 125 1
 0 0 0
 1
@@ -37,7 +37,7 @@ material\ManaUI.mtrl
 ManaUIBackGround
 31
 0
-185 0 130
+185 0 300
 375 30 1
 0 0 0
 1
@@ -56,8 +56,8 @@ CManaBackGroundUIScript
 ManaProgress
 31
 0
-0 0 100
-10 30 1
+0 0 108
+370 30 1
 0 0 0
 1
 9
@@ -73,10 +73,10 @@ material\ManaProgress.mtrl
 CManaProgrssUIScript
 0
 ManaProgressWhite
+31
 0
-0
-0 0 0
-10 30 1
+0 0 151
+370 30 1
 0 0 0
 1
 9

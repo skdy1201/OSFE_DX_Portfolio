@@ -1,0 +1,36 @@
+ForstBoltDeckIcon
+0
+0
+0 0 0
+94 94 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\DeckSpellFrame.mtrl
+0
+material\DeckSpellFrame.mtrl
+15
+0
+1
+FrostBoltIcon
+0
+0
+0 0 0
+93 93 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\FrostBoltIcon.mtrl
+0
+material\FrostBoltIcon.mtrl
+15
+0
+0

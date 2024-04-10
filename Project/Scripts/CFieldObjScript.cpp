@@ -56,6 +56,7 @@ void CFieldObjScript::Cast()
 	{
 		if (KEY_TAP(KEY::Q))
 		{
+			
 			UseMana(2);
 			FrostBoltMagic* bolt = new FrostBoltMagic;
 			bolt->SetCaster(this->m_Owner);

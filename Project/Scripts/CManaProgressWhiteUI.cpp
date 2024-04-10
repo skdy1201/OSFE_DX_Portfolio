@@ -23,6 +23,11 @@ void CManaProgressWhiteUI::begin()
 	CGameObject* Player = CLevelMgr::GetInst()->GetCurrentLevel()->FindObjectByName(L"Player");
 	PlayerScript = Player->GetScript<CFieldObjScript>();
 
+	Vec3 StartScale = Transform()->GetRelativeScale();
+	StartScale.x = 0.f;
+
+	Transform()->SetRelativeScale(StartScale);
+
 	this->GetRenderComponent()->GetDynamicMaterial()->SetScalarParam(SCALAR_PARAM::VEC4_0, Vec4{ 1.f, 1.f, 1.f, 1.f });
 }
 
