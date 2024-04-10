@@ -36,6 +36,7 @@ public:
 
     void Shuffle();
 
+    deque<CMagic*> GetMagicList() { return MagicList; }
 
     CLONE(CDeck);
 public:

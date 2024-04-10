@@ -61,10 +61,6 @@ public:
 
 	void FillMana();
 
-	void AddMagic(CMagic* Magic);
-	void SubMagic(string Name);
-
-
 	void SetField(CFieldScript* _Field) { m_Field = _Field; }
 	CFieldScript* GetField() { return m_Field; }
 
@@ -75,6 +71,8 @@ public:
 	void SetOwnerIdx(Vec2 _index) { CurFieldIdx = _index; }
 
 	Vec2 GetMoveIdx(Vec2 TargetDirIdx);
+
+	CDeck* GetDeck() { return m_Deck; }
 
 	virtual void begin() override;
 	virtual void tick() override;

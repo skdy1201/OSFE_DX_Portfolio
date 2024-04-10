@@ -23,6 +23,8 @@
 #define PlayerZ 500.f
 #define TileZ 600.f
 #define BackGroundZ 1000.f
+#define MagicHideZ 9999.f
+
 #define PlayerAttackRange Vec2{4, 0}
 
 #define BlueMagicLayer 9
@@ -60,8 +62,10 @@
 #define PrefabHitFX L"prefab\\HitFxObj.pref"
 
 #define PrefabManaLine L"prefab\\ManaLineUI.pref"
-
 #define PrefabManaUI L"prefab\\ManaCrystalUI.pref"
+#define PrefabDeckCoverUI L"prefab\\DeckUI.pref"
+
+#define PrefabFrosticon L"prefab\\ForstBoltDeckIcon.pref"
 
 
 // 에니메이션 매크로
@@ -108,3 +112,7 @@
 # define PlayerMaxRegen 0.5f
 
 #define CalculUIRate (DT * ManaRegen) * ManaProgrssScaleX / MaxMana
+
+#define DeckCoverPos Vec3{-540.f, - 280.f , 0.f}
+#define DeckCoverIn Vec3{-527.f, -242.f, 10.f}
+#define SpellHidePos Vec3{-527.f, -310.f, 100.f}

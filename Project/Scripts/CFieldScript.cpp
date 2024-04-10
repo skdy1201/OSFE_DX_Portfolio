@@ -24,6 +24,8 @@ CFieldScript::CFieldScript(const CFieldScript& _Origin)
 
 CFieldScript::~CFieldScript()
 {
+	if (magic_manager != nullptr)
+		delete magic_manager;
 }
 
 void CFieldScript::SaveToFile(ofstream& _File)
@@ -40,6 +42,7 @@ void CFieldScript::LoadFromFile(ifstream& _File)
 
 void CFieldScript::begin()
 {
+	magic_manager = new MagicManager;
 	SpawnTile(MaxTileRow, MaxTileCol);
 	SpawnFieldObj(Vec2{ 5, 2 }, PrefabPlayer,LayerPlayer, true);
 	SpawnFieldObj(Vec2{8 , 2 }, PrefabSniper, LayerMonster, false);

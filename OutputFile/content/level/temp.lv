@@ -150,7 +150,7 @@ material\Ice_BG.mtrl
 0
 0
 UI
-1
+2
 ManaCrystalUI
 31
 0
@@ -243,4 +243,23 @@ material\ManaProgress.mtrl
 15
 1
 CManaProgressWhiteUI
+0
+DeckUI
+31
+0
+0 0 0
+150 150 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\Deck.mtrl
+0
+material\Deck.mtrl
+15
+1
+CDeckCoverUI
 0

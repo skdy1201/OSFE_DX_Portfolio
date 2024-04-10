@@ -15,13 +15,17 @@ CFieldObjScript::CFieldObjScript()
 	: CScript((UINT)SCRIPT_TYPE::FIELDOBJSCRIPT)
 	, m_status{}
 	, IsPlayer(true)
+	, m_Deck(nullptr)
 
 {
+	m_Deck = new CDeck;
+
 }
 
 CFieldObjScript::CFieldObjScript(const CFieldObjScript& _Origin)
 	: CScript((UINT)SCRIPT_TYPE::FIELDOBJSCRIPT)
 {
+	m_Deck = new CDeck;
 }
 
 CFieldObjScript::CFieldObjScript(UINT _SCRIPTYPE)
@@ -119,6 +123,14 @@ void CFieldObjScript::begin()
 
 		this->SetStatus(PlayerState);
 
+		m_Deck->AddMagic(new FrostBoltMagic);
+		m_Deck->AddMagic(new FrostBoltMagic);
+		m_Deck->AddMagic(new FrostBoltMagic);
+		m_Deck->AddMagic(new FrostBoltMagic);
+		m_Deck->AddMagic(new FrostBoltMagic);
+
+		m_Deck->SetOwner(this->m_Owner);
+		m_Deck->begin();
 
 		CGameObject* Cursor;
 		Ptr<CPrefab> Cursorprefab = CAssetMgr::GetInst()->Load<CPrefab>(PrefabPlayerCursor, PrefabPlayerCursor);
@@ -140,16 +152,8 @@ void CFieldObjScript::begin()
 		}
 	}
 
-	m_Deck = new CDeck;
-
-	m_Deck->AddMagic(new FrostBoltMagic);
-	m_Deck->AddMagic(new FrostBoltMagic);
-	m_Deck->AddMagic(new FrostBoltMagic);
-	m_Deck->AddMagic(new FrostBoltMagic);
-	m_Deck->AddMagic(new FrostBoltMagic);
-	m_Deck->SetOwner(this->m_Owner);
 	this->GetOwner()->GetRenderComopnent()->SetMaterial(this->GetRenderComponent()->GetDynamicMaterial());
-	m_Deck->begin();
+	
 }
 
 void CFieldObjScript::FillMana()

@@ -116,6 +116,12 @@
     <ClInclude Include="CDeck.h">
       <Filter>Deck</Filter>
     </ClInclude>
+    <ClInclude Include="CDeckCoverUI.h">
+      <Filter>02. Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicManager.h">
+      <Filter>MagicManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -230,6 +236,12 @@
     <ClCompile Include="CDeck.cpp">
       <Filter>Deck</Filter>
     </ClCompile>
+    <ClCompile Include="CDeckCoverUI.cpp">
+      <Filter>02. Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicManager.cpp">
+      <Filter>MagicManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -291,6 +303,9 @@
     </Filter>
     <Filter Include="Deck">
       <UniqueIdentifier>{4ad517aa-8016-4d7c-8d0f-c0f7230a9a80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MagicManager">
+      <UniqueIdentifier>{49b8dfc0-0daa-4e6a-ad73-e4cfd837be68}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

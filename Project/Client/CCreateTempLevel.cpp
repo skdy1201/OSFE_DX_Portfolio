@@ -235,6 +235,10 @@ void CCreateTempLevel::CreateTempLevel()
 	pObj = temp->Instantiate();
 	pTempLevel->AddObject(pObj, LayerBackGround, true);
 
+	temp = CAssetMgr::GetInst()->Load<CPrefab>(PrefabDeckCoverUI, PrefabDeckCoverUI);
+	pObj = temp->Instantiate();
+	pTempLevel->AddObject(pObj, LayerUI, true);
+
 	// 충돌 설정
 	CCollisionMgr::GetInst()->LayerCheck(LayerPlayerAttack, LayerMonster);
 	CCollisionMgr::GetInst()->LayerCheck(4, 4);

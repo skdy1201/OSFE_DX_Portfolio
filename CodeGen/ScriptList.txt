@@ -19,3 +19,4 @@ CUIScript
 CManaBackGroundUIScript
 CManaProgrssUIScript
 CManaProgressWhiteUI
+CDeckCoverUI

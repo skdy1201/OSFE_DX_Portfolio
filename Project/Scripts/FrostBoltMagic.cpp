@@ -3,6 +3,9 @@
 
 #include "CFieldScript.h"
 #include "CFrostBolt.h"
+
+#include <Engine/CAssetMgr.h>
+
 FrostBoltMagic::FrostBoltMagic()
 	
 {
@@ -20,6 +23,8 @@ FrostBoltMagic::FrostBoltMagic()
 	m_Info.CastRange[4][7] = true;
 
 	FrostBolt = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\FrostBolt.pref", L"prefab\\FrostBolt.pref");
+
+	MagicIconKey = PrefabFrosticon;
 }
 
 FrostBoltMagic::~FrostBoltMagic()

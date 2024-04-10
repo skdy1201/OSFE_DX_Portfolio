@@ -165,6 +165,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CAnimatorModule.h" />
     <ClInclude Include="CBackgroundScript.h" />
     <ClInclude Include="CDeck.h" />
+    <ClInclude Include="CDeckCoverUI.h" />
     <ClInclude Include="CFieldObjScript.h" />
     <ClInclude Include="CFieldScript.h" />
     <ClInclude Include="CFrostBolt.h" />
@@ -200,12 +201,14 @@ call CodeGen.exe</Command>
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="FrostBoltMagic.h" />
+    <ClInclude Include="MagicManager.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAnimatorModule.cpp" />
     <ClCompile Include="CBackgroundScript.cpp" />
     <ClCompile Include="CDeck.cpp" />
+    <ClCompile Include="CDeckCoverUI.cpp" />
     <ClCompile Include="CFieldObjScript.cpp" />
     <ClCompile Include="CFieldScript.cpp" />
     <ClCompile Include="CFrostBolt.cpp" />
@@ -239,6 +242,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CTileScript.cpp" />
     <ClCompile Include="CUIScript.cpp" />
     <ClCompile Include="FrostBoltMagic.cpp" />
+    <ClCompile Include="MagicManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
