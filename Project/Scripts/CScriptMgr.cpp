@@ -23,6 +23,7 @@
 #include "CManaProgrssUIScript.h"
 #include "CManaProgressWhiteUI.h"
 #include "CDeckCoverUI.h"
+#include "CTerrabeam.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -48,6 +49,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CManaProgrssUIScript");
 	_vec.push_back(L"CManaProgressWhiteUI");
 	_vec.push_back(L"CDeckCoverUI");
+	_vec.push_back(L"CTerrabeam");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -96,6 +98,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CManaProgressWhiteUI;
 	if (L"CDeckCoverUI" == _strScriptName)
 		return new CDeckCoverUI;
+	if (L"CTerrabeam" == _strScriptName)
+		return new CTerrabeam;
 	return nullptr;
 }
 
@@ -168,6 +172,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::DECKCOVERUI:
 		return new CDeckCoverUI;
+		break;
+	case (UINT)SCRIPT_TYPE::TERRABEAM:
+		return new CTerrabeam;
 		break;
 	}
 	return nullptr;
@@ -263,6 +270,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::DECKCOVERUI:
 		return L"CDeckCoverUI";
+		break;
+
+	case SCRIPT_TYPE::TERRABEAM:
+		return L"CTerrabeam";
 		break;
 
 	}

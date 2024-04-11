@@ -3,6 +3,7 @@ enum class KeyWard
 {
 	Trinity,
 	Anima,
+	Boss,
 	end
 };
 

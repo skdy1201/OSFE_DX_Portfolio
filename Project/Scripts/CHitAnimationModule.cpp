@@ -2,7 +2,7 @@
 #include "CHitAnimationModule.h"
 
 #include <Engine/CAnim.h>
-
+#include <Engine/CAnimator2D.h>
 #include "CRandomMgr.h"
 
 CHitAnimationModule::CHitAnimationModule()

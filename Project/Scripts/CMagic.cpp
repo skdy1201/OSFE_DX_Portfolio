@@ -12,6 +12,7 @@ CMagic::CMagic()
 
 CMagic::~CMagic()
 {
+
 }
 
 void CMagic::SetCaster(CGameObject* _Caster)

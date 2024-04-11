@@ -52,6 +52,7 @@ void CLevelMgr::tick()
 	// Render
 	CRenderMgr::GetInst()->tick();
 
+
 }
 
 void CLevelMgr::ChangeLevel(CLevel* _NextLevel, LEVEL_STATE _NextLevelStartState)

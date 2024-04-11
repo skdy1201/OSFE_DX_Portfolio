@@ -31,6 +31,7 @@ FrostBoltMagic::FrostBoltMagic()
 
 FrostBoltMagic::~FrostBoltMagic()
 {
+	
 }
 
 void FrostBoltMagic::cast(Vec2 StartPoint)

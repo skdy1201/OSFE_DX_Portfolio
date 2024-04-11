@@ -52,6 +52,8 @@
 #define PrefabPlayerBulletAnim L"prefab\\PlayerBulletAnim.pref"
 #define PrefabPlayerSpawnAnim L"prefab\\PlayerSpawnAnim.pref"
 
+#define PrefabTerraBeam L"prefab\\TerraBeam.pref"
+
 #define PrefabSniper L"prefab\\SniperTest.pref"
 #define PrefabSniperBullet L"prefab\\SniperBullet.pref"
 
@@ -66,11 +68,14 @@
 #define PrefabDeckCoverUI L"prefab\\DeckUI.pref"
 
 #define PrefabFrosticon L"prefab\\ForstBoltDeckIcon.pref"
+#define PrefabTerraicon L"prefab\\TerraformDeckIcon.pref"
+
 
 #define PrefabHandSlotQ L"prefab\\HandSlot1.pref"
 #define PrefabHandSlotW L"prefab\\HandSlot2.pref"
 
 #define PrefabTopInfo L"prefab\\TopInfo.pref"
+
 
 // 에니메이션 매크로
 #define frostblastanim FrostBlast
@@ -87,6 +92,7 @@
 #define HitFX1 L"HitAnimation1"
 #define HitFX2 L"HitAnimation2"
 
+#define Terraforming L"TerraBeam"
 
 // FSM 매크로
 #define BlackBoardPlayer (CGameObject*)GetBlackboardData(BBPlayer);

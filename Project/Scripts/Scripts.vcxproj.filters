@@ -119,6 +119,12 @@
     <ClInclude Include="CDeckCoverUI.h">
       <Filter>02. Scripts\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Terraform.h">
+      <Filter>03. Magic\Terraform</Filter>
+    </ClInclude>
+    <ClInclude Include="CTerrabeam.h">
+      <Filter>02. Scripts\Module\Magic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -236,6 +242,12 @@
     <ClCompile Include="CDeckCoverUI.cpp">
       <Filter>02. Scripts\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Terraform.cpp">
+      <Filter>03. Magic\Terraform</Filter>
+    </ClCompile>
+    <ClCompile Include="CTerrabeam.cpp">
+      <Filter>02. Scripts\Module\Magic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -297,6 +309,12 @@
     </Filter>
     <Filter Include="Deck">
       <UniqueIdentifier>{4ad517aa-8016-4d7c-8d0f-c0f7230a9a80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Magic\Terraform">
+      <UniqueIdentifier>{bb86c992-0652-447a-860b-ac4478117d26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\Module\Magic">
+      <UniqueIdentifier>{e6655dd0-3f12-405f-be44-b7df354e3e48}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

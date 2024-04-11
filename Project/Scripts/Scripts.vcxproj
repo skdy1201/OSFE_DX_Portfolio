@@ -196,12 +196,14 @@ call CodeGen.exe</Command>
     <ClInclude Include="CSniperProj.h" />
     <ClInclude Include="CSniperScript.h" />
     <ClInclude Include="CStateMgr.h" />
+    <ClInclude Include="CTerrabeam.h" />
     <ClInclude Include="CTileScript.h" />
     <ClInclude Include="CUIScript.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="FrostBoltMagic.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Terraform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAnimatorModule.cpp" />
@@ -238,6 +240,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CSniperProj.cpp" />
     <ClCompile Include="CSniperScript.cpp" />
     <ClCompile Include="CStateMgr.cpp" />
+    <ClCompile Include="CTerrabeam.cpp" />
     <ClCompile Include="CTileScript.cpp" />
     <ClCompile Include="CUIScript.cpp" />
     <ClCompile Include="FrostBoltMagic.cpp" />
@@ -248,6 +251,7 @@ call CodeGen.exe</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Scripts.cpp" />
+    <ClCompile Include="Terraform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

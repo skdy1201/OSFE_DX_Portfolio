@@ -10,6 +10,7 @@
 #include "CProjectileScript.h"
 #include "CPlayerCursorScript.h"
 #include "FrostBoltMagic.h"
+#include "Terraform.h"
 
 CFieldObjScript::CFieldObjScript()
 	: CScript((UINT)SCRIPT_TYPE::FIELDOBJSCRIPT)
@@ -133,11 +134,9 @@ void CFieldObjScript::begin()
 
 		this->SetStatus(PlayerState);
 
-		m_Deck->AddMagic(new FrostBoltMagic);
-		m_Deck->AddMagic(new FrostBoltMagic);
-		m_Deck->AddMagic(new FrostBoltMagic);
-		m_Deck->AddMagic(new FrostBoltMagic);
-		m_Deck->AddMagic(new FrostBoltMagic);
+		//m_Deck->AddMagic(new FrostBoltMagic);
+		m_Deck->AddMagic(new Terraform);
+		m_Deck->AddMagic(new Terraform);
 
 		m_Deck->SetOwner(this->m_Owner);
 		m_Deck->begin();
