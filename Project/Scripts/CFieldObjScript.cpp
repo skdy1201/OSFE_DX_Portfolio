@@ -45,6 +45,15 @@ void CFieldObjScript::tick()
 	FillMana();
 
 	m_Deck->MoveToGrave();
+
+	if (m_Deck->GetIsShuffle())
+	{
+		if (m_Deck->GetShuffleTimer() <= 0.f)
+			m_Deck->FillHand();
+		else
+		m_Deck->GetShuffleTimer() -= DT;
+	}
+		
 }
 
 
@@ -113,7 +122,7 @@ void CFieldObjScript::begin()
 		PlayerState.Current_MP = PlayerState.HP;
 		PlayerState.Current_MP = 0.f;
 
-		PlayerState.Mana_Regen = 0.3;
+		PlayerState.Mana_Regen = 0.9;
 
 		PlayerState.SpellPower = 0;
 

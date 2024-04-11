@@ -9,21 +9,21 @@ class CDeck
 {
 private:
 
-    CGameObject* Owner;
+    CGameObject*            Owner;
     
-    deque<CMagic*> MagicList;
-    deque<CMagic*> UnusedDeck;
+    deque<CMagic*>          MagicList;
+    deque<CMagic*>          UnusedDeck;
 
-    CMagic* QHand;
-    CMagic* WHand;
-    vector<CGameObject*> Grave;
+    CMagic*                 QHand;
+    CMagic*                 WHand;
+    vector<CGameObject*>    Grave;
 
-    CFieldObjScript* OwnerScript;
+    CFieldObjScript*        OwnerScript;
+    float                   ShuffleTimer;
 
-
-    bool    IsShaffle;
-    bool    UseQHand;
-    bool    UseWHand;
+    bool                    IsShaffle;
+    bool                    UseQHand;
+    bool                    UseWHand;
 
 public:
     void begin();
@@ -48,6 +48,8 @@ public:
     bool GetUseQHand() { return UseQHand; }
     bool GetUseWHand() { return UseWHand; }
     bool GetIsShuffle() { return IsShaffle; }
+    float& GetShuffleTimer() { return ShuffleTimer; }
+
 
     void SetUseQHand(bool fact) { UseQHand = fact; }
     void SetUseWHand(bool fact) { UseWHand = fact; }

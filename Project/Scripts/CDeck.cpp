@@ -11,6 +11,7 @@ CDeck::CDeck()
 	: IsShaffle(false)
 	, UseQHand(false)
 	, UseWHand(false)
+	,ShuffleTimer(3.f)
 {
 }
 
@@ -45,8 +46,6 @@ void CDeck::begin()
 	FillHand();
 	FillHand();
 
-	
-
 }
 
 void CDeck::FillHand()
@@ -54,11 +53,14 @@ void CDeck::FillHand()
 	if(UnusedDeck.size() == 0 && QHand == nullptr && WHand == nullptr)
 	{
 		IsShaffle = true;
-		Shuffle();
 	}
 
-	if(IsShaffle == true)
+
+
+	if(IsShaffle == true && ShuffleTimer <= 0.f)
 	{
+		Shuffle();
+
 		QHand = UnusedDeck.front();
 		UnusedDeck.pop_front();
 
@@ -66,20 +68,22 @@ void CDeck::FillHand()
 		UnusedDeck.pop_front();
 
 		IsShaffle = false;
+		ShuffleTimer = 3.f;
+		
 	}
-	else if( IsShaffle == false && UnusedDeck.size() > 0)
+
+	if (IsShaffle == false && UnusedDeck.size() > 0)
 	{
-		if (QHand != nullptr)
+		if (QHand != nullptr && WHand == nullptr)
 		{
 			WHand = UnusedDeck.front();
+			UnusedDeck.pop_front();
 		}
-		else
+		else if(QHand == nullptr)
 		{
 			QHand = UnusedDeck.front();
-
+			UnusedDeck.pop_front();
 		}
-
-		UnusedDeck.pop_front();
 	}
 
 	
@@ -139,6 +143,7 @@ void CDeck::MoveToGrave()
 
 void CDeck::Shuffle()
 {
+
 	deque<CMagic*> Generator = MagicList;
 
 

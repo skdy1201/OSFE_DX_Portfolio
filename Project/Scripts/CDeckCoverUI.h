@@ -21,6 +21,8 @@ private:
     vector<CGameObject*> IconObjvector;
     bool                 FirstSet;
 
+
+
 private:
 
     CGameObject* Qhand;

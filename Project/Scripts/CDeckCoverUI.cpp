@@ -132,9 +132,7 @@ void CDeckCoverUI::begin()
 	PlayerScript = Player->GetScript<CFieldObjScript>();
 	PlayerDeck = PlayerScript->GetDeck();
 
-
 	Transform()->SetRelativePos(DeckCoverPos);
-
 
 }
 
@@ -145,40 +143,6 @@ void CDeckCoverUI::tick()
 	SetDeckleft();
 
 	MovetoGrave();
-
-	
-
-	/*if(PlayerDeck->GetUseHand())
-	{
-		Vec3 Dir = { 0.f, -1.f, 0.f };
-		Dir.Normalize();
-
-		Vec3 point1(0.f, 0.f, 0.f);
-		Vec3 point2(0.f, -80.f, 0.f);
-		float distance = Vec3::Distance(point1, point2);
-
-		for(int i = 0; i  < PlayerDeck->GetUnusedDeck().size(); ++i)
-		{
-			Vec3 IconPos = PlayerDeck->GetUnusedDeck()[i]->GetMagicIcon()->Transform()->GetRelativePos();
-
-			if(IconPos.y >= (DeckCoverIn.y + (80.f * i)))
-			{
-				IconPos += Dir * distance * 3 * DT;
-				PlayerDeck->GetUnusedDeck()[i]->GetMagicIcon()->Transform()->SetRelativePos(IconPos);
-			}
-			else
-			{
-				PlayerDeck->GetUnusedDeck()[i]->GetMagicIcon()->Transform()->SetRelativePos(IconPos);
-
-				if (i == PlayerDeck->GetUnusedDeck().size() - 1)
-					PlayerDeck->SetUseHand(false);
-
-			}
-
-			
-		}
-	}*/
-
 
 }
 
