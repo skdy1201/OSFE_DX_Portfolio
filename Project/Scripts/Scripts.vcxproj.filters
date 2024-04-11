@@ -125,6 +125,9 @@
     <ClInclude Include="CTerrabeam.h">
       <Filter>02. Scripts\Module\Magic</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayerHitState.h">
+      <Filter>08. States\PlayerState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -247,6 +250,9 @@
     </ClCompile>
     <ClCompile Include="CTerrabeam.cpp">
       <Filter>02. Scripts\Module\Magic</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerHitState.cpp">
+      <Filter>08. States\PlayerState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -47,7 +47,7 @@
 #define LayerUI	31
 
 // 프리팹 매크로
-#define PrefabPlayer L"prefab\\temptest.pref"
+#define PrefabPlayer L"prefab\\SaffranPlayer.pref"
 #define PrefabPlayerBullet L"prefab\\PlayerBullet.pref"
 #define PrefabPlayerBulletAnim L"prefab\\PlayerBulletAnim.pref"
 #define PrefabPlayerSpawnAnim L"prefab\\PlayerSpawnAnim.pref"
@@ -85,6 +85,7 @@
 #define PlayerAttack1 L"SaffronAttack3"
 #define PlayerAttack2 L"SaffronAttack2"
 #define SpawnEffect L"SaffronSpawnFX"
+#define PlayerHit L"SaffronStagger"
  
 #define MonsterDead L"DeathExplosion"
 

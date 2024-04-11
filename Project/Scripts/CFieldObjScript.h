@@ -47,7 +47,7 @@ protected:
 
 	CDeck* m_Deck;
 
-
+	bool            b_Heat;
 
 public:
 	Status& GetStatus() { return m_status; }
@@ -58,6 +58,9 @@ public:
 	void Cast();
 	virtual void Hit(int Damage);
 	void GetBuff();
+
+	bool GetHit() { return b_Heat; }
+	void SetHit(bool _hit) { b_Heat = _hit; }
 
 	void FillMana();
 

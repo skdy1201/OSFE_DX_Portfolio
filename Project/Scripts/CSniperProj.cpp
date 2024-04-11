@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CSniperProj.h"
 
+#include "CFieldObjScript.h"
+
 CSniperProj::CSniperProj()
 	:  CProjectileScript((UINT)SCRIPT_TYPE::SNIPERPROJ)
 {
@@ -39,7 +41,10 @@ void CSniperProj::tick()
 
 void CSniperProj::BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)
 {
-	CProjectileScript::BeginOverlap(_Collider, _OtherObj, _OtherCollider);
+	CFieldObjScript* Script = _OtherObj->GetScript<CFieldObjScript>();
+	Script->Hit(this->GetInfo().Damage);
+
+	this->GetOwner()->Destroy();
 }
 
 void CSniperProj::Overlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)

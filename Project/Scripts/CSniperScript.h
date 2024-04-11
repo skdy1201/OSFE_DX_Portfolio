@@ -15,7 +15,7 @@ private:
     int              CurRow;
     int             MoveDir; // 1 :: down, 2 :: up
 
-    bool            b_Heat;
+   
 
 	CFieldObjScript* OwnerFojScript;
     CGameObject*     ChildAnim;
@@ -25,8 +25,7 @@ public:
     virtual void tick() override;
     virtual void Hit(int Damage) override;
 
-    bool GetHit() { return b_Heat; }
-    void SetHit(bool _hit) { b_Heat = _hit; }
+
 
     virtual void SaveToFile(ofstream& _File) override;
     virtual void LoadFromFile(ifstream& _File) override;

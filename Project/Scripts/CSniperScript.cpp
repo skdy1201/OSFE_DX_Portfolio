@@ -13,7 +13,6 @@ CSniperScript::CSniperScript()
 	, MoveDir(0)
     , m_AttackCooltime(0)
 	, m_HurtTime(0)
-	, b_Heat(false)
 {
 }
 
@@ -95,7 +94,7 @@ void CSniperScript::Hit(int Damage)
 {
 	CFieldObjScript::Hit(Damage);
 
-	b_Heat = true;
+
 }
 
 void CSniperScript::SaveToFile(ofstream& _File)

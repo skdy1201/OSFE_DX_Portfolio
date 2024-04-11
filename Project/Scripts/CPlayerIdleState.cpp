@@ -74,6 +74,11 @@ void CPlayerIdleState::finaltick()
 		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerAttackState");
 	}
 
+	if (PlayerScript->GetHit() == true)
+	{
+		ChangeState(L"CPlayerHitState");
+	}
+
 }
 
 void CPlayerIdleState::Exit()

@@ -253,6 +253,8 @@ void CCreateTempLevel::CreateTempLevel()
 
 	// 충돌 설정
 	CCollisionMgr::GetInst()->LayerCheck(LayerPlayerAttack, LayerMonster);
+	CCollisionMgr::GetInst()->LayerCheck(LayerMonsterAttack, LayerPlayer);
+
 	CCollisionMgr::GetInst()->LayerCheck(4, 4);
 
 	CLevelMgr::GetInst()->ChangeLevel(pTempLevel, LEVEL_STATE::STOP);

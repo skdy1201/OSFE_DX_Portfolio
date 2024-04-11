@@ -90,6 +90,7 @@ void CFieldObjScript::Hit(int Damage)
 
 	SetStatus(OwnerStatus);
 
+	b_Heat = true;
 }
 
 void CFieldObjScript::GetBuff()
@@ -120,7 +121,7 @@ void CFieldObjScript::begin()
 		PlayerState.HP = 500;
 		PlayerState.MP = 4.f;
 
-		PlayerState.Current_MP = PlayerState.HP;
+		PlayerState.Current_HP = PlayerState.HP;
 		PlayerState.Current_MP = 0.f;
 
 		PlayerState.Mana_Regen = 0.9;
