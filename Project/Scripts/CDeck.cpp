@@ -9,7 +9,8 @@
 
 CDeck::CDeck()
 	: IsShaffle(false)
-	, UseHand(false)
+	, UseQHand(false)
+	, UseWHand(false)
 {
 }
 
@@ -66,7 +67,7 @@ void CDeck::FillHand()
 
 		IsShaffle = false;
 	}
-	else
+	else if( IsShaffle == false && UnusedDeck.size() > 0)
 	{
 		if (QHand != nullptr)
 		{
@@ -77,9 +78,11 @@ void CDeck::FillHand()
 			QHand = UnusedDeck.front();
 
 		}
+
+		UnusedDeck.pop_front();
 	}
 
-	UnusedDeck.pop_front();
+	
 }
 
 
@@ -103,11 +106,11 @@ void CDeck::CastFirst()
 		QHand->SetCaster(Owner);
 		QHand->cast(OwnerScript->GetOwnerIdx());
 
-		Grave.push_back(QHand);
+		Grave.push_back(QHand->GetMagicIcon());
 		QHand = nullptr;
 		FillHand();
 
-		SetUseHand(true);
+		SetUseQHand(true);
 	}
 
 }
@@ -120,13 +123,18 @@ void CDeck::CastSecond()
 		WHand->SetCaster(Owner);
 		WHand->cast(OwnerScript->GetOwnerIdx());
 
-		Grave.push_back(WHand);
+		Grave.push_back(WHand->GetMagicIcon());
 		WHand = nullptr;
 		FillHand();
 
-		SetUseHand(true);
+		SetUseWHand(true);
 
 	}
+}
+
+void CDeck::MoveToGrave()
+{
+	
 }
 
 void CDeck::Shuffle()

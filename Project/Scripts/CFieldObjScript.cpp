@@ -43,7 +43,8 @@ void CFieldObjScript::tick()
 	Shoot();
 	Cast();
 	FillMana();
-	
+
+	m_Deck->MoveToGrave();
 }
 
 

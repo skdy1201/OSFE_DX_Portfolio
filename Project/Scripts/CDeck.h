@@ -16,12 +16,14 @@ private:
 
     CMagic* QHand;
     CMagic* WHand;
-    list<CMagic*> Grave;
+    vector<CGameObject*> Grave;
 
     CFieldObjScript* OwnerScript;
 
+
     bool    IsShaffle;
-    bool    UseHand;
+    bool    UseQHand;
+    bool    UseWHand;
 
 public:
     void begin();
@@ -43,11 +45,17 @@ public:
     CMagic* GetQHand() { return QHand; }
     CMagic* GetWHand() { return WHand; }
 
-    bool GetUseHand() { return UseHand; }
+    bool GetUseQHand() { return UseQHand; }
+    bool GetUseWHand() { return UseWHand; }
     bool GetIsShuffle() { return IsShaffle; }
 
-    void SetUseHand(bool fact) { UseHand = fact; }
+    void SetUseQHand(bool fact) { UseQHand = fact; }
+    void SetUseWHand(bool fact) { UseWHand = fact; }
     void SetIsShuffle(bool fact) { IsShaffle = fact; }
+
+    vector<CGameObject*> GetGrave() { return Grave; }
+
+    void MoveToGrave();
 
 
     CLONE(CDeck);

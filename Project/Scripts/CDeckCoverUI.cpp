@@ -19,6 +19,113 @@ CDeckCoverUI::~CDeckCoverUI()
 {
 }
 
+void CDeckCoverUI::MovetoHand()
+{
+	float movespeed = 300.f;
+
+
+	if(PlayerScript->GetDeck()->GetQHand() != nullptr)
+	{
+		Qhand = PlayerScript->GetDeck()->GetQHand()->GetMagicIcon();
+
+		Vec3 QDir = Hand1Pos - Qhand->Transform()->GetRelativePos();
+		float QDistance = QDir.Length();
+
+		QDir.Normalize();
+
+		Vec3 QPos = Qhand->Transform()->GetRelativePos();
+		QPos += QDir * movespeed * DT;
+
+		if (QDistance < 1.f)
+		{
+			Qhand->Transform()->SetRelativePos(Hand1Pos);
+		}
+		else
+		{
+			Qhand->Transform()->SetRelativePos(QPos);
+		}
+
+	}
+
+	if (PlayerScript->GetDeck()->GetWHand() != nullptr)
+	{
+		Whand = PlayerScript->GetDeck()->GetWHand()->GetMagicIcon();
+
+		Vec3 WDir = Hand2Pos - Whand->Transform()->GetRelativePos();
+		float WDistance = WDir.Length();
+		WDir.Normalize();
+
+		Vec3 WPos = Whand->Transform()->GetRelativePos();
+		WPos += WDir * movespeed * DT;
+
+		if (WDistance < 1.f)
+		{
+			Whand->Transform()->SetRelativePos(Hand2Pos);
+		}
+		else
+		{
+			Whand->Transform()->SetRelativePos(WPos);
+		}
+	}
+}
+
+void CDeckCoverUI::SetDeckleft()
+{
+	if(PlayerDeck->GetUnusedDeck().size() > 0)
+	{
+		for (int i = 0; i < PlayerDeck->GetUnusedDeck().size(); ++i)
+		{
+			Vec3 TargetPos = DeckCoverIn;
+			TargetPos.y += (80.f * i);
+
+			Vec3 Dir = TargetPos - PlayerDeck->GetUnusedDeck()[i]->GetMagicIcon()->Transform()->GetRelativePos();
+			float Distance = Dir.Length();
+			Dir.Normalize();
+
+			Vec3 IconPos = PlayerDeck->GetUnusedDeck()[i]->GetMagicIcon()->Transform()->GetRelativePos();
+
+			IconPos += Dir * 300.f * DT;
+
+			if (Distance < 1.f)
+			{
+				PlayerDeck->GetUnusedDeck()[i]->GetMagicIcon()->Transform()->SetRelativePos(TargetPos);
+			}
+			else
+			{
+				PlayerDeck->GetUnusedDeck()[i]->GetMagicIcon()->Transform()->SetRelativePos(IconPos);
+			}
+		}
+	}
+}
+
+void CDeckCoverUI::MovetoGrave()
+{
+	if (PlayerDeck->GetGrave().size() > 0)
+	{
+		for (int i = 0; i < PlayerDeck->GetGrave().size(); ++i)
+		{
+			Vec3 TargetDir = SpellGravesPos - PlayerDeck->GetGrave()[i]->Transform()->GetRelativePos();
+			TargetDir.Normalize();
+
+			Vec3 SpellCurPos = PlayerDeck->GetGrave()[i]->Transform()->GetRelativePos();
+
+			float Dis = Vec3::Distance(SpellGravesPos, SpellCurPos);
+
+			if (SpellCurPos.x > SpellGravesPos.x)
+			{
+				SpellCurPos += TargetDir * (Dis * 3) * DT;
+
+				PlayerDeck->GetGrave()[i]->Transform()->SetRelativePos(SpellCurPos);
+			}
+			else
+			{
+				PlayerDeck->GetGrave()[i]->Transform()->SetRelativePos(SpellGravesPos);
+			}
+
+		}
+	}
+}
+
 void CDeckCoverUI::begin()
 {
 	Player = CLevelMgr::GetInst()->GetCurrentLevel()->FindObjectByName(L"Player");
@@ -33,32 +140,15 @@ void CDeckCoverUI::begin()
 
 void CDeckCoverUI::tick()
 {
-	CMagic* Hand1 = PlayerScript->GetDeck()->GetQHand();
-	CMagic* Hand2 = PlayerScript->GetDeck()->GetWHand();
+	MovetoHand();
 
-	//처음만 세팅
-	if(FirstSet == true &&
-		PlayerDeck->GetMagicList().size() > 0
-		&& PlayerDeck->GetWHand() != nullptr
-		&& PlayerDeck->GetQHand() != nullptr)
-	{
+	SetDeckleft();
 
-		Hand1->GetMagicIcon()->Transform()->SetRelativePos(Hand1Pos);
+	MovetoGrave();
 
-		Hand2->GetMagicIcon()->Transform()->SetRelativePos(Hand2Pos);
+	
 
-		for(int i = 0; i < PlayerDeck->GetUnusedDeck().size(); ++i)
-		{
-			Vec3 IconOffset = Vec3{ 0.f, (80.f * i), 0.f };
-			Vec3 IconPos = DeckCoverIn;
-
-			PlayerDeck->GetUnusedDeck()[i]->GetMagicIcon()->Transform()->SetRelativePos(IconPos + IconOffset);
-		}
-
-		FirstSet = false;
-	}
-
-	if(PlayerDeck->GetUseHand())
+	/*if(PlayerDeck->GetUseHand())
 	{
 		Vec3 Dir = { 0.f, -1.f, 0.f };
 		Dir.Normalize();
@@ -73,7 +163,7 @@ void CDeckCoverUI::tick()
 
 			if(IconPos.y >= (DeckCoverIn.y + (80.f * i)))
 			{
-				IconPos += Dir * distance * 2 * DT;
+				IconPos += Dir * distance * 3 * DT;
 				PlayerDeck->GetUnusedDeck()[i]->GetMagicIcon()->Transform()->SetRelativePos(IconPos);
 			}
 			else
@@ -87,7 +177,7 @@ void CDeckCoverUI::tick()
 
 			
 		}
-	}
+	}*/
 
 
 }

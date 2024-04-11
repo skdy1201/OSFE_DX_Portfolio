@@ -21,6 +21,21 @@ private:
     vector<CGameObject*> IconObjvector;
     bool                 FirstSet;
 
+private:
+
+    CGameObject* Qhand;
+    CGameObject* Whand;
+
+    vector<CGameObject*> Deckleft;
+
+public:
+
+    void MovetoHand();
+    void SetDeckleft();
+    void MovetoGrave();
+
+ 
+
 public:
     virtual void begin() override;
     virtual void tick() override;
@@ -31,5 +46,7 @@ public:
 public:
     CDeckCoverUI();
     ~CDeckCoverUI();
+
+
 };
 
