@@ -150,7 +150,7 @@ material\Ice_BG.mtrl
 0
 0
 UI
-2
+5
 ManaCrystalUI
 31
 0
@@ -262,4 +262,94 @@ material\Deck.mtrl
 15
 1
 CDeckCoverUI
+0
+HandSlot1
+31
+0
+-400 -300 250
+114 114 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\Slot.mtrl
+0
+material\Slot.mtrl
+15
+0
+1
+HandSlotOpen
+31
+0
+0 0 0
+96 96 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\SlotOpen.mtrl
+0
+material\SlotOpen.mtrl
+15
+0
+0
+HandSlot2
+31
+0
+-300 -300 250
+114 114 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\Slot.mtrl
+0
+material\Slot.mtrl
+15
+0
+1
+HandSlotOpen
+31
+0
+0 0 0
+96 96 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\SlotOpen.mtrl
+0
+material\SlotOpen.mtrl
+15
+0
+0
+TopInfo
+31
+0
+110 320 0
+1500 100 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\TopLeft.mtrl
+0
+material\TopLeft.mtrl
+15
+0
 0

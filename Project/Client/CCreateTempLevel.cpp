@@ -239,6 +239,18 @@ void CCreateTempLevel::CreateTempLevel()
 	pObj = temp->Instantiate();
 	pTempLevel->AddObject(pObj, LayerUI, true);
 
+	temp = CAssetMgr::GetInst()->Load<CPrefab>(PrefabHandSlotQ, PrefabHandSlotQ);
+	pObj = temp->Instantiate();
+	pTempLevel->AddObject(pObj, LayerUI, true);
+
+	temp = CAssetMgr::GetInst()->Load<CPrefab>(PrefabHandSlotW, PrefabHandSlotW);
+	pObj = temp->Instantiate();
+	pTempLevel->AddObject(pObj, LayerUI, true);
+
+	temp = CAssetMgr::GetInst()->Load<CPrefab>(PrefabTopInfo, PrefabTopInfo);
+	pObj = temp->Instantiate();
+	pTempLevel->AddObject(pObj, LayerUI, true);
+
 	// 충돌 설정
 	CCollisionMgr::GetInst()->LayerCheck(LayerPlayerAttack, LayerMonster);
 	CCollisionMgr::GetInst()->LayerCheck(4, 4);

@@ -104,6 +104,9 @@ void CDeck::AddMagic(CMagic* Magic)
 
 void CDeck::CastFirst()
 {
+	if (QHand == nullptr)
+		return;
+
 	if (!(OwnerScript->GetStatus().Current_MP < QHand->GetMagicInfo().ManaCost))
 	{
 		OwnerScript->UseMana(QHand->GetMagicInfo().ManaCost);
@@ -121,6 +124,9 @@ void CDeck::CastFirst()
 
 void CDeck::CastSecond()
 {
+	if (WHand == nullptr)
+		return;
+
 	if (!(OwnerScript->GetStatus().Current_MP < WHand->GetMagicInfo().ManaCost))
 	{
 		OwnerScript->UseMana(WHand->GetMagicInfo().ManaCost);

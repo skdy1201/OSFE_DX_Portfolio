@@ -67,6 +67,10 @@
 
 #define PrefabFrosticon L"prefab\\ForstBoltDeckIcon.pref"
 
+#define PrefabHandSlotQ L"prefab\\HandSlot1.pref"
+#define PrefabHandSlotW L"prefab\\HandSlot2.pref"
+
+#define PrefabTopInfo L"prefab\\TopInfo.pref"
 
 // 에니메이션 매크로
 #define frostblastanim FrostBlast
