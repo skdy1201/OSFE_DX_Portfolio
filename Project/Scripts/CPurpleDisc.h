@@ -8,7 +8,12 @@ class CPurpleDisc :
 
 public:
 
-    Vec2 ResetDir();
+    Vec2 Dir[4];
+    Vec2 CurDir;
+    int Colignore;
+
+public:
+    void ResetDir();
 
 public:
     virtual void begin() override;

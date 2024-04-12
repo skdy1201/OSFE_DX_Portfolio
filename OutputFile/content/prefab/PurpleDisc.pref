@@ -5,6 +5,11 @@ PurpleDisc
 200 200 1
 0 0 0
 1
+1
+0 0 0
+30 30 1
+1
+0
 3
 1
 PurpleDisc
@@ -41,5 +46,6 @@ RectMesh
 Std2DMtrl
 1
 15
-0
+1
+CPurpleDisc
 0

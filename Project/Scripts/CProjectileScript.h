@@ -60,6 +60,7 @@ public:
 	void CalculateDir(Vec2 StartIdx, Vec2 TargetDir);
 	void SetDir(Vec3 _Dir) { ShootDir = _Dir; }
 
+
 	virtual void begin() override;
 	virtual void tick() override;
 

@@ -12,6 +12,7 @@
 #include "FrostBoltMagic.h"
 #include "Terraform.h"
 #include "CDiagBeam.h"
+#include "CPurpleDisc.h"
 
 CFieldObjScript::CFieldObjScript()
 	: CScript((UINT)SCRIPT_TYPE::FIELDOBJSCRIPT)
@@ -61,16 +62,16 @@ void CFieldObjScript::tick()
 	{
 		if(KEY_TAP(KEY::R))
 		{
-			CGameObject* Diag = CPrefab::GetPrefabObj(PrefabDiagBeam);
+			CGameObject* Diag = CPrefab::GetPrefabObj(PrefabPurpleDisc);
 
 			Vec2 SpawnRowCol = { 5, 3 };
 			Vec3 Position = this->GetField()->GetTilePosition(SpawnRowCol);
 
-			Diag->GetScript<CDiagBeam>()->SetStartIdx(Vec2{ 5,3 });
-			Diag->GetScript<CDiagBeam>()->SetShooter(this->GetOwner());
-			Diag->GetScript<CDiagBeam>()->SetField(this->GetField());
+			Diag->GetScript<CPurpleDisc>()->SetStartIdx(Vec2{ 5,3 });
+			Diag->GetScript<CPurpleDisc>()->SetShooter(this->GetOwner());
+			Diag->GetScript<CPurpleDisc>()->SetField(this->GetField());
 			Diag->Transform()->SetRelativePos(Position);
-			GamePlayStatic::SpawnGameObject(Diag, 0);
+			GamePlayStatic::SpawnGameObject(Diag, LayerPlayerAttackonTile);
 		}
 	}
 }

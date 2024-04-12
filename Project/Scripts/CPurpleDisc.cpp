@@ -1,10 +1,13 @@
 #include "pch.h"
 #include "CPurpleDisc.h"
 
+#include "CFieldScript.h"
 #include "CRandomMgr.h"
 
 CPurpleDisc::CPurpleDisc()
 {
+
+
 }
 
 CPurpleDisc::CPurpleDisc(const CPurpleDisc& _Origin)
@@ -17,6 +20,13 @@ CPurpleDisc::~CPurpleDisc()
 
 void CPurpleDisc::begin()
 {
+	Dir[0] = Vec2(0, 1);
+	Dir[1] = Vec2(0, -1);
+	Dir[2] = Vec2(-1, 0);
+	Dir[3] = Vec2(1, 0);
+
+	Colignore = 1;
+
 	// 정보 세팅
 	Proj_Struct Info = this->GetInfo();
 
@@ -36,45 +46,69 @@ void CPurpleDisc::begin()
 
 void CPurpleDisc::tick()
 {
+	Move(DT);
+
+	if ((Transform()->GetRelativePos().x < - 470.f || Transform()->GetRelativePos().x > 20.f)
+		|| (Transform()->GetRelativePos().y < -250.f || Transform()->GetRelativePos().y > 80.f))
+	{
+		this->GetOwner()->Destroy();
+	}
+	
 }
 
-Vec2 CPurpleDisc::ResetDir()
+void CPurpleDisc::ResetDir()
 {
-	Vec2 dir = { 0, 0 };
+	vector<Vec2> PossibleDir;
 
-	while(true)
+	for (int i = 0; i < 4; ++i)
 	{
-		Vec2 NextDir = this->GetTargetIdx();
+		Vec2 NextFieldIdx = {};
+		NextFieldIdx = StartIndex + Dir[i];
 
-		int Col = CRandomMgr::GetInst()->GetRandom(2);
-		Col -= 1;
-
-		NextDir.x += Col;
-
-		int Row = CRandomMgr::GetInst()->GetRandom(2);
-		Row -= 1;
-
-		NextDir.y += Row;
-
-		if(NextDir.x > 3 && NextDir.y > -1 &&
-		   NextDir.x < 8 && NextDir.y <4)
+		if(NextFieldIdx.x > 3 && NextFieldIdx.x < 8 &&
+			NextFieldIdx.y > -1 && NextFieldIdx.y < 4)
 		{
-			dir = NextDir;
-			break;
+			PossibleDir.push_back(Dir[i]);
 		}
 	}
 
-	return dir;
+	if(PossibleDir.size() > 0)
+	{
+		int Random = CRandomMgr::GetInst()->GetRandom(PossibleDir.size());
+		CurDir = PossibleDir[Random];
+		CalculateDir(StartIndex, PossibleDir[Random]);
+	}
 }
 
 void CPurpleDisc::BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)
 {
-	CProjectileScript::BeginOverlap(_Collider, _OtherObj, _OtherCollider);
+	if (Colignore == 1)
+		--Colignore;
+	else
+	{
+		this->StartIndex += CurDir;
+
+		
+	}
 }
 
 void CPurpleDisc::Overlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)
 {
-	CProjectileScript::Overlap(_Collider, _OtherObj, _OtherCollider);
+	Vec3 Pos = _OtherObj->Transform()->GetRelativePos();
+
+	Pos -= this->Transform()->GetRelativePos();
+	if(abs(Pos.x) < 1.f && abs(Pos.y) < 1.f && abs(Pos.z) < 1.f )
+	{
+		if (StartIndex.x <= 4 || StartIndex.x >= 7
+			|| StartIndex.y <= 0 || StartIndex.y >= 3)
+		{
+			Vec3 CurPos = m_CurField->GetTilePosition(StartIndex);
+			this->Transform()->SetRelativePos(CurPos);
+			ResetDir();
+		}
+	}
+
+	
 }
 
 void CPurpleDisc::EndOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)

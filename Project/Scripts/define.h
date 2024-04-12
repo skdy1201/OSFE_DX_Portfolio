@@ -42,7 +42,9 @@
 #define LayerMonster 4
 #define LayerLight 5
 #define LayerPlayerAttack 6
-#define LayerMonsterAttack 7
+#define LayerMonsterAttack 7 
+#define LayerPlayerAttackonTile 8
+#define LayerMonsterAttackonTile 9
 #define LayerBackGround 30
 #define LayerUI	31
 
@@ -54,6 +56,7 @@
 
 #define PrefabTerraBeam L"prefab\\TerraBeam.pref"
 #define PrefabDiagBeam L"prefab\\DiagBeam.pref"
+#define PrefabPurpleDisc L"prefab\\PurpleDisc.pref"
 
 #define PrefabSniper L"prefab\\SniperTest.pref"
 #define PrefabSniperBullet L"prefab\\SniperBullet.pref"
