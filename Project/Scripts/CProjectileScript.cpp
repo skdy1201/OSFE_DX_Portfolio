@@ -103,7 +103,7 @@ void CProjectileScript::CalculateDir(Vec2 StartIdx, Vec2 TargetDir)
 	TargetDirection.Normalize();
 
 	
-	Vec3 FrontDir = Vec3{ 1.f, 0.f, 0.f };
+	Vec3 FrontDir = Transform()->GetLocalDir(DIR_TYPE::RIGHT);
 
 	if (m_Shooter->GetScript<CFieldObjScript>()->GetStatus().Camp == 2)
 		FrontDir = -FrontDir;

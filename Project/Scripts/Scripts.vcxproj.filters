@@ -128,6 +128,9 @@
     <ClInclude Include="CPlayerHitState.h">
       <Filter>08. States\PlayerState</Filter>
     </ClInclude>
+    <ClInclude Include="CDiagBeam.h">
+      <Filter>02. Scripts\Magic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -254,6 +257,9 @@
     <ClCompile Include="CPlayerHitState.cpp">
       <Filter>08. States\PlayerState</Filter>
     </ClCompile>
+    <ClCompile Include="CDiagBeam.cpp">
+      <Filter>02. Scripts\Magic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -321,6 +327,9 @@
     </Filter>
     <Filter Include="02. Scripts\Module\Magic">
       <UniqueIdentifier>{e6655dd0-3f12-405f-be44-b7df354e3e48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Magic\DiagBeam">
+      <UniqueIdentifier>{a471b42f-e81f-4c54-8fb3-a43823a9c43d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

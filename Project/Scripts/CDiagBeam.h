@@ -1,10 +1,15 @@
 #pragma once
 #include "CProjectileScript.h"
 
-
-class CFrostBolt :
+class CDiagBeam :
     public CProjectileScript
 {
+private:
+
+    Vec2 NextTileIdx;
+    Vec3 StartMovePos;
+    Vec3 NextTilePos;
+
 public:
     virtual void begin() override;
     virtual void tick() override;
@@ -15,9 +20,9 @@ public:
 
 public:
 
-    CFrostBolt();
-    CFrostBolt(const CFrostBolt& _Origin);
-    ~CFrostBolt();
-    CLONE(CFrostBolt);
+    CDiagBeam();
+    CDiagBeam(const CDiagBeam& _Origin);
+    ~CDiagBeam();
+    CLONE(CDiagBeam);
 };
 

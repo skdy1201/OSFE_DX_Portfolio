@@ -23,7 +23,7 @@ void CTerrabeam::begin()
 
 void CTerrabeam::tick()
 {
-	OwnerAnimator->PlayModule(Terraforming, count);
+	OwnerAnimator->PlayModule(TerraformingAnim, count);
 
 
 	if(OwnerAnimator->GetCurAnim()->IsFinish())

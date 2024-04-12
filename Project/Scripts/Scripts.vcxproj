@@ -166,6 +166,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CBackgroundScript.h" />
     <ClInclude Include="CDeck.h" />
     <ClInclude Include="CDeckCoverUI.h" />
+    <ClInclude Include="CDiagBeam.h" />
     <ClInclude Include="CFieldObjScript.h" />
     <ClInclude Include="CFieldScript.h" />
     <ClInclude Include="CFrostBolt.h" />
@@ -211,6 +212,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CBackgroundScript.cpp" />
     <ClCompile Include="CDeck.cpp" />
     <ClCompile Include="CDeckCoverUI.cpp" />
+    <ClCompile Include="CDiagBeam.cpp" />
     <ClCompile Include="CFieldObjScript.cpp" />
     <ClCompile Include="CFieldScript.cpp" />
     <ClCompile Include="CFrostBolt.cpp" />

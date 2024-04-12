@@ -53,6 +53,7 @@
 #define PrefabPlayerSpawnAnim L"prefab\\PlayerSpawnAnim.pref"
 
 #define PrefabTerraBeam L"prefab\\TerraBeam.pref"
+#define PrefabDiagBeam L"prefab\\DiagBeam.pref"
 
 #define PrefabSniper L"prefab\\SniperTest.pref"
 #define PrefabSniperBullet L"prefab\\SniperBullet.pref"
@@ -93,7 +94,8 @@
 #define HitFX1 L"HitAnimation1"
 #define HitFX2 L"HitAnimation2"
 
-#define Terraforming L"TerraBeam"
+#define TerraformingAnim L"TerraBeam"
+#define DiagBeamAnim L"DiagBeam"
 
 // FSM ∏≈≈©∑Œ
 #define BlackBoardPlayer (CGameObject*)GetBlackboardData(BBPlayer);

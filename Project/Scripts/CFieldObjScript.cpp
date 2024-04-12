@@ -11,6 +11,7 @@
 #include "CPlayerCursorScript.h"
 #include "FrostBoltMagic.h"
 #include "Terraform.h"
+#include "CDiagBeam.h"
 
 CFieldObjScript::CFieldObjScript()
 	: CScript((UINT)SCRIPT_TYPE::FIELDOBJSCRIPT)
@@ -54,7 +55,24 @@ void CFieldObjScript::tick()
 		else
 		m_Deck->GetShuffleTimer() -= DT;
 	}
-		
+
+
+	if(IsPlayer)
+	{
+		if(KEY_TAP(KEY::R))
+		{
+			CGameObject* Diag = CPrefab::GetPrefabObj(PrefabDiagBeam);
+
+			Vec2 SpawnRowCol = { 5, 3 };
+			Vec3 Position = this->GetField()->GetTilePosition(SpawnRowCol);
+
+			Diag->GetScript<CDiagBeam>()->SetStartIdx(Vec2{ 5,3 });
+			Diag->GetScript<CDiagBeam>()->SetShooter(this->GetOwner());
+			Diag->GetScript<CDiagBeam>()->SetField(this->GetField());
+			Diag->Transform()->SetRelativePos(Position);
+			GamePlayStatic::SpawnGameObject(Diag, 0);
+		}
+	}
 }
 
 

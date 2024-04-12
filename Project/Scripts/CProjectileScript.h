@@ -11,7 +11,7 @@ struct Proj_Struct
     int             Damage;
     int             MaxRange;
 
-    float           LifeCount;
+    int           LifeCount;
     float           LifeTime;
 
     bool            TargetTile;

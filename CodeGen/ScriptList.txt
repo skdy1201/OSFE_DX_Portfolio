@@ -21,3 +21,4 @@ CManaProgrssUIScript
 CManaProgressWhiteUI
 CDeckCoverUI
 CTerrabeam
+CDiagBeam

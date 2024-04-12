@@ -11,6 +11,9 @@ CTransform::CTransform()
 	, m_vRelativeScale(Vec3(1.f, 1.f, 1.f))
 	, m_bAbsolute(true)
 	, m_Offset(0.f, 0.f)
+, m_arrLocalDir{ Vec3(1.f, 0.f, 0.f) ,
+		Vec3(0.f, 1.f, 0.f),
+		Vec3(0.f, 0.f, 1.f) }
 {
 }
 
