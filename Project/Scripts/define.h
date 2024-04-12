@@ -96,6 +96,7 @@
 
 #define TerraformingAnim L"TerraBeam"
 #define DiagBeamAnim L"DiagBeam"
+#define PurpleDisc L"PurpleDisc"
 
 // FSM ∏≈≈©∑Œ
 #define BlackBoardPlayer (CGameObject*)GetBlackboardData(BBPlayer);

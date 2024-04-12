@@ -98,7 +98,7 @@ void CPlayerAttackState::finaltick()
 		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerIdleState");
 	}
 
-	if (KEY_TAP(KEY::UP))
+	if (KEY_TAP(KEY::UP) && PlayerScript->GetOwnerIdx().y <= 2)
 	{
 		*(Vec2*)GetBlackboardData(L"NextIdx") = Vec2(0, 1);
 		Player->Animator2D()->Play(L"SaffronMoveUp", false);
@@ -107,7 +107,7 @@ void CPlayerAttackState::finaltick()
 		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerMoveState");
 	}
 
-	if (KEY_TAP(KEY::DOWN))
+	if (KEY_TAP(KEY::DOWN) && PlayerScript->GetOwnerIdx().y >= 1)
 	{
 		*(Vec2*)GetBlackboardData(L"NextIdx") = Vec2(0, -1);
 		Player->Animator2D()->Play(L"SaffronMoveDown", false);
@@ -116,7 +116,7 @@ void CPlayerAttackState::finaltick()
 		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerMoveState");
 	}
 
-	if (KEY_TAP(KEY::LEFT))
+	if (KEY_TAP(KEY::LEFT) && PlayerScript->GetOwnerIdx().x >= 5)
 	{
 		*(Vec2*)GetBlackboardData(L"NextIdx") = Vec2(-1, 0);
 		Player->Animator2D()->Play(L"SaffronMoveBack", false);
@@ -124,7 +124,7 @@ void CPlayerAttackState::finaltick()
 		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerMoveState");
 	}
 
-	if (KEY_TAP(KEY::RIGHT))
+	if (KEY_TAP(KEY::RIGHT) && PlayerScript->GetOwnerIdx().x <= 6)
 	{
 		*(Vec2*)GetBlackboardData(L"NextIdx") = Vec2(1, 0);
 		Player->Animator2D()->Play(L"SaffronMoveFront", false);

@@ -131,6 +131,9 @@
     <ClInclude Include="CDiagBeam.h">
       <Filter>02. Scripts\Magic</Filter>
     </ClInclude>
+    <ClInclude Include="CPurpleDisc.h">
+      <Filter>02. Scripts\Magic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -260,6 +263,9 @@
     <ClCompile Include="CDiagBeam.cpp">
       <Filter>02. Scripts\Magic</Filter>
     </ClCompile>
+    <ClCompile Include="CPurpleDisc.cpp">
+      <Filter>02. Scripts\Magic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -330,6 +336,9 @@
     </Filter>
     <Filter Include="03. Magic\DiagBeam">
       <UniqueIdentifier>{a471b42f-e81f-4c54-8fb3-a43823a9c43d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Magic\PurpleDisc">
+      <UniqueIdentifier>{e3a241dd-c777-48c7-aa62-51f280a4140c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

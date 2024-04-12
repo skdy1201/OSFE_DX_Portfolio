@@ -25,6 +25,7 @@
 #include "CDeckCoverUI.h"
 #include "CTerrabeam.h"
 #include "CDiagBeam.h"
+#include "CPurpleDisc.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -52,6 +53,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CDeckCoverUI");
 	_vec.push_back(L"CTerrabeam");
 	_vec.push_back(L"CDiagBeam");
+	_vec.push_back(L"CPurpleDisc");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -104,6 +106,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CTerrabeam;
 	if (L"CDiagBeam" == _strScriptName)
 		return new CDiagBeam;
+	if (L"CPurpleDisc" == _strScriptName)
+		return new CPurpleDisc;
 	return nullptr;
 }
 
@@ -182,6 +186,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::DIAGBEAM:
 		return new CDiagBeam;
+		break;
+	case (UINT)SCRIPT_TYPE::PURPLEDISC:
+		return new CPurpleDisc;
 		break;
 	}
 	return nullptr;
@@ -285,6 +292,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::DIAGBEAM:
 		return L"CDiagBeam";
+		break;
+
+	case SCRIPT_TYPE::PURPLEDISC:
+		return L"CPurpleDisc";
 		break;
 
 	}

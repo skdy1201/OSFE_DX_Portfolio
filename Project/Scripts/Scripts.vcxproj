@@ -187,6 +187,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CPlayerScript.h" />
     <ClInclude Include="CPlayerSpawnAnim.h" />
     <ClInclude Include="CProjectileScript.h" />
+    <ClInclude Include="CPurpleDisc.h" />
     <ClInclude Include="CRandomMgr.h" />
     <ClInclude Include="CScriptMgr.h" />
     <ClInclude Include="CSaffronBullet.h" />
@@ -233,6 +234,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CPlayerScript.cpp" />
     <ClCompile Include="CPlayerSpawnAnim.cpp" />
     <ClCompile Include="CProjectileScript.cpp" />
+    <ClCompile Include="CPurpleDisc.cpp" />
     <ClCompile Include="CRandomMgr.cpp" />
     <ClCompile Include="CScriptMgr.cpp" />
     <ClCompile Include="CSaffronBullet.cpp" />
