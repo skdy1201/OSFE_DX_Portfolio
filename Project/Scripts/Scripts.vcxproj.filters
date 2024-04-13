@@ -134,6 +134,9 @@
     <ClInclude Include="CPurpleDisc.h">
       <Filter>02. Scripts\Magic</Filter>
     </ClInclude>
+    <ClInclude Include="CChangeRedModule.h">
+      <Filter>02. Scripts\Module</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -265,6 +268,9 @@
     </ClCompile>
     <ClCompile Include="CPurpleDisc.cpp">
       <Filter>02. Scripts\Magic</Filter>
+    </ClCompile>
+    <ClCompile Include="CChangeRedModule.cpp">
+      <Filter>02. Scripts\Module</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

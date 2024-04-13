@@ -170,6 +170,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CFieldObjScript.h" />
     <ClInclude Include="CFieldScript.h" />
     <ClInclude Include="CFrostBolt.h" />
+    <ClInclude Include="CChangeRedModule.h" />
     <ClInclude Include="CHitAnimationModule.h" />
     <ClInclude Include="CMagic.h" />
     <ClInclude Include="CManaBackGroundUIScript.h" />
@@ -217,6 +218,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CFieldObjScript.cpp" />
     <ClCompile Include="CFieldScript.cpp" />
     <ClCompile Include="CFrostBolt.cpp" />
+    <ClCompile Include="CChangeRedModule.cpp" />
     <ClCompile Include="CHitAnimationModule.cpp" />
     <ClCompile Include="CMagic.cpp" />
     <ClCompile Include="CManaBackGroundUIScript.cpp" />
