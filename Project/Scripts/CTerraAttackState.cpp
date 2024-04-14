@@ -14,11 +14,18 @@
 CTerraAttackState::CTerraAttackState()
 	: CState((UINT)STATE_TYPE::TERRAATTACKSTATE)
 	, bAttack(false)
+	, IsExit(false)
 {
 }
 
 CTerraAttackState::~CTerraAttackState()
 {
+	if(!IsExit)
+	{
+		delete m_Terraform;
+		delete m_DiagBeam;
+		delete m_Disc;
+	}
 }
 
 void CTerraAttackState::Enter()
@@ -251,6 +258,8 @@ bool CTerraAttackState::CheckEndAnim()
 
 void CTerraAttackState::Exit()
 {
+	IsExit = true;
+
 	delete m_Terraform;
 	delete m_DiagBeam;
 	delete m_Disc;

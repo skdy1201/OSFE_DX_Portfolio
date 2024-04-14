@@ -2,6 +2,7 @@
 #include "CTitleUI.h"
 
 #include <Engine/CFontMgr.h>
+#include <Engine/CRenderMgr.h>
 
 CTitleUI::CTitleUI()
 	: CUIScript((UINT)SCRIPT_TYPE::TITLEUI)
@@ -19,9 +20,21 @@ void CTitleUI::begin()
 
 void CTitleUI::tick()
 {
-	swprintf_s(Menu1, 50, L"Play Game");
+	tFont menu1 = {};
 
-	CFontMgr::GetInst()->DrawFont(Menu1, 150.f, 150.f, 20, FONT_RGBA(255, 30, 30, 255));
+	menu1.Message = L"Game Play";
+
+	menu1.xscale = 100.f;
+	menu1.yscale = 100.f;
+
+	menu1.Fontsize = 50;
+
+	menu1.RColor = 255.f;
+	menu1.GColor = 255.f;
+	menu1.BColor = 255.f;
+	menu1.AColor = 1.f;
+
+	CRenderMgr::GetInst()->AddFont(menu1);
 
 
 

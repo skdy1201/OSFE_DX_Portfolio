@@ -178,3 +178,18 @@ struct tGlobalData
 	int		g_Light3DCount;		// 3D 광원 개수	
 };
 extern tGlobalData g_global;
+
+struct tFont
+{
+
+	wstring Message; // 또는 std::wstring Message;
+	float	xscale;
+	float	yscale;
+	int     Fontsize;
+	
+	float RColor;
+	float GColor;
+	float BColor;
+	float AColor;
+
+};

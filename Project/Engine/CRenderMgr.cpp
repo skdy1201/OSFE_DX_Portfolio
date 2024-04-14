@@ -45,6 +45,13 @@ void CRenderMgr::tick()
 
 	(this->*m_RenderFunc)();
 
+	for (size_t i = 0; i < m_Font.size(); ++i)
+	{
+		wchar_t szFloat[50] = {};
+		swprintf_s(szFloat, 50, m_Font[i].Message.c_str());
+
+		CFontMgr::GetInst()->DrawFont(szFloat, m_Font[i].xscale, m_Font[i].yscale, m_Font[i].Fontsize, FONT_RGBA(m_Font[i].RColor, m_Font[i].GColor, m_Font[i].BColor, m_Font[i].AColor));
+	}
 	render_debug();
 
 	Clear();	

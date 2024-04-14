@@ -30,6 +30,8 @@ class CTerraAttackState :
 	float* AttackTimer;
 	float* MoveTimer;
 
+	bool IsExit;
+
 public:
 	void Attack1();
 	void Attack2();

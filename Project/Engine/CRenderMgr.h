@@ -1,8 +1,11 @@
 #pragma once
+#include "CFontMgr.h"
 #include "singleton.h"
 
 #include "CTexture.h"
 
+class CFontMgr;
+struct tFont;
 class CGameObject;
 class CCamera;
 class CLight2D;
@@ -27,7 +30,9 @@ private:
     CGameObject*            m_pDebugObj;
     bool                    m_DebugPosition;
     bool                    m_DebShape;
-    
+
+    vector<tFont>           m_Font;
+
     // NoiseTexture
     vector<Ptr<CTexture>>   m_vecNoiseTex;
 
@@ -59,8 +64,10 @@ public:
             m_RenderFunc = &CRenderMgr::render_editor;
         else
             m_RenderFunc = &CRenderMgr::render_play;
-    }
 
+    }
+;
+    void AddFont(tFont _font) { m_Font.push_back(_font); }
 
 public:
     void init();
