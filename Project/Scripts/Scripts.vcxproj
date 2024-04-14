@@ -201,6 +201,12 @@ call CodeGen.exe</Command>
     <ClInclude Include="CSniperScript.h" />
     <ClInclude Include="CStateMgr.h" />
     <ClInclude Include="CTerrabeam.h" />
+    <ClInclude Include="CTerraDeadState.h" />
+    <ClInclude Include="CTerraEntryState.h" />
+    <ClInclude Include="CTerraHitState.h" />
+    <ClInclude Include="CTerraIdleState.h" />
+    <ClInclude Include="CTerraMoveState.h" />
+    <ClInclude Include="CTerraScript.h" />
     <ClInclude Include="CTileScript.h" />
     <ClInclude Include="CUIScript.h" />
     <ClInclude Include="define.h" />
@@ -249,6 +255,12 @@ call CodeGen.exe</Command>
     <ClCompile Include="CSniperScript.cpp" />
     <ClCompile Include="CStateMgr.cpp" />
     <ClCompile Include="CTerrabeam.cpp" />
+    <ClCompile Include="CTerraDeadState.cpp" />
+    <ClCompile Include="CTerraEntryState.cpp" />
+    <ClCompile Include="CTerraHitState.cpp" />
+    <ClCompile Include="CTerraIdleState.cpp" />
+    <ClCompile Include="CTerraMoveState.cpp" />
+    <ClCompile Include="CTerraScript.cpp" />
     <ClCompile Include="CTileScript.cpp" />
     <ClCompile Include="CUIScript.cpp" />
     <ClCompile Include="FrostBoltMagic.cpp" />

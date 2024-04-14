@@ -24,3 +24,4 @@ CTerrabeam
 CDiagBeam
 CPurpleDisc
 CChangeRedModule
+CTerraScript

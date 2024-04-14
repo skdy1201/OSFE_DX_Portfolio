@@ -11,6 +11,11 @@
 #include "CSniperDeadState.h"
 #include "CSniperHitState.h"
 #include "CPlayerHitState.h"
+#include "CTerraEntryState.h"
+#include "CTerraMoveState.h"
+#include "CTerraIdleState.h"
+#include "CTerraHitState.h"
+#include "CTerraDeadState.h"
 
 void CStateMgr::GetStateInfo(vector<wstring>& _vec)
 {
@@ -24,6 +29,11 @@ void CStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CSniperDeadState");
 	_vec.push_back(L"CSniperHitState");
 	_vec.push_back(L"CPlayerHitState");
+	_vec.push_back(L"CTerraEntryState");
+	_vec.push_back(L"CTerraMoveState");
+	_vec.push_back(L"CTerraIdleState");
+	_vec.push_back(L"CTerraHitState");
+	_vec.push_back(L"CTerraDeadState");
 }
 
 CState * CStateMgr::GetState(const wstring& _strStateName)
@@ -48,6 +58,16 @@ CState * CStateMgr::GetState(const wstring& _strStateName)
 		return new CSniperHitState;
 	if (L"CPlayerHitState" == _strStateName)
 		return new CPlayerHitState;
+	if (L"CTerraEntryState" == _strStateName)
+		return new CTerraEntryState;
+	if (L"CTerraMoveState" == _strStateName)
+		return new CTerraMoveState;
+	if (L"CTerraIdleState" == _strStateName)
+		return new CTerraIdleState;
+	if (L"CTerraHitState" == _strStateName)
+		return new CTerraHitState;
+	if (L"CTerraDeadState" == _strStateName)
+		return new CTerraDeadState;
 	return nullptr;
 }
 
@@ -84,6 +104,21 @@ CState * CStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::PLAYERHITSTATE:
 		return new CPlayerHitState;
+		break;
+	case (UINT)STATE_TYPE::TERRAENTRYSTATE:
+		return new CTerraEntryState;
+		break;
+	case (UINT)STATE_TYPE::TERRAMOVESTATE:
+		return new CTerraMoveState;
+		break;
+	case (UINT)STATE_TYPE::TERRAIDLESTATE:
+		return new CTerraIdleState;
+		break;
+	case (UINT)STATE_TYPE::TERRAHITSTATE:
+		return new CTerraHitState;
+		break;
+	case (UINT)STATE_TYPE::TERRADEADSTATE:
+		return new CTerraDeadState;
 		break;
 	}
 	return nullptr;
@@ -131,6 +166,26 @@ const wchar_t * CStateMgr::GetStateName(CState * _pState)
 
 	case STATE_TYPE::PLAYERHITSTATE:
 		return L"CPlayerHitState";
+		break;
+
+	case STATE_TYPE::TERRAENTRYSTATE:
+		return L"CTerraEntryState";
+		break;
+
+	case STATE_TYPE::TERRAMOVESTATE:
+		return L"CTerraMoveState";
+		break;
+
+	case STATE_TYPE::TERRAIDLESTATE:
+		return L"CTerraIdleState";
+		break;
+
+	case STATE_TYPE::TERRAHITSTATE:
+		return L"CTerraHitState";
+		break;
+
+	case STATE_TYPE::TERRADEADSTATE:
+		return L"CTerraDeadState";
 		break;
 
 	}

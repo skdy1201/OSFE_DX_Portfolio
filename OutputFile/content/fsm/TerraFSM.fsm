@@ -1,0 +1,7 @@
+fsm\TerraFSM.fsm
+5
+CTerraDeadState
+CTerraEntryState
+CTerraHitState
+CTerraIdleState
+CTerraMoveState

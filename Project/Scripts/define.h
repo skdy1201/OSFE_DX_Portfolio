@@ -61,6 +61,8 @@
 #define PrefabSniper L"prefab\\SniperTest.pref"
 #define PrefabSniperBullet L"prefab\\SniperBullet.pref"
 
+#define PrefabTerra L"prefab\\TerraPlayer.pref"
+
 #define PrefabPlayerCursor L"prefab\\PlayerCursor.pref"
 
 #define PrefabBackGround L"prefab\\IceBackGround.pref"
@@ -90,6 +92,8 @@
 #define PlayerAttack2 L"SaffronAttack2"
 #define SpawnEffect L"SaffronSpawnFX"
 #define PlayerHit L"SaffronStagger"
+#define TerraSpawn L"TerraSpawn"
+#define TerraIdle L"TerraIdle"
  
 #define MonsterDead L"DeathExplosion"
 
@@ -110,6 +114,8 @@
 #define  BBPlayer L"Player"
 #define  MoveCooldown (float*)GetBlackboardData(L"MoveCooldown");
 #define  AttackCooldown (float*)GetBlackboardData(L"AttackCooldown");
+
+#define TerraIdleState L"CTerraIdleState"
 
 //Random 관련 매크로
 #define GETRANDOM(bound) CRandomMgr::GetInst()->GetRandom(bound)

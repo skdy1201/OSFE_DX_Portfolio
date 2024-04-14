@@ -104,7 +104,7 @@ void CFieldObjScript::Cast()
 
 void CFieldObjScript::Hit(int Damage)
 {
-	Status OwnerStatus = GetStatus();
+	Status OwnerStatus = this->GetStatus();
 	OwnerStatus.Current_HP -= Damage;
 
 	SetStatus(OwnerStatus);

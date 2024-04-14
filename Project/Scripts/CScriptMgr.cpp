@@ -27,6 +27,7 @@
 #include "CDiagBeam.h"
 #include "CPurpleDisc.h"
 #include "CChangeRedModule.h"
+#include "CTerraScript.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -56,6 +57,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CDiagBeam");
 	_vec.push_back(L"CPurpleDisc");
 	_vec.push_back(L"CChangeRedModule");
+	_vec.push_back(L"CTerraScript");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -112,6 +114,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CPurpleDisc;
 	if (L"CChangeRedModule" == _strScriptName)
 		return new CChangeRedModule;
+	if (L"CTerraScript" == _strScriptName)
+		return new CTerraScript;
 	return nullptr;
 }
 
@@ -196,6 +200,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::CHANGEREDMODULE:
 		return new CChangeRedModule;
+		break;
+	case (UINT)SCRIPT_TYPE::TERRASCRIPT:
+		return new CTerraScript;
 		break;
 	}
 	return nullptr;
@@ -307,6 +314,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::CHANGEREDMODULE:
 		return L"CChangeRedModule";
+		break;
+
+	case SCRIPT_TYPE::TERRASCRIPT:
+		return L"CTerraScript";
 		break;
 
 	}

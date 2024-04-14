@@ -137,6 +137,24 @@
     <ClInclude Include="CChangeRedModule.h">
       <Filter>02. Scripts\Module</Filter>
     </ClInclude>
+    <ClInclude Include="CTerraEntryState.h">
+      <Filter>08. States\BossState</Filter>
+    </ClInclude>
+    <ClInclude Include="CTerraScript.h">
+      <Filter>02. Scripts\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="CTerraMoveState.h">
+      <Filter>08. States\BossState</Filter>
+    </ClInclude>
+    <ClInclude Include="CTerraIdleState.h">
+      <Filter>08. States\BossState</Filter>
+    </ClInclude>
+    <ClInclude Include="CTerraHitState.h">
+      <Filter>08. States\BossState</Filter>
+    </ClInclude>
+    <ClInclude Include="CTerraDeadState.h">
+      <Filter>08. States\BossState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -272,6 +290,24 @@
     <ClCompile Include="CChangeRedModule.cpp">
       <Filter>02. Scripts\Module</Filter>
     </ClCompile>
+    <ClCompile Include="CTerraEntryState.cpp">
+      <Filter>08. States\BossState</Filter>
+    </ClCompile>
+    <ClCompile Include="CTerraScript.cpp">
+      <Filter>02. Scripts\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="CTerraMoveState.cpp">
+      <Filter>08. States\BossState</Filter>
+    </ClCompile>
+    <ClCompile Include="CTerraIdleState.cpp">
+      <Filter>08. States\BossState</Filter>
+    </ClCompile>
+    <ClCompile Include="CTerraHitState.cpp">
+      <Filter>08. States\BossState</Filter>
+    </ClCompile>
+    <ClCompile Include="CTerraDeadState.cpp">
+      <Filter>08. States\BossState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -345,6 +381,12 @@
     </Filter>
     <Filter Include="03. Magic\PurpleDisc">
       <UniqueIdentifier>{e3a241dd-c777-48c7-aa62-51f280a4140c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. States\BossState">
+      <UniqueIdentifier>{6f8964ff-2f38-40aa-a4d8-14e2644d8c7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\Boss">
+      <UniqueIdentifier>{04cdb9a6-106b-461c-8b21-6351ed650d56}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

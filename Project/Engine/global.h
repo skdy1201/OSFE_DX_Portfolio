@@ -11,12 +11,14 @@
 #include <list>
 #include <map>
 #include <deque>
+#include <queue>
 #include <algorithm>
 
 using std::vector;
 using std::list;
 using std::map;
 using std::deque;
+using std::queue;
 using std::make_pair;
 
 using std::wstring;
