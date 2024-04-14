@@ -17,6 +17,7 @@
 #include "CTerraHitState.h"
 #include "CTerraDeadState.h"
 #include "CTerraAttackState.h"
+#include "CPlayerDeadState.h"
 
 void CStateMgr::GetStateInfo(vector<wstring>& _vec)
 {
@@ -36,6 +37,7 @@ void CStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CTerraHitState");
 	_vec.push_back(L"CTerraDeadState");
 	_vec.push_back(L"CTerraAttackState");
+	_vec.push_back(L"CPlayerDeadState");
 }
 
 CState * CStateMgr::GetState(const wstring& _strStateName)
@@ -72,6 +74,8 @@ CState * CStateMgr::GetState(const wstring& _strStateName)
 		return new CTerraDeadState;
 	if (L"CTerraAttackState" == _strStateName)
 		return new CTerraAttackState;
+	if (L"CPlayerDeadState" == _strStateName)
+		return new CPlayerDeadState;
 	return nullptr;
 }
 
@@ -126,6 +130,9 @@ CState * CStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::TERRAATTACKSTATE:
 		return new CTerraAttackState;
+		break;
+	case (UINT)STATE_TYPE::PLAYERDEADSTATE:
+		return new CPlayerDeadState;
 		break;
 	}
 	return nullptr;
@@ -197,6 +204,10 @@ const wchar_t * CStateMgr::GetStateName(CState * _pState)
 
 	case STATE_TYPE::TERRAATTACKSTATE:
 		return L"CTerraAttackState";
+		break;
+
+	case STATE_TYPE::PLAYERDEADSTATE:
+		return L"CPlayerDeadState";
 		break;
 
 	}

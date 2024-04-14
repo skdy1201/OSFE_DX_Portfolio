@@ -49,7 +49,7 @@
 #define LayerUI	31
 
 // 프리팹 매크로
-#define PrefabPlayer L"prefab\\SaffranPlayer.pref"
+#define PrefabPlayer L"prefab\\SaffronPlayer.pref"
 #define PrefabPlayerBullet L"prefab\\PlayerBullet.pref"
 #define PrefabPlayerBulletAnim L"prefab\\PlayerBulletAnim.pref"
 #define PrefabPlayerSpawnAnim L"prefab\\PlayerSpawnAnim.pref"

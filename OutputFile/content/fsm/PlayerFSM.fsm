@@ -1,6 +1,7 @@
 fsm\PlayerFSM.fsm
-5
+6
 CPlayerAttackState
+CPlayerDeadState
 CPlayerEntryState
 CPlayerHitState
 CPlayerIdleState

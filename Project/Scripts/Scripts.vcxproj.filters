@@ -164,6 +164,9 @@
     <ClInclude Include="BossDiscMagic.h">
       <Filter>03. Magic\PurpleDisc</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayerDeadState.h">
+      <Filter>08. States\PlayerState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -325,6 +328,9 @@
     </ClCompile>
     <ClCompile Include="BossDiscMagic.cpp">
       <Filter>03. Magic\PurpleDisc</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerDeadState.cpp">
+      <Filter>08. States\PlayerState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

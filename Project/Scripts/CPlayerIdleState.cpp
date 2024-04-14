@@ -35,6 +35,12 @@ void CPlayerIdleState::Enter()
 
 void CPlayerIdleState::finaltick()
 {
+	if (PlayerScript->GetStatus().Current_HP <= 0)
+	{
+		Player->StateMachine()->GetFSM()->ChangeState(L"CPlayerDeadState");
+	}
+
+
 	if (KEY_TAP(KEY::UP)&& PlayerScript->GetOwnerIdx().y <= 2)
 	{
 		*(Vec2*)GetBlackboardData(L"NextIdx") = Vec2(0, 1);
@@ -78,6 +84,8 @@ void CPlayerIdleState::finaltick()
 	{
 		ChangeState(L"CPlayerHitState");
 	}
+
+	
 
 }
 

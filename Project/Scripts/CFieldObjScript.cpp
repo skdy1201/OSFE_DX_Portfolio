@@ -137,7 +137,7 @@ void CFieldObjScript::begin()
 	{
 		Status PlayerState = this->GetStatus();
 		m_status.Owner = this->GetOwner();
-		PlayerState.HP = 500;
+		PlayerState.HP = 50;
 		PlayerState.MP = 4.f;
 
 		PlayerState.Current_HP = PlayerState.HP;
