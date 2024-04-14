@@ -11,9 +11,11 @@ public:
     Vec2 Dir[4];
     Vec2 CurDir;
     int Colignore;
+    bool once = false;
 
 public:
     void ResetDir();
+    void Calculate_Disc_Dir();
 
 public:
     virtual void begin() override;

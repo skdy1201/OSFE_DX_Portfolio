@@ -47,13 +47,6 @@ void CPurpleDisc::begin()
 void CPurpleDisc::tick()
 {
 	Move(DT);
-
-	if ((Transform()->GetRelativePos().x < - 470.f || Transform()->GetRelativePos().x > 20.f)
-		|| (Transform()->GetRelativePos().y < -250.f || Transform()->GetRelativePos().y > 80.f))
-	{
-		this->GetOwner()->Destroy();
-	}
-	
 }
 
 void CPurpleDisc::ResetDir()
@@ -77,6 +70,62 @@ void CPurpleDisc::ResetDir()
 		int Random = CRandomMgr::GetInst()->GetRandom(PossibleDir.size());
 		CurDir = PossibleDir[Random];
 		CalculateDir(StartIndex, PossibleDir[Random]);
+		StartIndex += CurDir;
+	}
+}
+
+void CPurpleDisc::Calculate_Disc_Dir()
+{
+	if (once)
+		return;
+
+	// 오브젝트 방향 가져오기
+	Vec3 vecObjDir = this->Transform()->GetWorldDir(DIR_TYPE::RIGHT);
+	Vec3 vecTilePos = m_CurField->GetTilePosition(StartIndex);
+	Vec3 vecObjPos = this->Transform()->GetRelativePos();
+	// 위
+	if (vecObjDir.y == 1)
+	{
+		// 만약 목표한 타일보다 오브젝트가 더 위로 갔다면,
+		if (vecTilePos.y - vecObjPos.y >= 0)
+		{
+			this->Transform()->SetRelativePos(Vec3(vecTilePos.x, vecTilePos.y, vecObjPos.z));
+			ResetDir();
+			once = true;
+		}
+	}
+	// 아래
+	else if (vecObjDir.y == -1)
+	{
+		// 만약 목표한 타일보다 오브젝트가 더 아래로 갔다면,
+		if (vecTilePos.y - vecObjPos.y <= 0)
+		{
+			this->Transform()->SetRelativePos(Vec3(vecTilePos.x, vecTilePos.y, vecObjPos.z));
+			ResetDir();
+			once = true;
+		}
+	}
+	// 왼
+	else if (vecObjDir.x == -1)
+	{
+		// 만약 목표한 타일보다 오브젝트가 더 완쪽으로 갔다면,
+		if (vecTilePos.x - vecObjPos.x >= 0)
+		{
+			this->Transform()->SetRelativePos(Vec3(vecTilePos.x, vecTilePos.y, vecObjPos.z));
+			ResetDir();
+			once = true;
+		}
+	}
+	// 오
+	else if (vecObjDir.x == 1)
+	{
+		// 만약 목표한 타일보다 오브젝트가 더 오른쪽으로 갔다면,
+		if (vecTilePos.x - vecObjPos.x <= 0)
+		{
+			this->Transform()->SetRelativePos(Vec3(vecTilePos.x, vecTilePos.y, vecObjPos.z));
+			ResetDir();
+			once = true;
+		}
 	}
 }
 
@@ -84,34 +133,16 @@ void CPurpleDisc::BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, C
 {
 	if (Colignore == 1)
 		--Colignore;
-	else
-	{
-		this->StartIndex += CurDir;
-
-		
-	}
 }
 
 void CPurpleDisc::Overlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)
 {
-	Vec3 Pos = _OtherObj->Transform()->GetRelativePos();
-
-	Pos -= this->Transform()->GetRelativePos();
-	if(abs(Pos.x) < 1.f && abs(Pos.y) < 1.f && abs(Pos.z) < 1.f )
-	{
-		if (StartIndex.x <= 4 || StartIndex.x >= 7
-			|| StartIndex.y <= 0 || StartIndex.y >= 3)
-		{
-			Vec3 CurPos = m_CurField->GetTilePosition(StartIndex);
-			this->Transform()->SetRelativePos(CurPos);
-			ResetDir();
-		}
-	}
-
-	
+	Calculate_Disc_Dir();
 }
 
 void CPurpleDisc::EndOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)
 {
 	CProjectileScript::EndOverlap(_Collider, _OtherObj, _OtherCollider);
+
+	once = false;
 }
