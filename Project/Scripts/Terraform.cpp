@@ -59,7 +59,7 @@ void Terraform::cast(Vec2 StartPoint)
 				TerraBeam->Transform()->SetRelativePos(Position);
 
 
-				GamePlayStatic::SpawnGameObject(TerraBeam, LayerPlayerAttack);
+				GamePlayStatic::SpawnGameObject(TerraBeam, LayerMonsterAttack);
 				
 				TerraBeam->Animator2D()->Play(L"TerraBeam", false);
 

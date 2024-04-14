@@ -41,6 +41,7 @@ void CTerrabeam::BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CC
 	{
 		Script->Hit(50);
 	}
+
 }
 
 void CTerrabeam::Overlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)

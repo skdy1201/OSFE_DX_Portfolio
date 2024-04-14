@@ -12,6 +12,9 @@ class CPlayerHitState :
     CFieldObjScript* PlayerScript;
     CFieldScript* Field;
 
+    CGameObject* HitFX;
+
+
     bool IsRender;
     float Timer;
 

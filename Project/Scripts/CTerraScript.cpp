@@ -19,7 +19,7 @@ CTerraScript::~CTerraScript()
 
 void CTerraScript::begin()
 {
-	m_status.HP = 10.f;
+	m_status.HP = 500.f;
 	m_status.Current_HP = m_status.HP;
 	m_status.Camp = 2;
 

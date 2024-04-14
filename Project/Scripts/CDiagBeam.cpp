@@ -91,7 +91,7 @@ void CDiagBeam::tick()
 
 void CDiagBeam::BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)
 {
-	CProjectileScript::BeginOverlap(_Collider, _OtherObj, _OtherCollider);
+	_OtherObj->GetScript<CFieldObjScript>()->Hit(this->GetInfo().Damage);
 }
 
 void CDiagBeam::Overlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)

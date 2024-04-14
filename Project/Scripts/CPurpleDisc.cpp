@@ -3,6 +3,7 @@
 
 #include "CFieldScript.h"
 #include "CRandomMgr.h"
+#include "CTileScript.h"
 
 CPurpleDisc::CPurpleDisc()
 {
@@ -137,8 +138,15 @@ void CPurpleDisc::Calculate_Disc_Dir()
 
 void CPurpleDisc::BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)
 {
-	if (Colignore == 1)
-		--Colignore;
+	if(_OtherObj->GetScript<CTileScript>())
+	{
+		if (Colignore == 1)
+			--Colignore;
+	}
+	else
+	{
+		_OtherObj->GetScript<CFieldObjScript>()->Hit(this->GetInfo().Damage);
+	}
 }
 
 void CPurpleDisc::Overlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)

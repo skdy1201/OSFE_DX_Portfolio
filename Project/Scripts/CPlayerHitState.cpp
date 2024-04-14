@@ -22,6 +22,15 @@ void CPlayerHitState::Enter()
 	PlayerScript = Player->GetScript<CFieldObjScript>();
 	Field = PlayerScript->GetField();
 
+	HitFX = CPrefab::GetPrefabObj(PrefabHitFX);
+
+	Vec3 Hitposition = Player->Transform()->GetRelativePos();
+	HitFX->Transform()->SetRelativePos(Hitposition);
+
+	HitFX->Transform()->SetOffset(Vec2{ 0.f, -60.f });
+	HitFX->Transform()->SetRelativeScale(Player->Transform()->GetRelativeScale() * 2);
+	GamePlayStatic::SpawnGameObject(HitFX, LayerDefault);
+
 	Player->Animator2D()->Play(PlayerHit, false);
 
 	Timer = 0.5f;
@@ -43,5 +52,6 @@ void CPlayerHitState::finaltick()
 
 void CPlayerHitState::Exit()
 {
+	
 	PlayerScript->SetHit(false);
 }

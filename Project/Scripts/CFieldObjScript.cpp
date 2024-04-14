@@ -58,22 +58,22 @@ void CFieldObjScript::tick()
 	}
 
 
-	if(IsPlayer)
-	{
-		if(KEY_TAP(KEY::R))
-		{
-			CGameObject* Diag = CPrefab::GetPrefabObj(PrefabPurpleDisc);
+	//if(IsPlayer)
+	//{
+	//	if(KEY_TAP(KEY::R))
+	//	{
+	//		CGameObject* Diag = CPrefab::GetPrefabObj(PrefabPurpleDisc);
 
-			Vec2 SpawnRowCol = { 5, 3 };
-			Vec3 Position = this->GetField()->GetTilePosition(SpawnRowCol);
+	//		Vec2 SpawnRowCol = { 5, 3 };
+	//		Vec3 Position = this->GetField()->GetTilePosition(SpawnRowCol);
 
-			Diag->GetScript<CPurpleDisc>()->SetStartIdx(Vec2{ 5,3 });
-			Diag->GetScript<CPurpleDisc>()->SetShooter(this->GetOwner());
-			Diag->GetScript<CPurpleDisc>()->SetField(this->GetField());
-			Diag->Transform()->SetRelativePos(Position);
-			GamePlayStatic::SpawnGameObject(Diag, LayerPlayerAttackonTile);
-		}
-	}
+	//		Diag->GetScript<CPurpleDisc>()->SetStartIdx(Vec2{ 5,3 });
+	//		Diag->GetScript<CPurpleDisc>()->SetShooter(this->GetOwner());
+	//		Diag->GetScript<CPurpleDisc>()->SetField(this->GetField());
+	//		Diag->Transform()->SetRelativePos(Position);
+	//		GamePlayStatic::SpawnGameObject(Diag, LayerPlayerAttackonTile);
+	//	}
+	//}
 }
 
 
@@ -137,7 +137,7 @@ void CFieldObjScript::begin()
 	{
 		Status PlayerState = this->GetStatus();
 		m_status.Owner = this->GetOwner();
-		PlayerState.HP = 50;
+		PlayerState.HP = 500;
 		PlayerState.MP = 4.f;
 
 		PlayerState.Current_HP = PlayerState.HP;

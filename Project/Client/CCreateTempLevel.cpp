@@ -255,6 +255,7 @@ void CCreateTempLevel::CreateTempLevel()
 	CCollisionMgr::GetInst()->LayerCheck(LayerPlayerAttack, LayerMonster);
 	CCollisionMgr::GetInst()->LayerCheck(LayerMonsterAttack, LayerPlayer);
 	CCollisionMgr::GetInst()->LayerCheck(LayerMonsterAttackonTile, LayerTile);
+	CCollisionMgr::GetInst()->LayerCheck(LayerMonsterAttackonTile, LayerPlayer);
 
 	CCollisionMgr::GetInst()->LayerCheck(4, 4);
 

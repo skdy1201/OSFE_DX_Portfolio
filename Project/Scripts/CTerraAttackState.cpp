@@ -94,6 +94,8 @@ void CTerraAttackState::Attack1()
 
 	CheckAnimation[3] = animation;
 
+	Terra->Animator2D()->Play(L"TerraAttack1", false);
+
 	bAttack = true;
 
 }
@@ -138,6 +140,8 @@ void CTerraAttackState::Attack2()
 	animation->Transform()->SetRelativePos(Position);
 	GamePlayStatic::SpawnGameObject(animation, 0);
 
+	Terra->Animator2D()->Play(L"TerraAttack3-2", true);
+
 	CheckAnimation[3] = animation;
 	bAttack = true;
 }
@@ -173,6 +177,8 @@ void CTerraAttackState::Attack3()
 
 	CheckAnimation[1] = animation;
 
+	Terra->Animator2D()->Play(L"TerraAttack2", false);
+
 	bAttack = true;
 }
 
@@ -183,8 +189,12 @@ void CTerraAttackState::finaltick()
 
 	if(AttackPattern == 0)
 	{
+		if(this->GetFSM()->GetStateMachine()->GetOwner()->Animator2D()->GetCurAnim()->IsFinish())
+			Terra->Animator2D()->Play(L"TerraIdle", true);
+
 		if(CheckEndAnim() == true)
 		{
+
 		m_Terraform->SetCaster(Terra);
 		m_Terraform->cast(TerraScript->GetOwnerIdx());
 		bAttack = false;
@@ -194,6 +204,9 @@ void CTerraAttackState::finaltick()
 	{
 		if (CheckEndAnim() == true)
 		{
+			if (this->GetFSM()->GetStateMachine()->GetOwner()->Animator2D()->GetCurAnim()->IsFinish())
+				Terra->Animator2D()->Play(L"TerraIdle", true);
+
 			m_DiagBeam->SetCaster(Terra);
 			m_DiagBeam->cast(Vec2(5, 3));
 			m_DiagBeam->cast(Vec2(6, 3));
@@ -205,20 +218,22 @@ void CTerraAttackState::finaltick()
 	}
 	else if(AttackPattern == 2)
 	{
+		if (this->GetFSM()->GetStateMachine()->GetOwner()->Animator2D()->GetCurAnim()->IsFinish())
+			Terra->Animator2D()->Play(L"TerraIdle", true);
+
 		if (CheckEndAnim() == true)
 		{
 			m_Disc->SetCaster(Terra);
 			m_Disc->cast(DiscIdx[0]);
 			m_Disc->cast(DiscIdx[1]);
-			
 
 			bAttack = false;
 		}
 	}
 
+
 	if(bAttack == false)
 	ChangeState(L"CTerraIdleState");
-
 }
 
 bool CTerraAttackState::CheckEndAnim()
