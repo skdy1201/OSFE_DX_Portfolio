@@ -26,7 +26,7 @@ void CDiagBeam::begin()
 	Info.LifeCount = 4;
 	Info.LifeTime = 60.f;
 	Info.TargetTile = false;
-	Info.m_Speed = 500.f;
+	Info.m_Speed = 600.f;
 
 	this->SetInfo(Info);
 
