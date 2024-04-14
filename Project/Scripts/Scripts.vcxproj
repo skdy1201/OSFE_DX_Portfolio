@@ -162,6 +162,7 @@ call CodeGen.exe</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BossDiscMagic.h" />
     <ClInclude Include="CAnimatorModule.h" />
     <ClInclude Include="CBackgroundScript.h" />
     <ClInclude Include="CDeck.h" />
@@ -211,12 +212,14 @@ call CodeGen.exe</Command>
     <ClInclude Include="CTileScript.h" />
     <ClInclude Include="CUIScript.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="DiagBeamMagic.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="FrostBoltMagic.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Terraform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BossDiscMagic.cpp" />
     <ClCompile Include="CAnimatorModule.cpp" />
     <ClCompile Include="CBackgroundScript.cpp" />
     <ClCompile Include="CDeck.cpp" />
@@ -265,6 +268,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CTerraScript.cpp" />
     <ClCompile Include="CTileScript.cpp" />
     <ClCompile Include="CUIScript.cpp" />
+    <ClCompile Include="DiagBeamMagic.cpp" />
     <ClCompile Include="FrostBoltMagic.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

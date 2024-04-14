@@ -33,7 +33,7 @@ void CPurpleDisc::begin()
 	Info.Damage = 50;
 	Info.MaxRange = 4;
 	Info.LifeCount = -1;
-	Info.LifeTime = 6.f;
+	Info.LifeTime = 3.5f;
 	Info.TargetTile = false;
 	Info.m_Speed = 500.f;
 
@@ -47,6 +47,12 @@ void CPurpleDisc::begin()
 void CPurpleDisc::tick()
 {
 	Move(DT);
+
+
+	m_ProjInfo.LifeTime -= DT;
+
+	if (m_ProjInfo.LifeTime <= 0.f)
+		GamePlayStatic::DestroyGameObject(this->GetOwner());
 }
 
 void CPurpleDisc::ResetDir()

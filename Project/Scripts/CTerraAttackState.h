@@ -2,8 +2,11 @@
 
 #include <Engine/CScript.h>
 
+class DiagBeamMagic;
+class CDiagBeam;
 class CFieldObjScript;
 class Terraform;
+class BossDiscMagic;
 
 class CTerraAttackState :
     public CState
@@ -14,10 +17,14 @@ class CTerraAttackState :
 
 
 	Terraform* m_Terraform;
+	DiagBeamMagic* m_DiagBeam;
+	BossDiscMagic* m_Disc;
 
 	int AttackPattern;
 	bool bAttack;
 
+
+	Vec2 DiscIdx[2];
 	CGameObject* CheckAnimation[4];
 
 	float* AttackTimer;

@@ -158,6 +158,12 @@
     <ClInclude Include="CTerraAttackState.h">
       <Filter>08. States\BossState</Filter>
     </ClInclude>
+    <ClInclude Include="DiagBeamMagic.h">
+      <Filter>03. Magic\DiagBeam</Filter>
+    </ClInclude>
+    <ClInclude Include="BossDiscMagic.h">
+      <Filter>03. Magic\PurpleDisc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -313,6 +319,12 @@
     </ClCompile>
     <ClCompile Include="CTerraAttackState.cpp">
       <Filter>08. States\BossState</Filter>
+    </ClCompile>
+    <ClCompile Include="DiagBeamMagic.cpp">
+      <Filter>03. Magic\DiagBeam</Filter>
+    </ClCompile>
+    <ClCompile Include="BossDiscMagic.cpp">
+      <Filter>03. Magic\PurpleDisc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,9 +3,12 @@
 
 #include <Engine/CAnim.h>
 
+#include "CDiagBeam.h"
 #include "CFieldObjScript.h"
 #include "CFieldScript.h"
 #include "Terraform.h"
+#include "DiagBeamMagic.h"
+#include "BossDiscMagic.h"
 #include "CRandomMgr.h"
 
 CTerraAttackState::CTerraAttackState()
@@ -28,9 +31,11 @@ void CTerraAttackState::Enter()
 	AttackTimer = AttackCooldown
 		MoveTimer = MoveCooldown
 
-		m_Terraform = new Terraform;
-
-		AttackPattern = 0; //CRandomMgr::GetInst()->GetRandom(3);
+	m_Terraform = new Terraform;
+	m_DiagBeam = new DiagBeamMagic;
+	m_Disc = new BossDiscMagic;
+	
+		AttackPattern = CRandomMgr::GetInst()->GetRandom(3);
 
 	switch (AttackPattern)
 	{
@@ -95,10 +100,80 @@ void CTerraAttackState::Attack1()
 
 void CTerraAttackState::Attack2()
 {
+	Vec2 Idx = Vec2{ 5, 3 };
+	Vec3 Position = TerraScript->GetField()->GetTilePosition(Idx);
+
+	CGameObject* animation = AnimatorObject->Instantiate();
+
+	animation->Transform()->SetRelativePos(Position);
+	GamePlayStatic::SpawnGameObject(animation, 0);
+
+	CheckAnimation[0] = animation;
+
+	 Idx = Vec2{ 6, 3 };
+	 Position = TerraScript->GetField()->GetTilePosition(Idx);
+
+	 animation = AnimatorObject->Instantiate();
+
+	animation->Transform()->SetRelativePos(Position);
+	GamePlayStatic::SpawnGameObject(animation, 0);
+
+	CheckAnimation[1] = animation;
+
+	Idx = Vec2{ 5, 2 };
+	Position = TerraScript->GetField()->GetTilePosition(Idx);
+
+	animation = AnimatorObject->Instantiate();
+
+	animation->Transform()->SetRelativePos(Position);
+	GamePlayStatic::SpawnGameObject(animation, 0);
+
+	CheckAnimation[2] = animation;
+
+	Idx = Vec2{ 6, 2 };
+	Position = TerraScript->GetField()->GetTilePosition(Idx);
+
+	animation = AnimatorObject->Instantiate();
+
+	animation->Transform()->SetRelativePos(Position);
+	GamePlayStatic::SpawnGameObject(animation, 0);
+
+	CheckAnimation[3] = animation;
+	bAttack = true;
 }
 
 void CTerraAttackState::Attack3()
 {
+	for(int i = 0; i < 2; ++i)
+	{
+		DiscIdx[i].x = CRandomMgr::GetInst()->GetRandom(4);
+		DiscIdx[i].x += 4;
+
+		DiscIdx[i].y = CRandomMgr::GetInst()->GetRandom(4);
+
+	}
+
+	Vec2 Idx = DiscIdx[0];
+	Vec3 Position = TerraScript->GetField()->GetTilePosition(Idx);
+
+	CGameObject* animation = AnimatorObject->Instantiate();
+
+	animation->Transform()->SetRelativePos(Position);
+	GamePlayStatic::SpawnGameObject(animation, 0);
+
+	CheckAnimation[0] = animation;
+
+	Idx = DiscIdx[1];
+	Position = TerraScript->GetField()->GetTilePosition(Idx);
+
+	animation = AnimatorObject->Instantiate();
+
+	animation->Transform()->SetRelativePos(Position);
+	GamePlayStatic::SpawnGameObject(animation, 0);
+
+	CheckAnimation[1] = animation;
+
+	bAttack = true;
 }
 
 
@@ -106,11 +181,39 @@ void CTerraAttackState::Attack3()
 void CTerraAttackState::finaltick()
 {
 
-	if(CheckEndAnim() == true && AttackPattern == 0)
+	if(AttackPattern == 0)
 	{
+		if(CheckEndAnim() == true)
+		{
 		m_Terraform->SetCaster(Terra);
 		m_Terraform->cast(TerraScript->GetOwnerIdx());
 		bAttack = false;
+		}
+	}
+	else if(AttackPattern == 1)
+	{
+		if (CheckEndAnim() == true)
+		{
+			m_DiagBeam->SetCaster(Terra);
+			m_DiagBeam->cast(Vec2(5, 3));
+			m_DiagBeam->cast(Vec2(6, 3));
+			m_DiagBeam->cast(Vec2(5, 2));
+			m_DiagBeam->cast(Vec2(6, 2));
+
+			bAttack = false;
+		}
+	}
+	else if(AttackPattern == 2)
+	{
+		if (CheckEndAnim() == true)
+		{
+			m_Disc->SetCaster(Terra);
+			m_Disc->cast(DiscIdx[0]);
+			m_Disc->cast(DiscIdx[1]);
+			
+
+			bAttack = false;
+		}
 	}
 
 	if(bAttack == false)
@@ -122,7 +225,7 @@ bool CTerraAttackState::CheckEndAnim()
 {
 	for(int i = 0; i < 4; ++i)
 	{
-		if (CheckAnimation[i]->IsDead())
+		if (CheckAnimation[i] == nullptr || CheckAnimation[i]->IsDead())
 			continue;
 		else
 			return false;
@@ -134,5 +237,7 @@ bool CTerraAttackState::CheckEndAnim()
 void CTerraAttackState::Exit()
 {
 	delete m_Terraform;
+	delete m_DiagBeam;
+	delete m_Disc;
 	*AttackTimer = 0.f;
 }

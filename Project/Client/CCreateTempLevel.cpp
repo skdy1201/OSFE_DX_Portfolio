@@ -254,7 +254,7 @@ void CCreateTempLevel::CreateTempLevel()
 	// 충돌 설정
 	CCollisionMgr::GetInst()->LayerCheck(LayerPlayerAttack, LayerMonster);
 	CCollisionMgr::GetInst()->LayerCheck(LayerMonsterAttack, LayerPlayer);
-	CCollisionMgr::GetInst()->LayerCheck(LayerPlayerAttackonTile, LayerTile);
+	CCollisionMgr::GetInst()->LayerCheck(LayerMonsterAttackonTile, LayerTile);
 
 	CCollisionMgr::GetInst()->LayerCheck(4, 4);
 
