@@ -7,13 +7,8 @@ class CTerraScript :
     float            m_MoveCooltime;
     float            m_AttackCooltime;
     float            m_HurtTime;
-    int              CurRow;
-    int              MoveDir; // 1 :: down, 2 :: up
-
-
 
     CFieldObjScript* OwnerFojScript;
-    CGameObject*    ChildAnim;
 
 public:
     virtual void begin() override;

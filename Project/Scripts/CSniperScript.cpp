@@ -18,6 +18,7 @@ CSniperScript::CSniperScript()
 
 CSniperScript::~CSniperScript()
 {
+	GamePlayStatic::DestroyGameObject(ChildAnim);
 }
 
 void CSniperScript::begin()

@@ -145,7 +145,7 @@ void CProjectileScript::tick()
 	lifetime -= DT;
 
 	if (lifetime <= 0.f)
-		this->GetOwner()->Destroy();
+		GamePlayStatic::DestroyGameObject(this->GetOwner());
 
 	Move(DT);
 }

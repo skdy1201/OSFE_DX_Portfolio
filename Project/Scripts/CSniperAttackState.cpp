@@ -21,6 +21,7 @@ CSniperAttackState::CSniperAttackState()
 
 CSniperAttackState::~CSniperAttackState()
 {
+	GamePlayStatic::DestroyGameObject(AnimatorObject);
 }
 
 void CSniperAttackState::Enter()

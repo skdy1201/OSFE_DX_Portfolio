@@ -44,7 +44,7 @@ void CSniperProj::BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, C
 	CFieldObjScript* Script = _OtherObj->GetScript<CFieldObjScript>();
 	Script->Hit(this->GetInfo().Damage);
 
-	this->GetOwner()->Destroy();
+	GamePlayStatic::DestroyGameObject(this->GetOwner());
 }
 
 void CSniperProj::Overlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)

@@ -85,7 +85,7 @@ void CDiagBeam::tick()
 	}
 	else
 	{
-		this->GetOwner()->Destroy();
+		GamePlayStatic::DestroyGameObject(this->GetOwner());
 	}
 }
 

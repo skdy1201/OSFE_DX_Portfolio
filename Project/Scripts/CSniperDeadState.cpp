@@ -35,7 +35,7 @@ void CSniperDeadState::finaltick()
 {
 	if(Owner->Animator2D()->GetCurAnim()->IsFinish())
 	{
-		Owner->Destroy();
+		GamePlayStatic::DestroyGameObject(Owner);
 	}
 }
 

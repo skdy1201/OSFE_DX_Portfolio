@@ -28,7 +28,7 @@ void CChangeRedModule::tick()
 {
 	if(OwnerAnimator->GetCurAnim()->IsFinish())
 	{
-		pObj->Destroy();
+		GamePlayStatic::DestroyGameObject(pObj);
 	}
 }
 

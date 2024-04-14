@@ -34,7 +34,7 @@ void CTerraDeadState::finaltick()
 
 	if (Owner->Animator2D()->GetCurAnim()->GetName() == L"DeathExplosion" && Owner->Animator2D()->GetCurAnim()->IsFinish())
 	{
-		Owner->Destroy();
+		GamePlayStatic::DestroyGameObject(Owner);
 	}
 }
 

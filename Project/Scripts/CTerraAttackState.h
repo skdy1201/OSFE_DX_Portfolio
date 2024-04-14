@@ -3,16 +3,20 @@
 #include <Engine/CScript.h>
 
 class CFieldObjScript;
+class Terraform;
 
 class CTerraAttackState :
     public CState
 {
 	CGameObject* Terra;
 	CFieldObjScript* TerraScript;
-	CGameObject* AnimatorObject;
+	Ptr<CPrefab> AnimatorObject;
 
+
+	Terraform* m_Terraform;
 
 	int AttackPattern;
+	bool bAttack;
 
 	CGameObject* CheckAnimation[4];
 
@@ -24,7 +28,7 @@ public:
 	void Attack2();
 	void Attack3();
 
-	bool checkAnimation();
+	bool CheckEndAnim();
 
 public:
 
