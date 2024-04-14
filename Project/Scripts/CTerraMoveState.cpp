@@ -2,6 +2,7 @@
 #include "CTerraMoveState.h"
 
 #include <Engine/CStateMachine.h>
+#include <Engine/CCollider2D.h>
 
 #include "CFieldScript.h"
 #include "CFieldObjScript.h"
@@ -20,12 +21,14 @@ void CTerraMoveState::Enter()
 {
 	TerraScript = this->GetFSM()->GetStateMachine()->GetOwner()->GetScript<CFieldObjScript>();
 
+	this->GetFSM()->GetStateMachine()->GetOwner()->Collider2D()->SetOffsetScale(Vec2(0.f, 0.f));
+
 	MoveCooldtime = (float*)GetBlackboardData(L"MoveCooldown");
 	CurField = this->GetFSM()->GetStateMachine()->GetOwner()->GetScript<CFieldObjScript>()->GetField();
 
 
 	MoveTime = CRandomMgr::GetInst()->GetRandom(4);
-	MoveTime += 5;
+	MoveTime += 8;
 
 	for(int i = 0; i < MoveTime; ++i)
 	{
@@ -87,5 +90,7 @@ void CTerraMoveState::finaltick()
 
 void CTerraMoveState::Exit()
 {
-		*MoveCooldtime = 0.f;
+	this->GetFSM()->GetStateMachine()->GetOwner()->Collider2D()->SetOffsetScale(Vec2(40.f, 40.f));
+
+	*MoveCooldtime = 0.f;
 }

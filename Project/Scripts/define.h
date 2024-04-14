@@ -82,6 +82,8 @@
 
 #define PrefabTopInfo L"prefab\\TopInfo.pref"
 
+#define PrefabTileAnimation L"prefab\\TileAnimationTest.pref"
+
 
 // 에니메이션 매크로
 #define frostblastanim FrostBlast

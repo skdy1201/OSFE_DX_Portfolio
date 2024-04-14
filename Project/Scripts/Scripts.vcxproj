@@ -200,6 +200,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CSniperProj.h" />
     <ClInclude Include="CSniperScript.h" />
     <ClInclude Include="CStateMgr.h" />
+    <ClInclude Include="CTerraAttackState.h" />
     <ClInclude Include="CTerrabeam.h" />
     <ClInclude Include="CTerraDeadState.h" />
     <ClInclude Include="CTerraEntryState.h" />
@@ -254,6 +255,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CSniperProj.cpp" />
     <ClCompile Include="CSniperScript.cpp" />
     <ClCompile Include="CStateMgr.cpp" />
+    <ClCompile Include="CTerraAttackState.cpp" />
     <ClCompile Include="CTerrabeam.cpp" />
     <ClCompile Include="CTerraDeadState.cpp" />
     <ClCompile Include="CTerraEntryState.cpp" />

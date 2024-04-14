@@ -36,10 +36,10 @@ void CTerraIdleState::finaltick()
 		ChangeState(L"CTerraMoveState");
 	}
 
-	/*if (*AttackCooltime == 0.f)
+	if (*AttackCooltime >= 5.f)
 	{
 		ChangeState(L"CTerraAttackState");
-	}*/
+	}
 
 	if (TerraScript->GetHit() == true)
 	{

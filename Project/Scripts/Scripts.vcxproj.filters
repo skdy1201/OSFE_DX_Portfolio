@@ -123,7 +123,7 @@
       <Filter>03. Magic\Terraform</Filter>
     </ClInclude>
     <ClInclude Include="CTerrabeam.h">
-      <Filter>02. Scripts\Module\Magic</Filter>
+      <Filter>02. Scripts\Magic\TerraBeam</Filter>
     </ClInclude>
     <ClInclude Include="CPlayerHitState.h">
       <Filter>08. States\PlayerState</Filter>
@@ -153,6 +153,9 @@
       <Filter>08. States\BossState</Filter>
     </ClInclude>
     <ClInclude Include="CTerraDeadState.h">
+      <Filter>08. States\BossState</Filter>
+    </ClInclude>
+    <ClInclude Include="CTerraAttackState.h">
       <Filter>08. States\BossState</Filter>
     </ClInclude>
   </ItemGroup>
@@ -276,7 +279,7 @@
       <Filter>03. Magic\Terraform</Filter>
     </ClCompile>
     <ClCompile Include="CTerrabeam.cpp">
-      <Filter>02. Scripts\Module\Magic</Filter>
+      <Filter>02. Scripts\Magic\TerraBeam</Filter>
     </ClCompile>
     <ClCompile Include="CPlayerHitState.cpp">
       <Filter>08. States\PlayerState</Filter>
@@ -306,6 +309,9 @@
       <Filter>08. States\BossState</Filter>
     </ClCompile>
     <ClCompile Include="CTerraDeadState.cpp">
+      <Filter>08. States\BossState</Filter>
+    </ClCompile>
+    <ClCompile Include="CTerraAttackState.cpp">
       <Filter>08. States\BossState</Filter>
     </ClCompile>
   </ItemGroup>
@@ -373,9 +379,6 @@
     <Filter Include="03. Magic\Terraform">
       <UniqueIdentifier>{bb86c992-0652-447a-860b-ac4478117d26}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02. Scripts\Module\Magic">
-      <UniqueIdentifier>{e6655dd0-3f12-405f-be44-b7df354e3e48}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03. Magic\DiagBeam">
       <UniqueIdentifier>{a471b42f-e81f-4c54-8fb3-a43823a9c43d}</UniqueIdentifier>
     </Filter>
@@ -387,6 +390,12 @@
     </Filter>
     <Filter Include="02. Scripts\Boss">
       <UniqueIdentifier>{04cdb9a6-106b-461c-8b21-6351ed650d56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\Magic\TerraBeam">
+      <UniqueIdentifier>{e6655dd0-3f12-405f-be44-b7df354e3e48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Magic\TerraBeam">
+      <UniqueIdentifier>{0ed71c52-a3f2-4043-83c5-91ddf639890e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

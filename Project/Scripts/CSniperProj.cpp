@@ -25,7 +25,7 @@ void CSniperProj::begin()
 	Info.Damage = 50;
 	Info.MaxRange = 4;
 	Info.LifeCount = -1;
-	Info.LifeTime = 4.f;
+	Info.LifeTime = 5.f;
 	Info.TargetTile = false;
 	Info.m_Speed = 3000.f;
 

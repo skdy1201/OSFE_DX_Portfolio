@@ -54,6 +54,11 @@ void CTerraScript::tick()
 	{
 		m_MoveCooltime += DT;
 	}
+
+	if(m_AttackCooltime <= 5.f)
+	{
+		m_AttackCooltime += DT;
+	}
 }
 
 void CTerraScript::Hit(int Damage)
