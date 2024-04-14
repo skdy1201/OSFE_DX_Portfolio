@@ -7,7 +7,8 @@
 #include "CFieldObjScript.h"
 
 CManaProgrssUIScript::CManaProgrssUIScript()
-	: ManaRegen(0)
+	: CUIScript()
+	, ManaRegen(0)
 {
 }
 

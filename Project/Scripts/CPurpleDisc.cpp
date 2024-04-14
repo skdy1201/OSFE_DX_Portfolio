@@ -36,7 +36,7 @@ void CPurpleDisc::begin()
 	Info.LifeCount = -1;
 	Info.LifeTime = 3.5f;
 	Info.TargetTile = false;
-	Info.m_Speed = 300.f;
+	Info.m_Speed = 650.f;
 
 	this->SetInfo(Info);
 

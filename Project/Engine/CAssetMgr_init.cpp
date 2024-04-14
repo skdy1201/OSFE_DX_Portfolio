@@ -435,6 +435,7 @@ void CAssetMgr::CreateDefaultGraphicsShader()
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
 
 	AddAsset(L"ChangeRedShader", pShader.Get());
+
 }
 
 

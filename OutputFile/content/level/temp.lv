@@ -1,6 +1,6 @@
 C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\OutputFile\content\level\temp.lv
 Default
-2
+3
 MainCamera
 0
 0
@@ -38,6 +38,45 @@ UICamera
 1
 15
 0
+0
+Lobby
+0
+0
+0 0 300
+1280 960 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\Lobby.mtrl
+0
+material\Lobby.mtrl
+15
+2
+CUIScript
+CTitleUI
+1
+Title
+0
+0
+0 105 -1
+640 320 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\Title.mtrl
+0
+material\Title.mtrl
+15
+1
+CTitleUI
 0
 Field
 1

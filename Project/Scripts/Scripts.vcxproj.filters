@@ -167,6 +167,9 @@
     <ClInclude Include="CPlayerDeadState.h">
       <Filter>08. States\PlayerState</Filter>
     </ClInclude>
+    <ClInclude Include="CTitleUI.h">
+      <Filter>02. Scripts\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -331,6 +334,9 @@
     </ClCompile>
     <ClCompile Include="CPlayerDeadState.cpp">
       <Filter>08. States\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="CTitleUI.cpp">
+      <Filter>02. Scripts\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

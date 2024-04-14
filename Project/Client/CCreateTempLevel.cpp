@@ -35,10 +35,12 @@
 #include "../Scripts/define.h"
 
 #include <Engine/CAnimator2D.h>
+#include <Engine/CFontMgr.h>
 
 
 void CCreateTempLevel::Init()
 {
+
 	// Missile Prefab »ý¼º
 	/*CGameObject* pObj = nullptr;
 

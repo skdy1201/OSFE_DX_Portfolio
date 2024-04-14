@@ -58,10 +58,13 @@ void CTimeMgr::tick()
 	++m_iCall;	
 	g_global.g_time += (float)m_DeltaTime;
 	g_global.g_dt = (float)m_DeltaTime;
+
+	
 }
 
 void CTimeMgr::render()
 {
 	// 폰트 출력
 	CFontMgr::GetInst()->DrawFont(m_szText, 10.f, 30.f, 16, FONT_RGBA(255, 30, 30, 255));
+
 }

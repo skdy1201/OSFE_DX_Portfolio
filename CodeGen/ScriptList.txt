@@ -25,3 +25,4 @@ CDiagBeam
 CPurpleDisc
 CChangeRedModule
 CTerraScript
+CTitleUI

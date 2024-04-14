@@ -19,6 +19,7 @@ private:
 
 	wchar_t			m_szText[256];
 
+
 public:
 	float GetDeltaTime() { return (float)m_DeltaTime; }
 	double GetDeltaTime_d() { return m_DeltaTime; }

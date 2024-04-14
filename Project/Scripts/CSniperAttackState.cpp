@@ -85,6 +85,7 @@ void CSniperAttackState::Exit()
 
 	AnimatorObject->Animator2D()->Play(L"EmptyAnimation", true);
 
+
 	if (*MoveTimer > 3.5f)
 		*MoveTimer -= 1.5f;
 
