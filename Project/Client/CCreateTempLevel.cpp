@@ -140,7 +140,9 @@ void CCreateTempLevel::CreateTempLevel()
 
 	CCollisionMgr::GetInst()->LayerCheck(4, 4);
 
-	CLevelMgr::GetInst()->ChangeLevel(pTempLevel, LEVEL_STATE::STOP);
+	GamePlayStatic::Play2DBGM(L"sound\\Main_Theme(extended).wav", 0.5f);
+
+	CLevelMgr::GetInst()->ChangeLevel(pTempLevel, LEVEL_STATE::PLAY);
 
 	//CLevelSaveLoad::SaveLevel(pTempLevel, L"level\\temp.lv");	
 }
