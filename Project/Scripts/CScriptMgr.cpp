@@ -29,6 +29,7 @@
 #include "CChangeRedModule.h"
 #include "CTerraScript.h"
 #include "CTitleUI.h"
+#include "CControlScript.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -60,6 +61,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CChangeRedModule");
 	_vec.push_back(L"CTerraScript");
 	_vec.push_back(L"CTitleUI");
+	_vec.push_back(L"CControlScript");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -120,6 +122,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CTerraScript;
 	if (L"CTitleUI" == _strScriptName)
 		return new CTitleUI;
+	if (L"CControlScript" == _strScriptName)
+		return new CControlScript;
 	return nullptr;
 }
 
@@ -210,6 +214,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::TITLEUI:
 		return new CTitleUI;
+		break;
+	case (UINT)SCRIPT_TYPE::CONTROLSCRIPT:
+		return new CControlScript;
 		break;
 	}
 	return nullptr;
@@ -329,6 +336,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::TITLEUI:
 		return L"CTitleUI";
+		break;
+
+	case SCRIPT_TYPE::CONTROLSCRIPT:
+		return L"CControlScript";
 		break;
 
 	}

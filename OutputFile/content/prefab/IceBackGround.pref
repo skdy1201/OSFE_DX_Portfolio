@@ -1,5 +1,5 @@
 IceBackGround
-0
+30
 0
 0 0 9000
 1600 800 1
@@ -14,5 +14,6 @@ material\Ice_BG.mtrl
 0
 material\Ice_BG.mtrl
 15
-0
+1
+CControlScript
 0

@@ -20,7 +20,7 @@ void CManaBackGroundUIScript::begin()
 	for(int i = 1; i < PlayerMana; ++i)
 	{
 		Vec3 ManaBarPos = pObj->Transform()->GetWorldPos();
-		ManaBarPos.z = 0.f;
+		ManaBarPos.z = -500.f;
 
 		Vec3 ManaBarScale = pObj->Transform()->GetRelativeScale();
 
@@ -30,6 +30,8 @@ void CManaBackGroundUIScript::begin()
 		ManaBarPos.x = (ManaBarPos.x - (ManaBarScale.x/2)) + ((ManaBarScale.x / PlayerMana) * i);
 
 		pOBJ->Transform()->SetRelativePos(ManaBarPos);
+
+		this->GetOwner()->AddChild(pOBJ);
 		GamePlayStatic::SpawnGameObject(pOBJ, 31);
 
 	}

@@ -179,6 +179,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CManaProgrssUIScript.h" />
     <ClInclude Include="CMissileScript.h" />
     <ClInclude Include="CMonsterScript.h" />
+    <ClInclude Include="CControlScript.h" />
     <ClInclude Include="CPlayerAttackState.h" />
     <ClInclude Include="CPlayerBulletAnim.h" />
     <ClInclude Include="CPlayerCursorScript.h" />
@@ -238,6 +239,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CManaProgrssUIScript.cpp" />
     <ClCompile Include="CMissileScript.cpp" />
     <ClCompile Include="CMonsterScript.cpp" />
+    <ClCompile Include="CControlScript.cpp" />
     <ClCompile Include="CPlayerAttackState.cpp" />
     <ClCompile Include="CPlayerBulletAnim.cpp" />
     <ClCompile Include="CPlayerCursorScript.cpp" />

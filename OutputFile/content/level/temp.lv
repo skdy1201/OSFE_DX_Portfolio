@@ -1,6 +1,6 @@
 C:\Users\skdy1\OneDrive\Desktop\DefaultDirectX\OutputFile\content\level\temp.lv
 Default
-3
+2
 MainCamera
 0
 0
@@ -39,112 +39,7 @@ UICamera
 15
 0
 0
-StartLobby
-0
-0
-0 0 300
-1280 960 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\Lobby.mtrl
-0
-material\Lobby.mtrl
-15
-2
-CUIScript
-CTitleUI
-4
-Title
-0
-0
-0 105 -23
-640 320 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\Title.mtrl
-0
-material\Title.mtrl
-15
-1
-CTitleUI
-0
-Menu1
-0
-0
--510 -120 -15
-200 200 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\PlayUI.mtrl
-0
-material\PlayUI.mtrl
-15
-0
-0
-Menu2
-0
-0
--525 -221 -29
-200 200 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\ExitUI.mtrl
-0
-material\ExitUI.mtrl
-15
-0
-0
-TitleLine
-0
-0
--702 -120 -21
-200 2 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\TitleLine.mtrl
-0
-material\TitleLine.mtrl
-15
-0
-0
 Field
-1
-123
-1
-0
-0 0 0
-1 1 1
-0 0 0
-1
-15
-1
-CFieldScript
-4 16
 0
 Tile
 0
@@ -223,7 +118,7 @@ DirectionalLight
 29
 0
 30
-1
+2
 IceBackGround
 30
 0
@@ -240,209 +135,101 @@ material\Ice_BG.mtrl
 0
 material\Ice_BG.mtrl
 15
+1
+CControlScript
+0
+StartLobby
+30
+0
+0 0 300
+1280 960 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\Lobby.mtrl
+0
+material\Lobby.mtrl
+15
+2
+CUIScript
+CTitleUI
+4
+Title
+30
+0
+0 105 -23
+640 320 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\Title.mtrl
+0
+material\Title.mtrl
+15
+1
+CTitleUI
+0
+Menu1
+30
+0
+-510 -120 -15
+200 200 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\PlayUI.mtrl
+0
+material\PlayUI.mtrl
+15
+0
+0
+Menu2
+30
+0
+-525 -221 -29
+200 200 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\ExitUI.mtrl
+0
+material\ExitUI.mtrl
+15
+0
+0
+TitleLine
+30
+0
+-702 -120 -21
+200 2 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\TitleLine.mtrl
+0
+material\TitleLine.mtrl
+15
 0
 0
 UI
-5
-ManaCrystalUI
-31
-0
--180 -315 0
-125 125 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\ManaCrystalUI.mtrl
-0
-material\ManaCrystalUI.mtrl
-15
-0
-4
-ManaOuter
-31
-0
-185 0 145
-375 40 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\ManaUI.mtrl
-0
-material\ManaUI.mtrl
-15
-0
-0
-ManaUIBackGround
-31
-0
-185 0 300
-375 30 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\ManaBackGround.mtrl
-0
-material\ManaBackGround.mtrl
-15
-1
-CManaBackGroundUIScript
-0
-ManaProgress
-31
-0
-0 0 108
-370 30 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\ManaProgress.mtrl
-0
-material\ManaProgress.mtrl
-15
-1
-CUIScript
-0
-ManaProgressWhite
-31
-0
-0 0 151
-370 30 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\ManaProgress.mtrl
-0
-material\ManaProgress.mtrl
-15
-1
-CManaProgressWhiteUI
-0
-DeckUI
-31
-0
-0 0 0
-150 150 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\Deck.mtrl
-0
-material\Deck.mtrl
-15
-1
-CDeckCoverUI
-0
-HandSlot1
-31
-0
--400 -300 250
-114 114 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\Slot.mtrl
-0
-material\Slot.mtrl
-15
-0
-1
-HandSlotOpen
-31
-0
-0 0 0
-96 96 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\SlotOpen.mtrl
-0
-material\SlotOpen.mtrl
-15
-0
-0
-HandSlot2
-31
-0
--300 -300 250
-114 114 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\Slot.mtrl
-0
-material\Slot.mtrl
-15
-0
-1
-HandSlotOpen
-31
-0
-0 0 0
-96 96 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\SlotOpen.mtrl
-0
-material\SlotOpen.mtrl
-15
-0
-0
-TopInfo
-31
-0
-110 320 0
-1500 100 1
-0 0 0
-1
-9
-1
-RectMesh
-1
-1
-material\TopLeft.mtrl
-0
-material\TopLeft.mtrl
-15
-0
 0

@@ -44,7 +44,6 @@ void CFieldScript::begin()
 	SpawnTile(MaxTileRow, MaxTileCol);
 	SpawnFieldObj(Vec2{ 5, 2 }, PrefabPlayer,LayerPlayer, true);
 	SpawnFieldObj(Vec2{8 , 2 }, PrefabSniper, LayerMonster, false);
-	SpawnFieldObj(Vec2{10 , 0 }, PrefabTerra, LayerMonster, false);
 
 
 
@@ -52,7 +51,11 @@ void CFieldScript::begin()
 
 void CFieldScript::tick()
 {
+	if(KEY_TAP(KEY::N))
+	{
+		SpawnFieldObj(Vec2{ 10 , 0 }, PrefabTerra, LayerMonster, false);
 
+	}
 }
 
 

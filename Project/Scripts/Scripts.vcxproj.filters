@@ -170,6 +170,9 @@
     <ClInclude Include="CTitleUI.h">
       <Filter>02. Scripts\UI</Filter>
     </ClInclude>
+    <ClInclude Include="CControlScript.h">
+      <Filter>02. Scripts\Module</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -337,6 +340,9 @@
     </ClCompile>
     <ClCompile Include="CTitleUI.cpp">
       <Filter>02. Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CControlScript.cpp">
+      <Filter>02. Scripts\Module</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
