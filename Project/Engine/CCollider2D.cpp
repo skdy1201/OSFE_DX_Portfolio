@@ -10,7 +10,7 @@ CCollider2D::CCollider2D()
 	, m_CollisionCount(0)
 	, m_bAbsolute(false)
 	, m_Type(COLLIDER2D_TYPE::RECT)
-	, m_bDrawDebug(true)
+	, m_bDrawDebug(false)
 {
 }
 
