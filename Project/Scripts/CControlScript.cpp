@@ -60,16 +60,19 @@ void CControlScript::tick()
 
 	if(KEY_TAP((KEY::B)))
 	{
+		CGameObject* obj = CLevelMgr::GetInst()->GetCurrentLevel()->FindObjectByName(L"UICamera");
+		obj->Camera()->LayerCheck(31, false);
+
 
 		Ptr<CPrefab> temp = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\ExitLobby.pref", L"prefab\\ExitLobby.pref");
 		CGameObject* pObj = temp->Instantiate();
 
 		Vec3 Pos = pObj->Transform()->GetRelativePos();
-		Pos.z = 1.f;
+		
 
 		pObj->Transform()->SetRelativePos(Pos);
 
-		GamePlayStatic::SpawnGameObject(pObj, LayerField);
+		GamePlayStatic::SpawnGameObject(pObj, LayerBackGround);
 	}
 }
 
