@@ -47,7 +47,9 @@ void CFrostBolt::tick()
 
 void CFrostBolt::BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)
 {
-	CProjectileScript::BeginOverlap(_Collider, _OtherObj, _OtherCollider);
+	_OtherObj->GetScript<CFieldObjScript>()->Hit(this->m_ProjInfo.Damage);
+
+	GamePlayStatic::DestroyGameObject(this->GetOwner());
 }
 
 void CFrostBolt::Overlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)

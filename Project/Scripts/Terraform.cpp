@@ -25,7 +25,7 @@ Terraform::Terraform()
 
 	MagicIcon = CPrefab::GetPrefabObj(PrefabTerraicon);
 	MagicIcon->Transform()->SetRelativePos(SpellGravesPos);
-	GamePlayStatic::SpawnGameObject(MagicIcon, LayerDefault);
+	GamePlayStatic::SpawnGameObject(MagicIcon, LayerUI);
 }
 
 Terraform::~Terraform()

@@ -13,6 +13,7 @@
 #include "Terraform.h"
 #include "CDiagBeam.h"
 #include "CPurpleDisc.h"
+#include "Spine.h"
 
 CFieldObjScript::CFieldObjScript()
 	: CScript((UINT)SCRIPT_TYPE::FIELDOBJSCRIPT)
@@ -155,8 +156,8 @@ void CFieldObjScript::begin()
 		this->SetStatus(PlayerState);
 
 		//m_Deck->AddMagic(new FrostBoltMagic);
-		m_Deck->AddMagic(new Terraform);
-		m_Deck->AddMagic(new Terraform);
+		m_Deck->AddMagic(new FrostBoltMagic);
+		m_Deck->AddMagic(new Spine);
 
 		m_Deck->SetOwner(this->m_Owner);
 		m_Deck->begin();

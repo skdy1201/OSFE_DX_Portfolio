@@ -173,6 +173,12 @@
     <ClInclude Include="CControlScript.h">
       <Filter>02. Scripts\Module</Filter>
     </ClInclude>
+    <ClInclude Include="CSpine.h">
+      <Filter>02. Scripts\Magic\Spine</Filter>
+    </ClInclude>
+    <ClInclude Include="Spine.h">
+      <Filter>03. Magic\Spine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -344,6 +350,12 @@
     <ClCompile Include="CControlScript.cpp">
       <Filter>02. Scripts\Module</Filter>
     </ClCompile>
+    <ClCompile Include="CSpine.cpp">
+      <Filter>02. Scripts\Magic\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="Spine.cpp">
+      <Filter>03. Magic\Spine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -424,7 +436,10 @@
     <Filter Include="02. Scripts\Magic\TerraBeam">
       <UniqueIdentifier>{e6655dd0-3f12-405f-be44-b7df354e3e48}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03. Magic\TerraBeam">
+    <Filter Include="02. Scripts\Magic\Spine">
+      <UniqueIdentifier>{b454cfab-def2-4569-830f-ff474714b73a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Magic\Spine">
       <UniqueIdentifier>{0ed71c52-a3f2-4043-83c5-91ddf639890e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

@@ -26,7 +26,7 @@ FrostBoltMagic::FrostBoltMagic()
 
 	MagicIcon = CPrefab::GetPrefabObj(PrefabFrosticon);
 	MagicIcon->Transform()->SetRelativePos(SpellGravesPos);
-	GamePlayStatic::SpawnGameObject(MagicIcon, LayerDefault);
+	GamePlayStatic::SpawnGameObject(MagicIcon, LayerUI);
 }
 
 FrostBoltMagic::~FrostBoltMagic()

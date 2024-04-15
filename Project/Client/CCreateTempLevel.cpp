@@ -142,7 +142,7 @@ void CCreateTempLevel::CreateTempLevel()
 
 	GamePlayStatic::Play2DBGM(L"sound\\Main_Theme(extended).wav", 0.5f);
 
-	CLevelMgr::GetInst()->ChangeLevel(pTempLevel, LEVEL_STATE::PLAY);
+	CLevelMgr::GetInst()->ChangeLevel(pTempLevel, LEVEL_STATE::STOP);
 
 	//CLevelSaveLoad::SaveLevel(pTempLevel, L"level\\temp.lv");	
 }

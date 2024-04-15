@@ -202,6 +202,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CSniperMoveState.h" />
     <ClInclude Include="CSniperProj.h" />
     <ClInclude Include="CSniperScript.h" />
+    <ClInclude Include="CSpine.h" />
     <ClInclude Include="CStateMgr.h" />
     <ClInclude Include="CTerraAttackState.h" />
     <ClInclude Include="CTerrabeam.h" />
@@ -219,6 +220,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="framework.h" />
     <ClInclude Include="FrostBoltMagic.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Spine.h" />
     <ClInclude Include="Terraform.h" />
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +264,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CSniperMoveState.cpp" />
     <ClCompile Include="CSniperProj.cpp" />
     <ClCompile Include="CSniperScript.cpp" />
+    <ClCompile Include="CSpine.cpp" />
     <ClCompile Include="CStateMgr.cpp" />
     <ClCompile Include="CTerraAttackState.cpp" />
     <ClCompile Include="CTerrabeam.cpp" />
@@ -283,6 +286,7 @@ call CodeGen.exe</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Scripts.cpp" />
+    <ClCompile Include="Spine.cpp" />
     <ClCompile Include="Terraform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
