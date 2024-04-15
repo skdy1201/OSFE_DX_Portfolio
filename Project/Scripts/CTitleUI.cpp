@@ -20,22 +20,11 @@ void CTitleUI::begin()
 
 void CTitleUI::tick()
 {
-	tFont menu1 = {};
 
-	menu1.Message = L"Game Play";
-
-	menu1.xscale = 100.f;
-	menu1.yscale = 100.f;
-
-	menu1.Fontsize = 50;
-
-	menu1.RColor = 255.f;
-	menu1.GColor = 255.f;
-	menu1.BColor = 255.f;
-	menu1.AColor = 1.f;
-
-	CRenderMgr::GetInst()->AddFont(menu1);
-
+	if(KEY_TAP(KEY::ENTER))
+	{
+		GamePlayStatic::DestroyGameObject(this->GetOwner());
+	}
 
 
 }

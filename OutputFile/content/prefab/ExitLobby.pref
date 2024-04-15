@@ -1,4 +1,4 @@
-Lobby
+ExitLobby
 0
 0
 0 0 300
@@ -17,11 +17,11 @@ material\Lobby.mtrl
 2
 CUIScript
 CTitleUI
-3
+4
 Title
 0
 0
-0 105 -1
+0 105 -23
 640 320 1
 0 0 0
 1
@@ -70,6 +70,24 @@ RectMesh
 material\ExitUI.mtrl
 0
 material\ExitUI.mtrl
+15
+0
+0
+TitleLine
+0
+0
+-706 -212 -21
+200 2 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\TitleLine.mtrl
+0
+material\TitleLine.mtrl
 15
 0
 0

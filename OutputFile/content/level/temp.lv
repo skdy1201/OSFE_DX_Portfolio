@@ -39,7 +39,7 @@ UICamera
 15
 0
 0
-Lobby
+StartLobby
 0
 0
 0 0 300
@@ -58,11 +58,11 @@ material\Lobby.mtrl
 2
 CUIScript
 CTitleUI
-1
+4
 Title
 0
 0
-0 105 -1
+0 105 -23
 640 320 1
 0 0 0
 1
@@ -77,6 +77,60 @@ material\Title.mtrl
 15
 1
 CTitleUI
+0
+Menu1
+0
+0
+-510 -120 -15
+200 200 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\PlayUI.mtrl
+0
+material\PlayUI.mtrl
+15
+0
+0
+Menu2
+0
+0
+-525 -221 -29
+200 200 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\ExitUI.mtrl
+0
+material\ExitUI.mtrl
+15
+0
+0
+TitleLine
+0
+0
+-702 -120 -21
+200 2 1
+0 0 0
+1
+9
+1
+RectMesh
+1
+1
+material\TitleLine.mtrl
+0
+material\TitleLine.mtrl
+15
+0
 0
 Field
 1
