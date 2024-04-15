@@ -132,6 +132,38 @@ Vec2 CFieldObjScript::GetMoveIdx(Vec2 TargetDirIdx)
 	return NextIndex;
 }
 
+void CFieldObjScript::MovedByAttack()
+{
+	if(b_Moved)
+	{
+		Vec2 Idx = this->GetOwnerIdx() + MovedIdxDir;
+
+		Vec3 MoveTilePos = m_Field->GetTilePosition(Idx);
+
+		Vec3 Direction = MoveTilePos - this->Transform()->GetRelativePos();
+		float Distance = Direction.Length();
+
+		Direction.Normalize();
+
+		Vec3 NewPos = this->Transform()->GetRelativePos();
+		NewPos += Direction * 600.f * DT;
+
+		this->Transform()->SetRelativePos(NewPos);
+
+		float xpos = MoveTilePos.x - NewPos.x;
+		float ypos = MoveTilePos.y - NewPos.y;
+
+		if(xpos < 1.f && ypos < 1.f)
+		{
+			this->Transform()->SetRelativeRotation(MoveTilePos);
+			this->SetOwnerIdx(Idx);
+			b_Moved = false;
+			MovedIdxDir = Vec2{ 0, 0 };
+		}
+
+	}
+}
+
 void CFieldObjScript::begin()
 {
 	if(IsPlayer)

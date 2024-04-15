@@ -49,6 +49,9 @@ protected:
 
 	bool            b_Heat;
 
+	bool			b_Moved;
+	Vec2			MovedIdxDir;
+
 public:
 	Status& GetStatus() { return m_status; }
 	float GetMpPersent() { return m_status.Current_MP / m_status.MP; }
@@ -76,6 +79,9 @@ public:
 	Vec2 GetMoveIdx(Vec2 TargetDirIdx);
 
 	CDeck* GetDeck() { return m_Deck; }
+
+	void MovedByAttack();
+	void SetMovedIdx(Vec2 idx) { MovedIdxDir = idx; }
 
 	virtual void begin() override;
 	virtual void tick() override;

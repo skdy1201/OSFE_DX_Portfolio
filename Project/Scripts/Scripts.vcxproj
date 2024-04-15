@@ -215,6 +215,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="CTileScript.h" />
     <ClInclude Include="CTitleUI.h" />
     <ClInclude Include="CUIScript.h" />
+    <ClInclude Include="CWideShot.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="DiagBeamMagic.h" />
     <ClInclude Include="framework.h" />
@@ -277,6 +278,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="CTileScript.cpp" />
     <ClCompile Include="CTitleUI.cpp" />
     <ClCompile Include="CUIScript.cpp" />
+    <ClCompile Include="CWideShot.cpp" />
     <ClCompile Include="DiagBeamMagic.cpp" />
     <ClCompile Include="FrostBoltMagic.cpp" />
     <ClCompile Include="pch.cpp">

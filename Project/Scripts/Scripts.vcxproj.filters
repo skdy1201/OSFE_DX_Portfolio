@@ -179,6 +179,9 @@
     <ClInclude Include="Spine.h">
       <Filter>03. Magic\Spine</Filter>
     </ClInclude>
+    <ClInclude Include="CWideShot.h">
+      <Filter>02. Scripts\Magic\AirSlash</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -356,6 +359,9 @@
     <ClCompile Include="Spine.cpp">
       <Filter>03. Magic\Spine</Filter>
     </ClCompile>
+    <ClCompile Include="CWideShot.cpp">
+      <Filter>02. Scripts\Magic\AirSlash</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -441,6 +447,9 @@
     </Filter>
     <Filter Include="03. Magic\Spine">
       <UniqueIdentifier>{0ed71c52-a3f2-4043-83c5-91ddf639890e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scripts\Magic\AirSlash">
+      <UniqueIdentifier>{692c0136-3811-4146-8ad2-a9627cae260d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

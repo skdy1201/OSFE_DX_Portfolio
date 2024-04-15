@@ -45,6 +45,7 @@ void CSniperScript::begin()
 
 		if (nullptr != StateMachine()->GetFSM())
 		{
+			
 			StateMachine()->GetFSM()->ChangeState(L"CSniperIdleState");
 		}
 
