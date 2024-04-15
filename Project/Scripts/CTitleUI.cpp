@@ -23,9 +23,11 @@ void CTitleUI::tick()
 
 	if(KEY_TAP(KEY::ENTER))
 	{
+		GamePlayStatic::Play2DSound(L"sound\\accept_soft.wav", 1, 0.5f, false);
+
 		GamePlayStatic::DestroyGameObject(this->GetOwner());
 	}
-
+	
 
 }
 

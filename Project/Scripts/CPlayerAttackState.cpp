@@ -36,6 +36,8 @@ void CPlayerAttackState::Enter()
 	Proj_Struct info = pProjScript->GetInfo();
 
 	pProjScript->Shoot(Player, Field, Vec2(100.f, 0.f), info);
+	GamePlayStatic::Play2DSound(L"sound\\mark_02.wav", 1, 0.5f);
+
 	pProjScript->SetDir(Vec3(1.f, 0.f, 0.f));
 
 	GamePlayStatic::SpawnGameObject(Bullet, LayerPlayerAttack);
@@ -61,10 +63,13 @@ void CPlayerAttackState::finaltick()
 	{
 		Bullet = CPrefab::GetPrefabObj(PrefabPlayerBullet);
 
+
 		CProjectileScript* pProjScript = Bullet->GetScript<CProjectileScript>();
 		Proj_Struct info = pProjScript->GetInfo();
 
 		pProjScript->Shoot(Player, Field, Vec2(100.f, 0.f), info);
+		GamePlayStatic::Play2DSound(L"sound\\mark_02.wav", 1, 0.5f);
+
 		pProjScript->SetDir(Vec3(1.f, 0.f, 0.f));
 
 		GamePlayStatic::SpawnGameObject(Bullet, LayerPlayerAttack);

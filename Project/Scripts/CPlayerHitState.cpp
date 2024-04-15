@@ -31,6 +31,7 @@ void CPlayerHitState::Enter()
 	HitFX->Transform()->SetRelativeScale(Player->Transform()->GetRelativeScale() * 2);
 	GamePlayStatic::SpawnGameObject(HitFX, LayerDefault);
 
+	GamePlayStatic::Play2DSound(L"sound\\player_hit_heavy.wav", 1, 0.5f);
 	Player->Animator2D()->Play(PlayerHit, false);
 
 	Timer = 0.5f;

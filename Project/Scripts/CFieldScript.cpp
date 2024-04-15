@@ -54,6 +54,7 @@ void CFieldScript::tick()
 	if(KEY_TAP(KEY::N))
 	{
 		SpawnFieldObj(Vec2{ 10 , 0 }, PrefabTerra, LayerMonster, false);
+		GamePlayStatic::Play2DBGM(L"sound\\Terra.wav", 0.5f);
 
 	}
 }

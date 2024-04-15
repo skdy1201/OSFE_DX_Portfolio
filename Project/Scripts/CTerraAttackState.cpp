@@ -103,6 +103,11 @@ void CTerraAttackState::Attack1()
 
 	Terra->Animator2D()->Play(L"TerraAttack1", false);
 
+	GamePlayStatic::Play2DSound(L"sound\\beam_shot_low.wav", 1, 0.5f, true);
+	GamePlayStatic::Play2DSound(L"sound\\beam_shot_low.wav", 1, 0.5f, true);
+	GamePlayStatic::Play2DSound(L"sound\\beam_shot_low.wav", 1, 0.5f, true);
+	GamePlayStatic::Play2DSound(L"sound\\beam_shot_low.wav", 1, 0.5f, true);
+
 	bAttack = true;
 
 }
@@ -149,6 +154,9 @@ void CTerraAttackState::Attack2()
 
 	Terra->Animator2D()->Play(L"TerraAttack3-2", true);
 
+	GamePlayStatic::Play2DSound(L"sound\\beam_impact.wav", 1, 0.5f, true);
+
+
 	CheckAnimation[3] = animation;
 	bAttack = true;
 }
@@ -185,6 +193,8 @@ void CTerraAttackState::Attack3()
 	CheckAnimation[1] = animation;
 
 	Terra->Animator2D()->Play(L"TerraAttack2", false);
+	GamePlayStatic::Play2DSound(L"sound\\beam_shot_loud.wav", 1, 0.5f, true);
+
 
 	bAttack = true;
 }

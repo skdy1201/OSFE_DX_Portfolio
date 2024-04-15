@@ -25,6 +25,9 @@ void CControlScript::tick()
 {
 	if(KEY_TAP(KEY::M))
 	{
+		GamePlayStatic::Play2DBGM(L"sound\\Battle_of_Ice_I.wav", 0.5f);
+		GamePlayStatic::Play2DSound( L"sound\\shuffle_start.wav", 1, 0.5f);
+
 		CLevel* pLevel = CLevelMgr::GetInst()->GetCurrentLevel();
 		CGameObject* pObj = nullptr;
 
@@ -60,6 +63,8 @@ void CControlScript::tick()
 
 	if(KEY_TAP((KEY::B)))
 	{
+		GamePlayStatic::Play2DBGM(L"sound\\Mystery.wav", 0.5f);
+
 		CGameObject* obj = CLevelMgr::GetInst()->GetCurrentLevel()->FindObjectByName(L"UICamera");
 		obj->Camera()->LayerCheck(31, false);
 

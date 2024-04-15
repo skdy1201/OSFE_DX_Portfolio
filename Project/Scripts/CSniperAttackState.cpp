@@ -44,6 +44,8 @@ void CSniperAttackState::Enter()
 	pMtrl->SetScalarParam(SCALAR_PARAM::INT_1, 1);
 	Sniper->Animator2D()->Play(L"SniperShoot", false);
 	AnimatorObject->Animator2D()->Play(L"ChargeCircle", false);
+
+	GamePlayStatic::Play2DSound(L"sound\\trinity_spark.wav", 1, 0.5f);
 }
 
 void CSniperAttackState::finaltick()

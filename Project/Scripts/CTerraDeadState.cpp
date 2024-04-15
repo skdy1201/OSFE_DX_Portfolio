@@ -30,6 +30,7 @@ void CTerraDeadState::finaltick()
 	{
 		Owner->Transform()->SetOffset(Vec2{ 0.f, 20.f });
 		Owner->Animator2D()->PlayModule(L"DeathExplosion", animcount);
+		GamePlayStatic::Play2DSound(L"sound\\explosion_pop.wav", 1, 0.5f);
 	}
 
 	if (Owner->Animator2D()->GetCurAnim()->GetName() == L"DeathExplosion" && Owner->Animator2D()->GetCurAnim()->IsFinish())

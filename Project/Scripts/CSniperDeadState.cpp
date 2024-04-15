@@ -29,6 +29,8 @@ void CSniperDeadState::Enter()
 	Owner->Transform()->SetOffset(Vec2{ 0.f, 50.f });
 	Owner->Transform()->SetRelativeScale(Owner->Transform()->GetRelativeScale() * 2);
 	Owner->Animator2D()->Play(MonsterDead);
+	GamePlayStatic::Play2DSound(L"sound\\explosion_pop.wav", 1, 0.5f);
+
 }
 
 void CSniperDeadState::finaltick()

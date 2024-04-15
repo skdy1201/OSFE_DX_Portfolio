@@ -45,6 +45,8 @@ void CSniperHitState::Enter()
 	HitFX->Transform()->SetRelativeScale(Sniper->Transform()->GetRelativeScale() *2);
 	GamePlayStatic::SpawnGameObject(HitFX, LayerDefault);
 
+	GamePlayStatic::Play2DSound(L"sound\\enemy_hit_heavy.wav", 1, 0.5f);
+
 	Sniper->GetRenderComopnent()->GetDynamicMaterial()->SetScalarParam(SCALAR_PARAM::INT_0, 0);
 
 

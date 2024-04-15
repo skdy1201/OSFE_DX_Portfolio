@@ -32,6 +32,8 @@ void CTerraHitState::Enter()
 	HitFX->Transform()->SetRelativeScale(Terra->Transform()->GetRelativeScale() * 2);
 	GamePlayStatic::SpawnGameObject(HitFX, LayerDefault);
 
+	GamePlayStatic::Play2DSound(L"sound\\enemy_hit_heavy.wav", 1, 0.5f);
+
 	MoveTimer = (float*)GetBlackboardData(L"MoveCooldown");
 
 	Terra->Animator2D()->Play(L"TerraHit"), false;
