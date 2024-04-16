@@ -18,7 +18,7 @@ void CSpine::begin()
 {
 	CAnimatorModule::begin();
 
-	lifetimer = 20.f;
+	lifetimer = 10.f;
 	OverlapTime = 0.f;
 
 }

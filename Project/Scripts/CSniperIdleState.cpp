@@ -64,6 +64,11 @@ void CSniperIdleState::finaltick()
 		ChangeState(L"CSniperHitState");
 	}
 
+	if(OwnerScript->GetMovedByAttack() == true)
+	{
+		ChangeState(L"CSniperMoveState");
+	}
+
 }
 
 void CSniperIdleState::Exit()

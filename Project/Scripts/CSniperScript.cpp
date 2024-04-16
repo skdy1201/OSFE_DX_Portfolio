@@ -13,6 +13,7 @@ CSniperScript::CSniperScript()
 	, MoveDir(0)
     , m_AttackCooltime(0)
 	, m_HurtTime(0)
+	, bMovedbyAttack(false)
 {
 }
 
@@ -20,6 +21,7 @@ CSniperScript::~CSniperScript()
 {
 	GamePlayStatic::DestroyGameObject(ChildAnim);
 }
+
 
 void CSniperScript::begin()
 {
@@ -88,6 +90,10 @@ void CSniperScript::tick()
 
 	CurRow = (int)OwnerFojScript->GetOwnerIdx().y;
 
+	if (b_Moved == true)
+		bMovedbyAttack = true;
+	else
+		bMovedbyAttack = false;
 
 
 }

@@ -16,7 +16,7 @@ private:
 	CGameObject*			Owner;
 	CSniperScript*			OwnerScript;
 
-
+	
 	float*					MoveTimer;
 	float*					AttackTimer;
 

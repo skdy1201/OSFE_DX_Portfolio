@@ -81,7 +81,9 @@ public:
 	CDeck* GetDeck() { return m_Deck; }
 
 	void MovedByAttack();
+	void SetbMoved(bool fact) { b_Moved = fact; }
 	void SetMovedIdx(Vec2 idx) { MovedIdxDir = idx; }
+	Vec2 GetMovedIdx() { return MovedIdxDir; }
 
 	virtual void begin() override;
 	virtual void tick() override;

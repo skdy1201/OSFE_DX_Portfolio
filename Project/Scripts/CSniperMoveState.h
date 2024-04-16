@@ -2,18 +2,21 @@
 
 #include <Engine/CState.h>
 
-class CFieldObjScript;
+class CSniperScript;
 
 class CSniperMoveState :
     public CState
 {
 private:
 
-    CFieldObjScript*    SniperScript;
+    CSniperScript*    SniperScript;
     Vec2                m_OwnerIdx;
     int*                MoveDir;
     float*              MoveCooldtime;
     float*              AttackCooltime;
+
+
+    Vec2                AttackMovedIdx;
 
 public:
 

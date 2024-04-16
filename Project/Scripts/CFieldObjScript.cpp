@@ -3,6 +3,7 @@
 
 #include <Engine/CAnim.h>
 
+#include "AirSlash.h"
 #include "CDeck.h"
 #include "CFieldScript.h"
 #include "CMagic.h"
@@ -47,6 +48,7 @@ void CFieldObjScript::tick()
 	Shoot();
 	Cast();
 	FillMana();
+	MovedByAttack();
 
 	m_Deck->MoveToGrave();
 
@@ -155,10 +157,12 @@ void CFieldObjScript::MovedByAttack()
 
 		if(xpos < 1.f && ypos < 1.f)
 		{
-			this->Transform()->SetRelativeRotation(MoveTilePos);
+			MoveTilePos.z -= 50.f;
+			this->Transform()->SetRelativePos(MoveTilePos);
 			this->SetOwnerIdx(Idx);
 			b_Moved = false;
 			MovedIdxDir = Vec2{ 0, 0 };
+
 		}
 
 	}
@@ -190,6 +194,7 @@ void CFieldObjScript::begin()
 		//m_Deck->AddMagic(new FrostBoltMagic);
 		m_Deck->AddMagic(new FrostBoltMagic);
 		m_Deck->AddMagic(new Spine);
+		m_Deck->AddMagic(new AirSlash);
 
 		m_Deck->SetOwner(this->m_Owner);
 		m_Deck->begin();

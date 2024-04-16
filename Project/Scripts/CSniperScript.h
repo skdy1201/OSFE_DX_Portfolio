@@ -14,10 +14,18 @@ private:
     int              CurRow;
     int             MoveDir; // 1 :: down, 2 :: up
 
-   
+    bool            bMovedbyAttack;
+    Vec2            MovedIdx;
+
+
 
 	CFieldObjScript* OwnerFojScript;
     CGameObject*     ChildAnim;
+
+public:
+
+    bool   GetMovedByAttack() {return bMovedbyAttack;}
+
 
 public:
     virtual void begin() override;

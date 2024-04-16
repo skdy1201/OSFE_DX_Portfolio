@@ -28,3 +28,4 @@ CTerraScript
 CTitleUI
 CControlScript
 CSpine
+CWideShot

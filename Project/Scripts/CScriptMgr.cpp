@@ -31,6 +31,7 @@
 #include "CTitleUI.h"
 #include "CControlScript.h"
 #include "CSpine.h"
+#include "CWideShot.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -64,6 +65,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CTitleUI");
 	_vec.push_back(L"CControlScript");
 	_vec.push_back(L"CSpine");
+	_vec.push_back(L"CWideShot");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -128,6 +130,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CControlScript;
 	if (L"CSpine" == _strScriptName)
 		return new CSpine;
+	if (L"CWideShot" == _strScriptName)
+		return new CWideShot;
 	return nullptr;
 }
 
@@ -224,6 +228,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::SPINE:
 		return new CSpine;
+		break;
+	case (UINT)SCRIPT_TYPE::WIDESHOT:
+		return new CWideShot;
 		break;
 	}
 	return nullptr;
@@ -351,6 +358,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::SPINE:
 		return L"CSpine";
+		break;
+
+	case SCRIPT_TYPE::WIDESHOT:
+		return L"CWideShot";
 		break;
 
 	}

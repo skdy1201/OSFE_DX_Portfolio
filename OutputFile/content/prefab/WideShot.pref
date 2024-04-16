@@ -2,9 +2,14 @@ WideShot
 0
 0
 0 0 0
-200 200 1
+650 450 1
 0 0 0
 1
+1
+0 0 0
+40 40 1
+1
+0
 3
 1
 wideshot
@@ -42,5 +47,6 @@ material\WideShot.mtrl
 0
 material\WideShot.mtrl
 15
-0
+1
+CWideShot
 0

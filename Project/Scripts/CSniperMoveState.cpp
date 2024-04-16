@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CSniperMoveState.h"
 
-#include "CFieldObjScript.h"
+#include "CSniperScript.h"
 #include "CFieldScript.h"
 
 CSniperMoveState::CSniperMoveState()
@@ -16,7 +16,7 @@ CSniperMoveState::~CSniperMoveState()
 void CSniperMoveState::Enter()
 {
 	CGameObject* pOwner = (CGameObject*)GetBlackboardData(L"Owner");
-	SniperScript = pOwner->GetScript<CFieldObjScript>();
+	SniperScript = pOwner->GetScript<CSniperScript>();
 
 	MoveDir = (int*)GetBlackboardData(L"Move Dir");
 	MoveCooldtime = (float*)GetBlackboardData(L"MoveCooldown");
@@ -31,21 +31,40 @@ void CSniperMoveState::finaltick()
 {
 	Vec3 SniperPos = {};
 
-	if(*MoveDir == 1)
+	if(SniperScript->GetMovedByAttack())
 	{
-		SniperPos = SniperScript->GetField()->GetNextTilePos(SniperScript->GetOwner(), Vec2(m_OwnerIdx.x, m_OwnerIdx.y + 1), PlayerZ);
+		SniperScript->MovedByAttack();
+
+		if(SniperScript->GetOwnerIdx() == Vec2(SniperScript->GetOwnerIdx().x + SniperScript->GetMovedIdx().x, SniperScript->GetOwnerIdx().y + SniperScript->GetMovedIdx().y))
+		{
+
+			*MoveCooldtime = 0.f;
+
+			ChangeState(L"CSniperIdleState");
+
+		}
 	}
 	else
 	{
-		SniperPos = SniperScript->GetField()->GetNextTilePos(SniperScript->GetOwner(), Vec2(m_OwnerIdx.x, m_OwnerIdx.y - 1), PlayerZ);
+
+		if(*MoveDir == 1)
+		{
+			SniperPos = SniperScript->GetField()->GetNextTilePos(SniperScript->GetOwner(), Vec2(m_OwnerIdx.x, m_OwnerIdx.y + 1), PlayerZ);
+		}
+		else
+		{
+			SniperPos = SniperScript->GetField()->GetNextTilePos(SniperScript->GetOwner(), Vec2(m_OwnerIdx.x, m_OwnerIdx.y - 1), PlayerZ);
+		}
+
+		SniperScript->GetOwner()->Transform()->SetRelativePos(SniperPos);
+
+		*MoveDir = 0;
+
+		*MoveCooldtime = 0.f;
+
+		ChangeState(L"CSniperIdleState");
+
 	}
-
-	SniperScript->GetOwner()->Transform()->SetRelativePos(SniperPos);
-
-	*MoveDir = 0;
-
-	*MoveCooldtime = 0.f;
-	ChangeState(L"CSniperIdleState");
 }
 
 void CSniperMoveState::Exit()

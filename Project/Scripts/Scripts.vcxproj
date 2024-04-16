@@ -162,6 +162,7 @@ call CodeGen.exe</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AirSlash.h" />
     <ClInclude Include="BossDiscMagic.h" />
     <ClInclude Include="CAnimatorModule.h" />
     <ClInclude Include="CBackgroundScript.h" />
@@ -225,6 +226,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="Terraform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AirSlash.cpp" />
     <ClCompile Include="BossDiscMagic.cpp" />
     <ClCompile Include="CAnimatorModule.cpp" />
     <ClCompile Include="CBackgroundScript.cpp" />

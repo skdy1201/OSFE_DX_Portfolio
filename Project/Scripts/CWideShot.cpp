@@ -4,6 +4,7 @@
 #include "CFieldObjScript.h"
 
 CWideShot::CWideShot()
+	: CProjectileScript((UINT)SCRIPT_TYPE::WIDESHOT)
 {
 }
 
@@ -43,8 +44,9 @@ void CWideShot::tick()
 
 void CWideShot::BeginOverlap(CCollider2D* _Collider, CGameObject* _OtherObj, CCollider2D* _OtherCollider)
 {
+	
 	_OtherObj->GetScript<CFieldObjScript>()->SetMovedIdx(Vec2{ 1, 0 });
-	_OtherObj->GetScript<CFieldObjScript>()->MovedByAttack();
+	_OtherObj->GetScript<CFieldObjScript>()->SetbMoved(true);
 
 	_OtherObj->GetScript<CFieldObjScript>()->Hit(this->GetInfo().Damage);
 
