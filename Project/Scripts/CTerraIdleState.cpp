@@ -3,7 +3,7 @@
 
 #include <Engine/CStateMachine.h>
 
-#include "CFieldObjScript.h"
+#include "CTerraScript.h"
 
 CTerraIdleState::CTerraIdleState()
 	: CState((UINT)STATE_TYPE::TERRAIDLESTATE)
@@ -16,7 +16,7 @@ CTerraIdleState::~CTerraIdleState()
 
 void CTerraIdleState::Enter()
 {
-	TerraScript = this->GetFSM()->GetStateMachine()->GetOwner()->GetScript<CFieldObjScript>();
+	TerraScript = this->GetFSM()->GetStateMachine()->GetOwner()->GetScript<CTerraScript>();
 
 	this->GetFSM()->GetStateMachine()->GetOwner()->Animator2D()->Play(TerraIdle);
 
@@ -44,6 +44,11 @@ void CTerraIdleState::finaltick()
 	if (TerraScript->GetHit() == true)
 	{
 		ChangeState(L"CTerraHitState");
+	}
+
+	if (TerraScript->GetMovedByAttack() == true)
+	{
+		ChangeState(L"CTerraMoveState");
 	}
 }
 

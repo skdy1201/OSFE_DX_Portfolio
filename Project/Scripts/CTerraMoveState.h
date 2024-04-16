@@ -3,7 +3,7 @@
 #include <Engine/CState.h>
 
 class CFieldScript;
-class CFieldObjScript;
+class CTerraScript;
 
 class CTerraMoveState :
     public CState
@@ -11,7 +11,7 @@ class CTerraMoveState :
 private:
 
     CFieldScript*       CurField;
-    CFieldObjScript*    TerraScript;
+    CTerraScript*    TerraScript;
 
     int                 MoveTime;
 

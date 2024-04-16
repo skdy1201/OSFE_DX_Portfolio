@@ -6,6 +6,7 @@
 
 #include "CFieldScript.h"
 #include "CFieldObjScript.h"
+#include "CTerraScript.h"
 #include "CRandomMgr.h"
 
 CTerraMoveState::CTerraMoveState()
@@ -19,42 +20,62 @@ CTerraMoveState::~CTerraMoveState()
 
 void CTerraMoveState::Enter()
 {
-	TerraScript = this->GetFSM()->GetStateMachine()->GetOwner()->GetScript<CFieldObjScript>();
-
-	this->GetFSM()->GetStateMachine()->GetOwner()->Collider2D()->SetOffsetScale(Vec2(0.f, 0.f));
-
+	TerraScript = this->GetFSM()->GetStateMachine()->GetOwner()->GetScript<CTerraScript>();
 	MoveCooldtime = (float*)GetBlackboardData(L"MoveCooldown");
-	CurField = this->GetFSM()->GetStateMachine()->GetOwner()->GetScript<CFieldObjScript>()->GetField();
 
 
-	MoveTime = CRandomMgr::GetInst()->GetRandom(4);
-	MoveTime += 8;
 
-	for(int i = 0; i < MoveTime; ++i)
+	if(TerraScript->GetMovedByAttack() == false)
 	{
-		int newCol = CRandomMgr::GetInst()->GetRandom(4);
-		newCol += 8;
+		this->GetFSM()->GetStateMachine()->GetOwner()->Collider2D()->SetOffsetScale(Vec2(0.f, 0.f));
 
-		int newRow = CRandomMgr::GetInst()->GetRandom(4);
+		CurField = this->GetFSM()->GetStateMachine()->GetOwner()->GetScript<CFieldObjScript>()->GetField();
 
-		MoveIdxList.push(Vec2(newCol, newRow));
+
+		MoveTime = CRandomMgr::GetInst()->GetRandom(4);
+		MoveTime += 8;
+
+		for(int i = 0; i < MoveTime; ++i)
+		{
+			int newCol = CRandomMgr::GetInst()->GetRandom(4);
+			newCol += 8;
+
+			int newRow = CRandomMgr::GetInst()->GetRandom(4);
+
+			MoveIdxList.push(Vec2(newCol, newRow));
+		}
+
+		MoveComplete = true;
 	}
-
-	MoveComplete = true;
 }
 
 void CTerraMoveState::finaltick()
 {
-	if(MoveComplete == true)
+	if (TerraScript->GetMovedByAttack())
 	{
-		TargetIdx = MoveIdxList.front();
-		MoveIdxList.pop();
+		TerraScript->MovedByAttack();
 
-		TargetTilePos = CurField->GetTilePosition(TargetIdx);
-		MoveComplete = false;
+		if (TerraScript->GetOwnerIdx() == Vec2(TerraScript->GetOwnerIdx().x + TerraScript->GetMovedIdx().x, TerraScript->GetOwnerIdx().y + TerraScript->GetMovedIdx().y))
+		{
 
-		this->GetFSM()->GetStateMachine()->GetOwner()->Animator2D()->Play(L"TerraMove");
+			*MoveCooldtime = 0.f;
+
+			ChangeState(L"CTerraIdleState");
+
+		}
 	}
+	else
+	{
+		if (MoveComplete == true)
+		{
+			TargetIdx = MoveIdxList.front();
+			MoveIdxList.pop();
+
+			TargetTilePos = CurField->GetTilePosition(TargetIdx);
+			MoveComplete = false;
+
+			this->GetFSM()->GetStateMachine()->GetOwner()->Animator2D()->Play(L"TerraMove");
+		}
 
 		Vec3 CurPos = this->GetFSM()->GetStateMachine()->Transform()->GetRelativePos();
 
@@ -67,7 +88,7 @@ void CTerraMoveState::finaltick()
 		Dir.Normalize();
 
 
-		if(xlength > 1.f && ylength > 1.f)
+		if (xlength > 1.f && ylength > 1.f)
 		{
 			CurPos += Dir * 750.f * DT;
 			this->GetFSM()->GetStateMachine()->Transform()->SetRelativePos(CurPos);
@@ -82,10 +103,13 @@ void CTerraMoveState::finaltick()
 		}
 
 
-	if(MoveIdxList.size() == 0 && MoveComplete == true)
-	{
-		ChangeState(L"CTerraIdleState");
+		if (MoveIdxList.size() == 0 && MoveComplete == true)
+		{
+			ChangeState(L"CTerraIdleState");
+		}
 	}
+
+
 }
 
 void CTerraMoveState::Exit()

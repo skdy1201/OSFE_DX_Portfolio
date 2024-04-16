@@ -16,8 +16,6 @@ private:
     float*              AttackCooltime;
 
 
-    Vec2                AttackMovedIdx;
-
 public:
 
     virtual void finaltick() override;

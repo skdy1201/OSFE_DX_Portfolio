@@ -2,13 +2,14 @@
 
 #include <Engine/CState.h>
 
+class CTerraScript;
 class CFieldObjScript;
 
 class CTerraIdleState :
     public CState
 {private:
 
-    CFieldObjScript*    TerraScript;
+    CTerraScript*    TerraScript;
     
     float*              MoveCooldtime;
     float*              AttackCooltime;
