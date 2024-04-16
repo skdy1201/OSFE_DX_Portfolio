@@ -18,6 +18,11 @@
 #include "CTerraDeadState.h"
 #include "CTerraAttackState.h"
 #include "CPlayerDeadState.h"
+#include "CLurkerIdleState.h"
+#include "CLurkerMoveState.h"
+#include "CLurkerHitState.h"
+#include "CLurkerDeadState.h"
+#include "CLurkerAttackState.h"
 
 void CStateMgr::GetStateInfo(vector<wstring>& _vec)
 {
@@ -38,6 +43,11 @@ void CStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CTerraDeadState");
 	_vec.push_back(L"CTerraAttackState");
 	_vec.push_back(L"CPlayerDeadState");
+	_vec.push_back(L"CLurkerIdleState");
+	_vec.push_back(L"CLurkerMoveState");
+	_vec.push_back(L"CLurkerHitState");
+	_vec.push_back(L"CLurkerDeadState");
+	_vec.push_back(L"CLurkerAttackState");
 }
 
 CState * CStateMgr::GetState(const wstring& _strStateName)
@@ -76,6 +86,16 @@ CState * CStateMgr::GetState(const wstring& _strStateName)
 		return new CTerraAttackState;
 	if (L"CPlayerDeadState" == _strStateName)
 		return new CPlayerDeadState;
+	if (L"CLurkerIdleState" == _strStateName)
+		return new CLurkerIdleState;
+	if (L"CLurkerMoveState" == _strStateName)
+		return new CLurkerMoveState;
+	if (L"CLurkerHitState" == _strStateName)
+		return new CLurkerHitState;
+	if (L"CLurkerDeadState" == _strStateName)
+		return new CLurkerDeadState;
+	if (L"CLurkerAttackState" == _strStateName)
+		return new CLurkerAttackState;
 	return nullptr;
 }
 
@@ -133,6 +153,21 @@ CState * CStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::PLAYERDEADSTATE:
 		return new CPlayerDeadState;
+		break;
+	case (UINT)STATE_TYPE::LURKERIDLESTATE:
+		return new CLurkerIdleState;
+		break;
+	case (UINT)STATE_TYPE::LURKERMOVESTATE:
+		return new CLurkerMoveState;
+		break;
+	case (UINT)STATE_TYPE::LURKERHITSTATE:
+		return new CLurkerHitState;
+		break;
+	case (UINT)STATE_TYPE::LURKERDEADSTATE:
+		return new CLurkerDeadState;
+		break;
+	case (UINT)STATE_TYPE::LURKERATTACKSTATE:
+		return new CLurkerAttackState;
 		break;
 	}
 	return nullptr;
@@ -208,6 +243,26 @@ const wchar_t * CStateMgr::GetStateName(CState * _pState)
 
 	case STATE_TYPE::PLAYERDEADSTATE:
 		return L"CPlayerDeadState";
+		break;
+
+	case STATE_TYPE::LURKERIDLESTATE:
+		return L"CLurkerIdleState";
+		break;
+
+	case STATE_TYPE::LURKERMOVESTATE:
+		return L"CLurkerMoveState";
+		break;
+
+	case STATE_TYPE::LURKERHITSTATE:
+		return L"CLurkerHitState";
+		break;
+
+	case STATE_TYPE::LURKERDEADSTATE:
+		return L"CLurkerDeadState";
+		break;
+
+	case STATE_TYPE::LURKERATTACKSTATE:
+		return L"CLurkerAttackState";
 		break;
 
 	}

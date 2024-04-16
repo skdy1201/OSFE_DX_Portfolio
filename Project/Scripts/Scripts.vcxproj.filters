@@ -185,6 +185,27 @@
     <ClInclude Include="AirSlash.h">
       <Filter>03. Magic\AirSlash</Filter>
     </ClInclude>
+    <ClInclude Include="CLurkerScript.h">
+      <Filter>02. Scripts\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CLurkerIdleState.h">
+      <Filter>08. States\LurkerState</Filter>
+    </ClInclude>
+    <ClInclude Include="CLurkerMoveState.h">
+      <Filter>08. States\LurkerState</Filter>
+    </ClInclude>
+    <ClInclude Include="CLurkerHitState.h">
+      <Filter>08. States\LurkerState</Filter>
+    </ClInclude>
+    <ClInclude Include="CLurkerDeadState.h">
+      <Filter>08. States\LurkerState</Filter>
+    </ClInclude>
+    <ClInclude Include="CLurkerAttackState.h">
+      <Filter>08. States\LurkerState</Filter>
+    </ClInclude>
+    <ClInclude Include="CLurkerShot.h">
+      <Filter>02. Scripts\Module</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -368,6 +389,27 @@
     <ClCompile Include="AirSlash.cpp">
       <Filter>03. Magic\AirSlash</Filter>
     </ClCompile>
+    <ClCompile Include="CLurkerScript.cpp">
+      <Filter>02. Scripts\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CLurkerIdleState.cpp">
+      <Filter>08. States\LurkerState</Filter>
+    </ClCompile>
+    <ClCompile Include="CLurkerMoveState.cpp">
+      <Filter>08. States\LurkerState</Filter>
+    </ClCompile>
+    <ClCompile Include="CLurkerHitState.cpp">
+      <Filter>08. States\LurkerState</Filter>
+    </ClCompile>
+    <ClCompile Include="CLurkerDeadState.cpp">
+      <Filter>08. States\LurkerState</Filter>
+    </ClCompile>
+    <ClCompile Include="CLurkerAttackState.cpp">
+      <Filter>08. States\LurkerState</Filter>
+    </ClCompile>
+    <ClCompile Include="CLurkerShot.cpp">
+      <Filter>02. Scripts\Module</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -456,6 +498,9 @@
     </Filter>
     <Filter Include="03. Magic\AirSlash">
       <UniqueIdentifier>{692c0136-3811-4146-8ad2-a9627cae260d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. States\LurkerState">
+      <UniqueIdentifier>{60ddb295-a68c-41d8-a9c9-ba0097383c3e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

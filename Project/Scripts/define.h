@@ -63,6 +63,8 @@
 
 #define PrefabTerra L"prefab\\TerraPlayer.pref"
 
+#define PrefabLurker L"prefab\\Lurker.pref"
+
 #define PrefabPlayerCursor L"prefab\\PlayerCursor.pref"
 
 #define PrefabBackGround L"prefab\\IceBackGround.pref"
@@ -140,7 +142,7 @@
 
 #define DeckCoverPos Vec3{-540.f, - 280.f , 0.f}
 #define DeckCoverIn Vec3{-527.f, -242.f, 10.f}
-#define SpellGravesPos Vec3{-527.f, -310.f, 100.f}
+#define SpellGravesPos Vec3{-527.f, -315.f, 100.f}
 
 #define Hand1Pos Vec3{-400.f, -300.f, 0.f}
 #define Hand2Pos Vec3{-300.f, -300.f, 0.f}

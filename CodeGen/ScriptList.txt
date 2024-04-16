@@ -29,3 +29,5 @@ CTitleUI
 CControlScript
 CSpine
 CWideShot
+CLurkerScript
+CLurkerShot

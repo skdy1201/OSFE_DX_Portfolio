@@ -32,6 +32,8 @@
 #include "CControlScript.h"
 #include "CSpine.h"
 #include "CWideShot.h"
+#include "CLurkerScript.h"
+#include "CLurkerShot.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -66,6 +68,8 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CControlScript");
 	_vec.push_back(L"CSpine");
 	_vec.push_back(L"CWideShot");
+	_vec.push_back(L"CLurkerScript");
+	_vec.push_back(L"CLurkerShot");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -132,6 +136,10 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CSpine;
 	if (L"CWideShot" == _strScriptName)
 		return new CWideShot;
+	if (L"CLurkerScript" == _strScriptName)
+		return new CLurkerScript;
+	if (L"CLurkerShot" == _strScriptName)
+		return new CLurkerShot;
 	return nullptr;
 }
 
@@ -231,6 +239,12 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::WIDESHOT:
 		return new CWideShot;
+		break;
+	case (UINT)SCRIPT_TYPE::LURKERSCRIPT:
+		return new CLurkerScript;
+		break;
+	case (UINT)SCRIPT_TYPE::LURKERSHOT:
+		return new CLurkerShot;
 		break;
 	}
 	return nullptr;
@@ -362,6 +376,14 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::WIDESHOT:
 		return L"CWideShot";
+		break;
+
+	case SCRIPT_TYPE::LURKERSCRIPT:
+		return L"CLurkerScript";
+		break;
+
+	case SCRIPT_TYPE::LURKERSHOT:
+		return L"CLurkerShot";
 		break;
 
 	}

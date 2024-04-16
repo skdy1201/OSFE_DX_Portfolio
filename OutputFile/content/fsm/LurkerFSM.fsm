@@ -1,0 +1,7 @@
+fsm\LurkerFSM.fsm
+5
+CLurkerAttackState
+CLurkerDeadState
+CLurkerHitState
+CLurkerIdleState
+CLurkerMoveState
