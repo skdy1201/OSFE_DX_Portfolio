@@ -64,13 +64,18 @@ void FrostBoltMagic::cast(Vec2 StartPoint)
 				if (castrow == 2 && castcol == 7)
 				{
 					GamePlayStatic::SpawnGameObject(bolt, LayerPlayerAttack, 0.2f);
+					GamePlayStatic::Play2DSound(L"sound\\ice_beam_rev.wav", 1, 0.5f);
 				}else if (castrow == 3 && castcol == 8)
 				{
 					GamePlayStatic::SpawnGameObject(bolt, LayerPlayerAttack);
+					GamePlayStatic::Play2DSound(L"sound\\ice_beam_rev.wav", 1, 0.5f);
+
 
 				}else
 				{
 					GamePlayStatic::SpawnGameObject(bolt, LayerPlayerAttack, 0.1f);
+					GamePlayStatic::Play2DSound(L"sound\\ice_beam_rev.wav", 1, 0.5f);
+
 				}
 
 			}

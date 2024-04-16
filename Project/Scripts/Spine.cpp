@@ -59,6 +59,8 @@ void Spine::cast(Vec2 StartPoint)
 
 				GamePlayStatic::SpawnGameObject(pSpine, LayerPlayerAttack);
 
+				GamePlayStatic::Play2DSound(L"sound\\fast_simple_chop.wav", 1, 0.7);
+
 				pSpine->Animator2D()->Play(L"Spine", true);
 
 			}

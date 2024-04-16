@@ -69,6 +69,8 @@ void CDeck::FillHand()
 
 		IsShaffle = false;
 		ShuffleTimer = 3.f;
+		GamePlayStatic::Play2DSound(L"sound\\shuffle_end.wav", 1, 0.5f);
+
 		
 	}
 
@@ -149,7 +151,7 @@ void CDeck::MoveToGrave()
 
 void CDeck::Shuffle()
 {
-
+	GamePlayStatic::Play2DSound(L"sound\\shuffle_start.wav", 1, 0.5f);
 	deque<CMagic*> Generator = MagicList;
 
 

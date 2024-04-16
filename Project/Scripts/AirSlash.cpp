@@ -21,7 +21,7 @@ AirSlash::AirSlash()
 
 	pWideShot = CAssetMgr::GetInst()->Load<CPrefab>(L"prefab\\WideShot.pref", L"prefab\\WideShot.pref");
 
-	MagicIcon = CPrefab::GetPrefabObj(L"prefab\\AirSlashIcon.pref");
+	MagicIcon = CPrefab::GetPrefabObj(L"prefab\\AirSlashDeckIcon.pref");
 	MagicIcon->Transform()->SetRelativePos(SpellGravesPos);
 	GamePlayStatic::SpawnGameObject(MagicIcon, LayerUI);
 }
@@ -58,6 +58,8 @@ void AirSlash::cast(Vec2 StartPoint)
 				slash->Transform()->SetOffset(Vec2{ 0.f, 40.f });
 
 				GamePlayStatic::SpawnGameObject(slash, LayerPlayerAttack, 0.f);
+				GamePlayStatic::Play2DSound(L"sound\\sword_laser.wav", 1, 0.5f);
+
 
 			}
 
