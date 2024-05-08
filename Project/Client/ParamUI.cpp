@@ -54,6 +54,26 @@ bool ParamUI::Param_VEC2(Vec2* _Data, const string& _Desc)
 	}
 }
 
+bool ParamUI::Param_VEC3(Vec3* _Data, const string& _Desc)
+{
+	ImGui::Text(_Desc.c_str());
+	ImGui::SameLine();
+
+	float arrFloat[3] = { _Data->x, _Data->y, _Data->z };
+	char szID[256] = {};
+	sprintf_s(szID, "##Vec2%d", g_ID++);
+	if (ImGui::InputFloat2(szID, arrFloat))
+	{
+		_Data->x = arrFloat[0];
+		_Data->y = arrFloat[1];
+		_Data->z = arrFloat[2];
+
+		return true;
+	}
+
+
+}
+
 bool ParamUI::Param_VEC4(Vec4* _Data, const string& _Desc)
 {
 	ImGui::Text(_Desc.c_str());
@@ -65,6 +85,15 @@ bool ParamUI::Param_VEC4(Vec4* _Data, const string& _Desc)
 	{
 		return true;
 	}
+}
+
+bool ParamUI::Param_Object(CGameObject* _Data, const string& _Desc)
+{
+	// 파라미터의 Description 정보 출력
+	ImGui::Text(_Desc.c_str());
+	ImGui::SameLine();
+
+	return true;
 }
 
 bool ParamUI::Param_TEXTURE(Ptr<CTexture>& _Texture, const string& _Desc, UI* _Inst, Delegate_1 _Func)
